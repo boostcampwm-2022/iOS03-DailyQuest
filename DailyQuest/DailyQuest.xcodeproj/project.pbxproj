@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
+		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
+		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
+		3413139F291E48A100E607E1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139E291E48A100E607E1 /* Realm */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
-		34ACC331291DE9C000741371 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC330291DE9C000741371 /* ViewController.swift */; };
-		34ACC334291DE9C000741371 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC332291DE9C000741371 /* Main.storyboard */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
 		34ACC339291DE9C100741371 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC337291DE9C100741371 /* LaunchScreen.storyboard */; };
 		34ACC344291DE9C100741371 /* DailyQuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC343291DE9C100741371 /* DailyQuestTests.swift */; };
 		34ACC34E291DE9C100741371 /* DailyQuestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */; };
 		34ACC350291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */; };
+		34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC35F291DEF6100741371 /* FirebaseAuth */; };
+		34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC361291DEF6100741371 /* FirebaseDatabase */; };
+		34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC363291DEF6100741371 /* FirebaseFirestore */; };
+		34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC365291DEF6100741371 /* FirebaseStorage */; };
+		34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +46,6 @@
 		34ACC329291DE9C000741371 /* DailyQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC32C291DE9C000741371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACC32E291DE9C000741371 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		34ACC330291DE9C000741371 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		34ACC333291DE9C000741371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34ACC335291DE9C100741371 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34ACC338291DE9C100741371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34ACC33A291DE9C100741371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		34ACC349291DE9C100741371 /* DailyQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34131399291E47D300E607E1 /* RxSwift in Frameworks */,
+				34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */,
+				34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */,
+				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
+				34131397291E47D300E607E1 /* RxCocoa in Frameworks */,
+				34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */,
+				3413139F291E48A100E607E1 /* Realm in Frameworks */,
+				34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +113,14 @@
 		34ACC32B291DE9C000741371 /* DailyQuest */ = {
 			isa = PBXGroup;
 			children = (
-				34ACC32C291DE9C000741371 /* AppDelegate.swift */,
-				34ACC32E291DE9C000741371 /* SceneDelegate.swift */,
-				34ACC330291DE9C000741371 /* ViewController.swift */,
-				34ACC332291DE9C000741371 /* Main.storyboard */,
+				34ACC367291DF00B00741371 /* Application */,
+				34ACC36A291DF04000741371 /* Data */,
+				34ACC368291DF02500741371 /* Presentaion */,
+				34ACC369291DF03600741371 /* Domain */,
 				34ACC335291DE9C100741371 /* Assets.xcassets */,
 				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
 				34ACC33A291DE9C100741371 /* Info.plist */,
+				34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */,
 			);
 			path = DailyQuest;
 			sourceTree = "<group>";
@@ -127,6 +142,36 @@
 			path = DailyQuestUITests;
 			sourceTree = "<group>";
 		};
+		34ACC367291DF00B00741371 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				34ACC32C291DE9C000741371 /* AppDelegate.swift */,
+				34ACC32E291DE9C000741371 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		34ACC368291DF02500741371 /* Presentaion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentaion;
+			sourceTree = "<group>";
+		};
+		34ACC369291DF03600741371 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		34ACC36A291DF04000741371 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +188,16 @@
 			dependencies = (
 			);
 			name = DailyQuest;
+			packageProductDependencies = (
+				34ACC35F291DEF6100741371 /* FirebaseAuth */,
+				34ACC361291DEF6100741371 /* FirebaseDatabase */,
+				34ACC363291DEF6100741371 /* FirebaseFirestore */,
+				34ACC365291DEF6100741371 /* FirebaseStorage */,
+				34131396291E47D300E607E1 /* RxCocoa */,
+				34131398291E47D300E607E1 /* RxSwift */,
+				3413139B291E480500E607E1 /* SnapKit */,
+				3413139E291E48A100E607E1 /* Realm */,
+			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +270,12 @@
 				Base,
 			);
 			mainGroup = 34ACC320291DE9C000741371;
+			packageReferences = (
+				34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +294,7 @@
 			files = (
 				34ACC339291DE9C100741371 /* LaunchScreen.storyboard in Resources */,
 				34ACC336291DE9C100741371 /* Assets.xcassets in Resources */,
-				34ACC334291DE9C000741371 /* Main.storyboard in Resources */,
+				34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +319,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34ACC331291DE9C000741371 /* ViewController.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +357,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		34ACC332291DE9C000741371 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				34ACC333291DE9C000741371 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		34ACC337291DE9C100741371 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,7 +493,6 @@
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,7 +519,6 @@
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -596,6 +646,84 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34131396291E47D300E607E1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		34131398291E47D300E607E1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		3413139B291E480500E607E1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3413139E291E48A100E607E1 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		34ACC35F291DEF6100741371 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		34ACC361291DEF6100741371 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		34ACC363291DEF6100741371 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		34ACC365291DEF6100741371 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 34ACC321291DE9C000741371 /* Project object */;
 }
