@@ -135,7 +135,7 @@
 			children = (
 				34ACC367291DF00B00741371 /* Application */,
 				34ACC36A291DF04000741371 /* Data */,
-				34ACC368291DF02500741371 /* Presentaion */,
+				34ACC368291DF02500741371 /* Presentation */,
 				34ACC369291DF03600741371 /* Domain */,
 				34ACC335291DE9C100741371 /* Assets.xcassets */,
 				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
@@ -171,12 +171,12 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		34ACC368291DF02500741371 /* Presentaion */ = {
+		34ACC368291DF02500741371 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				3449AD5E292219D600B87619 /* Common */,
 			);
-			path = Presentaion;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		34ACC369291DF03600741371 /* Domain */ = {
