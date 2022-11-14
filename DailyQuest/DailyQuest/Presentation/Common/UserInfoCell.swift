@@ -40,7 +40,6 @@ final class UserInfoCell: UITableViewCell {
     private lazy var userImage: UIImageView = {
         let userImage = UIImageView()
         userImage.image = UIImage(systemName: "heart.fill")
-        userImage.layer.masksToBounds = false
         userImage.clipsToBounds = true
         userImage.backgroundColor = .white
         
