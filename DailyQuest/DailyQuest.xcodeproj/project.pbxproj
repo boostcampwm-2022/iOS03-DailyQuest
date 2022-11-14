@@ -10,7 +10,6 @@
 		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
 		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
-		3413139F291E48A100E607E1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139E291E48A100E607E1 /* Realm */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
@@ -25,6 +24,12 @@
 		34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC363291DEF6100741371 /* FirebaseFirestore */; };
 		34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC365291DEF6100741371 /* FirebaseStorage */; };
 		34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */; };
+		A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96D829223648003B7637 /* RealmStorage.swift */; };
+		A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
+		A5AC96E329223E2F003B7637 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E229223E2F003B7637 /* DefaultQuestsRepository.swift */; };
+		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
+		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,11 @@
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5AC96D829223648003B7637 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		A5AC96DB292237C3003B7637 /* QuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestEntity.swift; sourceTree = "<group>"; };
+		A5AC96E229223E2F003B7637 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
+		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
+		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +76,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */,
 				34131399291E47D300E607E1 /* RxSwift in Frameworks */,
 				34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */,
 				34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */,
 				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
 				34131397291E47D300E607E1 /* RxCocoa in Frameworks */,
 				34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */,
-				3413139F291E48A100E607E1 /* Realm in Frameworks */,
 				34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				34ACC367291DF00B00741371 /* Application */,
-				34ACC36A291DF04000741371 /* Data */,
 				34ACC368291DF02500741371 /* Presentation */,
+				34ACC36A291DF04000741371 /* Data */,
 				34ACC369291DF03600741371 /* Domain */,
 				34ACC335291DE9C100741371 /* Assets.xcassets */,
 				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
@@ -190,8 +200,61 @@
 		34ACC36A291DF04000741371 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5AC96D42922356E003B7637 /* Repositories */,
+				A5AC96D62922359F003B7637 /* PersistentStorages */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		A5AC96D42922356E003B7637 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96E229223E2F003B7637 /* DefaultQuestsRepository.swift */,
+				A5AC96D52922357E003B7637 /* Util */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		A5AC96D52922357E003B7637 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		A5AC96D62922359F003B7637 /* PersistentStorages */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96E429223EE6003B7637 /* QuestsStorage */,
+				A5AC96D72922362A003B7637 /* RealmStorage */,
+			);
+			path = PersistentStorages;
+			sourceTree = "<group>";
+		};
+		A5AC96D72922362A003B7637 /* RealmStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96DA2922377C003B7637 /* Entities */,
+				A5AC96D829223648003B7637 /* RealmStorage.swift */,
+			);
+			path = RealmStorage;
+			sourceTree = "<group>";
+		};
+		A5AC96DA2922377C003B7637 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96DB292237C3003B7637 /* QuestEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A5AC96E429223EE6003B7637 /* QuestsStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96E529223F06003B7637 /* QuestsStorage.swift */,
+				A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */,
+			);
+			path = QuestsStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +281,7 @@
 				34131396291E47D300E607E1 /* RxCocoa */,
 				34131398291E47D300E607E1 /* RxSwift */,
 				3413139B291E480500E607E1 /* SnapKit */,
-				3413139E291E48A100E607E1 /* Realm */,
+				A5AC96DE292239CA003B7637 /* RealmSwift */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -296,7 +359,7 @@
 				34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -342,8 +405,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
+				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
+				A5AC96E329223E2F003B7637 /* DefaultQuestsRepository.swift in Sources */,
+				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
+				A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
+				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,17 +756,17 @@
 				kind = branch;
 			};
 		};
-		3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -722,11 +790,6 @@
 			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		3413139E291E48A100E607E1 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3413139D291E48A100E607E1 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
 		34ACC35F291DEF6100741371 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -746,6 +809,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		A5AC96DE292239CA003B7637 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
