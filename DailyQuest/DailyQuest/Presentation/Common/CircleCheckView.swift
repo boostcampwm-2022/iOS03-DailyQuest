@@ -15,7 +15,6 @@ class CircleCheckView: UIView {
     private lazy var circleBackground: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.973, green: 0.953, blue: 0.831, alpha: 1)
-        view.clipsToBounds = true
         return view
     }()
     
