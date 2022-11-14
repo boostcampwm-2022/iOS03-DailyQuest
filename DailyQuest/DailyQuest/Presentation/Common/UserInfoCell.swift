@@ -100,6 +100,8 @@ final class UserInfoCell: UITableViewCell {
      */
     func setup(with user: User) {
         userName.text = user.nickName
+        guard let image = UIImage(data: user.profile) else { return }
+        userImage.image = image
     }
 }
 
