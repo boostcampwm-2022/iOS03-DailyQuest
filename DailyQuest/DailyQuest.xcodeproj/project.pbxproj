@@ -11,6 +11,8 @@
 		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
 		3413139F291E48A100E607E1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139E291E48A100E607E1 /* Realm */; };
+		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
+		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		34ACC329291DE9C000741371 /* DailyQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC32C291DE9C000741371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACC32E291DE9C000741371 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3449AD592922162E00B87619 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3449AD5A2922164B00B87619 /* Quest.swift */,
+				3449AD5C2922197000B87619 /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		3449AD5E292219D600B87619 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		34ACC320291DE9C000741371 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +174,7 @@
 		34ACC368291DF02500741371 /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
+				3449AD5E292219D600B87619 /* Common */,
 			);
 			path = Presentaion;
 			sourceTree = "<group>";
@@ -161,6 +182,7 @@
 		34ACC369291DF03600741371 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3449AD592922162E00B87619 /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -319,7 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3449AD5D2922197000B87619 /* User.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
+				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
