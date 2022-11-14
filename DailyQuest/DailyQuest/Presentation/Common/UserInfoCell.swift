@@ -140,7 +140,6 @@ struct UserInfoCellPreview: PreviewProvider{
             return cell
         }
         .previewLayout(.fixed(width: 350, height: 80))
-        .environment(\.dynamicTypeSize, .large)
     }
 }
 #endif
