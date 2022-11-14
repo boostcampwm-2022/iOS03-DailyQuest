@@ -13,6 +13,7 @@
 		3413139F291E48A100E607E1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139E291E48A100E607E1 /* Realm */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
+		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		34ACC329291DE9C000741371 /* DailyQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC32C291DE9C000741371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACC32E291DE9C000741371 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		3449AD5E292219D600B87619 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3449AD5F29222B3900B87619 /* UserInfoCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
+				3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
