@@ -16,7 +16,7 @@ final class UserInfoCell: UITableViewCell {
     // MARK: - Components
     /**
      이미지와 유저이름 레이블을 담기 위한 스택뷰입니다.
-     수평 스택뷰이며, 중앙 정렬을 통해 각 아이템을 수평축 수직축 기준으로 중앙에 위치시켰습니다.
+     수평 스택뷰이며, 중앙 정렬을 통해 각 아이템을 수직축 기준으로 중앙에 위치시켰습니다.
      Note. Color를 assets에 임의로 등록하였습니다. 동료들이 동일한 이름으로 동일한 색상을 등록할 수도 있으므로,
      이는 회고시간에 반드시 언급해야 합니다.
      */
@@ -35,7 +35,7 @@ final class UserInfoCell: UITableViewCell {
     
     /**
      유저의 프로필 이미지가 들어갈 UIImageView입니다.
-     Note. 원형의 틀을 만들기 위해, render loop의 `layoutSubviews()`메서드를 오버라이드하였음을 인지하세요.
+     Note. 원형의 틀을 만들기 위해, render loop의 `layoutSubviews()`메서드를 오버라이드하였음에 유념하세요.
      */
     private lazy var userImage: UIImageView = {
         let userImage = UIImageView()
@@ -137,7 +137,7 @@ struct UserInfoCellPreview: PreviewProvider{
     static var previews: some View {
         UIViewPreview {
             let cell = UserInfoCell(frame: .zero)
-            cell.setup(with: User(uuid: UUID(), nickName: "somdess", profile: Data(), backgroundImage: Data(), description: ""))
+            cell.setup(with: User(uuid: UUID(), nickName: "jinwoong", profile: Data(), backgroundImage: Data(), description: ""))
             return cell
         }
         .previewLayout(.fixed(width: 350, height: 80))
