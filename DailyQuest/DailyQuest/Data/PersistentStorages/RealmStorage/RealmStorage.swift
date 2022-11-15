@@ -19,7 +19,11 @@ enum RealmStorageError: Error {
 
 final class RealmStorage {
     static let shared = RealmStorage()
-    private init() { }
+    
+    private init() {
+        // Realm file path
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
 
     private let persistentContainer = try? Realm()
 
