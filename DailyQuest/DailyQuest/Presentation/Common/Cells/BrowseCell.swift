@@ -20,7 +20,10 @@ final class BrowseCell: UITableViewCell {
      아직 사용되고 있는 view는 아닙니다.
      */
     private lazy var header: UILabel = {
-        return UILabel()
+        let header = UILabel()
+        header.text = "test"
+        
+        return header
     }()
     
     private lazy var questTableView: UITableView = {
@@ -31,20 +34,20 @@ final class BrowseCell: UITableViewCell {
         return questTableView
     }()
     
-    // MARK: Methods
+    // MARK: - Methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         questTableView.register(QuestCell.self, forCellReuseIdentifier: QuestCell.reuseIdentifier)
+        questTableView.delegate = self
         questTableView.dataSource = self
         
         questTableView.rowHeight = 75 // the cell size
-        questTableView.estimatedRowHeight = UITableView.automaticDimension
         
         questTableView.allowsSelection = false
+        questTableView.sectionHeaderTopPadding = 0
         
         configureUI()
-        
     }
     
     /**
@@ -78,6 +81,16 @@ final class BrowseCell: UITableViewCell {
         self.viewModel = viewModel
         
         questTableView.reloadData()
+    }
+}
+
+extension BrowseCell: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 75
     }
 }
 
