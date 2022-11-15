@@ -10,6 +10,15 @@ import UIKit
 import SnapKit
 
 final class QuestCell: UITableViewCell {
+    /// dequeuResusable을 위한 아이덴티파이어입니다.
+    static let reuseIdentifier = "UserInfoCell"
+    
+    // MARK: - Components
+    /**
+     프로그래스 바 입니다. 기존의 `UIProgressBar`를 상속받는
+     `CustomProgressBar`를 타입으로 합니다.
+     이 클래스는 코너의 radius 값을 주기 위해 만들어졌습니다.
+     */
     private lazy var progressView: CustomProgressBar = {
         let progressView = CustomProgressBar()
         progressView.trackTintColor = .maxLightYellow
@@ -19,6 +28,9 @@ final class QuestCell: UITableViewCell {
         return progressView
     }()
     
+    /**
+     좌측에 quest의 제목이 들어갈 레이블입니다.
+     */
     private lazy var questLabel: UILabel = {
         let questLabel = UILabel()
         questLabel.text = "0"
@@ -26,6 +38,9 @@ final class QuestCell: UITableViewCell {
         return questLabel
     }()
     
+    /**
+     우측에 현재 달성량과 목표량이 들어갈 레이블입니다.
+     */
     private lazy var countLabel: UILabel = {
         let countLabel = UILabel()
         countLabel.text = "0"
@@ -45,6 +60,10 @@ final class QuestCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+     UI의 constraints를 설정하기 위한 메서드입니다.
+     constraints를 설정하기 전에, 해당 뷰를 먼저 add해야함을 유념하세요.
+     */
     private func configureUI() {
         addSubview(progressView)
         addSubview(questLabel)
@@ -65,6 +84,15 @@ final class QuestCell: UITableViewCell {
         }
     }
     
+    /**
+     인자로 받은 Entity Quest타입을 통해 그 정보를 기반으로 cell에 아이템을 넣습니다.
+     
+     애니메이션 효과가 필요없다고 판단하여, `setProgress(_:animated)`에서 두번째 인자를
+     `false`로 설정하였습니다.
+     
+     - Parameters:
+        - quest: Quest타입의 엔티티입니다.
+     */
     func setup(with quest: Quest) {
         let value = Float(quest.currentCount) / Float(quest.totalCount)
         questLabel.text = "\(quest.title)"
