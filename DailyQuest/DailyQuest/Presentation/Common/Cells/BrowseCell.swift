@@ -15,6 +15,14 @@ final class BrowseCell: UITableViewCell {
     /// dequeuResusable을 위한 아이덴티파이어입니다.
     static let reuseIdentifier = "UserInfoCell"
     
+    // MARK: - Components
+    /**
+     아직 사용되고 있는 view는 아닙니다.
+     */
+    private lazy var header: UILabel = {
+        return UILabel()
+    }()
+    
     private lazy var questTableView: UITableView = {
         let questTableView = UITableView()
         questTableView.backgroundColor = .maxLightGrey
@@ -23,14 +31,29 @@ final class BrowseCell: UITableViewCell {
         return questTableView
     }()
     
+    // MARK: Methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         questTableView.register(QuestCell.self, forCellReuseIdentifier: QuestCell.reuseIdentifier)
         questTableView.dataSource = self
-        questTableView.delegate = self
+        
+        questTableView.rowHeight = 75 // the cell size
+        questTableView.estimatedRowHeight = UITableView.automaticDimension
+        
+        questTableView.allowsSelection = false
         
         configureUI()
+        
+    }
+    
+    /**
+     Browse Cell 내부의 테이블뷰의 모든 방향에 패딩을 추가합니다.
+     */
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        questTableView.frame = questTableView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
     
     required init?(coder: NSCoder) {
@@ -41,10 +64,16 @@ final class BrowseCell: UITableViewCell {
         addSubview(questTableView)
         
         questTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
+            make.edges.equalToSuperview()
         }
     }
     
+    /**
+     인자로 viewModel을 받아, 테이블뷰를 reload합니다.
+     
+     - Parameters:
+        - viewModel: `BrowseItemViewModel` 타입입니다. User의 인스턴스와 Quest 인스턴스의 배열을 가지고 있습니다.
+     */
     func setup(with viewModel: BrowseItemViewModel) {
         self.viewModel = viewModel
         
@@ -52,21 +81,20 @@ final class BrowseCell: UITableViewCell {
     }
 }
 
-extension BrowseCell: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
-    }
-}
-
 extension BrowseCell: UITableViewDataSource {
+    /**
+     테이블 뷰안에 들어갈 QuestCell의 개수를 구합니다.
+     Note. 이 메서드가 최초로 실행되는 시점에는 viewModel이 nil입니다.
+     데이터소스를 통해 값이 삽입되는 시점에는 그렇지 않으므로, 예외처리를 통해 해결했습니다.
+     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        guard let count = viewModel?.quests.count else { return 0 }
+        return count
     }
     
+    /**
+     QuestCell을 생성합니다.
+     */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = questTableView.dequeueReusableCell(withIdentifier: QuestCell.reuseIdentifier, for: indexPath) as? QuestCell else {
             assertionFailure("Cannot deque reuseable cell.")
