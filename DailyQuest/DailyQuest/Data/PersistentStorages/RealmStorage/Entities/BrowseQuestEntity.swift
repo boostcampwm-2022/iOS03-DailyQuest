@@ -20,4 +20,8 @@ final class BrowseQuestEntity: Object {
         self.nickName = nickName
         self.quest = quest
     }
+    
+    override class func primaryKey() -> String? {
+        "uuid"
+    }
 }

@@ -24,4 +24,8 @@ final class UserInfoEntity: Object {
         self.backgroundImage = backgroundImage
         self.userDescription = description
     }
+    
+    override class func primaryKey() -> String? {
+        "uuid"
+    }
 }
