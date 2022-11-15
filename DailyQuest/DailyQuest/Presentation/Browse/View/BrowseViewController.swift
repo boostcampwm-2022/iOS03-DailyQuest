@@ -23,22 +23,34 @@ final class BrowseViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none
-        tableView.delegate = nil
-        tableView.dataSource = nil
         
-        tableView.register(BrowseCell.self, forCellReuseIdentifier: BrowseCell.reuseIdentifier)
-        tableView.rx.setDelegate(self).disposed(by: disposableBag)
-        
+        configure()
         bind()
     }
     
-    func bind() {
+    /**
+     table view의 기본 정보를 설정합니다.
+     */
+    private func configure() {
+        // 셀 사이사이의 구분선을 제거합니다.
+        tableView.separatorStyle = .none
+        
+        tableView.allowsSelection = false
+        
+        // 델리게이트와 데이터소스를 rx로 재설정합니다.
+        tableView.delegate = nil
+        tableView.dataSource = nil
+        tableView.rx.setDelegate(self).disposed(by: disposableBag)
+        
+        // BrowseCell을 등록합니다.
+        tableView.register(BrowseCell.self, forCellReuseIdentifier: BrowseCell.reuseIdentifier)
+    }
+    
+    private func bind() {
         viewModel
             .data
             .bind(to: tableView.rx.items(cellIdentifier: BrowseCell.reuseIdentifier, cellType: BrowseCell.self)) { row, item, cell in
                 cell.setup(with: BrowseItemViewModel(user: item.0, quests: item.1))
-                
             }
             .disposed(by: disposableBag)
     }
