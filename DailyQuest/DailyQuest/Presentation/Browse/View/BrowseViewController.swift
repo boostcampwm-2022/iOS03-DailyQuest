@@ -45,11 +45,21 @@ final class BrowseViewController: UITableViewController {
 }
 
 extension BrowseViewController {
+    /**
+     하나의 BrowseCell의 크기를 결정합니다. BrowseCell내의 QuestCell의 개수만큼 크기가 늘어납니다.
+     +20은 margins으로 인해 추가된 값입니다.
+     */
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0 * CGFloat(viewModel.quests.count)
+        return (75.0 * CGFloat(viewModel.cellCount[indexPath.row])) + 20
     }
     
+    /**
+     viewModel에서 총 몇개의 BrowseCell을 만들어야하는지 결정합니다.
+     viewModel에는 UseCase를 통해 들어온 (User, [Quest]) 데이터에서 퀘스트의 **길이** 정보를 담는 프로퍼티(배열)가 있어야 합니다.
+     Note. 여기에서는 Quest 정보 자체가 필요하진 않습니다. 해당 배열의 아이템들은 위에서 사용할, BrowseCell의 크기를 결정하고,
+     배열 자체의 길이는 이 메서드의 결과를 결정합니다.
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.cellCount.count
     }
 }
