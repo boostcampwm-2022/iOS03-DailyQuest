@@ -69,17 +69,19 @@ final class QuestCell: UITableViewCell {
         addSubview(questLabel)
         addSubview(countLabel)
         
+        backgroundColor = .maxLightGrey
+        
         progressView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(10)
         }
         
         questLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(20)
             make.centerY.equalToSuperview()
         }
         
         countLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(progressView).inset(10)
+            make.trailing.equalTo(progressView).inset(20)
             make.centerY.equalToSuperview()
         }
     }
