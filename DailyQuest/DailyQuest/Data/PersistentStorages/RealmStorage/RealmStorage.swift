@@ -5,7 +5,6 @@
 //  Created by 이전희 on 2022/11/14.
 //
 
-import Realm
 import RealmSwift
 import Foundation
 
