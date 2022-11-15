@@ -74,13 +74,13 @@ final class QuestCell: UITableViewCell {
         }
         
         questLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(30)
             make.leading.equalToSuperview().inset(10)
+            make.centerY.equalToSuperview()
         }
         
         countLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressView).inset(30)
             make.trailing.equalTo(progressView).inset(10)
+            make.centerY.equalToSuperview()
         }
     }
     
