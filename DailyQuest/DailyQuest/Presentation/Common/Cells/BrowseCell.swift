@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class QuestCell: UITableViewCell {
+class BrowseCell: UITableViewCell {
     
     static let reuseIdentifier = "QuestCell"
     
@@ -133,10 +133,10 @@ class QuestCell: UITableViewCell {
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI
 
-struct QuestCellPreview: PreviewProvider{
+struct BrowseCellPreview: PreviewProvider{
     static var previews: some View {
         UIViewPreview {
-            let cell = QuestCell(frame: .zero)
+            let cell = BrowseCell(frame: .zero)
             cell.setup(user: User(uuid: UUID(), nickName: "맥스", profile: Data(), backgroundImage: Data(), description: ""), quest: [Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5), Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5), Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5)])
             return cell
         }
