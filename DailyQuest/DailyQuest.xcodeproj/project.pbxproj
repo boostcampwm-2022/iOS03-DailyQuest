@@ -24,12 +24,15 @@
 		34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC363291DEF6100741371 /* FirebaseFirestore */; };
 		34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC365291DEF6100741371 /* FirebaseStorage */; };
 		34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */; };
+		A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */; };
+		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
+		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
 		A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96D829223648003B7637 /* RealmStorage.swift */; };
-		A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		A5AC96DC292237C3003B7637 /* UserQuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* UserQuestEntity.swift */; };
 		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
 		A5AC96E329223E2F003B7637 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E229223E2F003B7637 /* DefaultQuestsRepository.swift */; };
-		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
-		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5AC96E629223F06003B7637 /* UserQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* UserQuestsStorage.swift */; };
+		A5AC96E829223F27003B7637 /* RealmUserQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmUserQuestsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,11 +67,14 @@
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserQuestEntity+Mapping.swift"; sourceTree = "<group>"; };
+		A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
+		A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEntity.swift; sourceTree = "<group>"; };
 		A5AC96D829223648003B7637 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
-		A5AC96DB292237C3003B7637 /* QuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestEntity.swift; sourceTree = "<group>"; };
+		A5AC96DB292237C3003B7637 /* UserQuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestEntity.swift; sourceTree = "<group>"; };
 		A5AC96E229223E2F003B7637 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
-		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
-		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
+		A5AC96E529223F06003B7637 /* UserQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestsStorage.swift; sourceTree = "<group>"; };
+		A5AC96E729223F27003B7637 /* RealmUserQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserQuestsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,39 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		A51189C029226DF7008A9D33 /* RealmStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A5AC96E729223F27003B7637 /* RealmUserQuestsStorage.swift */,
+				A51189C129226E26008A9D33 /* EntityMapping */,
+			);
+			path = RealmStorage;
+			sourceTree = "<group>";
+		};
+		A51189C129226E26008A9D33 /* EntityMapping */ = {
+			isa = PBXGroup;
+			children = (
+				A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */,
+			);
+			path = EntityMapping;
+			sourceTree = "<group>";
+		};
+		A51F01C629232DF90031ECA2 /* UserInfoStorage */ = {
+			isa = PBXGroup;
+			children = (
+				A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */,
+				A51F01CB292339DB0031ECA2 /* RealmStorage */,
+			);
+			path = UserInfoStorage;
+			sourceTree = "<group>";
+		};
+		A51F01CB292339DB0031ECA2 /* RealmStorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RealmStorage;
+			sourceTree = "<group>";
+		};
 		A5AC96D42922356E003B7637 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +264,8 @@
 		A5AC96D62922359F003B7637 /* PersistentStorages */ = {
 			isa = PBXGroup;
 			children = (
-				A5AC96E429223EE6003B7637 /* QuestsStorage */,
+				A51F01C629232DF90031ECA2 /* UserInfoStorage */,
+				A5AC96E429223EE6003B7637 /* UserQuestsStorage */,
 				A5AC96D72922362A003B7637 /* RealmStorage */,
 			);
 			path = PersistentStorages;
@@ -243,18 +283,19 @@
 		A5AC96DA2922377C003B7637 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A5AC96DB292237C3003B7637 /* QuestEntity.swift */,
+				A5AC96DB292237C3003B7637 /* UserQuestEntity.swift */,
+				A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		A5AC96E429223EE6003B7637 /* QuestsStorage */ = {
+		A5AC96E429223EE6003B7637 /* UserQuestsStorage */ = {
 			isa = PBXGroup;
 			children = (
-				A5AC96E529223F06003B7637 /* QuestsStorage.swift */,
-				A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */,
+				A5AC96E529223F06003B7637 /* UserQuestsStorage.swift */,
+				A51189C029226DF7008A9D33 /* RealmStorage */,
 			);
-			path = QuestsStorage;
+			path = UserQuestsStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,13 +446,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
-				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
+				A5AC96E629223F06003B7637 /* UserQuestsStorage.swift in Sources */,
+				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				A5AC96E329223E2F003B7637 /* DefaultQuestsRepository.swift in Sources */,
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
-				A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */,
+				A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */,
+				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
+				A5AC96DC292237C3003B7637 /* UserQuestEntity.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
-				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
+				A5AC96E829223F27003B7637 /* RealmUserQuestsStorage.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
