@@ -16,6 +16,8 @@
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
 		349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349955112923220E007AB99E /* SwiftUIPreview.swift */; };
 		3499551529232533007AB99E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551429232533007AB99E /* UIColor+.swift */; };
+		3499551E29233DEF007AB99E /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551D29233DEF007AB99E /* QuestCell.swift */; };
+		3499552029234637007AB99E /* CustomProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551F29234637007AB99E /* CustomProgressBar.swift */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		349955112923220E007AB99E /* SwiftUIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPreview.swift; sourceTree = "<group>"; };
 		3499551429232533007AB99E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		3499551D29233DEF007AB99E /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
+		3499551F29234637007AB99E /* CustomProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressBar.swift; sourceTree = "<group>"; };
 		34ACC329291DE9C000741371 /* DailyQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC32C291DE9C000741371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACC32E291DE9C000741371 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				3499551C292332DE007AB99E /* Cells */,
 				9B1CFB362922763E00CCE97A /* QuestView.swift */,
 				B50078D529222F3F0070AFC4 /* CircleCheckView.swift */,
+				3499551F29234637007AB99E /* CustomProgressBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				9B1CFB342922460100CCE97A /* BrowseCell.swift */,
 				B58DFC0929227DA800C68A4B /* CalendarCell.swift */,
 				3449AD5F29222B3900B87619 /* UserInfoCell.swift */,
+				3499551D29233DEF007AB99E /* QuestCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -434,6 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3499552029234637007AB99E /* CustomProgressBar.swift in Sources */,
+				3499551E29233DEF007AB99E /* QuestCell.swift in Sources */,
 				9B1CFB3B2922BBDA00CCE97A /* BrowseCell.swift in Sources */,
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
