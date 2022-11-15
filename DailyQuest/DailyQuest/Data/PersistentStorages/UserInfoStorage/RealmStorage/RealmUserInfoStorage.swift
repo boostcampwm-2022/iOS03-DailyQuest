@@ -20,11 +20,11 @@ extension RealmUserInfoStorage: UserInfoStorage {
     func fetchUserInfo() -> Observable<User> {
         return Observable<User>.create { [weak self] observer in
             guard let realmStorage = self?.realmStorage else {
+                // self가 존재하지 않을 경우, 반환하지 않고 종료
                 return Disposables.create()
             }
 
             do {
-                // User 정보가 없을 경우 noDataError 발생
                 guard let userInfoEntity = try realmStorage.fetchEntities(type: UserInfoEntity.self)
                     .first else {
                     throw RealmStorageError.noDataError
@@ -33,6 +33,8 @@ extension RealmUserInfoStorage: UserInfoStorage {
                 observer.onNext(userInfoEntity.toDomain())
                 observer.onCompleted()
             } catch let error {
+                // Realm을 불러올 수 없을 경우, realmObjectError
+                // User 정보가 없을 경우, noDataError
                 observer.onError(error)
             }
 
@@ -49,10 +51,11 @@ extension RealmUserInfoStorage: UserInfoStorage {
             let userInfo = UserInfoEntity(user: user)
 
             do {
-                
+                // update 성공했을 경우, success(user)
                 try realmStorage.updateEntity(entity: userInfo)
                 single(.success(user))
             } catch let error {
+                // update 성공하지 못했을 경우, failure(error)
                 single(.failure(RealmStorageError.saveError(error)))
             }
 

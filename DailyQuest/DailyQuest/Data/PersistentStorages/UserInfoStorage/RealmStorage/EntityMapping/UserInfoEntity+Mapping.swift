@@ -7,6 +7,7 @@
 
 import Foundation
 
+// DomainObject -> RealmObject
 extension UserInfoEntity {
     convenience init(user: User) {
         self.init(uuid: user.uuid,
@@ -17,6 +18,7 @@ extension UserInfoEntity {
     }
 }
 
+// RealmObject -> DomainObject
 extension UserInfoEntity {
     func toDomain() -> User {
         return User(uuid: uuid,
