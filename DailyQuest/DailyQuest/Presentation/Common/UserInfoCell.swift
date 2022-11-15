@@ -24,7 +24,7 @@ final class UserInfoCell: UITableViewCell {
         let container = UIStackView()
         container.axis = .horizontal
         container.alignment = .center
-        container.backgroundColor = UIColor(named: "LightGray")
+        container.backgroundColor = .maxLightGrey
         container.spacing = 10
         container.isLayoutMarginsRelativeArrangement = true
         container.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 0)
@@ -103,31 +103,6 @@ final class UserInfoCell: UITableViewCell {
         userImage.image = image
     }
 }
-
-/**
- SwiftUI 프리뷰 기능을 사용하기 위한 코드들 입니다.
- */
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct UIViewPreview<View: UIView>: UIViewRepresentable {
-    let view: View
-    
-    init(_ builder: @escaping () -> View) {
-        view = builder()
-    }
-    
-    // MARK: - UIViewRepresentable
-    
-    func makeUIView(context: Context) -> UIView {
-        return view
-    }
-    
-    func updateUIView(_ view: UIView, context: Context) {
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
-    }
-}
-#endif
 
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI
