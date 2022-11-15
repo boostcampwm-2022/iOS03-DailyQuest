@@ -9,7 +9,8 @@ import Foundation
 
 extension UserQuestEntity {
     convenience init(quest: Quest) {
-        self.init(title: quest.title,
+        self.init(uuid: quest.uuid,
+                  title: quest.title,
                   startDay: quest.startDay,
                   endDay: quest.endDay,
                   currentCount: quest.currentCount,
@@ -19,7 +20,8 @@ extension UserQuestEntity {
 
 extension UserQuestEntity {
     func toDomain() -> Quest {
-        return Quest(title: title,
+        return Quest(uuid: uuid,
+                     title: title,
                      startDay: startDay,
                      endDay: endDay,
                      repeat: `repeat`,

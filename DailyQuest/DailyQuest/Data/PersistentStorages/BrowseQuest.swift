@@ -11,5 +11,5 @@ import Foundation
 struct BrowseQuest {
     let uuid: UUID
     let nickName: String
-    let quest: Quest
+    let quests: [Quest]
 }

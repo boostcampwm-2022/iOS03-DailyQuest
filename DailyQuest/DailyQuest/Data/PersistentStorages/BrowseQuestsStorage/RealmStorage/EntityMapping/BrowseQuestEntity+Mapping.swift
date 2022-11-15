@@ -9,16 +9,18 @@ import Foundation
 
 extension BrowseQuestEntity {
     convenience init(browseQuest: BrowseQuest) {
+        let questsEntities = browseQuest.quests.compactMap { UserQuestEntity(quest: $0) }
         self.init(uuid: browseQuest.uuid,
                   nickName: browseQuest.nickName,
-                  quest: UserQuestEntity(quest: browseQuest.quest))
+                  quests: questsEntities)
     }
 }
 
 extension BrowseQuestEntity {
     func toDomain() -> BrowseQuest {
+        let quests = Array(quests).compactMap { $0.toDomain() }
         return BrowseQuest(uuid: uuid,
                            nickName: nickName,
-                           quest: quest.toDomain())
+                           quests: quests)
     }
 }
