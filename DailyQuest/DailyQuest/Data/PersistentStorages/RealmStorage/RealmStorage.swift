@@ -11,6 +11,7 @@ import Foundation
 
 enum RealmStorageError: Error {
     case realmObjectError
+    case noDataError
     case readError(Error)
     case saveError(Error)
     case deleteError(Error)
