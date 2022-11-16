@@ -7,7 +7,19 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import SnapKit
+
 final class HomeViewController: UIViewController {
+    enum Event {
+        case showAddQuestsFlow
+    }
+    
+    var coordinatorPublisher = PublishSubject<Event>()
+    
+    private var disposableBag = DisposeBag()
+    private var questViewDelegate: QuestViewDelegate?
     
     private lazy var questView: QuestView = {
         let questView = QuestView()
@@ -38,5 +50,16 @@ final class HomeViewController: UIViewController {
         questView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        bind()
+    }
+    
+    private func bind() {
+        questViewHeader
+            .buttonDidClick
+            .bind(onNext: { [weak self] _ in
+                self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
+            })
+            .disposed(by: disposableBag)
     }
 }
