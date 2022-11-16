@@ -43,6 +43,10 @@ final class QuestView: UITableView {
     }
 }
 
+/**
+ `QuestView`의 델리게이트 역할을 수행할 클래스입니다.
+ 생성자를 통해 header 정보를 받는 이유는, `func tableView(_:viewForHeaderInSection)`메서드에서 헤더를 지정해주기 때문입니다.
+ */
 final class QuestViewDelegate: NSObject, UITableViewDelegate {
     private let header: QuestViewHeader
     
@@ -51,7 +55,6 @@ final class QuestViewDelegate: NSObject, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        print("here")
         return 75
     }
     
