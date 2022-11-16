@@ -1,146 +1,121 @@
 //
-//  QuestCell.swift
+//  BrowseCell.swift
 //  DailyQuest
 //
-//  Created by 이다연 on 2022/11/14.
+//  Created by jinwoong Kim on 2022/11/15.
 //
 
 import UIKit
+
 import SnapKit
 
-class BrowseCell: UITableViewCell {
+final class BrowseCell: UITableViewCell {
+    var viewModel: BrowseItemViewModel!
     
-    static let reuseIdentifier = "QuestCell"
+    /// dequeuResusable을 위한 아이덴티파이어입니다.
+    static let reuseIdentifier = "UserInfoCell"
     
-    /*
-     override func setSelected(_ selected: Bool, animated: Bool) {
-     super.setSelected(selected, animated: animated)
-     
-     // Configure the view for the selected state
-     }
+    // MARK: - Components
+    /**
+     아직 사용되고 있는 view는 아닙니다.
      */
-    
-    private lazy var userStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.backgroundColor = .lightGray
-        stackView.spacing = 10
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        stackView.layer.cornerRadius = 15
-        return stackView
+    private lazy var header: UILabel = {
+        let header = UILabel()
+        header.text = "test"
+        
+        return header
     }()
     
-    private lazy var questStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.backgroundColor = .lightGray
-        stackView.spacing = 10
-        stackView.distribution = .fillEqually
-        stackView.layer.cornerRadius = 15
-        return stackView
+    private lazy var questTableView: UITableView = {
+        let questTableView = UITableView()
+        questTableView.backgroundColor = .maxLightGrey
+        questTableView.separatorStyle = .none
+        
+        return questTableView
     }()
-    
-    private lazy var userImageView: UIImageView = {
-        let userImage = UIImageView()
-        userImage.image = UIImage(systemName: "heart.fill")
-        userImage.clipsToBounds = true
-        userImage.backgroundColor = .white
-        userImage.layer.masksToBounds = true
-        return userImage
-    }()
-    
-    private lazy var userQuestLabel: UILabel = {
-        let userQuest = UILabel()
-        userQuest.frame = CGRect(x: 0, y: 0, width: 60, height: 25)
-        userQuest.font = UIFont.boldSystemFont(ofSize: 16)
-        userQuest.text = " "
-        return userQuest
-    }()
-    
-    
     
     // MARK: - Methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        questTableView.register(QuestCell.self, forCellReuseIdentifier: QuestCell.reuseIdentifier)
+        questTableView.delegate = self
+        questTableView.dataSource = self
+        
+        questTableView.rowHeight = 75 // the cell size
+        
+        questTableView.allowsSelection = false
+        questTableView.sectionHeaderTopPadding = 0
+        
         configureUI()
+    }
+    
+    /**
+     Browse Cell 내부의 테이블뷰의 모든 방향에 패딩을 추가합니다.
+     */
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        questTableView.frame = questTableView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        userImageView.layer.cornerRadius = userImageView.frame.height / 2
-    }
-    
     private func configureUI() {
-        userStackView.addArrangedSubview(userImageView)
-        userStackView.addArrangedSubview(userQuestLabel)
-        questStackView.addArrangedSubview(userStackView)
+        addSubview(questTableView)
         
-        addSubview(questStackView)
-        
-        userStackView.snp.makeConstraints { make in
-            make.width.equalTo(questStackView).inset(10)
-            make.height.equalTo(80)
-        }
-        
-        questStackView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-        }
-        
-        
-        userImageView.snp.makeConstraints { make in
-            make.height.equalTo(userStackView.snp.height).offset(-50)
-            make.width.equalTo(userImageView.snp.height)
-        }
-        
-        for subview in questStackView.subviews {
-            subview.snp.makeConstraints { (make) in
-                make.height.equalTo(subview.frame.height)
-                make.width.equalTo(questStackView.snp.width)
-            }
+        questTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
-    func setup(user: User, quest: [Quest]) {
-        userQuestLabel.text = user.nickName + "님의 Today Quest"
-        //guard let image = UIImage(data: user.profile) else { return }
-        //userImageView.image = image
+    /**
+     인자로 viewModel을 받아, 테이블뷰를 reload합니다.
+     
+     - Parameters:
+        - viewModel: `BrowseItemViewModel` 타입입니다. User의 인스턴스와 Quest 인스턴스의 배열을 가지고 있습니다.
+     */
+    func setup(with viewModel: BrowseItemViewModel) {
+        self.viewModel = viewModel
         
-        let height:Double = 100.0 * (1.0 + Double(quest.count))
-        
-        print(height)
-        
-        questStackView.snp.makeConstraints { make in
-            make.height.equalTo(height)
-        }
-        
-        for q in quest {
-            var questView = QuestView()
-            questView.setUp(with: q)
-            questStackView.addArrangedSubview(questView)
-        }
-        
-        
+        questTableView.reloadData()
     }
 }
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct BrowseCellPreview: PreviewProvider{
-    static var previews: some View {
-        UIViewPreview {
-            let cell = BrowseCell(frame: .zero)
-            cell.setup(user: User(uuid: UUID(), nickName: "맥스", profile: Data(), backgroundImage: Data(), description: ""), quest: [Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5), Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5), Quest(title: "물 마시기", startDay: Date(), endDay: Date(), repeat: 0, currentCount: 1, totalCount: 5)])
-            return cell
-        }
-        .previewLayout(.sizeThatFits)
+extension BrowseCell: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 75
     }
 }
-#endif
+
+extension BrowseCell: UITableViewDataSource {
+    /**
+     테이블 뷰안에 들어갈 QuestCell의 개수를 구합니다.
+     Note. 이 메서드가 최초로 실행되는 시점에는 viewModel이 nil입니다.
+     데이터소스를 통해 값이 삽입되는 시점에는 그렇지 않으므로, 예외처리를 통해 해결했습니다.
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let count = viewModel?.quests.count else { return 0 }
+        return count
+    }
+    
+    /**
+     QuestCell을 생성합니다.
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = questTableView.dequeueReusableCell(withIdentifier: QuestCell.reuseIdentifier, for: indexPath) as? QuestCell else {
+            assertionFailure("Cannot deque reuseable cell.")
+            return UITableViewCell()
+        }
+        
+        cell.setup(with: viewModel.quests[indexPath.row])
+        
+        return cell
+    }
+}
