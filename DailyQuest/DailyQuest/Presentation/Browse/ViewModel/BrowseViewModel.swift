@@ -35,11 +35,13 @@ final class BrowseViewModel {
     ]
     
     let data: Observable<[(User, [Quest])]>
+    private(set) var users: [User] = []
     
     let cellCount = [2, 4, 6]
     
     init() {
         self.data = .just([(user1, quests1), (user2, quests2), (user3, quests3)])
+        self.users.append(contentsOf: [user1, user2, user3])
     }
 }
 
