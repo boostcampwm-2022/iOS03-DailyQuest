@@ -8,6 +8,7 @@
 import Foundation
 
 struct Quest {
+    let uuid: UUID
     let title: String
     let startDay: Date
     let endDay: Date
