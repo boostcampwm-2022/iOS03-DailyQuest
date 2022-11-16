@@ -51,10 +51,15 @@ enum TabBarPage {
         }
     }
     
-    // Add tab icon value
-    
-    // Add tab icon selected / deselected color
-    
-    // etc
+    func pageIcon() -> UIImage? {
+        switch self {
+            case .home:
+                return UIImage(systemName: "house")
+            case .browse:
+                return UIImage(systemName: "leaf.fill")
+            case .settings:
+                return UIImage(systemName: "ellipsis")
+        }
+    }
 }
 
