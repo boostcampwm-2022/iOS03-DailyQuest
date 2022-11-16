@@ -9,6 +9,16 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
+    private lazy var questView: QuestView = {
+        let questView = QuestView()
+        questView.setup(with: QuestViewModel())
+        
+        return questView
+    }()
+    
+    private lazy var questViewHeader: QuestViewHeader = {
+        return QuestViewHeader()
+    }()
     
     // MARK: - Life Cycle
     // static func create(with viewModel: HomeViewModel)
@@ -18,6 +28,15 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        questViewDelegate = QuestViewDelegate(header: questViewHeader)
+        
+        view.backgroundColor = .white
+        
+        view.addSubview(questView)
+        
+        questView.delegate = questViewDelegate
+        questView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
