@@ -48,6 +48,12 @@ final class BrowseViewController: UITableViewController {
                 cell.setup(with: BrowseItemViewModel(user: item.0, quests: item.1))
             }
             .disposed(by: disposableBag)
+        
+        tableView.rx.itemSelected
+            .subscribe(onNext: { indexPath in
+                print(self.viewModel.users[indexPath.row])
+            })
+            .disposed(by: disposableBag)
     }
 }
 
