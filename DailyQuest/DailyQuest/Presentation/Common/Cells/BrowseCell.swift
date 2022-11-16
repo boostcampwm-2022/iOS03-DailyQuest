@@ -19,11 +19,8 @@ final class BrowseCell: UITableViewCell {
     /**
      아직 사용되고 있는 view는 아닙니다.
      */
-    private lazy var header: UILabel = {
-        let header = UILabel()
-        header.text = "test"
-        
-        return header
+    private lazy var header: UserInfoView = {
+        return UserInfoView()
     }()
     
     private lazy var questTableView: UITableView = {
@@ -79,6 +76,7 @@ final class BrowseCell: UITableViewCell {
      */
     func setup(with viewModel: BrowseItemViewModel) {
         self.viewModel = viewModel
+        header.setup(with: viewModel.user)
         
         questTableView.reloadData()
     }
@@ -113,7 +111,6 @@ extension BrowseCell: UITableViewDataSource {
             assertionFailure("Cannot deque reuseable cell.")
             return UITableViewCell()
         }
-        
         cell.setup(with: viewModel.quests[indexPath.row])
         
         return cell
