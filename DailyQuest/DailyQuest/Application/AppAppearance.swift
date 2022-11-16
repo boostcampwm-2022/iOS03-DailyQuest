@@ -11,5 +11,7 @@ final class AppAppearance {
     static func setupAppearance() {
         UITabBar.appearance().backgroundColor = .white
         UITabBar.appearance().tintColor = .maxYellow
+        UITableViewCell.appearance().selectionStyle = .none
+        UITableView.appearance().separatorStyle = .none
     }
 }

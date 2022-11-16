@@ -26,7 +26,6 @@ final class BrowseCell: UITableViewCell {
     private lazy var questTableView: UITableView = {
         let questTableView = UITableView()
         questTableView.backgroundColor = .maxLightGrey
-        questTableView.separatorStyle = .none
         
         return questTableView
     }()

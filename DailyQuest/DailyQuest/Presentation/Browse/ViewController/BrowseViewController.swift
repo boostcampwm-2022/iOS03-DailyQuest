@@ -32,11 +32,6 @@ final class BrowseViewController: UITableViewController {
      table view의 기본 정보를 설정합니다.
      */
     private func configure() {
-        // 셀 사이사이의 구분선을 제거합니다.
-        tableView.separatorStyle = .none
-        
-        tableView.allowsSelection = false
-        
         // 델리게이트와 데이터소스를 rx로 재설정합니다.
         tableView.delegate = nil
         tableView.dataSource = nil
