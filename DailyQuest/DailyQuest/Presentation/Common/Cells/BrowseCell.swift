@@ -46,15 +46,6 @@ final class BrowseCell: UITableViewCell {
         configureUI()
     }
     
-    /**
-     Browse Cell 내부의 테이블뷰의 모든 방향에 패딩을 추가합니다.
-     */
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        questTableView.frame = questTableView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -63,7 +54,7 @@ final class BrowseCell: UITableViewCell {
         addSubview(questTableView)
         
         questTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(10)
         }
     }
     
