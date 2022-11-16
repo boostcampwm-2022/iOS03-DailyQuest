@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 protocol HomeCoordinator: Coordinator {
     func showProfileFlow()
     func showAddQuestFlow()
@@ -14,6 +16,8 @@ protocol HomeCoordinator: Coordinator {
 }
 
 final class DefaultHomeCoordinator: HomeCoordinator {
+    private var disposableBag = DisposeBag()
+    
     var finishDelegate: CoordinatorFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -28,6 +32,16 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func start() {
         let homeViewController = homeSceneDIContainer.makeHomeViewController()
         navigationController.pushViewController(homeViewController, animated: false)
+        
+        homeViewController
+            .coordinatorPublisher
+            .bind(onNext: { [weak self] event in
+                switch event {
+                    case .showAddQuestsFlow:
+                        self?.showAddQuestFlow()
+                }
+            })
+            .disposed(by: disposableBag)
     }
     
     func showProfileFlow() {
@@ -35,7 +49,8 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     }
     
     func showAddQuestFlow() {
-        
+        let addQuestsViewController = AddQuestsViewController()
+        navigationController.present(addQuestsViewController, animated: true)
     }
     
     func showAddFriendsFlow() {
