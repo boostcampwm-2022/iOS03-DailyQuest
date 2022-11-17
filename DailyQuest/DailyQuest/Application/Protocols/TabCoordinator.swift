@@ -29,7 +29,7 @@ enum TabBarPage {
         }
     }
     
-    func pageTitleValue() -> String {
+    var pageTitleValue: String {
         switch self {
             case .home:
                 return "홈"
@@ -40,7 +40,7 @@ enum TabBarPage {
         }
     }
     
-    func pageOrderNumber() -> Int {
+    var pageOrderNumber: Int {
         switch self {
             case .home:
                 return 0
@@ -51,7 +51,7 @@ enum TabBarPage {
         }
     }
     
-    func pageIcon() -> UIImage? {
+    var pageIcon: UIImage? {
         switch self {
             case .home:
                 return UIImage(systemName: "house")

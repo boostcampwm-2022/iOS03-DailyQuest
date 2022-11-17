@@ -29,7 +29,7 @@ final class AppCoordinator: NSObject, TabCoordinator, UITabBarControllerDelegate
     private func prepareTabBarController(withTabControllers tabControllers: [UIViewController]) {
         tabBarController.delegate = self
         tabBarController.setViewControllers(tabControllers, animated: true)
-        tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
+        tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber
         tabBarController.tabBar.isTranslucent = false
         
     }
@@ -38,9 +38,9 @@ final class AppCoordinator: NSObject, TabCoordinator, UITabBarControllerDelegate
         let navController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: false)
         
-        navController.tabBarItem = UITabBarItem.init(title: page.pageTitleValue(),
-                                                     image: page.pageIcon(),
-                                                     tag: page.pageOrderNumber())
+        navController.tabBarItem = UITabBarItem.init(title: page.pageTitleValue,
+                                                     image: page.pageIcon,
+                                                     tag: page.pageOrderNumber)
         
         switch page {
             case .home:
