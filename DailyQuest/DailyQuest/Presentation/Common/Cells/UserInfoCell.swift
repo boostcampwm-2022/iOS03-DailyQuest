@@ -111,7 +111,7 @@ struct UserInfoCellPreview: PreviewProvider{
     static var previews: some View {
         UIViewPreview {
             let cell = UserInfoCell(frame: .zero)
-            cell.setup(with: User(uuid: UUID(), nickName: "jinwoong", profile: Data(), backgroundImage: Data(), description: ""))
+            cell.setup(with: User(uuid: "", nickName: "jinwoong", profile: Data(), backgroundImage: Data(), description: ""))
             return cell
         }
         .previewLayout(.fixed(width: 350, height: 80))

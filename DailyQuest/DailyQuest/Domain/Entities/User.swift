@@ -8,7 +8,7 @@
 import Foundation
 
 struct User {
-    let uuid: UUID
+    let uuid: String
     let nickName: String
     let profile: Data
     let backgroundImage: Data

@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 final class UserInfoEntity: Object {
-    @Persisted var uuid: UUID
+    @Persisted var uuid: String
     @Persisted var nickName: String
     @Persisted var profile: Data
     @Persisted var backgroundImage: Data
@@ -17,7 +17,7 @@ final class UserInfoEntity: Object {
 
     override init() { }
 
-    init(uuid: UUID, nickName: String, profile: Data, backgroundImage: Data, description: String) {
+    init(uuid: String, nickName: String, profile: Data, backgroundImage: Data, description: String) {
         self.uuid = uuid
         self.nickName = nickName
         self.profile = profile
