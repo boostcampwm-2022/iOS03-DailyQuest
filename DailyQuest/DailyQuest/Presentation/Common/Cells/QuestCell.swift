@@ -11,7 +11,7 @@ import SnapKit
 
 final class QuestCell: UITableViewCell {
     /// dequeuResusable을 위한 아이덴티파이어입니다.
-    static let reuseIdentifier = "UserInfoCell"
+    static let reuseIdentifier = "QuestCell"
     
     // MARK: - Components
     /**
