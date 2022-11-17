@@ -35,6 +35,7 @@
 		34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A529E329248178001BAD34 /* SettingsSceneDIContainer.swift */; };
 		34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A529E6292481E1001BAD34 /* BrowseCoordinator.swift */; };
 		34A529E929248B58001BAD34 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A529E829248B58001BAD34 /* AppAppearance.swift */; };
+		34A529EB2924B077001BAD34 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A529EA2924B077001BAD34 /* UserInfoView.swift */; };
 		34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32C291DE9C000741371 /* AppDelegate.swift */; };
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
@@ -111,6 +112,7 @@
 		34A529E329248178001BAD34 /* SettingsSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSceneDIContainer.swift; sourceTree = "<group>"; };
 		34A529E6292481E1001BAD34 /* BrowseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCoordinator.swift; sourceTree = "<group>"; };
 		34A529E829248B58001BAD34 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
+		34A529EA2924B077001BAD34 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		34ACC329291DE9C000741371 /* DailyQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC32C291DE9C000741371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34ACC32E291DE9C000741371 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		3499551A292332B2007AB99E /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				34EE6EB12924B3CF005AF583 /* View */,
 				3499552429235034007AB99E /* ViewController */,
 				349955252923503C007AB99E /* ViewModel */,
 				34A529E5292481C9001BAD34 /* Flow */,
@@ -437,6 +440,7 @@
 			children = (
 				34EE6EB62924C674005AF583 /* QuestView.swift */,
 				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
+        34A529EA2924B077001BAD34 /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +749,7 @@
 				A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
+				34A529EB2924B077001BAD34 /* UserInfoView.swift in Sources */,
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
