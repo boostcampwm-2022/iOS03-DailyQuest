@@ -13,6 +13,9 @@
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
+		34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874A9F292509A4000570DF /* QuestViewHeader.swift */; };
+		34874AA229250C43000570DF /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA129250C43000570DF /* UIButton+.swift */; };
+		34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA529252088000570DF /* AddQuestsViewController.swift */; };
 		349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349955112923220E007AB99E /* SwiftUIPreview.swift */; };
 		3499551529232533007AB99E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551429232533007AB99E /* UIColor+.swift */; };
 		3499551E29233DEF007AB99E /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551D29233DEF007AB99E /* QuestCell.swift */; };
@@ -45,6 +48,8 @@
 		34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC363291DEF6100741371 /* FirebaseFirestore */; };
 		34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC365291DEF6100741371 /* FirebaseStorage */; };
 		34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */; };
+		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
+		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
 		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
@@ -85,6 +90,9 @@
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		34874A9F292509A4000570DF /* QuestViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewHeader.swift; sourceTree = "<group>"; };
+		34874AA129250C43000570DF /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		34874AA529252088000570DF /* AddQuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestsViewController.swift; sourceTree = "<group>"; };
 		349955112923220E007AB99E /* SwiftUIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPreview.swift; sourceTree = "<group>"; };
 		3499551429232533007AB99E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3499551D29233DEF007AB99E /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
@@ -117,6 +125,8 @@
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		34ACC36B291DF0DD00741371 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
+		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserQuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
 		A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEntity.swift; sourceTree = "<group>"; };
@@ -192,6 +202,7 @@
 			children = (
 				349955112923220E007AB99E /* SwiftUIPreview.swift */,
 				3499551429232533007AB99E /* UIColor+.swift */,
+				34874AA129250C43000570DF /* UIButton+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -232,6 +243,7 @@
 		34995519292332A9007AB99E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				34EE6EB52924C657005AF583 /* View */,
 				34A529DE29247F13001BAD34 /* ViewModel */,
 				34A529DD29247F0C001BAD34 /* ViewController */,
 				34A529D629247A52001BAD34 /* Flow */,
@@ -306,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				34A529DF29247F1F001BAD34 /* HomeViewController.swift */,
+				34874AA529252088000570DF /* AddQuestsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -313,6 +326,7 @@
 		34A529DE29247F13001BAD34 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -421,10 +435,12 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		34EE6EB12924B3CF005AF583 /* View */ = {
+		34EE6EB52924C657005AF583 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				34A529EA2924B077001BAD34 /* UserInfoView.swift */,
+				34EE6EB62924C674005AF583 /* QuestView.swift */,
+				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
+        34A529EA2924B077001BAD34 /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -707,8 +723,10 @@
 				3499552329234D5F007AB99E /* BrowseCell.swift in Sources */,
 				3499551E29233DEF007AB99E /* QuestCell.swift in Sources */,
 				34A529DC29247BB6001BAD34 /* HomeSceneDIContainer.swift in Sources */,
+				34874AA229250C43000570DF /* UIButton+.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
+				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
 				A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */,
 				A51F01DA292345990031ECA2 /* BrowseQuest.swift in Sources */,
@@ -720,7 +738,9 @@
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
+				34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
+				34EE6EB72924C674005AF583 /* QuestView.swift in Sources */,
 				B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */,
 				3499551529232533007AB99E /* UIColor+.swift in Sources */,
 				34A529DA29247B9C001BAD34 /* AppDIContainer.swift in Sources */,
@@ -728,6 +748,7 @@
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
 				A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
+				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
 				34A529EB2924B077001BAD34 /* UserInfoView.swift in Sources */,
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
