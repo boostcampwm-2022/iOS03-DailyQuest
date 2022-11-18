@@ -29,5 +29,7 @@ final class BrowseSceneDIContainer {
         return DefaultBrowseCoordinator(navigationController: navigationController,
                                       browseSceneDIContainer: browseSceneDIContainer)
     }
+    
+    // some task goes here for notify tests
 }
 
