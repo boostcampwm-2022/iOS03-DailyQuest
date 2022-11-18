@@ -14,7 +14,7 @@ final class UserInfoView: UIStackView {
     // MARK: - Components
     private lazy var userImage: UIImageView = {
         let userImage = UIImageView()
-        userImage.image = UIImage(systemName: "heart.fill")
+        userImage.image = UIImage(named: "BaseImage")
         userImage.clipsToBounds = true
         userImage.backgroundColor = .white
         

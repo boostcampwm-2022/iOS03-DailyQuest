@@ -14,18 +14,53 @@ import SnapKit
 final class HomeViewController: UIViewController {
     enum Event {
         case showAddQuestsFlow
+        // case showProfileFlow
+        // case showAddFriendsFlow
     }
     
+    // MARK: - Properies
     var coordinatorPublisher = PublishSubject<Event>()
     
     private var disposableBag = DisposeBag()
     private var questViewDelegate: QuestViewDelegate?
+    
+    // MARK: - Components
+    private lazy var firstPartView: UIView = {
+        let firstPartView = UIView()
+        firstPartView.backgroundColor = .maxYellow
+        return firstPartView
+    }()
+    
+    private lazy var secondPartView: UIView = {
+        let secondPartView = UIView()
+        secondPartView.backgroundColor = .maxLightGrey
+        return secondPartView
+    }()
+    
+    private lazy var thridPartView: UIView = {
+        let thridPartView = UIView()
+        thridPartView.backgroundColor = .maxYellow
+        return thridPartView
+    }()
     
     private lazy var questView: QuestView = {
         let questView = QuestView()
         questView.setup(with: QuestViewModel())
         
         return questView
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        
+        return scrollView
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        
+        return stackView
     }()
     
     private lazy var questViewHeader: QuestViewHeader = {
@@ -44,13 +79,9 @@ final class HomeViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        view.addSubview(questView)
-        
         questView.delegate = questViewDelegate
-        questView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         
+        configureUI()
         bind()
     }
     
@@ -68,5 +99,45 @@ final class HomeViewController: UIViewController {
                 self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
             })
             .disposed(by: disposableBag)
+    }
+    
+    private func configureUI() {
+        stackView.addArrangedSubview(firstPartView)
+        stackView.addArrangedSubview(secondPartView)
+        stackView.addArrangedSubview(thridPartView)
+        stackView.addArrangedSubview(questView)
+        
+        scrollView.addSubview(stackView)
+        
+        view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+        
+        firstPartView.snp.makeConstraints { make in
+            make.width.equalTo(stackView)
+            make.height.equalTo(100)
+        }
+        
+        secondPartView.snp.makeConstraints { make in
+            make.width.equalTo(stackView)
+            make.height.equalTo(400)
+        }
+        
+        thridPartView.snp.makeConstraints { make in
+            make.width.equalTo(stackView)
+            make.height.equalTo(100)
+        }
+        
+        questView.snp.makeConstraints { make in
+            make.width.equalTo(stackView)
+            make.height.equalTo(400)
+        }
     }
 }
