@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 final class UserQuestEntity: Object {
+    @Persisted var groupId: UUID
     @Persisted var uuid: UUID
     @Persisted var title: String
     @Persisted var currentCount: Int
@@ -16,7 +17,7 @@ final class UserQuestEntity: Object {
 
     override init() { }
 
-    init(uuid: UUID, title: String, startDay: Date, endDay: Date, currentCount: Int, totalCount: Int) {
+    init(uuid: UUID, title: String, currentCount: Int, totalCount: Int) {
         self.uuid = uuid
         self.title = title
         self.currentCount = currentCount

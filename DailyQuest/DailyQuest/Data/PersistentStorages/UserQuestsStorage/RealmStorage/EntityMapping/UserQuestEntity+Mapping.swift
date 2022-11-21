@@ -11,8 +11,6 @@ extension UserQuestEntity {
     convenience init(quest: Quest) {
         self.init(uuid: quest.uuid,
                   title: quest.title,
-                  startDay: Date(), // no more use
-                  endDay: Date(), // no more use
                   currentCount: quest.currentCount,
                   totalCount: quest.totalCount)
     }
