@@ -10,6 +10,8 @@
 		340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
+		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
+		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
 		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
 		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
@@ -59,6 +61,13 @@
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FF6C2F292B8014002AFD4D /* RxBlocking-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C34292B8014002AFD4D /* RxCocoa-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C39292B8014002AFD4D /* RxRelay-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C3E292B8014002AFD4D /* RxSwift-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C43292B8014002AFD4D /* RxTest-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C41292B8014002AFD4D /* RxTest-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C48292B8014002AFD4D /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34FF6C4D292B8027002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
 		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
@@ -95,7 +104,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		34FF6C2E292B8014002AFD4D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				34FF6C3E292B8014002AFD4D /* RxSwift-Dynamic in Embed Frameworks */,
+				34FF6C34292B8014002AFD4D /* RxCocoa-Dynamic in Embed Frameworks */,
+				34FF6C2F292B8014002AFD4D /* RxBlocking-Dynamic in Embed Frameworks */,
+				34FF6C43292B8014002AFD4D /* RxTest-Dynamic in Embed Frameworks */,
+				34FF6C39292B8014002AFD4D /* RxRelay-Dynamic in Embed Frameworks */,
+				34FF6C48292B8014002AFD4D /* SnapKit-Dynamic in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
+		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
@@ -195,8 +225,26 @@
 		340FDFD8292B61C200C4E3DC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				340FDFDC292B7A1A00C4E3DC /* Mocks */,
+				340FDFD9292B7A0200C4E3DC /* ViewModel */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		340FDFD9292B7A0200C4E3DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		340FDFDC292B7A1A00C4E3DC /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		3416FC85292B549900B504C5 /* Home */ = {
@@ -219,6 +267,7 @@
 		3416FC8B292B58F600B504C5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3416FC91292B59C700B504C5 /* Mocks */,
 				3416FC90292B59BB00B504C5 /* UseCases */,
 			);
 			path = Domain;
@@ -236,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */,
-				3416FC91292B59C700B504C5 /* Mocks */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -428,6 +476,7 @@
 				34ACC342291DE9C100741371 /* DailyQuestTests */,
 				34ACC34C291DE9C100741371 /* DailyQuestUITests */,
 				34ACC32A291DE9C000741371 /* Products */,
+				34FF6BF3292B7FF7002AFD4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -526,6 +575,13 @@
 				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		34FF6BF3292B7FF7002AFD4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A51189C029226DF7008A9D33 /* RealmStorage */ = {
@@ -688,6 +744,7 @@
 				34ACC33B291DE9C100741371 /* Sources */,
 				34ACC33C291DE9C100741371 /* Frameworks */,
 				34ACC33D291DE9C100741371 /* Resources */,
+				34FF6C2E292B8014002AFD4D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -695,6 +752,14 @@
 				34ACC341291DE9C100741371 /* PBXTargetDependency */,
 			);
 			name = DailyQuestTests;
+			packageProductDependencies = (
+				34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */,
+				34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */,
+				34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */,
+				34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */,
+				34FF6C41292B8014002AFD4D /* RxTest-Dynamic */,
+				34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */,
+			);
 			productName = DailyQuestTests;
 			productReference = 34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -859,6 +924,9 @@
 				3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */,
 				340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */,
 				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
+				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
+				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
+				34FF6C4D292B8027002AFD4D /* QuestViewModel.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
 			);
@@ -1249,6 +1317,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxBlocking-Dynamic";
+		};
+		34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxRelay-Dynamic";
+		};
+		34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxSwift-Dynamic";
+		};
+		34FF6C41292B8014002AFD4D /* RxTest-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxTest-Dynamic";
+		};
+		34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
 		};
 		A5AC96DE292239CA003B7637 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
