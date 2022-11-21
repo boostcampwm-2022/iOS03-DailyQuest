@@ -6,35 +6,36 @@
 //
 
 import RxSwift
+import Foundation
 
 final class DefaultQuestsRepository {
     
-    private let cache: UserQuestsStorage
+    private let persistentStorage: UserQuestsStorage
     
-    init(cache: UserQuestsStorage){
-        self.cache = cache
+    init(persistentStorage: UserQuestsStorage){
+        self.persistentStorage = persistentStorage
     }
 }
 
 extension DefaultQuestsRepository: QuestsRepository {
-    func save(with quest: [Quest]) -> RxSwift.Single<[Quest]> {
-       
+    func save(with quest: [Quest]) -> Single<[Quest]> {
+        return persistentStorage.saveQuests(with: quest)
     }
     
-    func fetch(by date: Date) -> RxSwift.Observable<[Quest]> {
-       
+    func fetch(by date: Date) -> Observable<[Quest]> {
+        return persistentStorage.fetchQuests(by: date)
     }
     
-    func update(with quest: Quest) -> RxSwift.Single<Quest> {
-        
+    func update(with quest: Quest) -> Single<Quest> {
+        return persistentStorage.updateQuest(with: quest)
     }
     
-    func delete(with questId: UUID) -> RxSwift.Single<Quest> {
-        
+    func delete(with questId: UUID) -> Single<Quest> {
+        return persistentStorage.deleteQuest(with: questId)
     }
     
-    func deleteAll(with groupId: UUID) -> RxSwift.Single<[Quest]> {
-        
+    func deleteAll(with groupId: UUID) -> Single<[Quest]> {
+        return persistentStorage.deleteQuestGroup(with: groupId)
     }
     
     

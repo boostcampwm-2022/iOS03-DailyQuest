@@ -9,6 +9,9 @@ import Foundation
 import RxSwift
 
 protocol UserQuestsStorage {
-    func fetchUserQuests() -> Observable<[Quest]>
-    func saveUserQuest(quest: Quest) -> Single<Quest>
+    func saveQuests(with quests: [Quest]) -> Single<[Quest]>
+    func fetchQuests(by date: Date) -> Observable<[Quest]>
+    func updateQuest(with quest: Quest) -> Single<Quest>
+    func deleteQuest(with questId: UUID) -> Single<Quest>
+    func deleteQuestGroup(with groupId: UUID) -> Single<[Quest]>
 }
