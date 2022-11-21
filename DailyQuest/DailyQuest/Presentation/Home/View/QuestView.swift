@@ -37,7 +37,7 @@ final class QuestView: UITableView {
         
         output
             .data
-            .bind(to: rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
+            .drive(rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
                 cell.setup(with: item)
                 cell.backgroundColor = .white
             }
