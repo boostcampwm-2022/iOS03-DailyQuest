@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+extension Quest {
+    static func stub(groupId: UUID,
+                     uuid: UUID,
+                     title: String,
+                     currentCount: Int,
+                     totalCount: Int) -> Self {
+        return .init(groupId: groupId,
+                     uuid: uuid,
+                     title: title,
+                     currentCount: currentCount,
+                     totalCount: totalCount)
+    }
+}
