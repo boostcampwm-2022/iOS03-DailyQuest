@@ -24,7 +24,7 @@ final class FirebaseService: NetworkService {
         uid = auth.currentUser?.uid
     }
 
-    private func documnetReference(userCase: UserCase, access: Access) -> DocumentReference? {
+    private func documnetReference(userCase: UserCase) -> DocumentReference? {
         switch userCase {
         case .currentUser:
             guard let currentUserUid = uid else { return nil }
@@ -34,10 +34,24 @@ final class FirebaseService: NetworkService {
         }
     }
 
-    func create<T: Codable>(userCase: UserCase, access: Access) -> Single<T> {
+    func create<T: Codable>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
         return Single<T>.create { single in
-
-
+            switch access {
+            case .quests:
+                self.db.collection("users").document("user1").collection("quests").getDocuments { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                        }
+                    }
+                }
+            case .receiveQuests:
+                break
+            case .userInfo:
+                break
+            }
             return Disposables.create()
         }
     }
