@@ -27,8 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = tabbarController
         self.window?.makeKeyAndVisible()
         
+        //_ = FirebaseService.shared.update(userCase: .currentUser, access: .quests, dto: QuestDTO(uuid: UUID(uuidString: "16AF9B21-4C85-4EF9-9DF5-B1A3385C9D56") ?? UUID(), title: "바꾸기", currentCount: 0, totalCount: 0, groupUid: UUID(uuidString: "98AC0127-5CAF-4DC7-9365-9E5F819053BE") ?? UUID()))
         _ = FirebaseService.shared.create(userCase: .currentUser, access: .quests, dto: QuestDTO(uuid: UUID(), title: "", currentCount: 0, totalCount: 0, groupUid: UUID()))
-        
         
         self.appCoordinator = AppCoordinator(tabBarController: tabbarController,
                                              appDIContainer: appDIContainer)

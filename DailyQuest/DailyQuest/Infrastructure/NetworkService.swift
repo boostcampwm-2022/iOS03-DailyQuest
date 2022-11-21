@@ -16,6 +16,6 @@ protocol NetworkService {
 
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition?) -> Observable<T>
-    func update<T: Codable>(userCase: UserCase, access: Access) -> Single<T>
-    func delete<T: Codable>(userCase: UserCase, access: Access) -> Single<T>
+    func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
+    func delete<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
 }
