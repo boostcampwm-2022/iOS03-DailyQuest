@@ -11,8 +11,8 @@ extension UserQuestEntity {
     convenience init(quest: Quest) {
         self.init(uuid: quest.uuid,
                   title: quest.title,
-                  startDay: quest.startDay,
-                  endDay: quest.endDay,
+                  startDay: Date(), // no more use
+                  endDay: Date(), // no more use
                   currentCount: quest.currentCount,
                   totalCount: quest.totalCount)
     }
@@ -20,11 +20,9 @@ extension UserQuestEntity {
 
 extension UserQuestEntity {
     func toDomain() -> Quest {
-        return Quest(uuid: uuid,
+        return Quest(groupId: UUID(), // update here
+                     uuid: uuid,
                      title: title,
-                     startDay: startDay,
-                     endDay: endDay,
-                     repeat: `repeat`,
                      currentCount: currentCount,
                      totalCount: totalCount)
     }
