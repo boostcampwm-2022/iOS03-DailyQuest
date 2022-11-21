@@ -34,16 +34,14 @@ final class QuestViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "test success")
         
         // when
-        let output = questViewModel.transform(input: QuestViewModel.Input(viewDidLoad: .just(Date())), disposeBag: disposeBag)
+        let output = questViewModel.transform(input: QuestViewModel.Input(viewDidLoad: .just(Date()).asObservable()), disposeBag: disposeBag)
         
         // then
         output
             .data
-            .subscribe(onNext: { data in
-                print(data)
+            .drive(onNext: { quests in
+                print(quests)
                 expectation.fulfill()
-            }, onError: { _ in
-                XCTFail("test failed")
             })
             .disposed(by: disposeBag)
         
