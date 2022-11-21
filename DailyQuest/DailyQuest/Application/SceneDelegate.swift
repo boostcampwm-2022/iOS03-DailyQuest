@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -25,7 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         self.window?.rootViewController = tabbarController
         self.window?.makeKeyAndVisible()
-        FirebaseService.shared.create(userCase: .currentUser, access: .quests, dto: QuestDTO(uuid: UUID(), title: "", currentCount: 0, totalCount: 0, groupUid: UUID()))
+        
+        _ = FirebaseService.shared.create(userCase: .currentUser, access: .quests, dto: QuestDTO(uuid: UUID(), title: "", currentCount: 0, totalCount: 0, groupUid: UUID()))
+        
+        
         self.appCoordinator = AppCoordinator(tabBarController: tabbarController,
                                              appDIContainer: appDIContainer)
         self.appCoordinator?.start()

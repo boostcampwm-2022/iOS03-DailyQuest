@@ -8,7 +8,7 @@
 import RxSwift
 import Firebase
 import FirebaseAuth
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class FirebaseService: NetworkService {
     static let shared = FirebaseService()
@@ -35,18 +35,32 @@ final class FirebaseService: NetworkService {
     }
 
     func create<T: Codable>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
+        self.db.collection("users").document("user1").collection("quests")
+            .whereField("date", isEqualTo: Date().toString)
+            .getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        
+        let data = QuestDTO(uuid: UUID(), title: "이다연 여기 묻히다", currentCount: 0, totalCount: 0, groupUid: UUID())
+        
+        do {
+        try self.db.collection("users").document("user1").collection("quests")
+            .document("\(data.uuid)")
+            .setData(from: data)
+        } catch let error {
+            print(error)
+        }
+        
         return Single<T>.create { single in
             switch access {
             case .quests:
-                self.db.collection("users").document("user1").collection("quests").getDocuments { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
-                        }
-                    }
-                }
+                break
             case .receiveQuests:
                 break
             case .userInfo:
