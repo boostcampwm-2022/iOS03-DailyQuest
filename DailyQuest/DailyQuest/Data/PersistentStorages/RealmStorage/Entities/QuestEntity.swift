@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class UserQuestEntity: Object {
+final class QuestEntity: Object {
     @Persisted var groupId: UUID
     @Persisted var uuid: UUID
     @Persisted var title: String

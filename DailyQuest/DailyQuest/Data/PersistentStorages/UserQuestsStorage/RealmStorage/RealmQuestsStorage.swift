@@ -1,5 +1,5 @@
 //
-//  RealmUserQuestsStorage.swift
+//  RealmQuestsStorage.swift
 //  DailyQuest
 //
 //  Created by 이전희 on 2022/11/14.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class RealmUserQuestsStorage {
+final class RealmQuestsStorage {
 
     private let realmStorage: RealmStorage
 
@@ -17,7 +17,7 @@ final class RealmUserQuestsStorage {
     }
 }
 
-extension RealmUserQuestsStorage: UserQuestsStorage {
+extension RealmQuestsStorage: QuestsStorage {
 
     func saveQuests(with quests: [Quest]) -> Single<[Quest]> {
         return Single.create { [weak self] single in
@@ -26,7 +26,7 @@ extension RealmUserQuestsStorage: UserQuestsStorage {
             }
 
             for quest in quests {
-                let questEntity = UserQuestEntity(quest: quest)
+                let questEntity = QuestEntity(quest: quest)
                 do {
                     try realmStorage.saveEntity(entity: questEntity)
                 } catch let error {
@@ -48,7 +48,7 @@ extension RealmUserQuestsStorage: UserQuestsStorage {
 
             do {
                 let quests = try realmStorage
-                    .fetchEntities(type: UserQuestEntity.self, filter: "date == \(date.toString)")
+                    .fetchEntities(type: QuestEntity.self, filter: "date == \(date.toString)")
                     .compactMap { $0.toDomain() }
                 observer.onNext(quests)
                 observer.onCompleted()
@@ -66,7 +66,7 @@ extension RealmUserQuestsStorage: UserQuestsStorage {
                 return Disposables.create()
             }
 
-            let questEntity = UserQuestEntity(quest: quest)
+            let questEntity = QuestEntity(quest: quest)
             do {
                 try realmStorage.updateEntity(entity: questEntity)
             } catch let error {
@@ -86,7 +86,7 @@ extension RealmUserQuestsStorage: UserQuestsStorage {
             }
 
             do {
-                guard let entity = try realmStorage.findEntities(type: UserQuestEntity.self, filter: "uuid == \(questId)").first else {
+                guard let entity = try realmStorage.findEntities(type: QuestEntity.self, filter: "uuid == \(questId)").first else {
                     throw RealmStorageError.noDataError
                 }
                 try realmStorage.deleteEntity(entity: entity)
@@ -108,7 +108,7 @@ extension RealmUserQuestsStorage: UserQuestsStorage {
             }
 
             do {
-                let entities = try realmStorage.findEntities(type: UserQuestEntity.self, filter: "groupId == \(groupId)")
+                let entities = try realmStorage.findEntities(type: QuestEntity.self, filter: "groupId == \(groupId)")
                 for entity in entities {
                     try realmStorage.deleteEntity(entity: entity)
                 }

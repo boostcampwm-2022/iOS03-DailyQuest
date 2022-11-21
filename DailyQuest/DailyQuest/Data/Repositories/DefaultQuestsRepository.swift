@@ -10,9 +10,9 @@ import Foundation
 
 final class DefaultQuestsRepository {
     
-    private let persistentStorage: UserQuestsStorage
+    private let persistentStorage: QuestsStorage
     
-    init(persistentStorage: UserQuestsStorage){
+    init(persistentStorage: QuestsStorage){
         self.persistentStorage = persistentStorage
     }
 }
