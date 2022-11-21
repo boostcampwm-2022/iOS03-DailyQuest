@@ -11,9 +11,6 @@ import RealmSwift
 final class UserQuestEntity: Object {
     @Persisted var uuid: UUID
     @Persisted var title: String
-    @Persisted var startDay: Date
-    @Persisted var endDay: Date
-    @Persisted var `repeat`: Int
     @Persisted var currentCount: Int
     @Persisted var totalCount: Int
 
@@ -22,8 +19,6 @@ final class UserQuestEntity: Object {
     init(uuid: UUID, title: String, startDay: Date, endDay: Date, currentCount: Int, totalCount: Int) {
         self.uuid = uuid
         self.title = title
-        self.startDay = startDay
-        self.endDay = endDay
         self.currentCount = currentCount
         self.totalCount = totalCount
     }
