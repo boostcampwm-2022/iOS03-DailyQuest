@@ -8,18 +8,23 @@
 import Foundation
 
 extension QuestEntity {
-    convenience init(quest: Quest) {
-        self.init(uuid: quest.uuid,
-                  title: quest.title,
-                  currentCount: quest.currentCount,
-                  totalCount: quest.totalCount)
+    convenience init(quest: Quest) { // Quest에 date 들어가면 수정
+        self.init(
+            groupId: quest.groupId,
+            uuid: quest.uuid,
+            date: quest.date.toString,
+            title: quest.title,
+            currentCount: quest.currentCount,
+            totalCount: quest.totalCount)
+        print(date.toDate())
     }
 }
 
 extension QuestEntity {
     func toDomain() -> Quest {
-        return Quest(groupId: UUID(), // update here
+        return Quest(groupId: groupId,
                      uuid: uuid,
+                     date: date.toDate() ?? Date(),
                      title: title,
                      currentCount: currentCount,
                      totalCount: totalCount)

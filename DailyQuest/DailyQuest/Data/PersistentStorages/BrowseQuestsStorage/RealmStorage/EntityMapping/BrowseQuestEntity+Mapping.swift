@@ -10,6 +10,7 @@ import Foundation
 extension BrowseQuestEntity {
     convenience init(browseQuest: BrowseQuest) {
         let questsEntities = browseQuest.quests.compactMap { QuestEntity(quest: $0) }
+        
         self.init(uuid: browseQuest.uuid,
                   nickName: browseQuest.nickName,
                   quests: questsEntities)

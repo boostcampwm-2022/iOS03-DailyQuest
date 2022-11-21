@@ -64,7 +64,6 @@ extension RealmQuestsStorage: QuestsStorage {
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
-
             let questEntity = QuestEntity(quest: quest)
             do {
                 try realmStorage.updateEntity(entity: questEntity)
