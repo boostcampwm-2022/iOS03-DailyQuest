@@ -17,3 +17,9 @@ enum Access {
     case receiveQuests
     case userInfo
 }
+
+enum NetworkCondition {
+    case today(_ date: Date)
+    case month(_ date: Date)
+    case year(_date: Date)
+}

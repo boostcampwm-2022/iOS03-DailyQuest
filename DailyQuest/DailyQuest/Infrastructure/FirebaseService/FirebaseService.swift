@@ -24,54 +24,93 @@ final class FirebaseService: NetworkService {
         uid = auth.currentUser?.uid
     }
 
-    private func documnetReference(userCase: UserCase) -> DocumentReference? {
+    private func documentReference(userCase: UserCase) -> DocumentReference? {
         switch userCase {
         case .currentUser:
-            guard let currentUserUid = uid else { return nil }
-            return db.collection("users").document(currentUserUid)
+            // guard let currentUserUid = uid else { return nil }
+            return db.collection("users").document("user1") // user 변경해야해요
         case let .anotherUser(uid):
             return db.collection("users").document(uid)
         }
     }
 
-    func create<T: Codable>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
-        self.db.collection("users").document("user1").collection("quests")
-            .whereField("date", isEqualTo: Date().toString)
-            .getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
-        
-        let data = QuestDTO(uuid: UUID(), title: "이다연 여기 묻히다", currentCount: 0, totalCount: 0, groupUid: UUID())
-        
-        do {
-        try self.db.collection("users").document("user1").collection("quests")
-            .document("\(data.uuid)")
-            .setData(from: data)
-        } catch let error {
-            print(error)
-        }
-        
+    func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
         return Single<T>.create { single in
+            guard let uid = self.uid, let ref = self.documentReference(userCase: userCase) else {
+                // single(.failure()) // Firebase Error 추가
+                return Disposables.create()
+            }
+
             switch access {
             case .quests:
-                break
+                do {
+                    try ref.collection("quests")
+                        .document("\(dto.uuid)")
+                        .setData(from: dto)
+                    single(.success(dto))
+                } catch let error {
+                    single(.failure(error))
+                }
             case .receiveQuests:
-                break
+                do {
+                    try ref.collection("receiveQuests")
+                        .document(uid)
+                        .setData(from: dto)
+                    single(.success(dto))
+                } catch let error {
+                    single(.failure(error))
+                }
             case .userInfo:
-                break
+                do {
+                    try ref
+                        .setData(from: dto)
+                    single(.success(dto))
+                } catch let error {
+                    single(.failure(error))
+                }
             }
             return Disposables.create()
         }
     }
 
-    func read<T: Codable>(userCase: UserCase, access: Access) -> Observable<T> {
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition? = nil) -> Observable<T> {
+
         return Observable<T>.create { observer in
+            guard let ref = self.documentReference(userCase: userCase) else {
+                // single(.failure()) // Firebase Error 추가
+                return Disposables.create()
+            }
+
+            switch access {
+            case .quests:
+                print("aaaa")
+                let ref = ref.collection("quests")
+                switch condition {
+                case .none:
+                    break
+                case let .today(date):
+                    ref.whereField("date", isEqualTo: date.toString)
+                        .getDocuments { (querySnapshot, err) in
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+                            do {
+                                let quest = try document.data(as: type)
+                                observer.onNext(quest)
+                            } catch let error {
+                                print(error)
+                            }
+                        }
+                    }
+                case .some(.month(_)):
+                    break
+                case .some(.year(_date: let _date)):
+                    break
+                }
+            case .receiveQuests:
+                break
+            case .userInfo:
+                break
+            }
 
 
             return Disposables.create()
