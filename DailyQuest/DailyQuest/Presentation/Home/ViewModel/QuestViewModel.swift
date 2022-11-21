@@ -22,18 +22,16 @@ final class QuestViewModel {
     }
     
     struct Output {
-        let data = PublishSubject<[Quest]>()
+        let data: Driver<[Quest]>
     }
     
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output()
         
-        input
+        let data = input
             .viewDidLoad
             .flatMap(questUseCase.fetch(by:))
-            .bind(to: output.data)
-            .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn: [])
         
-        return output
+        return Output(data: data)
     }
 }
