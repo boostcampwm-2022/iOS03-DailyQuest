@@ -25,17 +25,16 @@ extension RealmQuestsStorage: QuestsStorage {
                 return Disposables.create()
             }
 
-            for quest in quests {
-                let questEntity = QuestEntity(quest: quest)
-                do {
+            do {
+                for quest in quests {
+                    let questEntity = QuestEntity(quest: quest)
                     try realmStorage.saveEntity(entity: questEntity)
-                } catch let error {
-                    single(.failure(RealmStorageError.saveError(error)))
-                    return Disposables.create()
                 }
-            }
+                single(.success(quests))
+            } catch let error {
+                single(.failure(RealmStorageError.saveError(error)))
 
-            single(.success(quests))
+            }
             return Disposables.create()
         }
     }
@@ -69,10 +68,10 @@ extension RealmQuestsStorage: QuestsStorage {
             let questEntity = QuestEntity(quest: quest)
             do {
                 try realmStorage.updateEntity(entity: questEntity)
+                single(.success(quest))
             } catch let error {
 
                 single(.failure(RealmStorageError.saveError(error)))
-                return Disposables.create()
             }
 
             return Disposables.create()
@@ -90,10 +89,10 @@ extension RealmQuestsStorage: QuestsStorage {
                     throw RealmStorageError.noDataError
                 }
                 try realmStorage.deleteEntity(entity: entity)
+                single(.success(entity.toDomain()))
             } catch let error {
 
                 single(.failure(RealmStorageError.saveError(error)))
-                return Disposables.create()
             }
 
             return Disposables.create()
@@ -112,12 +111,12 @@ extension RealmQuestsStorage: QuestsStorage {
                 for entity in entities {
                     try realmStorage.deleteEntity(entity: entity)
                 }
-            } catch let error {
+                single(.success(entities.compactMap { $0.toDomain() }))
 
+            } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))
-                return Disposables.create()
             }
-            
+
             return Disposables.create()
         }
     }
