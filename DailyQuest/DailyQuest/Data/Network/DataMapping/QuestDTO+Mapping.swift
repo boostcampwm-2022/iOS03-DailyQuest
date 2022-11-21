@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct QuestDTO: Codable {
+struct QuestDTO: DTO {
     let uuid: UUID
     let title: String
     let currentCount: Int
