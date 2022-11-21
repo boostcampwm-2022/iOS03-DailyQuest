@@ -63,6 +63,14 @@
 		A51F01DA292345990031ECA2 /* BrowseQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01D9292345990031ECA2 /* BrowseQuest.swift */; };
 		A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01DC2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift */; };
 		A565644E292BA58E0033E763 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565644D292BA58E0033E763 /* Date+.swift */; };
+		A5656450292BB8840033E763 /* DefaultQuestsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565644F292BB8840033E763 /* DefaultQuestsRepositoryTest.swift */; };
+		A5656451292BB8970033E763 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
+		A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
+		A5656453292BB89D0033E763 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5656454292BB8A20033E763 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
+		A5656455292BB8B30033E763 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		A5656456292BB8B70033E763 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96D829223648003B7637 /* RealmStorage.swift */; };
+		A5656457292BB91F0033E763 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96D829223648003B7637 /* RealmStorage.swift */; };
 		A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
 		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
@@ -143,6 +151,7 @@
 		A51F01D9292345990031ECA2 /* BrowseQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseQuest.swift; sourceTree = "<group>"; };
 		A51F01DC2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowseQuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		A565644D292BA58E0033E763 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		A565644F292BB8840033E763 /* DefaultQuestsRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepositoryTest.swift; sourceTree = "<group>"; };
 		A5AC96D829223648003B7637 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
 		A5AC96DB292237C3003B7637 /* QuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestEntity.swift; sourceTree = "<group>"; };
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
@@ -396,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				34ACC343291DE9C100741371 /* DailyQuestTests.swift */,
+				A565644F292BB8840033E763 /* DefaultQuestsRepositoryTest.swift */,
 			);
 			path = DailyQuestTests;
 			sourceTree = "<group>";
@@ -542,7 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				A51F01C629232DF90031ECA2 /* UserInfoStorage */,
-				A5AC96E429223EE6003B7637 /* UserQuestsStorage */,
+				A5AC96E429223EE6003B7637 /* QuestsStorage */,
 				A51F01D129233FFB0031ECA2 /* BrowseQuestsStorage */,
 				A5AC96D72922362A003B7637 /* RealmStorage */,
 			);
@@ -568,13 +578,13 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		A5AC96E429223EE6003B7637 /* UserQuestsStorage */ = {
+		A5AC96E429223EE6003B7637 /* QuestsStorage */ = {
 			isa = PBXGroup;
 			children = (
 				A5AC96E529223F06003B7637 /* QuestsStorage.swift */,
 				A51189C029226DF7008A9D33 /* RealmStorage */,
 			);
-			path = UserQuestsStorage;
+			path = QuestsStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -780,7 +790,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */,
+				A5656455292BB8B30033E763 /* QuestEntity.swift in Sources */,
+				A5656450292BB8840033E763 /* DefaultQuestsRepositoryTest.swift in Sources */,
+				A5656456292BB8B70033E763 /* RealmStorage.swift in Sources */,
+				A5656454292BB8A20033E763 /* QuestEntity+Mapping.swift in Sources */,
 				34ACC344291DE9C100741371 /* DailyQuestTests.swift in Sources */,
+				A5656453292BB89D0033E763 /* RealmQuestsStorage.swift in Sources */,
+				A5656457292BB91F0033E763 /* Quest.swift in Sources */,
+				A5656451292BB8970033E763 /* DefaultQuestsRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
