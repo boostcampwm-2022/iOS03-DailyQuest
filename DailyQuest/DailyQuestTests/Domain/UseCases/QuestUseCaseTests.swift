@@ -7,22 +7,45 @@
 
 import XCTest
 
+import RxSwift
+
 final class QuestUseCaseTests: XCTestCase {
+    private var questUseCase: QuestUseCase!
+    private var questRepo: QuestsRepository!
+    private var disposeBag = DisposeBag()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        questRepo = nil
+        questUseCase = nil
+        disposeBag = .init()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testQuestUseCase_WhenRepoSendCorrectQuests_ThenExpectationWillBeFulfilledWithSuccess() {
+        // given
+        questRepo = QuestRepositoryMock()
+        
+        questUseCase = DefaultQuestUseCase(questsRepository: questRepo)
+        
+        let expectation = XCTestExpectation(description: "test success")
+        
+        // when
+        questUseCase
+            .fetch(by: Date())
+        // then
+            .subscribe(onNext: { data in
+                expectation.fulfill()
+            }, onError: { _ in
+                XCTFail("test failed")
+            })
+            .disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 1)
     }
 
     func testPerformanceExample() throws {
