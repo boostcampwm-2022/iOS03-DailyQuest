@@ -12,8 +12,6 @@
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
 		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
 		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
-		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
-		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
 		3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
@@ -61,13 +59,11 @@
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
-		34FF6C2F292B8014002AFD4D /* RxBlocking-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C34292B8014002AFD4D /* RxCocoa-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C39292B8014002AFD4D /* RxRelay-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C3E292B8014002AFD4D /* RxSwift-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C43292B8014002AFD4D /* RxTest-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C41292B8014002AFD4D /* RxTest-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C48292B8014002AFD4D /* SnapKit-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		34FF6C4D292B8027002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
+		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
+		34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5E292B8B27002AFD4D /* RxSwift */; };
+		34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */; };
 		A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
 		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
@@ -111,12 +107,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				34FF6C3E292B8014002AFD4D /* RxSwift-Dynamic in Embed Frameworks */,
-				34FF6C34292B8014002AFD4D /* RxCocoa-Dynamic in Embed Frameworks */,
-				34FF6C2F292B8014002AFD4D /* RxBlocking-Dynamic in Embed Frameworks */,
-				34FF6C43292B8014002AFD4D /* RxTest-Dynamic in Embed Frameworks */,
-				34FF6C39292B8014002AFD4D /* RxRelay-Dynamic in Embed Frameworks */,
-				34FF6C48292B8014002AFD4D /* SnapKit-Dynamic in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,12 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */,
-				34131399291E47D300E607E1 /* RxSwift in Frameworks */,
 				34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */,
 				34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */,
+				34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */,
 				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
-				34131397291E47D300E607E1 /* RxCocoa in Frameworks */,
 				34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */,
+				34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */,
 				34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +199,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */,
+				34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,10 +720,10 @@
 				34ACC361291DEF6100741371 /* FirebaseDatabase */,
 				34ACC363291DEF6100741371 /* FirebaseFirestore */,
 				34ACC365291DEF6100741371 /* FirebaseStorage */,
-				34131396291E47D300E607E1 /* RxCocoa */,
-				34131398291E47D300E607E1 /* RxSwift */,
 				3413139B291E480500E607E1 /* SnapKit */,
 				A5AC96DE292239CA003B7637 /* RealmSwift */,
+				34FF6C5C292B8B27002AFD4D /* RxCocoa */,
+				34FF6C5E292B8B27002AFD4D /* RxSwift */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -753,12 +745,8 @@
 			);
 			name = DailyQuestTests;
 			packageProductDependencies = (
-				34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */,
-				34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */,
-				34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */,
-				34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */,
-				34FF6C41292B8014002AFD4D /* RxTest-Dynamic */,
 				34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */,
+				34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */,
 			);
 			productName = DailyQuestTests;
 			productReference = 34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */;
@@ -816,9 +804,9 @@
 			mainGroup = 34ACC320291DE9C000741371;
 			packageReferences = (
 				34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -926,7 +914,7 @@
 				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
 				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
 				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
-				34FF6C4D292B8027002AFD4D /* QuestViewModel.swift in Sources */,
+				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
 			);
@@ -1248,14 +1236,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1272,6 +1252,14 @@
 				kind = branch;
 			};
 		};
+		34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -1283,16 +1271,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		34131396291E47D300E607E1 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		34131398291E47D300E607E1 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
 		3413139B291E480500E607E1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -1318,35 +1296,25 @@
 			package = 34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		34FF6C2C292B8014002AFD4D /* RxBlocking-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxBlocking-Dynamic";
-		};
-		34FF6C32292B8014002AFD4D /* RxCocoa-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxCocoa-Dynamic";
-		};
-		34FF6C37292B8014002AFD4D /* RxRelay-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxRelay-Dynamic";
-		};
-		34FF6C3C292B8014002AFD4D /* RxSwift-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxSwift-Dynamic";
-		};
-		34FF6C41292B8014002AFD4D /* RxTest-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxTest-Dynamic";
-		};
 		34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		34FF6C5C292B8B27002AFD4D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		34FF6C5E292B8B27002AFD4D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
 		};
 		A5AC96DE292239CA003B7637 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
