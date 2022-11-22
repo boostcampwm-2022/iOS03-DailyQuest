@@ -50,7 +50,8 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(animationView)
-        animationView.center = view.center
+        configureConstraints()
+        //animationView.center = view.center
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isTranslucent = true
         // 애니메이션 실행
@@ -88,8 +89,8 @@ final class HomeViewController: UIViewController {
         animationView.snp.makeConstraints { make in
             make.centerX.equalTo(self.view)
             make.centerY.equalTo(self.view)
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
+            make.width.equalTo(400)
+            make.height.equalTo(500)
         }
     }
 }
