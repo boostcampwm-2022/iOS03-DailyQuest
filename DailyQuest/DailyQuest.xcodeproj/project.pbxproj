@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
+		340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
+		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
 		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
 		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
+		3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
+		3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
+		3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC8D292B593C00B504C5 /* Quest+Stub.swift */; };
+		3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */; };
+		3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */; };
+		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
@@ -40,7 +49,6 @@
 		34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC32E291DE9C000741371 /* SceneDelegate.swift */; };
 		34ACC336291DE9C100741371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC335291DE9C100741371 /* Assets.xcassets */; };
 		34ACC339291DE9C100741371 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ACC337291DE9C100741371 /* LaunchScreen.storyboard */; };
-		34ACC344291DE9C100741371 /* DailyQuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC343291DE9C100741371 /* DailyQuestTests.swift */; };
 		34ACC34E291DE9C100741371 /* DailyQuestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */; };
 		34ACC350291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */; };
 		34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 34ACC35F291DEF6100741371 /* FirebaseAuth */; };
@@ -93,6 +101,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
+		3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestUseCase.swift; sourceTree = "<group>"; };
+		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
+		3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRepositoryMock.swift; sourceTree = "<group>"; };
+		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -126,7 +139,6 @@
 		34ACC338291DE9C100741371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34ACC33A291DE9C100741371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyQuestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		34ACC343291DE9C100741371 /* DailyQuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestTests.swift; sourceTree = "<group>"; };
 		34ACC349291DE9C100741371 /* DailyQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -188,6 +200,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340FDFD8292B61C200C4E3DC /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3416FC85292B549900B504C5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC86292B54BF00B504C5 /* Protocols */,
+				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		3416FC86292B54BF00B504C5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3416FC8B292B58F600B504C5 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC90292B59BB00B504C5 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3416FC8C292B592C00B504C5 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC8D292B593C00B504C5 /* Quest+Stub.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		3416FC90292B59BB00B504C5 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */,
+				3416FC91292B59C700B504C5 /* Mocks */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3416FC91292B59C700B504C5 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		3449AD592922162E00B87619 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +312,7 @@
 		34995516292329F4007AB99E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				3416FC85292B549900B504C5 /* Home */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -400,7 +470,9 @@
 		34ACC342291DE9C100741371 /* DailyQuestTests */ = {
 			isa = PBXGroup;
 			children = (
-				34ACC343291DE9C100741371 /* DailyQuestTests.swift */,
+				340FDFD8292B61C200C4E3DC /* Presentation */,
+				3416FC8B292B58F600B504C5 /* Domain */,
+				3416FC8C292B592C00B504C5 /* Mocks */,
 			);
 			path = DailyQuestTests;
 			sourceTree = "<group>";
@@ -748,6 +820,7 @@
 				A51F01DA292345990031ECA2 /* BrowseQuest.swift in Sources */,
 				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
 				A51F01D52923407E0031ECA2 /* BrowseQuestEntity.swift in Sources */,
+				3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
@@ -771,6 +844,8 @@
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */,
+				A5AC96DC292237C3003B7637 /* UserQuestEntity.swift in Sources */,
+				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
@@ -789,6 +864,13 @@
 				A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */,
 				34ACC344291DE9C100741371 /* DailyQuestTests.swift in Sources */,
 				A5656457292BB91F0033E763 /* Quest.swift in Sources */,
+				3416FC96292B5B5400B504C5 /* Quest.swift in Sources */,
+				3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */,
+				3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */,
+				340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */,
+				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
+				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
+				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
