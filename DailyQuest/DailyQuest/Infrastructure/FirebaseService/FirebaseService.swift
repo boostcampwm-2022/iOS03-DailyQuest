@@ -22,6 +22,7 @@ final class FirebaseService: NetworkService {
         db = Firestore.firestore()
         auth = Auth.auth()
         uid = auth.currentUser?.uid
+        print(uid)
     }
     
     private func documentReference(userCase: UserCase) -> DocumentReference? {
@@ -166,31 +167,29 @@ final class FirebaseService: NetworkService {
             
             switch access {
             case .quests:
-                do {
-                    try ref.collection("quests")
-                        .document("\(dto.uuid)")
-                        .delete()
-                    print(dto.uuid)
-                    single(.success(dto))
-                } catch let error {
-                    single(.failure(error))
+                ref.collection("quests").document("\(dto.uuid)").delete() { error in
+                    if let error = error {
+                        single(.failure(error))
+                    } else {
+                        single(.success(dto))
+                    }
                 }
+                print(dto.uuid)
             case .receiveQuests:
-                do {
-                    try ref.collection("receiveQuests")
-                        .document(uid)
-                        .delete()
-                    single(.success(dto))
-                } catch let error {
-                    single(.failure(error))
+                ref.collection("receiveQuests").document(uid).delete() { error in
+                    if let error = error {
+                        single(.failure(error))
+                    } else {
+                        single(.success(dto))
+                    }
                 }
             case .userInfo:
-                do {
-                    try ref
-                        .delete()
-                    single(.success(dto))
-                } catch let error {
-                    single(.failure(error))
+                ref.delete()  { error in
+                    if let error = error {
+                        single(.failure(error))
+                    } else {
+                        single(.success(dto))
+                    }
                 }
             }
             return Disposables.create()
