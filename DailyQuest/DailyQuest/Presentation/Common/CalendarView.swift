@@ -63,6 +63,8 @@ class CalendarView: UIView {
         }
     }
     
+    var itemsBySection = [[CalendarView.DisplayDate]]()
+    
     override init(frame: CGRect = .zero) {
         var newCalendar = Calendar.current
         newCalendar.timeZone = .init(identifier: "UTC") ?? .current
@@ -128,5 +130,37 @@ class CalendarView: UIView {
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: configuration)
         
         return layout
+    }
+}
+
+extension CalendarView: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return itemsBySection.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return itemsBySection[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: CalendarCell.reuseIdentifier,
+            for: indexPath
+        ) as? CalendarCell else {
+            return UICollectionViewCell(frame: .zero)
+        }
+        
+        let date = itemsBySection[indexPath.section][indexPath.item]
+        cell.configure(state: date.state, day: date.day)
+        
+        return cell
+    }
+}
+extension CalendarView {
+    
+    struct DisplayDate {
+        let day: Int
+        let state: CalendarCell.State
     }
 }
