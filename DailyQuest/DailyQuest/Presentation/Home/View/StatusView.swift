@@ -62,6 +62,10 @@ final class StatusView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+     UI의 constraints를 설정하기 위한 메서드입니다.
+     constraints를 설정하기 전에, 해당 뷰를 먼저 add해야함을 유념하세요.
+     */
     private func configureUI() {
         addSubview(iconContainer)
         iconContainer.snp.makeConstraints { make in
@@ -97,6 +101,8 @@ final class StatusView: UIView {
             make.bottom.equalTo(progressBar.snp.top)
         }
     }
+    
+    // Setup method goes here.
 }
 
 #if canImport(SwiftUI) && DEBUG
