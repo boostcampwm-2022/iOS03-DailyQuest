@@ -8,13 +8,12 @@
 import UIKit
 import SnapKit
 
-class CircleCheckView: UIView {
+final class CircleCheckView: UIView {
     
     // MARK: - Sub Views
     
     private lazy var circleBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.973, green: 0.953, blue: 0.831, alpha: 1)
         return view
     }()
     
@@ -57,21 +56,20 @@ class CircleCheckView: UIView {
         }
         
         displayLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
     // MARK: - Methods
     
-    private func setDone() {
+    func setDone() {
         displayLabel.text = "✓"
         displayLabel.font = .systemFont(ofSize: self.displayLabel.font.pointSize, weight: .bold)
         displayLabel.textColor = .white
-        circleBackground.backgroundColor = UIColor(red: 1, green: 0.871, blue: 0.49, alpha: 1)
+        circleBackground.backgroundColor = .maxYellow
     }
     
-    private func setNumber(to number: Int) {
+    func setNumber(to number: Int) {
         let range = (0...9)
         
         if range ~= number {
@@ -81,10 +79,6 @@ class CircleCheckView: UIView {
         }
         
         displayLabel.font = .boldSystemFont(ofSize: self.displayLabel.font.pointSize)
-        displayLabel.textColor = UIColor(red: 0.365, green: 0.114, blue: 0.235, alpha: 1)
-        circleBackground.backgroundColor = UIColor(red: 0.973, green: 0.953, blue: 0.831, alpha: 1)
-    }
-    
     /// Self.State의 케이스로 해당 뷰를 업데이트 하는 메소드
     /// - parameters:
     ///     - state: CircleCheckView.State
@@ -95,6 +89,8 @@ class CircleCheckView: UIView {
         case .done:
             setDone()
         }
+        displayLabel.textColor = .maxViolet
+        circleBackground.backgroundColor = .maxLightYellow
     }
 }
 
