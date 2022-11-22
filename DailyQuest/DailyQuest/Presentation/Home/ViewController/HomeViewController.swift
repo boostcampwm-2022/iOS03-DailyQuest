@@ -83,4 +83,13 @@ final class HomeViewController: UIViewController {
             })
             .disposed(by: disposableBag)
     }
+    
+    private func configureConstraints() {
+        animationView.snp.makeConstraints { make in
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+        }
+    }
 }
