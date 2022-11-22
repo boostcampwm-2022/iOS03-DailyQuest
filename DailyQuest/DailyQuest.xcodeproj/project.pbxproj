@@ -269,6 +269,7 @@
 				3499551C292332DE007AB99E /* Cells */,
 				B50078D529222F3F0070AFC4 /* CircleCheckView.swift */,
 				3499551F29234637007AB99E /* CustomProgressBar.swift */,
+				347D258C292C6E220038FCA2 /* MessageBubble.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -529,7 +530,6 @@
 				34EE6EB62924C674005AF583 /* QuestView.swift */,
 				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
 				347D258A292C60F40038FCA2 /* StatusView.swift */,
-				347D258C292C6E220038FCA2 /* MessageBubble.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
