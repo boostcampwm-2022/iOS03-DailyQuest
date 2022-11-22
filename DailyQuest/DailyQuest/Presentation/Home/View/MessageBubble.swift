@@ -15,9 +15,7 @@ final class MessageBubbleLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemCyan
         text = "hello world!"
-        layer.cornerRadius = 20
     }
     
     required init?(coder: NSCoder) {
