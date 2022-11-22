@@ -21,7 +21,9 @@ final class RealmStorage {
 
     private init() {
         // Realm file path
+        #if DEBUG
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        #endif
     }
 
     private let persistentContainer = try? Realm()
@@ -37,11 +39,12 @@ final class RealmStorage {
         return entity
     }
 
-    func fetchEntities<O: Object>(type: O.Type, filter: String? = nil) throws -> [O] {
+    func fetchEntities<O: Object>(type: O.Type, filter: NSPredicate? = nil) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
         }
         if let filter = filter {
+            print(filter)
             return Array(persistentContainer.objects(type).filter(filter))
         } else {
             return Array(persistentContainer.objects(type))
@@ -71,7 +74,7 @@ final class RealmStorage {
         return entity
     }
 
-    func findEntities<O: Object>(type: O.Type, filter: String) throws -> [O] {
+    func findEntities<O: Object>(type: O.Type, filter: NSPredicate) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
         }

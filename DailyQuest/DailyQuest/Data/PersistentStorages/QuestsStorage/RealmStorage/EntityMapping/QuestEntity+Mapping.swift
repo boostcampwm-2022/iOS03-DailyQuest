@@ -16,7 +16,6 @@ extension QuestEntity {
             title: quest.title,
             currentCount: quest.currentCount,
             totalCount: quest.totalCount)
-        print(date.toDate())
     }
 }
 

@@ -47,7 +47,7 @@ extension RealmQuestsStorage: QuestsStorage {
 
             do {
                 let quests = try realmStorage
-                    .fetchEntities(type: QuestEntity.self, filter: "date == \(date.toString)")
+                    .fetchEntities(type: QuestEntity.self, filter: NSPredicate(format: "date == %@", date.toString))
                     .compactMap { $0.toDomain() }
                 observer.onNext(quests)
                 observer.onCompleted()
@@ -69,7 +69,6 @@ extension RealmQuestsStorage: QuestsStorage {
                 try realmStorage.updateEntity(entity: questEntity)
                 single(.success(quest))
             } catch let error {
-
                 single(.failure(RealmStorageError.saveError(error)))
             }
 
@@ -84,13 +83,14 @@ extension RealmQuestsStorage: QuestsStorage {
             }
 
             do {
-                guard let entity = try realmStorage.findEntities(type: QuestEntity.self, filter: "uuid == \(questId)").first else {
+                guard let entity = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "uuid == %@", questId as CVarArg)).first else {
                     throw RealmStorageError.noDataError
                 }
+                let quest = entity.toDomain()
                 try realmStorage.deleteEntity(entity: entity)
-                single(.success(entity.toDomain()))
+                single(.success(quest))
+                
             } catch let error {
-
                 single(.failure(RealmStorageError.saveError(error)))
             }
 
@@ -106,11 +106,12 @@ extension RealmQuestsStorage: QuestsStorage {
             }
 
             do {
-                let entities = try realmStorage.findEntities(type: QuestEntity.self, filter: "groupId == \(groupId)")
+                let entities = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "groupId == %@", groupId as CVarArg))
+                let quests = entities.compactMap { $0.toDomain() }
                 for entity in entities {
                     try realmStorage.deleteEntity(entity: entity)
                 }
-                single(.success(entities.compactMap { $0.toDomain() }))
+                single(.success(quests))
 
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))
