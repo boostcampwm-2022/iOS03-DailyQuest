@@ -61,8 +61,29 @@ class CalendarCell: UICollectionViewCell {
     /// - parameters:
     ///     - state : CircleCheckView.State
     ///     - day : Int
-    func configure(state: CircleCheckView.State, day: Int) {
+    func configure(state: CalendarCell.State, day: Int) {
+        self.isHidden = false
+
+        switch state {
+        case .none:
+            self.isHidden = true
+        case .normal:
+            self.circleCheckView.setNormal()
+        case .display(let number):
+            self.circleCheckView.setNumber(to: number)
+        case .done:
+            self.circleCheckView.setDone()
+        }
         dayLabel.text = "\(day)"
-        circleCheckView.updateState(state)
+    }
+}
+
+extension CalendarCell {
+    
+    enum State {
+        case none
+        case normal
+        case display(Int)
+        case done
     }
 }

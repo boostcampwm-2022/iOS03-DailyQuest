@@ -79,32 +79,12 @@ final class CircleCheckView: UIView {
         }
         
         displayLabel.font = .boldSystemFont(ofSize: self.displayLabel.font.pointSize)
-    /// Self.State의 케이스로 해당 뷰를 업데이트 하는 메소드
-    /// - parameters:
-    ///     - state: CircleCheckView.State
-    func updateState(_ state: CircleCheckView.State) {
-        switch state {
-        case .display(let number):
-            setNumber(to: number)
-        case .done:
-            setDone()
-        }
         displayLabel.textColor = .maxViolet
         circleBackground.backgroundColor = .maxLightYellow
     }
-}
-
-// MARK: - Nested Enum - CircleCheckView.State
-
-extension CircleCheckView {
     
-    /// CircleCheckView.State 타입
-    ///
-    /// Case:
-    /// - done
-    /// - display(number: Int)
-    enum State {
-        case done
-        case display(number: Int)
+    func setNormal() {
+        displayLabel.text = ""
+        circleBackground.backgroundColor = .maxLightYellow
     }
 }
