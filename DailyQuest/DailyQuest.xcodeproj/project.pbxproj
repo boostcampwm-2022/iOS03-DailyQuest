@@ -55,9 +55,8 @@
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
-		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
-		A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
+		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A50DE909292B73B900E1FD60 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE908292B73B900E1FD60 /* FirebaseAuth */; };
 		A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */; };
 		A50DE90D292B73B900E1FD60 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90C292B73B900E1FD60 /* FirebaseFirestoreSwift */; };
@@ -67,7 +66,7 @@
 		A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3629266F6F005C00FE /* FirebaseService.swift */; };
 		A50F9A3929266FD8005C00FE /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
 		A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */; };
-		A51189C329226E66008A9D33 /* UserQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */; };
+		A5143D22292CA75B00A21FDA /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5143D21292CA75B00A21FDA /* QuestEntity+Mapping.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
 		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
 		A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01CC29233ABB0031ECA2 /* RealmUserInfoStorage.swift */; };
@@ -153,15 +152,14 @@
 		34CAE317292B19A3007653AD /* QuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepository.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
-		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
-		A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
 		A50DE910292B74C500E1FD60 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		A50F9A3329266F45005C00FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A50F9A3629266F6F005C00FE /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A50F9A3829266FD8005C00FE /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigure.swift; sourceTree = "<group>"; };
-		A51189C229226E66008A9D33 /* UserQuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserQuestEntity+Mapping.swift"; sourceTree = "<group>"; };
+		A5143D21292CA75B00A21FDA /* QuestEntity+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
 		A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEntity.swift; sourceTree = "<group>"; };
 		A51F01CC29233ABB0031ECA2 /* RealmUserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserInfoStorage.swift; sourceTree = "<group>"; };
@@ -602,7 +600,7 @@
 		A51189C129226E26008A9D33 /* EntityMapping */ = {
 			isa = PBXGroup;
 			children = (
-				A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */,
+				A5143D21292CA75B00A21FDA /* QuestEntity+Mapping.swift */,
 			);
 			path = EntityMapping;
 			sourceTree = "<group>";
@@ -893,7 +891,6 @@
 				A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
-				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
 				9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */,
@@ -902,8 +899,9 @@
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */,
-				A5AC96DC292237C3003B7637 /* UserQuestEntity.swift in Sources */,
+				A5AC96DC292237C3003B7637 /* QuestEntity.swift in Sources */,
 				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
+				A5143D22292CA75B00A21FDA /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
@@ -920,7 +918,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */,
-				34ACC344291DE9C100741371 /* DailyQuestTests.swift in Sources */,
 				A5656457292BB91F0033E763 /* Quest.swift in Sources */,
 				3416FC96292B5B5400B504C5 /* Quest.swift in Sources */,
 				3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */,
@@ -1089,12 +1086,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B2XR5545F7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1115,12 +1114,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B2XR5545F7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

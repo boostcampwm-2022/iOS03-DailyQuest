@@ -7,8 +7,11 @@
 
 import RxSwift
 
-enum NetworkServiceError {
-    case noAuth
+enum NetworkServiceError: Error {
+    case noNetworkService
+    case noAuthError
+    case wrongAccessError
+    case needConditionError
 }
 
 protocol NetworkService {
