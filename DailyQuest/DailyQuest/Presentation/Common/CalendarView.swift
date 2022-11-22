@@ -157,6 +157,77 @@ extension CalendarView: UICollectionViewDataSource {
         return cell
     }
 }
+
+extension CalendarView: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let indexPath = monthCollectionView.indexPathsForVisibleItems.first else {
+            return
+        }
+        
+        if indexPath.section > 1 {
+            currentDay = calendar.date(byAdding: .month, value: 1, to: currentDay)!
+            let nextMonthComp = calendar.date(byAdding: .month, value: 1, to: currentDay)!
+            let nextMonth = nextMonth(date: nextMonthComp)
+            let nextDates = nextMonth.dates
+            
+            self.itemsBySection.removeFirst()
+            self.itemsBySection.append(nextDates)
+        } else if indexPath.section < 1 {
+            currentDay = calendar.date(byAdding: .month, value: -1, to: currentDay)!
+            let nextMonthComp = calendar.date(byAdding: .month, value: -1, to: currentDay)!
+            let nextMonth = nextMonth(date: nextMonthComp)
+            let nextDates = nextMonth.dates
+            
+            self.itemsBySection.removeLast()
+            self.itemsBySection.insert(nextDates, at: 0)
+        }
+        
+        monthCollectionView.reloadData()
+        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
+    }
+    
+    private func nextMonth(date: Date) -> (month: Date, dates: [DisplayDate]) {
+        let components = calendar.dateComponents([.year, .month], from: date)
+        
+        let startOfMonth = calendar.date(from: components)!
+        let startOfMonthWeekDay = calendar.dateComponents([.weekday], from: startOfMonth)
+        
+        let startMonthComp = calendar.dateComponents([.day, .weekday, .weekOfMonth, .month], from: startOfMonth)
+        
+        let nextMonth = calendar.date(byAdding: .month, value: +1, to: startOfMonth)!
+        let endOfMonth = calendar.date(byAdding: .day, value: -1, to: nextMonth)!
+        
+        let comp2 = calendar.dateComponents([.day, .weekday, .weekOfMonth, .month], from: endOfMonth)
+
+        if startOfMonthWeekDay.weekday == calendar.firstWeekday {
+            return (startOfMonth, (startMonthComp.day!...comp2.day!).map { DisplayDate(day: $0, state: .normal) })
+        } else {
+            let prevMonth = calendar.date(byAdding: .day, value: -1, to: startOfMonth)
+            let prevMonthComp = calendar.dateComponents([.weekday, .day], from: prevMonth!)
+            var prevMonthStartDayOfEndWeek = prevMonth!
+            var prevMonthStartDayOfWeekComp = calendar.dateComponents([.weekday, .day], from: prevMonthStartDayOfEndWeek)
+            
+            while prevMonthStartDayOfWeekComp.weekday! != calendar.firstWeekday {
+                prevMonthStartDayOfEndWeek = calendar.date(byAdding: .day, value: -1, to: prevMonthStartDayOfEndWeek)!
+                prevMonthStartDayOfWeekComp = calendar.dateComponents([.weekday, .day], from: prevMonthStartDayOfEndWeek)
+            }
+            
+            return (startOfMonth, (prevMonthStartDayOfWeekComp.day!...prevMonthComp.day!).map { DisplayDate(day: $0, state: .none) } + (startMonthComp.day!...comp2.day!).map { DisplayDate(day: $0, state: .normal) })
+        }
+    }
+    
+    private func setupMonths() -> [[DisplayDate]] {
+        let prevMonthDay = calendar.date(byAdding: .month, value: -1, to: currentDay)!
+        let prevMonth = nextMonth(date: prevMonthDay)
+        let currentMonth = nextMonth(date: currentDay)
+        let nextMonthDay = calendar.date(byAdding: .month, value: 1, to: currentDay)!
+        let nextMonth = nextMonth(date: nextMonthDay)
+        
+        return [prevMonth.dates, currentMonth.dates, nextMonth.dates]
+    }
+}
+
 extension CalendarView {
     
     struct DisplayDate {
