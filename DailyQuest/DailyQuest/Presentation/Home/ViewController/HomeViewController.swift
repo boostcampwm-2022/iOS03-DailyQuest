@@ -23,7 +23,6 @@ final class HomeViewController: UIViewController {
     
     private lazy var questView: QuestView = {
         let questView = QuestView()
-//        questView.setup(with: QuestViewModel())
         
         return questView
     }()
@@ -33,9 +32,11 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle
-    // static func create(with viewModel: HomeViewModel)
-    static func create() -> HomeViewController {
-        return HomeViewController()
+    static func create(with viewModel: QuestViewModel) -> HomeViewController {
+        let vc = HomeViewController()
+        vc.setup(questViewModel: viewModel)
+        
+        return vc
     }
     
     override func viewDidLoad() {
@@ -68,5 +69,9 @@ final class HomeViewController: UIViewController {
                 self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
             })
             .disposed(by: disposableBag)
+    }
+    
+    private func setup(questViewModel: QuestViewModel) {
+        questView.setup(with: questViewModel)
     }
 }
