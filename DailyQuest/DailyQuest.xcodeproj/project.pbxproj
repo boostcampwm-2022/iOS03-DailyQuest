@@ -57,8 +57,6 @@
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
-		9B1CFB44292BD92500CCE97A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9B1CFB43292BD92500CCE97A /* Lottie */; };
-		9B1CFB50292C7CE400CCE97A /* max-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B1CFB4F292C7CE400CCE97A /* max-loading.json */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
@@ -159,7 +157,6 @@
 		34CAE317292B19A3007653AD /* QuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepository.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
-		9B1CFB4F292C7CE400CCE97A /* max-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "max-loading.json"; sourceTree = "<group>"; };
 		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
 		A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -198,9 +195,6 @@
 				A50DE909292B73B900E1FD60 /* FirebaseAuth in Frameworks */,
 				A50DE90D292B73B900E1FD60 /* FirebaseFirestoreSwift in Frameworks */,
 				34131399291E47D300E607E1 /* RxSwift in Frameworks */,
-				9B1CFB44292BD92500CCE97A /* Lottie in Frameworks */,
-				34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */,
-				34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */,
 				A50DE90F292B73B900E1FD60 /* FirebaseStorage in Frameworks */,
 				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
 				34131397291E47D300E607E1 /* RxCocoa in Frameworks */,
@@ -480,7 +474,6 @@
 		34ACC32B291DE9C000741371 /* DailyQuest */ = {
 			isa = PBXGroup;
 			children = (
-				9B1CFB4F292C7CE400CCE97A /* max-loading.json */,
 				34ACC367291DF00B00741371 /* Application */,
 				34ACC368291DF02500741371 /* Presentation */,
 				34ACC369291DF03600741371 /* Domain */,
@@ -740,7 +733,6 @@
 				34131398291E47D300E607E1 /* RxSwift */,
 				3413139B291E480500E607E1 /* SnapKit */,
 				A5AC96DE292239CA003B7637 /* RealmSwift */,
-				9B1CFB43292BD92500CCE97A /* Lottie */,
 				A50DE908292B73B900E1FD60 /* FirebaseAuth */,
 				A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */,
 				A50DE90C292B73B900E1FD60 /* FirebaseFirestoreSwift */,
@@ -822,7 +814,6 @@
 				34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				9B1CFB42292BD92500CCE97A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
@@ -842,7 +833,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34ACC339291DE9C100741371 /* LaunchScreen.storyboard in Resources */,
-				9B1CFB50292C7CE400CCE97A /* max-loading.json in Resources */,
 				34ACC336291DE9C100741371 /* Assets.xcassets in Resources */,
 				34ACC36C291DF0DD00741371 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1290,14 +1280,6 @@
 				kind = branch;
 			};
 		};
-		9B1CFB42292BD92500CCE97A /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -1343,11 +1325,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		9B1CFB43292BD92500CCE97A /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9B1CFB42292BD92500CCE97A /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
 		};
 		A5AC96DE292239CA003B7637 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;

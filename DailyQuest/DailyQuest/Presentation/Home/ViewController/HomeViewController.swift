@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
-import Lottie
 
 final class HomeViewController: UIViewController {
     enum Event {
@@ -33,13 +32,6 @@ final class HomeViewController: UIViewController {
         return QuestViewHeader()
     }()
     
-    private lazy var animationView: LottieAnimationView = {
-        let animView = LottieAnimationView(name: "max-loading")
-        animView.frame = CGRect(x:0,y:0,width: 400, height: 500)
-        animView.contentMode = .scaleAspectFill
-        return animView
-    }()
-    
     // MARK: - Life Cycle
     // static func create(with viewModel: HomeViewModel)
     static func create() -> HomeViewController {
@@ -48,25 +40,18 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        questViewDelegate = QuestViewDelegate(header: questViewHeader)
+        
         view.backgroundColor = .white
-        view.addSubview(animationView)
-        configureConstraints()
-        //animationView.center = view.center
-        self.tabBarController?.tabBar.isHidden = true
-        self.tabBarController?.tabBar.isTranslucent = true
-        // 애니메이션 실행
-        animationView.play{ (finish) in
-            self.animationView.removeFromSuperview()
-            self.tabBarController?.tabBar.isHidden = false
-            self.questViewDelegate = QuestViewDelegate(header: self.questViewHeader)
-            self.view.backgroundColor = .white
-            self.view.addSubview(self.questView)
-            self.questView.delegate = self.questViewDelegate
-            self.questView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-            self.bind()
+        
+        view.addSubview(questView)
+        
+        questView.delegate = questViewDelegate
+        questView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+        
+        bind()
     }
     
     private func bind() {
@@ -83,14 +68,5 @@ final class HomeViewController: UIViewController {
                 self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
             })
             .disposed(by: disposableBag)
-    }
-    
-    private func configureConstraints() {
-        animationView.snp.makeConstraints { make in
-            make.centerX.equalTo(self.view)
-            make.centerY.equalTo(self.view)
-            make.width.equalTo(400)
-            make.height.equalTo(500)
-        }
     }
 }
