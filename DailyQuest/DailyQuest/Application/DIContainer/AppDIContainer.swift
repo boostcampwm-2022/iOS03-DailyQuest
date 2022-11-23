@@ -16,5 +16,8 @@ final class AppDIContainer {
     func makeBrowseSceneDIContainer() -> BrowseSceneDIContainer {
         return BrowseSceneDIContainer()
     }
-    // func makeSettingsSceneDIContainer() -> SettingsDIContainer
+    
+    func makeSettingsSceneDIContainer() -> SettingsSceneDIContainer {
+        return SettingsSceneDIContainer()
+    }
 }
