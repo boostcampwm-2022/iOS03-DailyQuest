@@ -52,7 +52,7 @@ extension RealmUserInfoStorage: UserInfoStorage {
 
             do {
                 // update 성공했을 경우, success(user)
-                try realmStorage.updateEntity(entity: userInfo)
+                try realmStorage.saveEntity(entity: userInfo)
                 single(.success(user))
             } catch let error {
                 // update 성공하지 못했을 경우, failure(error)
