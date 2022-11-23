@@ -24,9 +24,8 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
     }
     
     func start() {
-        /**
-         Start Settings View Controller
-         */
+        let settingsController = SettingsViewController()
+        navigationController.pushViewController(settingsController, animated: false)
     }
     
     func showLoginOutFlow() {
