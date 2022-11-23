@@ -23,6 +23,8 @@
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
 		34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34642AB52925D9E40052FA0E /* UserInfoView.swift */; };
+		347D258B292C60F40038FCA2 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258A292C60F40038FCA2 /* StatusView.swift */; };
+		347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258C292C6E220038FCA2 /* MessageBubble.swift */; };
 		34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874A9F292509A4000570DF /* QuestViewHeader.swift */; };
 		34874AA229250C43000570DF /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA129250C43000570DF /* UIButton+.swift */; };
 		34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA529252088000570DF /* AddQuestsViewController.swift */; };
@@ -117,6 +119,8 @@
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		34642AB52925D9E40052FA0E /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		347D258A292C60F40038FCA2 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		347D258C292C6E220038FCA2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		34874A9F292509A4000570DF /* QuestViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewHeader.swift; sourceTree = "<group>"; };
 		34874AA129250C43000570DF /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		34874AA529252088000570DF /* AddQuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestsViewController.swift; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 			children = (
 				34EE6EB62924C674005AF583 /* QuestView.swift */,
 				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
+				347D258A292C60F40038FCA2 /* StatusView.swift */,
+				347D258C292C6E220038FCA2 /* MessageBubble.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
+				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
 				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				A5656459292BBDD40033E763 /* String+.swift in Sources */,
 				34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */,
@@ -883,6 +890,7 @@
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
+				347D258B292C60F40038FCA2 /* StatusView.swift in Sources */,
 				34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
