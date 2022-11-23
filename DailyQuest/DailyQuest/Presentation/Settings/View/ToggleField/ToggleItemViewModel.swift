@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct ToggleItemViewModel {
+    let title: String
+    let imageName: String
+}
