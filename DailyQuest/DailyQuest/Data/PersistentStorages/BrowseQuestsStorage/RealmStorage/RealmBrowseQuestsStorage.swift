@@ -45,7 +45,7 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             let browseQuestEntity = BrowseQuestEntity(browseQuest: browseQuest)
 
             do {
-                try realmStorage.updateEntity(entity: browseQuestEntity)
+                try realmStorage.saveEntity(entity: browseQuestEntity)
                 single(.success(browseQuest))
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))

@@ -8,11 +8,10 @@
 import Foundation
 
 struct Quest {
+    let groupId: UUID
     let uuid: UUID
+    let date: Date
     let title: String
-    let startDay: Date
-    let endDay: Date
-    let `repeat`: Int
     var currentCount: Int
     let totalCount: Int
     

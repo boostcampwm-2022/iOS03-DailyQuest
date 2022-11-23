@@ -111,7 +111,7 @@ struct QuestCellPreview: PreviewProvider{
     static var previews: some View {
         UIViewPreview {
             let cell = QuestCell(frame: .zero)
-            let quest = Quest(uuid: UUID(), title: "my quest", startDay: Date(), endDay: Date(), repeat: 1, currentCount: 2, totalCount: 5)
+            let quest = Quest(groupId: UUID(), uuid: UUID(),date: Date(), title: "my quest", currentCount: 2, totalCount: 5)
             
             cell.setup(with: quest)
             return cell

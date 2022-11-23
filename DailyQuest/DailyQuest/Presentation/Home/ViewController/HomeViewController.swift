@@ -24,7 +24,7 @@ final class HomeViewController: UIViewController {
     
     private lazy var questView: QuestView = {
         let questView = QuestView()
-        questView.setup(with: QuestViewModel())
+//        questView.setup(with: QuestViewModel())
         
         return questView
     }()
