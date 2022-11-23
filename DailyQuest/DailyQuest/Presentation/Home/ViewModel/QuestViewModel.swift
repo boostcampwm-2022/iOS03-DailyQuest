@@ -8,18 +8,30 @@
 import Foundation
 
 import RxSwift
+import RxCocoa
 
 final class QuestViewModel {
     private let questUseCase: QuestUseCase
-    
-//    let quests = [
-//        Quest(groupId: UUID(), uuid: UUID(), title: "물마시기", currentCount: 4, totalCount: 5),
-//        Quest(groupId: UUID(), uuid: UUID(), title: "책읽기", currentCount: 9, totalCount: 20),
-//        Quest(groupId: UUID(), uuid: UUID(), title: "달리기", currentCount: 4, totalCount: 9),
-//        Quest(groupId: UUID(), uuid: UUID(), title: "잠자기", currentCount: 1, totalCount: 1)
-//    ]
-    
+
     init(questUseCase: QuestUseCase) {
         self.questUseCase = questUseCase
+    }
+    
+    struct Input {
+        let viewDidLoad: Observable<Date>
+    }
+    
+    struct Output {
+        let data: Driver<[Quest]>
+    }
+    
+    func transform(input: Input, disposeBag: DisposeBag) -> Output {
+        
+        let data = input
+            .viewDidLoad
+            .flatMap(questUseCase.fetch(by:))
+            .asDriver(onErrorJustReturn: [])
+        
+        return Output(data: data)
     }
 }
