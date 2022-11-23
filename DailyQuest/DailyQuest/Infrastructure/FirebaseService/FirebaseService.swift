@@ -37,10 +37,10 @@ final class FirebaseService: NetworkService {
     }
 
     func signIn(email: String, password: String) -> Single<Bool> {
-        return Single<T>.create { [weak self] single in
+        return Single.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                auth.signIn(withEmail: email, password: password) { (authResult, error) in
+                self.auth.signIn(withEmail: email, password: password) { (authResult, error) in
                     // guard let strongSelf = self else { return }
                     if let error = error {
                         single(.failure(error))
@@ -55,7 +55,7 @@ final class FirebaseService: NetworkService {
     }
 
     func signOut() -> Single<Bool> {
-        return Single<T>.create { [weak self] single in
+        return Single.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
@@ -77,7 +77,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -111,7 +111,6 @@ final class FirebaseService: NetworkService {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 guard let condition = condition else { throw NetworkServiceError.needConditionError }
                 switch access {
@@ -143,7 +142,7 @@ final class FirebaseService: NetworkService {
                         observer.onCompleted()
                     }
                 case .receiveQuests:
-                    ref.collection("receiveQuests").getDocuments {
+                    ref.collection("receiveQuests").getDocuments { (querySnapshot, error) in
                         for document in querySnapshot!.documents {
                             do {
                                 let quest = try document.data(as: type)
@@ -176,7 +175,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -203,7 +202,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
