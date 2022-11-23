@@ -10,8 +10,8 @@
 		340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
-		34131397291E47D300E607E1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34131396291E47D300E607E1 /* RxCocoa */; };
-		34131399291E47D300E607E1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34131398291E47D300E607E1 /* RxSwift */; };
+		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
+		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
 		3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
@@ -57,6 +57,11 @@
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
+		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
+		34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5E292B8B27002AFD4D /* RxSwift */; };
+		34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
@@ -109,7 +114,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		34FF6C2E292B8014002AFD4D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
+		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
@@ -192,12 +212,13 @@
 			files = (
 				A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */,
 				A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */,
-				A50DE909292B73B900E1FD60 /* FirebaseAuth in Frameworks */,
-				A50DE90D292B73B900E1FD60 /* FirebaseFirestoreSwift in Frameworks */,
-				34131399291E47D300E607E1 /* RxSwift in Frameworks */,
-				A50DE90F292B73B900E1FD60 /* FirebaseStorage in Frameworks */,
+				34ACC362291DEF6100741371 /* FirebaseDatabase in Frameworks */,
+				34ACC366291DEF6100741371 /* FirebaseStorage in Frameworks */,
+				34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */,
 				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
-				34131397291E47D300E607E1 /* RxCocoa in Frameworks */,
+				34ACC360291DEF6100741371 /* FirebaseAuth in Frameworks */,
+				34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */,
+				34ACC364291DEF6100741371 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +226,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */,
+				34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,8 +244,26 @@
 		340FDFD8292B61C200C4E3DC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				340FDFDC292B7A1A00C4E3DC /* Mocks */,
+				340FDFD9292B7A0200C4E3DC /* ViewModel */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		340FDFD9292B7A0200C4E3DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		340FDFDC292B7A1A00C4E3DC /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		3416FC85292B549900B504C5 /* Home */ = {
@@ -245,6 +286,7 @@
 		3416FC8B292B58F600B504C5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3416FC91292B59C700B504C5 /* Mocks */,
 				3416FC90292B59BB00B504C5 /* UseCases */,
 			);
 			path = Domain;
@@ -262,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */,
-				3416FC91292B59C700B504C5 /* Mocks */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -457,6 +498,7 @@
 				34ACC342291DE9C100741371 /* DailyQuestTests */,
 				34ACC34C291DE9C100741371 /* DailyQuestUITests */,
 				34ACC32A291DE9C000741371 /* Products */,
+				34FF6BF3292B7FF7002AFD4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -560,6 +602,13 @@
 			);
 			path = View;
 			sourceTree = "<group>";
+		};
+		34FF6BF3292B7FF7002AFD4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+      sourceTree = "<group>";
 		};
 		9B1CFB3C292B580C00CCE97A /* Network */ = {
 			isa = PBXGroup;
@@ -729,14 +778,14 @@
 			);
 			name = DailyQuest;
 			packageProductDependencies = (
-				34131396291E47D300E607E1 /* RxCocoa */,
-				34131398291E47D300E607E1 /* RxSwift */,
+				34ACC35F291DEF6100741371 /* FirebaseAuth */,
+				34ACC361291DEF6100741371 /* FirebaseDatabase */,
+				34ACC363291DEF6100741371 /* FirebaseFirestore */,
+				34ACC365291DEF6100741371 /* FirebaseStorage */,
 				3413139B291E480500E607E1 /* SnapKit */,
 				A5AC96DE292239CA003B7637 /* RealmSwift */,
-				A50DE908292B73B900E1FD60 /* FirebaseAuth */,
-				A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */,
-				A50DE90C292B73B900E1FD60 /* FirebaseFirestoreSwift */,
-				A50DE90E292B73B900E1FD60 /* FirebaseStorage */,
+				34FF6C5C292B8B27002AFD4D /* RxCocoa */,
+				34FF6C5E292B8B27002AFD4D /* RxSwift */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -749,6 +798,7 @@
 				34ACC33B291DE9C100741371 /* Sources */,
 				34ACC33C291DE9C100741371 /* Frameworks */,
 				34ACC33D291DE9C100741371 /* Resources */,
+				34FF6C2E292B8014002AFD4D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -756,6 +806,10 @@
 				34ACC341291DE9C100741371 /* PBXTargetDependency */,
 			);
 			name = DailyQuestTests;
+			packageProductDependencies = (
+				34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */,
+				34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */,
+			);
 			productName = DailyQuestTests;
 			productReference = 34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -811,10 +865,10 @@
 			);
 			mainGroup = 34ACC320291DE9C000741371;
 			packageReferences = (
-				34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				34ACC35E291DEF6100741371 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -935,6 +989,9 @@
 				3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */,
 				340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */,
 				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
+				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
+				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
+				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
 			);
@@ -1256,14 +1313,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1280,6 +1329,14 @@
 				kind = branch;
 			};
 		};
+		34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -1291,16 +1348,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		34131396291E47D300E607E1 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		34131398291E47D300E607E1 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 34131395291E47D300E607E1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
 		3413139B291E480500E607E1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -1325,6 +1372,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3413139A291E480500E607E1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		34FF6C5C292B8B27002AFD4D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		34FF6C5E292B8B27002AFD4D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
 		};
 		A5AC96DE292239CA003B7637 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
