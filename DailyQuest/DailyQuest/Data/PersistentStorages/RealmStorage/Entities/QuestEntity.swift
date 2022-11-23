@@ -8,26 +8,25 @@
 import Foundation
 import RealmSwift
 
-final class UserQuestEntity: Object {
+final class QuestEntity: Object {
+    @Persisted var groupId: UUID
     @Persisted var uuid: UUID
+    @Persisted var date: String
     @Persisted var title: String
-    @Persisted var startDay: Date
-    @Persisted var endDay: Date
-    @Persisted var `repeat`: Int
     @Persisted var currentCount: Int
     @Persisted var totalCount: Int
 
     override init() { }
 
-    init(uuid: UUID, title: String, startDay: Date, endDay: Date, currentCount: Int, totalCount: Int) {
+    init(groupId: UUID, uuid: UUID, date: String, title: String, currentCount: Int, totalCount: Int) {
+        self.groupId = groupId
         self.uuid = uuid
+        self.date = date
         self.title = title
-        self.startDay = startDay
-        self.endDay = endDay
         self.currentCount = currentCount
         self.totalCount = totalCount
     }
-    
+
     override class func primaryKey() -> String? {
         "uuid"
     }
