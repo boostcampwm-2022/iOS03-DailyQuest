@@ -11,14 +11,14 @@ import RealmSwift
 final class BrowseQuestEntity: Object {
     @Persisted var uuid: UUID
     @Persisted var nickName: String
-    @Persisted var quests: List<UserQuestEntity>
+    @Persisted var quests: List<QuestEntity>
 
     override init() { }
         
-    init(uuid: UUID, nickName: String, quests: [UserQuestEntity]) {
+    init(uuid: UUID, nickName: String, quests: [QuestEntity]) {
         self.uuid = uuid
         self.nickName = nickName
-        let realmList = List<UserQuestEntity>()
+        let realmList = List<QuestEntity>()
         realmList.append(objectsIn: quests)
         self.quests = realmList
     }

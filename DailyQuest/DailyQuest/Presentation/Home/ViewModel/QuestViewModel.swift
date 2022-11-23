@@ -12,7 +12,7 @@ import RxCocoa
 
 final class QuestViewModel {
     private let questUseCase: QuestUseCase
-        
+
     init(questUseCase: QuestUseCase) {
         self.questUseCase = questUseCase
     }
