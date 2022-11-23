@@ -33,15 +33,13 @@ final class QuestView: UITableView {
     }
     
     private func bind() {
-        let output = viewModel.transform(input: QuestViewModel.Input(viewDidLoad: .just(Date()).asObservable()), disposeBag: disposableBag)
-        
-        output
-            .data
-            .drive(rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
-                cell.setup(with: item)
-                cell.backgroundColor = .white
-            }
-            .disposed(by: disposableBag)
+//        viewModel
+//            .data
+//            .bind(to: rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
+//                cell.setup(with: item)
+//                cell.backgroundColor = .white
+//            }
+//            .disposed(by: disposableBag)
     }
 }
 
