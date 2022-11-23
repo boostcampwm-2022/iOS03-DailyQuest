@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct NavigateItemViewModel {
+    let title: String
+    let imageName: String
+}
