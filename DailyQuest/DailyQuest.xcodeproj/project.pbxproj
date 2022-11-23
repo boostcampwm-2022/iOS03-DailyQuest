@@ -85,6 +85,9 @@
 		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5D4EEA6292E0A9B0005812C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A5D4EEA5292E0A9B0005812C /* FirebaseAuth */; };
+		A5D4EEA8292E0A9B0005812C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5D4EEA7292E0A9B0005812C /* FirebaseFirestoreSwift */; };
+		A5D4EEAA292E0A9B0005812C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5D4EEA9292E0A9B0005812C /* FirebaseStorage */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
 		B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DFC0929227DA800C68A4B /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
@@ -199,6 +202,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D4EEA6292E0A9B0005812C /* FirebaseAuth in Frameworks */,
+				A5D4EEA8292E0A9B0005812C /* FirebaseFirestoreSwift in Frameworks */,
+				A5D4EEAA292E0A9B0005812C /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +457,7 @@
 				34ACC342291DE9C100741371 /* DailyQuestTests */,
 				34ACC34C291DE9C100741371 /* DailyQuestUITests */,
 				34ACC32A291DE9C000741371 /* Products */,
+				A5D4EEA4292E0A800005812C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -704,6 +711,13 @@
 			path = QuestsStorage;
 			sourceTree = "<group>";
 		};
+		A5D4EEA4292E0A800005812C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -748,6 +762,11 @@
 				34ACC341291DE9C100741371 /* PBXTargetDependency */,
 			);
 			name = DailyQuestTests;
+			packageProductDependencies = (
+				A5D4EEA5292E0A9B0005812C /* FirebaseAuth */,
+				A5D4EEA7292E0A9B0005812C /* FirebaseFirestoreSwift */,
+				A5D4EEA9292E0A9B0005812C /* FirebaseStorage */,
+			);
 			productName = DailyQuestTests;
 			productReference = 34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1323,6 +1342,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		A5D4EEA5292E0A9B0005812C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A5D4EEA7292E0A9B0005812C /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		A5D4EEA9292E0A9B0005812C /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

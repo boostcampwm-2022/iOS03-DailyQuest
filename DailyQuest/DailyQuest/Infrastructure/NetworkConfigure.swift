@@ -18,6 +18,13 @@ enum Access {
     case userInfo
 }
 
+enum CRUD {
+    case create
+    case read
+    case update
+    case delete
+}
+
 enum NetworkCondition {
     case today(_ date: Date)
     case month(_ date: Date)

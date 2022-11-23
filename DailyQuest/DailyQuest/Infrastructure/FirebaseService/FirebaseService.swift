@@ -5,8 +5,8 @@
 //  Created by 이전희 on 2022/11/17.
 //
 
-import RxSwift
 import Firebase
+import RxSwift
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
@@ -33,6 +33,25 @@ final class FirebaseService: NetworkService {
             return db.collection("users").document(currentUserUid)
         case let .anotherUser(uid):
             return db.collection("users").document(uid)
+        }
+    }
+
+    private func checkPermission(crud: CRUD, userCase: UserCase, access: Access) throws {
+        switch userCase {
+        case .currentUser:
+            switch access {
+            case .receiveQuests:
+                if crud == .create { throw NetworkServiceError.permissionDenied }
+            default:
+                break
+            }
+        case .anotherUser:
+            switch access {
+            case .receiveQuests:
+                if crud == .delete { throw NetworkServiceError.permissionDenied }
+            default:
+                if crud != .read { throw NetworkServiceError.permissionDenied }
+            }
         }
     }
 
@@ -77,6 +96,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
+                try self.checkPermission(crud: .create, userCase: userCase, access: access)
                 guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
@@ -111,10 +131,11 @@ final class FirebaseService: NetworkService {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
+                try self.checkPermission(crud: .read, userCase: userCase, access: access)
                 let ref = try self.documentReference(userCase: userCase)
-                guard let condition = condition else { throw NetworkServiceError.needConditionError }
                 switch access {
                 case .quests:
+                    guard let condition = condition else { throw NetworkServiceError.needConditionError }
                     var query: Query? = nil
                     switch condition {
                     case let .today(date):
@@ -175,6 +196,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
+                try self.checkPermission(crud: .update, userCase: userCase, access: access)
                 guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
@@ -202,6 +224,7 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
+                try self.checkPermission(crud: .delete, userCase: userCase, access: access)
                 guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {

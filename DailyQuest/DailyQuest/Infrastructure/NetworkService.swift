@@ -8,9 +8,9 @@
 import RxSwift
 
 enum NetworkServiceError: Error {
-    case noNetworkService
-    case noAuthError
-    case wrongAccessError
+    case noNetworkService // NetworkService X
+    case noAuthError // uid X
+    case permissionDenied // wrong access
     case needConditionError
 }
 
