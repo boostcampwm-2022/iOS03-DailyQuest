@@ -274,6 +274,11 @@ final class FirebaseService: NetworkService {
         }
     }
 
+    /// uploadDataStorage
+    /// - Parameters:
+    ///   - data: Image Data
+    ///   - path: profileImages / backgroundImages / another(_ path: String)
+    /// - Returns: success -> File Name, failure -> error
     func uploadDataStorage(data: Data, path: StoragePath) -> Single<String> {
         return Single<String>.create { [weak self] single in
             do {
@@ -306,6 +311,9 @@ final class FirebaseService: NetworkService {
         }
     }
 
+    /// downloadDataStorage
+    /// - Parameter fileName: File Name
+    /// - Returns: success -> Image Data, failure -> error
     func downloadDataStorage(fileName: String) -> Single<Data> {
         return Single<Data>.create { [weak self] single in
             do {
@@ -328,7 +336,10 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-
+    
+    /// deleteDataStorage
+    /// - Parameter fileName: File Name
+    /// - Returns: success -> true, Data, failure -> error
     func deleteDataStorage(fileName: String) -> Single<Bool> {
         return Single<Bool>.create { [weak self] single in
             do {
