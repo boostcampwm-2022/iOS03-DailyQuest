@@ -77,6 +77,12 @@ class CalendarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
+    }
+    
     private func addSubviews() {
         addSubview(yearMonthLabel)
         addSubview(weekdayLabels)
