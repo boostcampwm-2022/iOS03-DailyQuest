@@ -188,34 +188,10 @@ extension CalendarView: UICollectionViewDelegate {
         monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
     }
     
-    private func nextMonth(date: Date) -> (month: Date, dates: [DisplayDate]) {
-        let components = calendar.dateComponents([.year, .month], from: date)
+    private func fetchDisplayDaysOfMonth(for date: Date?) -> [DisplayDate] {
+        guard let date else { return [] }
         
-        let startOfMonth = calendar.date(from: components)!
-        let startOfMonthWeekDay = calendar.dateComponents([.weekday], from: startOfMonth)
-        
-        let startMonthComp = calendar.dateComponents([.day, .weekday, .weekOfMonth, .month], from: startOfMonth)
-        
-        let nextMonth = calendar.date(byAdding: .month, value: +1, to: startOfMonth)!
-        let endOfMonth = calendar.date(byAdding: .day, value: -1, to: nextMonth)!
-        
-        let comp2 = calendar.dateComponents([.day, .weekday, .weekOfMonth, .month], from: endOfMonth)
-
-        if startOfMonthWeekDay.weekday == calendar.firstWeekday {
-            return (startOfMonth, (startMonthComp.day!...comp2.day!).map { DisplayDate(day: $0, state: .normal) })
-        } else {
-            let prevMonth = calendar.date(byAdding: .day, value: -1, to: startOfMonth)
-            let prevMonthComp = calendar.dateComponents([.weekday, .day], from: prevMonth!)
-            var prevMonthStartDayOfEndWeek = prevMonth!
-            var prevMonthStartDayOfWeekComp = calendar.dateComponents([.weekday, .day], from: prevMonthStartDayOfEndWeek)
-            
-            while prevMonthStartDayOfWeekComp.weekday! != calendar.firstWeekday {
-                prevMonthStartDayOfEndWeek = calendar.date(byAdding: .day, value: -1, to: prevMonthStartDayOfEndWeek)!
-                prevMonthStartDayOfWeekComp = calendar.dateComponents([.weekday, .day], from: prevMonthStartDayOfEndWeek)
-            }
-            
-            return (startOfMonth, (prevMonthStartDayOfWeekComp.day!...prevMonthComp.day!).map { DisplayDate(day: $0, state: .none) } + (startMonthComp.day!...comp2.day!).map { DisplayDate(day: $0, state: .normal) })
-        }
+        return date.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth.map { DisplayDate(day: $0.day, state: .none) } + date.rangeDaysOfMonth.map { DisplayDate(day: $0.day, state: .normal) }
     }
     
     private func setupMonths() -> [[DisplayDate]] {
