@@ -6,16 +6,29 @@
 //
 
 import RxSwift
+import Foundation
 
-enum NetworkServiceError {
-    case noAuth
+enum NetworkServiceError: Error {
+    case noNetworkService // NetworkService X
+    case noAuthError // uid X
+    case permissionDenied // wrong access
+    case needConditionError
+    case noUrlError
+    case noDataError
 }
 
 protocol NetworkService {
     var uid: String? { get }
 
+    func signIn(email: String, password: String) -> Single<Bool>
+    func signOut() -> Single<Bool>
+
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition?) -> Observable<T>
     func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func delete<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
+
+    func uploadDataStorage(data: Data, path: StoragePath) -> Single<String>
+    func downloadDataStorage(fileName: String) -> Single<Data>
+    func deleteDataStorage(fileName: String) -> Single<Bool>
 }

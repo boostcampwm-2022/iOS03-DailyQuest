@@ -8,19 +8,20 @@
 import Foundation
 
 struct QuestDTO: DTO {
+    let groupId: UUID
     let uuid: UUID
+    let date: String
     let title: String
-    let data: String
     let currentCount: Int
     let totalCount: Int
-    let groupUid: UUID
+
 }
 
 extension QuestDTO {
     func toDomain() -> Quest {
-        return Quest(groupId: groupUid,
+        return Quest(groupId: groupId,
                      uuid: uuid,
-                     date: Date(),
+                     date: date.toDate()!,
                      title: title,
                      currentCount: currentCount,
                      totalCount: totalCount)

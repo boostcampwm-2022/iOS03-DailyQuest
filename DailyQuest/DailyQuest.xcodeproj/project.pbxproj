@@ -12,6 +12,8 @@
 		3409154F292DE5CC007873A8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3409154E292DE5CC007873A8 /* FirebaseFirestoreSwift */; };
 		34091551292DE5CC007873A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34091550292DE5CC007873A8 /* FirebaseStorage */; };
 		34091552292DE9D1007873A8 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A7245293455CE00B26AA6 /* AuthRepository.swift */; };
+		340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A7245293455CE00B26AA6 /* AuthRepository.swift */; };
 		340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
@@ -24,6 +26,18 @@
 		3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */; };
 		3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */; };
 		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
+		342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */; };
+		342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A9292E12C700AE811B /* SettingsViewController.swift */; };
+		342830F2292E196E00AE811B /* CommonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F1292E196E00AE811B /* CommonField.swift */; };
+		342830F4292E19B700AE811B /* PlainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F3292E19B700AE811B /* PlainCell.swift */; };
+		342830F6292E1ACA00AE811B /* PlainItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F5292E1ACA00AE811B /* PlainItemViewModel.swift */; };
+		342830F8292E1B7400AE811B /* PlainField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F7292E1B7400AE811B /* PlainField.swift */; };
+		342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830FA292E2A5F00AE811B /* NavigateItemViewModel.swift */; };
+		342830FD292E2AF200AE811B /* NavigateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830FC292E2AF200AE811B /* NavigateField.swift */; };
+		342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830FE292E2B2A00AE811B /* NavigateCell.swift */; };
+		34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283100292E2D7A00AE811B /* ToggleItemViewModel.swift */; };
+		34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283102292E2D9B00AE811B /* ToggleCell.swift */; };
+		34283105292E2E3F00AE811B /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283104292E2E3F00AE811B /* ToggleField.swift */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
@@ -130,6 +144,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		340A7245293455CE00B26AA6 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
@@ -137,6 +152,18 @@
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
 		3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRepositoryMock.swift; sourceTree = "<group>"; };
 		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
+		342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		342830A9292E12C700AE811B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		342830F1292E196E00AE811B /* CommonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonField.swift; sourceTree = "<group>"; };
+		342830F3292E19B700AE811B /* PlainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainCell.swift; sourceTree = "<group>"; };
+		342830F5292E1ACA00AE811B /* PlainItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainItemViewModel.swift; sourceTree = "<group>"; };
+		342830F7292E1B7400AE811B /* PlainField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainField.swift; sourceTree = "<group>"; };
+		342830FA292E2A5F00AE811B /* NavigateItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateItemViewModel.swift; sourceTree = "<group>"; };
+		342830FC292E2AF200AE811B /* NavigateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateField.swift; sourceTree = "<group>"; };
+		342830FE292E2B2A00AE811B /* NavigateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateCell.swift; sourceTree = "<group>"; };
+		34283100292E2D7A00AE811B /* ToggleItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleItemViewModel.swift; sourceTree = "<group>"; };
+		34283102292E2D9B00AE811B /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
+		34283104292E2E3F00AE811B /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -319,6 +346,63 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		342830A5292E0F8600AE811B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				342830A9292E12C700AE811B /* SettingsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		342830A6292E0F9100AE811B /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		342830ED292E189A00AE811B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				342830F0292E195100AE811B /* PlainField */,
+				342830EF292E194B00AE811B /* ToggleField */,
+				342830EE292E192C00AE811B /* NavigateField */,
+				342830F1292E196E00AE811B /* CommonField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		342830EE292E192C00AE811B /* NavigateField */ = {
+			isa = PBXGroup;
+			children = (
+				342830FA292E2A5F00AE811B /* NavigateItemViewModel.swift */,
+				342830FC292E2AF200AE811B /* NavigateField.swift */,
+				342830FE292E2B2A00AE811B /* NavigateCell.swift */,
+			);
+			path = NavigateField;
+			sourceTree = "<group>";
+		};
+		342830EF292E194B00AE811B /* ToggleField */ = {
+			isa = PBXGroup;
+			children = (
+				34283100292E2D7A00AE811B /* ToggleItemViewModel.swift */,
+				34283102292E2D9B00AE811B /* ToggleCell.swift */,
+				34283104292E2E3F00AE811B /* ToggleField.swift */,
+			);
+			path = ToggleField;
+			sourceTree = "<group>";
+		};
+		342830F0292E195100AE811B /* PlainField */ = {
+			isa = PBXGroup;
+			children = (
+				342830F3292E19B700AE811B /* PlainCell.swift */,
+				342830F5292E1ACA00AE811B /* PlainItemViewModel.swift */,
+				342830F7292E1B7400AE811B /* PlainField.swift */,
+			);
+			path = PlainField;
+			sourceTree = "<group>";
+		};
 		3449AD592922162E00B87619 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				34CAE317292B19A3007653AD /* QuestsRepository.swift */,
+				340A7245293455CE00B26AA6 /* AuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -421,6 +506,9 @@
 		3499551B292332B8007AB99E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				342830ED292E189A00AE811B /* View */,
+				342830A5292E0F8600AE811B /* ViewController */,
+				342830A6292E0F9100AE811B /* Flow */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -921,10 +1009,12 @@
 			files = (
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
 				34091552292DE9D1007873A8 /* QuestEntity.swift in Sources */,
+				342830F6292E1ACA00AE811B /* PlainItemViewModel.swift in Sources */,
 				34A529D129247880001BAD34 /* Coordinator.swift in Sources */,
 				3499552029234637007AB99E /* CustomProgressBar.swift in Sources */,
 				34A529E22924816A001BAD34 /* BrowseSceneDIContainer.swift in Sources */,
 				34A529E929248B58001BAD34 /* AppAppearance.swift in Sources */,
+				34283105292E2E3F00AE811B /* ToggleField.swift in Sources */,
 				3499552329234D5F007AB99E /* BrowseCell.swift in Sources */,
 				3499551E29233DEF007AB99E /* QuestCell.swift in Sources */,
 				34A529DC29247BB6001BAD34 /* HomeSceneDIContainer.swift in Sources */,
@@ -946,8 +1036,14 @@
 				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
 				A51F01D52923407E0031ECA2 /* BrowseQuestEntity.swift in Sources */,
 				3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */,
+				342830FD292E2AF200AE811B /* NavigateField.swift in Sources */,
+				342830F2292E196E00AE811B /* CommonField.swift in Sources */,
+				342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */,
+				342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
+				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
+				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
@@ -959,6 +1055,7 @@
 				34EE6EB72924C674005AF583 /* QuestView.swift in Sources */,
 				B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */,
 				3499551529232533007AB99E /* UIColor+.swift in Sources */,
+				342830F8292E1B7400AE811B /* PlainField.swift in Sources */,
 				34A529DA29247B9C001BAD34 /* AppDIContainer.swift in Sources */,
 				A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
@@ -968,18 +1065,22 @@
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
 				9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */,
 				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
+				342830F4292E19B700AE811B /* PlainCell.swift in Sources */,
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
+				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
+				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
 				3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 				34A529D829247A87001BAD34 /* HomeCoordinator.swift in Sources */,
+				34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1100,7 @@
 				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
+				340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,6 +1261,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1185,6 +1288,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyQuest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
