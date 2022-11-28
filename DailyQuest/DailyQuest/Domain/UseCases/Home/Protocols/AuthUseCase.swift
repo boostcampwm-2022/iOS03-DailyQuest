@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+import RxSwift
+
+protocol AuthUseCase {
+    func signIn(email: String, password: String) -> Observable<Bool>
+    func signOut() -> Observable<Bool>
+}
