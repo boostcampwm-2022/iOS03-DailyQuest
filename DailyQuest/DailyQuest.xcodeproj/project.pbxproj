@@ -12,6 +12,8 @@
 		3409154F292DE5CC007873A8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3409154E292DE5CC007873A8 /* FirebaseFirestoreSwift */; };
 		34091551292DE5CC007873A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 34091550292DE5CC007873A8 /* FirebaseStorage */; };
 		34091552292DE9D1007873A8 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A7245293455CE00B26AA6 /* AuthRepository.swift */; };
+		340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A7245293455CE00B26AA6 /* AuthRepository.swift */; };
 		340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
@@ -140,6 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		340A7245293455CE00B26AA6 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
@@ -468,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				34CAE317292B19A3007653AD /* QuestsRepository.swift */,
+				340A7245293455CE00B26AA6 /* AuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1030,6 +1034,7 @@
 				342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
+				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
@@ -1087,6 +1092,7 @@
 				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
+				340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
