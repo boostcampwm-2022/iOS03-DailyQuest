@@ -281,7 +281,7 @@ final class FirebaseService: NetworkService {
                 guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
                 let fileName = "\(path.path)/\(uid)-\(UUID())"
                 let StorageReference = self.storage.reference().child("\(fileName)")
-                
+
                 let metaData = StorageMetadata()
                 metaData.contentType = "image/jpeg"
 
@@ -295,13 +295,58 @@ final class FirebaseService: NetworkService {
                             single(.failure(NetworkServiceError.noUrlError))
                             return
                         }
-                        single(.success("\(downloadURL)"))
+                        single(.success(fileName))
                     }
                 }
             } catch let error {
                 single(.failure(error))
             }
-            
+
+            return Disposables.create()
+        }
+    }
+
+    func downloadDataStorage(fileName: String) -> Single<Data> {
+        return Single<Data>.create { [weak self] single in
+            do {
+                guard let self = self else { throw NetworkServiceError.noNetworkService }
+
+                let storageReference = self.storage.reference().child(fileName)
+                let megaByte = Int64(1 * 1024 * 1024)
+
+                storageReference.getData(maxSize: megaByte) { data, error in
+                    guard let imageData = data else {
+                        single(.failure(NetworkServiceError.noDataError))
+                        return
+                    }
+                    single(.success(imageData))
+                }
+            } catch let error {
+                single(.failure(error))
+            }
+
+            return Disposables.create()
+        }
+    }
+
+    func deleteDataStorage(fileName: String) -> Single<Bool> {
+        return Single<Bool>.create { [weak self] single in
+            do {
+                guard let self = self else { throw NetworkServiceError.noNetworkService }
+
+                let storageReference = self.storage.reference().child(fileName)
+
+                storageReference.delete { error in
+                    if let error = error {
+                        single(.failure(error))
+                    } else {
+                        single(.success(true))
+                    }
+                }
+            } catch let error {
+                single(.failure(error))
+            }
+
             return Disposables.create()
         }
     }
