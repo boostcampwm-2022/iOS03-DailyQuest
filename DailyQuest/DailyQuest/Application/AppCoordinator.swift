@@ -57,7 +57,11 @@ final class AppCoordinator: NSObject, TabCoordinator, UITabBarControllerDelegate
                 browseCoordinator.start()
                 childCoordinators.append(browseCoordinator)
             case .settings:
-                break
+                let settingsSceneDIContainer = appDIContainer.makeSettingsSceneDIContainer()
+                let settingsCoordinator = settingsSceneDIContainer.makeSettingsCoordinator(navigationController: navController,
+                                                                                           settingsSceneDIContainer: settingsSceneDIContainer)
+                settingsCoordinator.start()
+                childCoordinators.append(settingsCoordinator)
         }
         
         return navController
