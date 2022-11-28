@@ -30,3 +30,20 @@ enum NetworkCondition {
     case month(_ date: Date)
     case year(_date: Date)
 }
+
+enum StoragePath {
+    case profileImages
+    case backgroundImages
+    case another(_ path: String)
+
+    var path: String {
+        switch self {
+        case .profileImages:
+            return "profileImages"
+        case .backgroundImages:
+            return "backgroundImages"
+        case .another(let path):
+            return path
+        }
+    }
+}
