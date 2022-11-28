@@ -10,11 +10,13 @@ import RxSwift
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 final class FirebaseService: NetworkService {
     static let shared = FirebaseService()
     private let auth: Auth
     private let db: Firestore
+    private let storage: Storage
 
     private(set) var uid: String?
 
@@ -22,6 +24,7 @@ final class FirebaseService: NetworkService {
         FirebaseApp.configure()
         db = Firestore.firestore()
         auth = Auth.auth()
+        storage = Storage.storage()
         uid = auth.currentUser?.uid
     }
 
@@ -190,7 +193,7 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-    
+
     /// Update
     /// - Parameters:
     ///   - userCase: current User / another User
@@ -224,7 +227,7 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-    
+
     /// Delete
     /// - Parameters:
     ///   - userCase: current User / another User
@@ -267,6 +270,38 @@ final class FirebaseService: NetworkService {
             } catch let error {
                 single(.failure(error))
             }
+            return Disposables.create()
+        }
+    }
+
+    func createDataStorage(data: Data, path: StoragePath) -> Single<String> {
+        return Single<String>.create { [weak self] single in
+            do {
+                guard let self = self else { throw NetworkServiceError.noNetworkService }
+                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                let fileName = "\(path.path)/\(uid)-\(UUID())"
+                let StorageReference = self.storage.reference().child("\(fileName)")
+                
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/jpeg"
+
+                StorageReference.putData(data, metadata: metaData) { metaData, error in
+                    if let error = error {
+                        single(.failure(error))
+                        return
+                    }
+                    StorageReference.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            single(.failure(NetworkServiceError.noUrlError))
+                            return
+                        }
+                        single(.success("\(downloadURL)"))
+                    }
+                }
+            } catch let error {
+                single(.failure(error))
+            }
+            
             return Disposables.create()
         }
     }
