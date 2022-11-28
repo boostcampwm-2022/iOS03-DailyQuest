@@ -60,7 +60,6 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 self.auth.signIn(withEmail: email, password: password) { (authResult, error) in
-                    // guard let strongSelf = self else { return }
                     if let error = error {
                         single(.failure(error))
                     }
@@ -191,7 +190,13 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-
+    
+    /// Update
+    /// - Parameters:
+    ///   - userCase: current User / another User
+    ///   - access: quests / receiveQuests / userInfo
+    ///   - dto: DTO (Codable)
+    /// - Returns: Single<T>
     func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
         return Single<T>.create { [weak self] single in
             do {
@@ -219,7 +224,13 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-
+    
+    /// Delete
+    /// - Parameters:
+    ///   - userCase: current User / another User
+    ///   - access: quests / receiveQuests / userInfo
+    ///   - dto: DTO (Codable)
+    /// - Returns: Single<T>
     func delete<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T> {
         return Single<T>.create { [weak self] single in
             do {
