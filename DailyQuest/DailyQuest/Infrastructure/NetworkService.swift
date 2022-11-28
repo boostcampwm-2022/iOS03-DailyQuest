@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import Foundation
 
 enum NetworkServiceError: Error {
     case noNetworkService // NetworkService X
