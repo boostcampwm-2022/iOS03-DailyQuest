@@ -274,7 +274,7 @@ final class FirebaseService: NetworkService {
         }
     }
 
-    func createDataStorage(data: Data, path: StoragePath) -> Single<String> {
+    func uploadDataStorage(data: Data, path: StoragePath) -> Single<String> {
         return Single<String>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
@@ -291,7 +291,7 @@ final class FirebaseService: NetworkService {
                         return
                     }
                     StorageReference.downloadURL { (url, error) in
-                        guard let downloadURL = url else {
+                        guard let _ = url else {
                             single(.failure(NetworkServiceError.noUrlError))
                             return
                         }
