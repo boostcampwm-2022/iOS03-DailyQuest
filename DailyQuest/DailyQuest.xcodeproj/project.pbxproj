@@ -22,6 +22,7 @@
 		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
 		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
 		34113BE82934917500AB4919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BE72934917500AB4919 /* AuthViewModel.swift */; };
+		34113BEB2934A3B200AB4919 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BEA2934A3B200AB4919 /* LoginViewController.swift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
 		3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC87292B54DB00B504C5 /* QuestUseCase.swift */; };
 		3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
@@ -151,6 +152,7 @@
 		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
 		34113BE72934917500AB4919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		34113BEA2934A3B200AB4919 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestUseCase.swift; sourceTree = "<group>"; };
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				342830A9292E12C700AE811B /* SettingsViewController.swift */,
+				34113BEA2934A3B200AB4919 /* LoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1022,6 +1025,7 @@
 				34091552292DE9D1007873A8 /* QuestEntity.swift in Sources */,
 				342830F6292E1ACA00AE811B /* PlainItemViewModel.swift in Sources */,
 				34A529D129247880001BAD34 /* Coordinator.swift in Sources */,
+				34113BEB2934A3B200AB4919 /* LoginViewController.swift in Sources */,
 				340A724929348B1B00B26AA6 /* AuthUseCase.swift in Sources */,
 				3499552029234637007AB99E /* CustomProgressBar.swift in Sources */,
 				34A529E22924816A001BAD34 /* BrowseSceneDIContainer.swift in Sources */,
