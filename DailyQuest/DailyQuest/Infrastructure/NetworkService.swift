@@ -13,6 +13,7 @@ enum NetworkServiceError: Error {
     case permissionDenied // wrong access
     case needConditionError
     case noUrlError
+    case noDataError
 }
 
 protocol NetworkService {
