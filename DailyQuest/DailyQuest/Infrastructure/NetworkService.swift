@@ -12,6 +12,7 @@ enum NetworkServiceError: Error {
     case noAuthError // uid X
     case permissionDenied // wrong access
     case needConditionError
+    case noUrlError
 }
 
 protocol NetworkService {
