@@ -51,6 +51,8 @@ final class LoginViewController: UIViewController {
     }
     
     private func configureUI() {
+        view.backgroundColor = .white
+        
         container.addArrangedSubview(emailField)
         container.addArrangedSubview(passwordField)
         container.addArrangedSubview(submitButton)
