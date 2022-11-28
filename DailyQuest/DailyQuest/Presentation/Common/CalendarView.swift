@@ -23,9 +23,7 @@ class CalendarView: UIView {
         view.axis = .horizontal
         view.distribution = .fillEqually
         
-        var weekdays = self.calendar.shortWeekdaySymbols
-        let sunday = weekdays.remove(at: 0)
-        weekdays = weekdays + [sunday]
+        let weekdays = Calendar.current.shortWeekdaySymbols
         
         weekdays.forEach {
             let label = UILabel()
@@ -56,7 +54,7 @@ class CalendarView: UIView {
         formatter.dateFormat = "yyyy년 MM월"
         return formatter
     }()
-    private let calendar: Calendar
+    
     private var currentDay: Date {
         didSet {
             yearMonthLabel.text = dateFormatter.string(from: currentDay)
@@ -66,10 +64,6 @@ class CalendarView: UIView {
     var itemsBySection = [[CalendarView.DisplayDate]]()
     
     override init(frame: CGRect = .zero) {
-        var newCalendar = Calendar.current
-        newCalendar.timeZone = .init(identifier: "UTC") ?? .current
-        newCalendar.firstWeekday = 2
-        self.calendar = newCalendar
         self.currentDay = Date.now
         
         super.init(frame: frame)
