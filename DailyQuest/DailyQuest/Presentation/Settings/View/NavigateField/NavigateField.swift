@@ -29,4 +29,8 @@ extension NavigateField: CommonField {
         
         return cell
     }
+    
+    func didSelect() -> ViewType? {
+        return viewModel.viewType
+    }
 }
