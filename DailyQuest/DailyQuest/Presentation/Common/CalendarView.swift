@@ -85,7 +85,8 @@ class CalendarView: UIView {
     
     private func setupConstraints() {
         yearMonthLabel.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview().inset(5)
+            make.top.equalToSuperview().inset(5)
+            make.horizontalEdges.equalToSuperview().inset(20)
         }
         
         weekdayLabels.snp.makeConstraints { make in
