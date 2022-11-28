@@ -20,6 +20,9 @@ enum NetworkServiceError: Error {
 protocol NetworkService {
     var uid: String? { get }
 
+    func signIn(email: String, password: String) -> Single<Bool>
+    func signOut() -> Single<Bool>
+
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition?) -> Observable<T>
     func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
