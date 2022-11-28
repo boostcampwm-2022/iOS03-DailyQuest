@@ -195,13 +195,10 @@ extension CalendarView: UICollectionViewDelegate {
     }
     
     private func setupMonths() -> [[DisplayDate]] {
-        let prevMonthDay = calendar.date(byAdding: .month, value: -1, to: currentDay)!
-        let prevMonth = nextMonth(date: prevMonthDay)
-        let currentMonth = nextMonth(date: currentDay)
-        let nextMonthDay = calendar.date(byAdding: .month, value: 1, to: currentDay)!
-        let nextMonth = nextMonth(date: nextMonthDay)
+        let startDayOfPrevMonth = currentDay.startDayOfLastMonth
+        let startDayOfNextMonth = currentDay.startDayOfNextMonth
         
-        return [prevMonth.dates, currentMonth.dates, nextMonth.dates]
+        return [startDayOfPrevMonth, currentDay, startDayOfNextMonth].map(fetchDisplayDaysOfMonth(for:))
     }
 }
 
