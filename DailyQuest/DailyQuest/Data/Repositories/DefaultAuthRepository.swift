@@ -18,13 +18,11 @@ final class DefaultAuthRepository {
 }
 
 extension DefaultAuthRepository: AuthRepository {
-    protocol AuthRepository {
-        func signIn(email: String, password: String) -> Single<Bool> {
-            return self.networkService.signIn(email: email, password: password)
-        }
+    func signIn(email: String, password: String) -> Single<Bool> {
+        return self.networkService.signIn(email: email, password: password)
+    }
 
-        func signOut() -> Single<Bool> {
-            return self.networkService.signOut()
-        }
+    func signOut() -> Single<Bool> {
+        return self.networkService.signOut()
     }
 }
