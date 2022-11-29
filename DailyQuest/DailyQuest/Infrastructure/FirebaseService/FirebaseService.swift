@@ -142,7 +142,7 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    guard let filter = filter else { throw NetworkServiceError.needConditionError }
+                    guard let filter = filter else { throw NetworkServiceError.needFilterError }
                     var query: Query? = nil
                     switch filter {
                     case let .today(date):

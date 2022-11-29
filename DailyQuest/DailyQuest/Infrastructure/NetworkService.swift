@@ -13,7 +13,7 @@ enum NetworkServiceError: Error {
     case noNetworkService // NetworkService X
     case noAuthError // uid X
     case permissionDenied // wrong access
-    case needConditionError
+    case needFilterError
     case noUrlError
     case noDataError
 }
