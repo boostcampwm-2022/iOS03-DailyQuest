@@ -10,14 +10,19 @@ import Foundation
 struct UserDTO: DTO {
     let uuid: String
     let nickName: String
-    let profile: String
-    let backgroundImage: String
+    let profileURL: String
+    let backgroundImageURL: String
     let description: String
     let allow: Bool
 }
 
 extension UserDTO {
-//    func toDomian() -> User {
-//        
-//    }
+    func toDomian() -> User {
+        User(uuid: uuid,
+             nickName: nickName,
+             profileURL: profileURL,
+             backgroundImageURL: backgroundImageURL,
+             description: description,
+             allow: allow)
+    }
 }

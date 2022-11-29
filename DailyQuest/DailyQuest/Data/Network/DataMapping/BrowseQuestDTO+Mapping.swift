@@ -8,13 +8,12 @@
 import Foundation
 
 struct BrowseQuestDTO {
-    let uuid: String
-    let nickName: String
+    let user: UserDTO
     let quests: [QuestDTO]
 }
 
 extension BrowseQuestDTO {
     func toDomain() -> BrowseQuest{
-        return BrowseQuest(uuid: UUID(uuidString: uuid)!, nickName: nickName, quests: quests.compactMap { $0.toDomain() })
+        return BrowseQuest(user: user.toDomian(), quests: quests.compactMap { $0.toDomain() })
     }
 }
