@@ -44,7 +44,6 @@ final class RealmStorage {
             throw RealmStorageError.realmObjectError
         }
         if let filter = filter {
-            print(filter)
             return Array(persistentContainer.objects(type).filter(filter))
         } else {
             return Array(persistentContainer.objects(type))
