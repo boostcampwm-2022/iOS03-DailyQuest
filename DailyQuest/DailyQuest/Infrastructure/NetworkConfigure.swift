@@ -33,7 +33,7 @@ enum CRUD {
     case delete
 }
 
-enum NetworkCondition {
+enum NetworkDateFilter {
     case today(_ date: Date)
     case month(_ date: Date)
     case year(_date: Date)

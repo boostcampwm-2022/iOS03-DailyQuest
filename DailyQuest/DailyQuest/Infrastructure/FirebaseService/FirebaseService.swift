@@ -129,7 +129,7 @@ final class FirebaseService: NetworkService {
     ///   - access: quests / receiveQuests / userInfo
     ///   - condition: quests - today(date) / month(date) / year(date)
     /// - Returns: Observable<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition? = nil) -> Observable<T> {
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter? = nil) -> Observable<T> {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
@@ -137,9 +137,9 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    guard let condition = condition else { throw NetworkServiceError.needConditionError }
+                    guard let filter = filter else { throw NetworkServiceError.needConditionError }
                     var query: Query? = nil
-                    switch condition {
+                    switch filter {
                     case let .today(date):
                         query = ref.collection(access.path)
                             .whereField("date", isEqualTo: date.toString)
