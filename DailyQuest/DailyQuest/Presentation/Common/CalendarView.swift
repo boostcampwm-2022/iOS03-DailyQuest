@@ -22,10 +22,10 @@ class CalendarView: UIView {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fillEqually
+        var calendar = Calendar.current
+        calendar.locale = .init(identifier: "ko_KR")
         
-        let weekdays = Calendar.current.shortWeekdaySymbols
-        
-        weekdays.forEach {
+        calendar.shortWeekdaySymbols.forEach {
             let label = UILabel()
             label.adjustsFontSizeToFitWidth = true
             label.text = $0
