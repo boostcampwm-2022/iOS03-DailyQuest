@@ -10,12 +10,24 @@ import UIKit
 final class SettingsSceneDIContainer {
     
     // MARK: - Repositories
+    func makeAuthRepository() -> AuthRepository {
+        return DefaultAuthRepository()
+    }
     
     // MARK: - Use Cases
+    func makeAuthUseCase() -> AuthUseCase {
+        return DefaultAuthUseCase(authRepository: makeAuthRepository())
+    }
     
     // MARK: - View Models
+    func makeLoginViewModel() -> LoginViewModel {
+        return LoginViewModel(authUseCase: makeAuthUseCase())
+    }
     
     // MARK: - View Controller
+    func makeLoginViewController() -> LoginViewController {
+        return LoginViewController.create(with: makeLoginViewModel())
+    }
     
     // MARK: - Flow
     func makeSettingsCoordinator(navigationController: UINavigationController,
