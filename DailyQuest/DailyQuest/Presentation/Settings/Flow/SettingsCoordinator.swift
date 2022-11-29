@@ -7,11 +7,15 @@
 
 import UIKit
 
+import RxSwift
+
 protocol SettingsCoordinator: Coordinator {
-    func showLoginOutFlow()
+    func showLoginFlow()
 }
 
 final class DefaultSettingsCoordinator: SettingsCoordinator {
+    private var disposableBag = DisposeBag()
+    
     var finishDelegate: CoordinatorFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -26,11 +30,20 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
     func start() {
         let settingsController = SettingsViewController()
         navigationController.pushViewController(settingsController, animated: false)
+        
+        settingsController
+            .itemDidClick
+            .bind(onNext: { [weak self] event in
+                switch event {
+                    case .showLoginFlow:
+                        self?.showLoginFlow()
+                }
+            })
+            .disposed(by: disposableBag)
     }
     
-    func showLoginOutFlow() {
-        /**
-         Show Login view
-         */
+    func showLoginFlow() {
+        let loginViewController = LoginViewController()
+        navigationController.pushViewController(loginViewController, animated: true)
     }
 }
