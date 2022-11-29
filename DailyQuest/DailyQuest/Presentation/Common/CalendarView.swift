@@ -191,7 +191,7 @@ extension CalendarView: UICollectionViewDelegate {
     private func fetchDisplayDaysOfMonth(for date: Date?) -> [DisplayDate] {
         guard let date else { return [] }
         
-        return date.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth.map { DisplayDate(day: $0.day, state: .none) } + date.rangeDaysOfMonth.map { DisplayDate(day: $0.day, state: .normal) }
+        return date.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth.map { DisplayDate(date: $0, state: .none) } + date.rangeDaysOfMonth.map { DisplayDate(date: $0, state: .normal) }
     }
     
     private func setupMonths() -> [[DisplayDate]] {
@@ -204,8 +204,8 @@ extension CalendarView: UICollectionViewDelegate {
 
 extension CalendarView {
     
-    struct DisplayDate {
-        let day: Int
+    struct DisplayDate: Hashable {
+        let date: Date
         let state: CalendarCell.State
     }
 }
