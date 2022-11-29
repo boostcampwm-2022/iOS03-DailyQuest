@@ -84,6 +84,7 @@
 		34EC71D1292DF27E004813CB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34FEFB982935EA6D00954A40 /* Kingfisher */; };
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
 		34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5E292B8B27002AFD4D /* RxSwift */; };
@@ -257,6 +258,7 @@
 				34EC71CE292DEFBF004813CB /* Lottie in Frameworks */,
 				3413139C291E480500E607E1 /* SnapKit in Frameworks */,
 				34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */,
+				34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */,
 				3409154D292DE5CC007873A8 /* FirebaseFirestore in Frameworks */,
 				3409154F292DE5CC007873A8 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -902,6 +904,7 @@
 				3409154E292DE5CC007873A8 /* FirebaseFirestoreSwift */,
 				34091550292DE5CC007873A8 /* FirebaseStorage */,
 				34EC71CD292DEFBF004813CB /* Lottie */,
+				34FEFB982935EA6D00954A40 /* Kingfisher */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -986,6 +989,7 @@
 				34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */,
 				34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				34EC71CC292DEFBF004813CB /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				34FEFB972935EA6D00954A40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -1474,6 +1478,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		34FEFB972935EA6D00954A40 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1530,6 +1542,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34EC71CC292DEFBF004813CB /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		34FEFB982935EA6D00954A40 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34FEFB972935EA6D00954A40 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;

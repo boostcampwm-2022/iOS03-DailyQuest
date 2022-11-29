@@ -11,17 +11,19 @@ extension BrowseQuestEntity {
     convenience init(browseQuest: BrowseQuest) {
         let questsEntities = browseQuest.quests.compactMap { QuestEntity(quest: $0) }
         
-        self.init(uuid: browseQuest.uuid,
-                  nickName: browseQuest.nickName,
-                  quests: questsEntities)
+        self.init(uuid: browseQuest.user.uuid, nickName: browseQuest.user.nickName, profileImageURL: browseQuest.user.profileURL, quests: questsEntities)
     }
 }
 
 extension BrowseQuestEntity {
     func toDomain() -> BrowseQuest {
         let quests = Array(quests).compactMap { $0.toDomain() }
-        return BrowseQuest(uuid: uuid,
-                           nickName: nickName,
+        return BrowseQuest(user: User(uuid: uuid,
+                                      nickName: nickName,
+                                      profileURL: profileImageURL,
+                                      backgroundImageURL: "",
+                                      description: "",
+                                      allow: false),
                            quests: quests)
     }
 }

@@ -9,21 +9,19 @@ import Foundation
 import RealmSwift
 
 final class BrowseQuestEntity: Object {
-    @Persisted var uuid: UUID
+    @Persisted var uuid: String
     @Persisted var nickName: String
+    @Persisted var profileImageURL: String
     @Persisted var quests: List<QuestEntity>
 
     override init() { }
         
-    init(uuid: UUID, nickName: String, quests: [QuestEntity]) {
+    init(uuid: String, nickName: String, profileImageURL: String, quests: [QuestEntity]) {
         self.uuid = uuid
         self.nickName = nickName
+        self.profileImageURL = profileImageURL
         let realmList = List<QuestEntity>()
         realmList.append(objectsIn: quests)
         self.quests = realmList
-    }
-    
-    override class func primaryKey() -> String? {
-        "uuid"
     }
 }
