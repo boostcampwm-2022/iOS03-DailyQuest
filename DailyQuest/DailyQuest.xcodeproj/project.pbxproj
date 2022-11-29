@@ -78,6 +78,7 @@
 		34ACC34E291DE9C100741371 /* DailyQuestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */; };
 		34ACC350291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */; };
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
+		34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8360029359C8A001DE9DF /* BrowseRepository.swift */; };
 		34EC71CE292DEFBF004813CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 34EC71CD292DEFBF004813CB /* Lottie */; };
 		34EC71D0292DF0B5004813CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */; };
 		34EC71D1292DF27E004813CB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
@@ -213,6 +214,7 @@
 		34ACC34D291DE9C100741371 /* DailyQuestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITests.swift; sourceTree = "<group>"; };
 		34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		34CAE317292B19A3007653AD /* QuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepository.swift; sourceTree = "<group>"; };
+		34D8360029359C8A001DE9DF /* BrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseRepository.swift; sourceTree = "<group>"; };
 		34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 			children = (
 				34CAE317292B19A3007653AD /* QuestsRepository.swift */,
 				340A7245293455CE00B26AA6 /* AuthRepository.swift */,
+				34D8360029359C8A001DE9DF /* BrowseRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
+				34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */,
 				34091552292DE9D1007873A8 /* QuestEntity.swift in Sources */,
 				342830F6292E1ACA00AE811B /* PlainItemViewModel.swift in Sources */,
 				34A529D129247880001BAD34 /* Coordinator.swift in Sources */,
