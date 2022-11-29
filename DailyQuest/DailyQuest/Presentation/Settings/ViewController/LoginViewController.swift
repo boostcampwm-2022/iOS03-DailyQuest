@@ -12,6 +12,7 @@ import RxCocoa
 import SnapKit
 
 final class LoginViewController: UIViewController {
+    private var viewModel: LoginViewModel!
     
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -44,6 +45,13 @@ final class LoginViewController: UIViewController {
     }()
     
     // MARK: Life Cycle
+    static func create(with viewModel: LoginViewModel) -> LoginViewController {
+        let vc = LoginViewController()
+        vc.setup(with: viewModel)
+        
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,14 +72,8 @@ final class LoginViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.8)
         }
     }
-}
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct ViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        LoginViewController().showPreview(.iPhone14)
+    
+    private func setup(with authViewModel: LoginViewModel) {
+        viewModel = authViewModel
     }
 }
-#endif
