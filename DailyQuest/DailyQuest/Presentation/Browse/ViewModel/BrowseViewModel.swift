@@ -34,9 +34,7 @@ final class BrowseViewModel {
             }
             .map(transform(with:))
             .do(onNext: { [weak self] items in
-                items.forEach { item in
-                    self?.cellCount.append(item.quests.count)
-                }
+                self?.cellCount = items.map({ $0.quests.count })
             })
             .asDriver(onErrorJustReturn: [])
         
