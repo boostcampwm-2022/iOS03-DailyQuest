@@ -44,7 +44,6 @@ class CalendarView: UIView {
         collectionView.bounces = false
         collectionView.isPagingEnabled = true
         collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
-        collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
     }()
@@ -61,7 +60,9 @@ class CalendarView: UIView {
         }
     }
     
-    var itemsBySection = [[CalendarView.DisplayDate]]()
+    var dataSource: UICollectionViewDiffableDataSource<Int, DisplayDate>!
+    
+    var itemsBySection: [[CalendarView.DisplayDate]] = [[], [], []]
     
     override init(frame: CGRect = .zero) {
         self.currentDay = Date.now
@@ -71,6 +72,7 @@ class CalendarView: UIView {
         
         addSubviews()
         setupConstraints()
+        setupDataSource()
     }
     
     required init?(coder: NSCoder) {
@@ -132,30 +134,36 @@ class CalendarView: UIView {
         
         return layout
     }
-}
-
-extension CalendarView: UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return itemsBySection.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemsBySection[section].count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CalendarCell.reuseIdentifier,
-            for: indexPath
-        ) as? CalendarCell else {
-            return UICollectionViewCell(frame: .zero)
+    private func setupDataSource() {
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: monthCollectionView) { collectionView, indexPath, item in
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.reuseIdentifier, for: indexPath) as? CalendarCell
+            else {
+                preconditionFailure()
+            }
+            
+            cell.configure(state: item.state, day: item.date.day)
+            
+            return cell
         }
         
-        let date = itemsBySection[indexPath.section][indexPath.item]
-        cell.configure(state: date.state, day: date.day)
-        
-        return cell
+        var snapshot = NSDiffableDataSourceSnapshot<Int, DisplayDate>()
+        itemsBySection.indices.forEach { index in
+            snapshot.appendSections([index])
+            snapshot.appendItems(itemsBySection[index], toSection: index)
+        }
+        dataSource.apply(snapshot)
+    }
+    
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, DisplayDate>()
+        let allSectionIndex = itemsBySection.indices.map { Int($0) }
+        snapshot.appendSections(allSectionIndex)
+        allSectionIndex.forEach { index in
+            snapshot.appendItems(itemsBySection[index], toSection: index)
+        }
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
 
