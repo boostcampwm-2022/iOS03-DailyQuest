@@ -7,6 +7,7 @@
 
 import Firebase
 import RxSwift
+import RxRelay
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
@@ -18,21 +19,21 @@ final class FirebaseService: NetworkService {
     private let db: Firestore
     private let storage: Storage
 
-    private(set) var uid: String?
+    private(set) var uid: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
     private init() {
         FirebaseApp.configure()
         db = Firestore.firestore()
         auth = Auth.auth()
         storage = Storage.storage()
-        uid = auth.currentUser?.uid
+        uid.accept(auth.currentUser?.uid)
     }
 
     @discardableResult
     private func documentReference(userCase: UserCase) throws -> DocumentReference {
         switch userCase {
         case .currentUser:
-            guard let currentUserUid = uid else { throw NetworkServiceError.noAuthError }
+            guard let currentUserUid = uid.value else { throw NetworkServiceError.noAuthError }
             return db.collection(userCase.path).document(currentUserUid)
         case let .anotherUser(uid):
             return db.collection(userCase.path).document(uid)
@@ -66,6 +67,8 @@ final class FirebaseService: NetworkService {
                     if let error = error {
                         single(.failure(error))
                     }
+                    
+                    self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 }
             } catch let error {
@@ -80,6 +83,8 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
+                
+                self.uid.accept(self.auth.currentUser?.uid)
                 single(.success(true))
             } catch let error {
                 single(.failure(error))
@@ -99,7 +104,7 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .create, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -206,7 +211,7 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .update, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -240,7 +245,7 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .delete, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -284,7 +289,7 @@ final class FirebaseService: NetworkService {
         return Single<String>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let fileName = "\(path.path)/\(uid)-\(UUID())"
                 let StorageReference = self.storage.reference().child("\(fileName)")
 

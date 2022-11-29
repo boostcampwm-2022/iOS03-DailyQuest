@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import RxRelay
 import Foundation
 
 enum NetworkServiceError: Error {
@@ -18,7 +19,7 @@ enum NetworkServiceError: Error {
 }
 
 protocol NetworkService {
-    var uid: String? { get }
+    var uid: BehaviorRelay<String?> { get }
 
     func signIn(email: String, password: String) -> Single<Bool>
     func signOut() -> Single<Bool>
