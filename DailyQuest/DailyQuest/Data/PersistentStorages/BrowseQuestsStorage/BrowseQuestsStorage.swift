@@ -10,4 +10,5 @@ import RxSwift
 protocol BrowseQuestsStorage {
     func fetchBrowseQuests() -> Observable<[BrowseQuest]>
     func saveBrowseQuest(browseQuest: BrowseQuest) -> Single<BrowseQuest>
+    func deleteBrowseQuests() -> Single<Bool>
 }

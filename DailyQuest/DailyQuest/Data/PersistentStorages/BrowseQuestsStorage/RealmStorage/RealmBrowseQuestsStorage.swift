@@ -35,7 +35,7 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             return Disposables.create()
         }
     }
-    
+
     func saveBrowseQuest(browseQuest: BrowseQuest) -> Single<BrowseQuest> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
@@ -54,5 +54,22 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             return Disposables.create()
         }
     }
-    
+
+    func deleteBrowseQuests() -> Single<Bool> {
+        return Single.create { [weak self] single in
+            guard let realmStorage = self?.realmStorage else {
+                return Disposables.create()
+            }
+
+            do {
+                try realmStorage.deleteAllEntity(type: BrowseQuestEntity.self)
+                single(.success(true))
+            } catch let error {
+                single(.failure(RealmStorageError.deleteError(error)))
+            }
+
+            return Disposables.create()
+        }
+    }
+
 }

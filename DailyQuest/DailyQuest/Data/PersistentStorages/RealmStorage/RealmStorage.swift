@@ -22,7 +22,7 @@ final class RealmStorage {
     private init() {
         // Realm file path
         #if DEBUG
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
         #endif
     }
 
@@ -71,6 +71,17 @@ final class RealmStorage {
         }
 
         return entity
+    }
+
+    func deleteAllEntity<O: Object>(type: O.Type) throws {
+        guard let persistentContainer = persistentContainer else {
+            throw RealmStorageError.realmObjectError
+        }
+        for entity in Array(persistentContainer.objects(type)) {
+            try persistentContainer.write {
+                persistentContainer.delete(entity)
+            }
+        }
     }
 
     func findEntities<O: Object>(type: O.Type, filter: NSPredicate) throws -> [O] {
