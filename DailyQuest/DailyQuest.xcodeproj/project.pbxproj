@@ -90,6 +90,9 @@
 		34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
+		9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */; };
+		9BD8CCF52935C38300E6EA2F /* UserDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */; };
+		9BD8CCF72935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF62935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */; };
 		A50DE911292B74C500E1FD60 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
@@ -218,6 +221,9 @@
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
+		9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseRepository.swift; sourceTree = "<group>"; };
+		9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
+		9BD8CCF62935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowseQuestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
 		A50DE910292B74C500E1FD60 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		A50F9A3329266F45005C00FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -735,8 +741,10 @@
 		9B1CFB3D292B581D00CCE97A /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */,
 				9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */,
 				A50DE910292B74C500E1FD60 /* DTO.swift */,
+				9BD8CCF62935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -833,6 +841,7 @@
 			children = (
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
 				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
+				9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1055,12 +1064,14 @@
 				34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */,
 				A50DE911292B74C500E1FD60 /* DTO.swift in Sources */,
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
+				9BD8CCF52935C38300E6EA2F /* UserDTO+Mapping.swift in Sources */,
 				A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */,
 				A50F9A3429266F45005C00FE /* NetworkService.swift in Sources */,
 				A51F01DA292345990031ECA2 /* BrowseQuest.swift in Sources */,
 				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
 				A51F01D52923407E0031ECA2 /* BrowseQuestEntity.swift in Sources */,
 				3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */,
+				9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */,
 				342830FD292E2AF200AE811B /* NavigateField.swift in Sources */,
 				342830F2292E196E00AE811B /* CommonField.swift in Sources */,
 				342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */,
@@ -1098,6 +1109,7 @@
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
+				9BD8CCF72935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift in Sources */,
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				34113BED2934BD3D00AB4919 /* TextFieldForm.swift in Sources */,

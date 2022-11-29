@@ -367,5 +367,31 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
+    
+    func getAllowUsers(limit: Int)->Observable<UserDTO> {
+        return Observable<UserDTO>.create {  [weak self] observer in
+            do {
+                guard let self = self else { throw NetworkServiceError.noNetworkService }
+                self.db.collection("users")
+                    .whereField("allow", isEqualTo: true)
+                    .limit(to: limit)
+                    .getDocuments { (querySnapshot, error) in
+                    for document in querySnapshot!.documents {
+                        do {
+                            let quest = try document.data(as: UserDTO.self)
+                            observer.onNext(quest)
+                        } catch let error {
+                            observer.onError(error)
+                        }
+                    }
+                    observer.onCompleted()
+                    }
+            } catch let error {
+                observer.onError(error)
+            }
+            
+            return Disposables.create()
+        }
+    }
 
 }

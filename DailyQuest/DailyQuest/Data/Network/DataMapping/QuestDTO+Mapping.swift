@@ -9,7 +9,7 @@ import Foundation
 
 struct QuestDTO: DTO {
     let groupId: UUID
-    let uuid: UUID
+    let uuid: String
     let date: String
     let title: String
     let currentCount: Int
@@ -20,7 +20,7 @@ struct QuestDTO: DTO {
 extension QuestDTO {
     func toDomain() -> Quest {
         return Quest(groupId: groupId,
-                     uuid: uuid,
+                     uuid: UUID(uuidString: uuid)!,
                      date: date.toDate()!,
                      title: title,
                      currentCount: currentCount,

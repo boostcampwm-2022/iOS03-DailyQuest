@@ -27,6 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = tabbarController
         self.window?.makeKeyAndVisible()
         
+        DefaultBrowseRepository.test()
+        
         self.appCoordinator = AppCoordinator(tabBarController: tabbarController,
                                              appDIContainer: appDIContainer)
         self.appCoordinator?.start()
