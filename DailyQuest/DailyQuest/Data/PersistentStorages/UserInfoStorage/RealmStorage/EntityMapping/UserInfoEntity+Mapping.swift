@@ -12,9 +12,10 @@ extension UserInfoEntity {
     convenience init(user: User) {
         self.init(uuid: user.uuid,
                   nickName: user.nickName,
-                  profile: user.profile,
-                  backgroundImage: user.backgroundImage,
-                  description: user.description)
+                  profileURL: user.profileURL,
+                  backgroundImageURL: user.backgroundImageURL,
+                  description: user.description,
+                  allow: user.allow)
     }
 }
 
@@ -23,8 +24,9 @@ extension UserInfoEntity {
     func toDomain() -> User {
         return User(uuid: uuid,
                     nickName: nickName,
-                    profile: profile,
-                    backgroundImage: backgroundImage,
-                    description: description)
+                    profileURL: profileURL,
+                    backgroundImageURL: backgroundImageURL,
+                    description: description,
+                    allow: allow)
     }
 }

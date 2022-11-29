@@ -57,7 +57,5 @@ final class UserInfoView: UIStackView {
     
     func setup(with user: User) {
         welcomeLabel.text = user.nickName + "님의 퀘스트"
-        guard let image = UIImage(data: user.profile) else { return }
-        userImage.image = image
     }
 }

@@ -99,22 +99,5 @@ final class UserInfoCell: UITableViewCell {
      */
     func setup(with user: User) {
         userName.text = user.nickName
-        guard let image = UIImage(data: user.profile) else { return }
-        userImage.image = image
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct UserInfoCellPreview: PreviewProvider{
-    static var previews: some View {
-        UIViewPreview {
-            let cell = UserInfoCell(frame: .zero)
-            cell.setup(with: User(uuid: "", nickName: "jinwoong", profile: Data(), backgroundImage: Data(), description: ""))
-            return cell
-        }
-        .previewLayout(.fixed(width: 350, height: 80))
-    }
-}
-#endif

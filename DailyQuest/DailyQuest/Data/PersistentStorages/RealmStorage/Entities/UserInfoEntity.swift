@@ -11,18 +11,20 @@ import RealmSwift
 final class UserInfoEntity: Object {
     @Persisted var uuid: String
     @Persisted var nickName: String
-    @Persisted var profile: Data
-    @Persisted var backgroundImage: Data
+    @Persisted var profileURL: String
+    @Persisted var backgroundImageURL: String
     @Persisted var userDescription: String
+    @Persisted var allow: Bool
 
     override init() { }
 
-    init(uuid: String, nickName: String, profile: Data, backgroundImage: Data, description: String) {
+    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, description: String, allow: Bool) {
         self.uuid = uuid
         self.nickName = nickName
-        self.profile = profile
-        self.backgroundImage = backgroundImage
+        self.profileURL = profileURL
+        self.backgroundImageURL = backgroundImageURL
         self.userDescription = description
+        self.allow = allow
     }
     
     override class func primaryKey() -> String? {
