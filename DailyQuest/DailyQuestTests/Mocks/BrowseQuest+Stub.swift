@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension BrowseQuest {
+    static func stub(user: User, quests: [Quest]) -> Self {
+        return .init(user: user, quests: quests)
+    }
+}
