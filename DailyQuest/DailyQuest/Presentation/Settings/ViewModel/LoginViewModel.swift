@@ -1,5 +1,5 @@
 //
-//  AuthViewModel.swift
+//  LoginViewModel.swift
 //  DailyQuest
 //
 //  Created by jinwoong Kim on 2022/11/28.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class AuthViewModel {
+final class LoginViewModel {
     private let authUseCase: AuthUseCase
     
     init(authUseCase: AuthUseCase) {
