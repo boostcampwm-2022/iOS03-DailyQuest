@@ -33,9 +33,9 @@ final class FirebaseService: NetworkService {
         switch userCase {
         case .currentUser:
             guard let currentUserUid = uid else { throw NetworkServiceError.noAuthError }
-            return db.collection("users").document(currentUserUid)
+            return db.collection(userCase.path).document(currentUserUid)
         case let .anotherUser(uid):
-            return db.collection("users").document(uid)
+            return db.collection(userCase.path).document(uid)
         }
     }
 
@@ -103,11 +103,11 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    try ref.collection("quests")
+                    try ref.collection(access.path)
                         .document("\(dto.uuid)")
                         .setData(from: dto)
                 case .receiveQuests:
-                    try ref.collection("receiveQuests")
+                    try ref.collection(access.path)
                         .document(uid)
                         .setData(from: dto)
                 case .userInfo:
@@ -141,15 +141,16 @@ final class FirebaseService: NetworkService {
                     var query: Query? = nil
                     switch condition {
                     case let .today(date):
-                        query = ref.collection("quests").whereField("date", isEqualTo: date.toString)
+                        query = ref.collection(access.path)
+                            .whereField("date", isEqualTo: date.toString)
                     case let .month(date):
                         let month = date.toString.components(separatedBy: "-")[0...1].joined(separator: "-")
-                        query = ref.collection("quests")
+                        query = ref.collection(access.path)
                             .whereField("date", isGreaterThan: "\(month)-00")
                             .whereField("date", isLessThan: "\(month)-40")
                     case let .year(date):
                         let year = date.toString.components(separatedBy: "-")[0]
-                        query = ref.collection("quests")
+                        query = ref.collection(access.path)
                             .whereField("date", isGreaterThan: "\(year)-01-00")
                             .whereField("date", isLessThan: "\(year)-12-40")
                     }
@@ -165,7 +166,7 @@ final class FirebaseService: NetworkService {
                         observer.onCompleted()
                     }
                 case .receiveQuests:
-                    ref.collection("receiveQuests").getDocuments { (querySnapshot, error) in
+                    ref.collection(access.path).getDocuments { (querySnapshot, error) in
                         for document in querySnapshot!.documents {
                             do {
                                 let quest = try document.data(as: type)
@@ -209,11 +210,11 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    try ref.collection("quests")
+                    try ref.collection(access.path)
                         .document("\(dto.uuid)")
                         .setData(from: dto, merge: true)
                 case .receiveQuests:
-                    try ref.collection("receiveQuests")
+                    try ref.collection(access.path)
                         .document(uid)
                         .setData(from: dto, merge: true)
                 case .userInfo:
@@ -243,7 +244,7 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    ref.collection("quests").document("\(dto.uuid)").delete() { error in
+                    ref.collection(access.path).document("\(dto.uuid)").delete() { error in
                         if let error = error {
                             single(.failure(error))
                         } else {
@@ -251,7 +252,7 @@ final class FirebaseService: NetworkService {
                         }
                     }
                 case .receiveQuests:
-                    ref.collection("receiveQuests").document(uid).delete() { error in
+                    ref.collection(access.path).document(uid).delete() { error in
                         if let error = error {
                             single(.failure(error))
                         } else {
@@ -336,7 +337,7 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-    
+
     /// deleteDataStorage
     /// - Parameter fileName: File Name
     /// - Returns: success -> true, Data, failure -> error
