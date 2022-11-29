@@ -91,6 +91,7 @@
 		A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3629266F6F005C00FE /* FirebaseService.swift */; };
 		A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */; };
 		A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
+		A517A84629349D91005CB1E8 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
 		A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
 		A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01CC29233ABB0031ECA2 /* RealmUserInfoStorage.swift */; };
@@ -212,6 +213,7 @@
 		A50F9A3829266FD8005C00FE /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigure.swift; sourceTree = "<group>"; };
 		A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestEntity+Mapping.swift"; sourceTree = "<group>"; };
+		A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
 		A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEntity.swift; sourceTree = "<group>"; };
 		A51F01CC29233ABB0031ECA2 /* RealmUserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUserInfoStorage.swift; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 			isa = PBXGroup;
 			children = (
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
+				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1009,6 +1012,7 @@
 				34A529E22924816A001BAD34 /* BrowseSceneDIContainer.swift in Sources */,
 				34A529E929248B58001BAD34 /* AppAppearance.swift in Sources */,
 				34283105292E2E3F00AE811B /* ToggleField.swift in Sources */,
+				A517A84629349D91005CB1E8 /* DefaultAuthRepository.swift in Sources */,
 				3499552329234D5F007AB99E /* BrowseCell.swift in Sources */,
 				3499551E29233DEF007AB99E /* QuestCell.swift in Sources */,
 				34A529DC29247BB6001BAD34 /* HomeSceneDIContainer.swift in Sources */,
