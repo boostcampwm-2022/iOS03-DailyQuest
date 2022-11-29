@@ -175,24 +175,14 @@ extension CalendarView: UICollectionViewDelegate {
         }
         
         if indexPath.section > 1 {
-            currentDay = calendar.date(byAdding: .month, value: 1, to: currentDay)!
-            let nextMonthComp = calendar.date(byAdding: .month, value: 1, to: currentDay)!
-            let nextMonth = nextMonth(date: nextMonthComp)
-            let nextDates = nextMonth.dates
-            
-            self.itemsBySection.removeFirst()
-            self.itemsBySection.append(nextDates)
+            nextMonth()
         } else if indexPath.section < 1 {
-            currentDay = calendar.date(byAdding: .month, value: -1, to: currentDay)!
-            let nextMonthComp = calendar.date(byAdding: .month, value: -1, to: currentDay)!
-            let nextMonth = nextMonth(date: nextMonthComp)
-            let nextDates = nextMonth.dates
-            
-            self.itemsBySection.removeLast()
-            self.itemsBySection.insert(nextDates, at: 0)
+            lastMonth()
+        } else {
+            return
         }
         
-        monthCollectionView.reloadData()
+        applySnapshot()
         monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
     }
     
@@ -207,6 +197,24 @@ extension CalendarView: UICollectionViewDelegate {
         let startDayOfNextMonth = currentDay.startDayOfNextMonth
         
         return [startDayOfPrevMonth, currentDay, startDayOfNextMonth].map(fetchDisplayDaysOfMonth(for:))
+    }
+    
+    private func nextMonth() {
+        currentDay = currentDay.nextMonthOfCurrentDay!
+        let monthAfterNext = currentDay.nextMonthOfCurrentDay!
+        let monthAfterNextDisplayDays = fetchDisplayDaysOfMonth(for: monthAfterNext)
+        
+        self.itemsBySection.removeFirst()
+        self.itemsBySection.append(monthAfterNextDisplayDays)
+    }
+    
+    private func lastMonth() {
+        currentDay = currentDay.lastMonthOfCurrentDay!
+        let monthBeforeLast = currentDay.lastMonthOfCurrentDay!
+        let monthBeforeLastDisplayDays = fetchDisplayDaysOfMonth(for: monthBeforeLast)
+        
+        self.itemsBySection.removeLast()
+        self.itemsBySection.insert(monthBeforeLastDisplayDays, at: 0)
     }
 }
 
