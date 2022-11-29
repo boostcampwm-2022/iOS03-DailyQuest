@@ -25,6 +25,7 @@ final class BrowseViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
+        
         bind()
     }
     
@@ -42,18 +43,7 @@ final class BrowseViewController: UITableViewController {
     }
     
     private func bind() {
-        viewModel
-            .data
-            .bind(to: tableView.rx.items(cellIdentifier: BrowseCell.reuseIdentifier, cellType: BrowseCell.self)) { row, item, cell in
-                cell.setup(with: BrowseItemViewModel(user: item.0, quests: item.1))
-            }
-            .disposed(by: disposableBag)
-        
-        tableView.rx.itemSelected
-            .subscribe(onNext: { indexPath in
-                print(self.viewModel.users[indexPath.row])
-            })
-            .disposed(by: disposableBag)
+
     }
 }
 
