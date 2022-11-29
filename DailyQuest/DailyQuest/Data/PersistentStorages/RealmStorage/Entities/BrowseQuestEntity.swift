@@ -24,4 +24,8 @@ final class BrowseQuestEntity: Object {
         realmList.append(objectsIn: quests)
         self.quests = realmList
     }
+    
+    override class func primaryKey() -> String? {
+        "uuid"
+    }
 }

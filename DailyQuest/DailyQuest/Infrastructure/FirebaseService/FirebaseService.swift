@@ -67,7 +67,7 @@ final class FirebaseService: NetworkService {
                     if let error = error {
                         single(.failure(error))
                     }
-                    
+
                     self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 }
@@ -83,7 +83,7 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
-                
+
                 self.uid.accept(self.auth.currentUser?.uid)
                 single(.success(true))
             } catch let error {
@@ -103,9 +103,8 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-//                try self.checkPermission(crud: .create, userCase: userCase, access: access)
-//                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
-                let uid = UUID().uuidString
+                try self.checkPermission(crud: .create, userCase: userCase, access: access)
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
@@ -368,9 +367,9 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-    
-    func getAllowUsers(limit: Int)->Observable<UserDTO> {
-        return Observable<UserDTO>.create {  [weak self] observer in
+
+    func getAllowUsers(limit: Int) -> Observable<UserDTO> {
+        return Observable<UserDTO>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 self.db.collection("users")
@@ -386,11 +385,11 @@ final class FirebaseService: NetworkService {
                         }
                     }
                     observer.onCompleted()
-                    }
+                }
             } catch let error {
                 observer.onError(error)
             }
-            
+
             return Disposables.create()
         }
     }

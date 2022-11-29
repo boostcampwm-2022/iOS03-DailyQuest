@@ -34,7 +34,7 @@ final class RealmStorage {
             throw RealmStorageError.realmObjectError
         }
         try persistentContainer.write {
-            persistentContainer.add(entity)
+            persistentContainer.add(entity, update: .modified)
         }
         return entity
     }

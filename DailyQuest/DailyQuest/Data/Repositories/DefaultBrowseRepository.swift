@@ -20,11 +20,9 @@ final class DefaultBrowseRepository {
 }
 
 extension DefaultBrowseRepository: BrowseRepository {
-    
+
     /// Fetch BrowseQuests
     /// Firebase 우선, 실패시 persistentStorage, persistentStorage도 실패시 Error반환
-    ///
-    ///
     /// - Returns: Observable<[BrowseQuest]>
     func fetch() -> Observable<[BrowseQuest]> {
         return Observable.create { observer in
@@ -59,12 +57,12 @@ extension DefaultBrowseRepository: BrowseRepository {
                                 browseQuests.append(browseQuest)
                                 if browseQuests.count == users.count {
                                     let browseQuestsFilter = browseQuests.filter { $0.quests.count != 0 }
+                                    // let deleteResult = self.persistentStorage.deleteBrowseQuests()
+                                    // _ = deleteResult.subscribe { single in
                                     browseQuestsFilter.forEach { browseQuest in
-                                        let a = self.persistentStorage.saveBrowseQuest(browseQuest: browseQuest)
-                                        a.subscribe { ev in
-                                            print("✅", ev)
-                                        }
+                                        _ = self.persistentStorage.saveBrowseQuest(browseQuest: browseQuest)
                                     }
+                                    // }
                                     observer.onNext(browseQuestsFilter)
                                 }
                             }
