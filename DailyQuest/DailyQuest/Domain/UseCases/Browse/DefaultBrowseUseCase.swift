@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+import RxSwift
+
+final class DefaultBrowseUseCase {
+    private let browseRepository: BrowseRepository
+    
+    init(browseRepository: BrowseRepository) {
+        self.browseRepository = browseRepository
+    }
+}
+
+extension DefaultBrowseUseCase: BrowseUseCase {
+    func excute() -> RxSwift.Observable<[BrowseQuest]> {
+        return browseRepository.fetch()
+    }
+}
