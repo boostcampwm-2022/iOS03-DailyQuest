@@ -86,7 +86,7 @@ final class CalendarCell: UICollectionViewCell {
 
 extension CalendarCell {
     
-    enum State {
+    enum State: Hashable {
         case none
         case normal
         case display(Int)
