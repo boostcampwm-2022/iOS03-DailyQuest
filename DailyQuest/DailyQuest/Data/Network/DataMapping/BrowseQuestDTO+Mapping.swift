@@ -14,6 +14,6 @@ struct BrowseQuestDTO {
 
 extension BrowseQuestDTO {
     func toDomain() -> BrowseQuest{
-        return BrowseQuest(user: user.toDomian(), quests: quests.compactMap { $0.toDomain() })
+        return BrowseQuest(user: user.toDomain(), quests: quests.compactMap { $0.toDomain() })
     }
 }

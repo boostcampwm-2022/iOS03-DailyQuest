@@ -103,8 +103,9 @@ final class FirebaseService: NetworkService {
         return Single<T>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                try self.checkPermission(crud: .create, userCase: userCase, access: access)
-                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
+//                try self.checkPermission(crud: .create, userCase: userCase, access: access)
+//                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
+                let uid = UUID().uuidString
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:

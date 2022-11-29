@@ -17,7 +17,7 @@ struct UserDTO: DTO {
 }
 
 extension UserDTO {
-    func toDomian() -> User {
+    func toDomain() -> User {
         User(uuid: uuid,
              nickName: nickName,
              profileURL: profileURL,
