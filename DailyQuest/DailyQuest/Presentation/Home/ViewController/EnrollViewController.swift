@@ -12,6 +12,7 @@ import SnapKit
 
 final class EnrollViewController: UIViewController {
     private var disposableBag = DisposeBag()
+    private let viewModel = EnrollViewModel(dayNamePickerViewModel: DayNamePickerViewModel())
     
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -56,7 +57,10 @@ final class EnrollViewController: UIViewController {
         
         configureUI()
         
-        daysPicker
+        bind()
+        
+        viewModel
+            .dayNamePickerViewModel
             .selectedDayObservable
             .map { dictionary in
                 dictionary.filter { key, value in
@@ -83,5 +87,9 @@ final class EnrollViewController: UIViewController {
             make.top.equalToSuperview().inset(30)
             make.width.equalToSuperview().multipliedBy(0.9)
         }
+    }
+    
+    func bind() {
+        daysPicker.bind(with: viewModel.dayNamePickerViewModel, disposeBag: disposableBag)
     }
 }
