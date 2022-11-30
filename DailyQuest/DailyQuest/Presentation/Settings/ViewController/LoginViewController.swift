@@ -12,6 +12,8 @@ import RxCocoa
 import SnapKit
 
 final class LoginViewController: UIViewController {
+    private var viewModel: LoginViewModel!
+    private var disposableBag = DisposeBag()
     
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -44,10 +46,19 @@ final class LoginViewController: UIViewController {
     }()
     
     // MARK: Life Cycle
+    static func create(with viewModel: LoginViewModel) -> LoginViewController {
+        let vc = LoginViewController()
+        vc.setup(with: viewModel)
+        
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        
+        bind()
     }
     
     private func configureUI() {
@@ -64,14 +75,32 @@ final class LoginViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.8)
         }
     }
-}
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct ViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        LoginViewController().showPreview(.iPhone14)
+    
+    private func setup(with authViewModel: LoginViewModel) {
+        viewModel = authViewModel
     }
 }
-#endif
+
+extension LoginViewController {
+    private func bind() {
+        let input = LoginViewModel.Input(
+            emailFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
+            passwordFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
+            submitButtonDidTapEvent: submitButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel.transform(input: input, disposeBag: disposableBag)
+        
+        output
+            .buttonEnabled
+            .drive(submitButton.rx.isEnabled)
+            .disposed(by: disposableBag)
+        
+        output
+            .loginResult
+            .subscribe(onNext: { result in
+                print("login result is :::: ", result)
+            })
+            .disposed(by: disposableBag)
+    }
+}

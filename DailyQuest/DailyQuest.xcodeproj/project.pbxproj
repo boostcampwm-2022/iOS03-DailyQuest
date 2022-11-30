@@ -21,7 +21,7 @@
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
 		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
 		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
-		34113BE82934917500AB4919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BE72934917500AB4919 /* AuthViewModel.swift */; };
+		34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BE72934917500AB4919 /* LoginViewModel.swift */; };
 		34113BEB2934A3B200AB4919 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BEA2934A3B200AB4919 /* LoginViewController.swift */; };
 		34113BED2934BD3D00AB4919 /* TextFieldForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BEC2934BD3D00AB4919 /* TextFieldForm.swift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
@@ -155,7 +155,7 @@
 		340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
 		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
-		34113BE72934917500AB4919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		34113BE72934917500AB4919 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		34113BEA2934A3B200AB4919 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		34113BEC2934BD3D00AB4919 /* TextFieldForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldForm.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		34113BE62934916B00AB4919 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				34113BE72934917500AB4919 /* AuthViewModel.swift */,
+				34113BE72934917500AB4919 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1081,7 +1081,7 @@
 				34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
-				34113BE82934917500AB4919 /* AuthViewModel.swift in Sources */,
+				34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */,
 				34EE6EB72924C674005AF583 /* QuestView.swift in Sources */,
 				B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */,
 				3499551529232533007AB99E /* UIColor+.swift in Sources */,
