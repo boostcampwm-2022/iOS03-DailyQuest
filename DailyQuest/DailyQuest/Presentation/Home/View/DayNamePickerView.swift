@@ -11,11 +11,6 @@ import RxSwift
 import RxCocoa
 
 final class DayNamePickerView: UIStackView {
-    private var selectedDay = [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false]
-    private(set) var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false])
-    
-    private var disposableBag = DisposeBag()
-    
     private lazy var buttons: [UIButton] = {
         let days = ["S", "M", "T", "W", "T", "F", "S"]
 
@@ -35,8 +30,6 @@ final class DayNamePickerView: UIStackView {
         super.init(frame: frame)
         
         configureUI()
-        
-        bind()
     }
     
     required init(coder: NSCoder) {
@@ -53,25 +46,28 @@ final class DayNamePickerView: UIStackView {
         }
     }
     
-    private func bind() {
+    func bind(with viewModel: DayNamePickerViewModel, disposeBag: DisposeBag) {
         let taps = buttons.enumerated().map { index, button in
             button.rx.tap.map { _ in index }
         }
         
-        Observable.from(taps).merge()
-            .withUnretained(self)
-            .subscribe(onNext: { (owner, value) in
-                owner.selectedDay[value]?.toggle()
-                owner.selectedDayObservable.accept(owner.selectedDay)
-                
-                guard let isSelected = owner.selectedDay[value] else { return }
+        let input = Observable.from(taps).merge()
+        let output = viewModel
+            .transform(
+                input: DayNamePickerViewModel.Input(buttonDidClicked: input)
+            )
+        
+        output
+            .switchButtonStatus
+            .subscribe(onNext: { [weak self] index, isSelected in
+                guard let isSelected = isSelected else { return }
                 if isSelected {
-                    owner.buttons[value].configuration?.baseBackgroundColor = .maxYellow
+                    self?.buttons[index].configuration?.baseBackgroundColor = .maxYellow
                 } else {
-                    owner.buttons[value].configuration?.baseBackgroundColor = .maxLightYellow
+                    self?.buttons[index].configuration?.baseBackgroundColor = .maxLightYellow
                 }
             })
-            .disposed(by: disposableBag)
+            .disposed(by: disposeBag)
     }
 }
 
