@@ -1,5 +1,5 @@
 //
-//  AddQuestsViewController.swift
+//  EnrollViewController.swift
 //  DailyQuest
 //
 //  Created by jinwoong Kim on 2022/11/16.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class AddQuestsViewController: UIViewController {
+final class EnrollViewController: UIViewController {
     
     private lazy var indicateMessage: UILabel = {
         let indicateMessage = UILabel()

@@ -49,7 +49,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     }
     
     func showAddQuestFlow() {
-        let addQuestsViewController = AddQuestsViewController()
+        let addQuestsViewController = EnrollViewController()
         navigationController.present(addQuestsViewController, animated: true)
     }
     
