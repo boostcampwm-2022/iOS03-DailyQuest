@@ -9,7 +9,7 @@ import Foundation
 
 extension BrowseQuestEntity {
     convenience init(browseQuest: BrowseQuest) {
-        let questsEntities = browseQuest.quests.compactMap { QuestEntity(quest: $0) }
+        let questsEntities = browseQuest.quests.compactMap { SubQuestEntity(quest: $0) }
         
         self.init(uuid: browseQuest.user.uuid, nickName: browseQuest.user.nickName, profileImageURL: browseQuest.user.profileURL, quests: questsEntities)
     }
