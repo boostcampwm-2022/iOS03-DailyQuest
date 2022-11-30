@@ -7,6 +7,7 @@
 
 import Firebase
 import RxSwift
+import RxRelay
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
@@ -18,24 +19,24 @@ final class FirebaseService: NetworkService {
     private let db: Firestore
     private let storage: Storage
 
-    private(set) var uid: String?
+    private(set) var uid: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
     private init() {
         FirebaseApp.configure()
         db = Firestore.firestore()
         auth = Auth.auth()
         storage = Storage.storage()
-        uid = auth.currentUser?.uid
+        uid.accept(auth.currentUser?.uid)
     }
 
     @discardableResult
     private func documentReference(userCase: UserCase) throws -> DocumentReference {
         switch userCase {
         case .currentUser:
-            guard let currentUserUid = uid else { throw NetworkServiceError.noAuthError }
-            return db.collection("users").document(currentUserUid)
+            guard let currentUserUid = uid.value else { throw NetworkServiceError.noAuthError }
+            return db.collection(userCase.path).document(currentUserUid)
         case let .anotherUser(uid):
-            return db.collection("users").document(uid)
+            return db.collection(userCase.path).document(uid)
         }
     }
 
@@ -66,6 +67,8 @@ final class FirebaseService: NetworkService {
                     if let error = error {
                         single(.failure(error))
                     }
+                    
+                    self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 }
             } catch let error {
@@ -80,6 +83,8 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
+                
+                self.uid.accept(self.auth.currentUser?.uid)
                 single(.success(true))
             } catch let error {
                 single(.failure(error))
@@ -99,15 +104,15 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .create, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    try ref.collection("quests")
+                    try ref.collection(access.path)
                         .document("\(dto.uuid)")
                         .setData(from: dto)
                 case .receiveQuests:
-                    try ref.collection("receiveQuests")
+                    try ref.collection(access.path)
                         .document(uid)
                         .setData(from: dto)
                 case .userInfo:
@@ -129,7 +134,7 @@ final class FirebaseService: NetworkService {
     ///   - access: quests / receiveQuests / userInfo
     ///   - condition: quests - today(date) / month(date) / year(date)
     /// - Returns: Observable<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition? = nil) -> Observable<T> {
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter? = nil) -> Observable<T> {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
@@ -137,19 +142,20 @@ final class FirebaseService: NetworkService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    guard let condition = condition else { throw NetworkServiceError.needConditionError }
+                    guard let filter = filter else { throw NetworkServiceError.needFilterError }
                     var query: Query? = nil
-                    switch condition {
+                    switch filter {
                     case let .today(date):
-                        query = ref.collection("quests").whereField("date", isEqualTo: date.toString)
+                        query = ref.collection(access.path)
+                            .whereField("date", isEqualTo: date.toString)
                     case let .month(date):
                         let month = date.toString.components(separatedBy: "-")[0...1].joined(separator: "-")
-                        query = ref.collection("quests")
+                        query = ref.collection(access.path)
                             .whereField("date", isGreaterThan: "\(month)-00")
                             .whereField("date", isLessThan: "\(month)-40")
                     case let .year(date):
                         let year = date.toString.components(separatedBy: "-")[0]
-                        query = ref.collection("quests")
+                        query = ref.collection(access.path)
                             .whereField("date", isGreaterThan: "\(year)-01-00")
                             .whereField("date", isLessThan: "\(year)-12-40")
                     }
@@ -165,7 +171,7 @@ final class FirebaseService: NetworkService {
                         observer.onCompleted()
                     }
                 case .receiveQuests:
-                    ref.collection("receiveQuests").getDocuments { (querySnapshot, error) in
+                    ref.collection(access.path).getDocuments { (querySnapshot, error) in
                         for document in querySnapshot!.documents {
                             do {
                                 let quest = try document.data(as: type)
@@ -205,15 +211,15 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .update, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    try ref.collection("quests")
+                    try ref.collection(access.path)
                         .document("\(dto.uuid)")
                         .setData(from: dto, merge: true)
                 case .receiveQuests:
-                    try ref.collection("receiveQuests")
+                    try ref.collection(access.path)
                         .document(uid)
                         .setData(from: dto, merge: true)
                 case .userInfo:
@@ -239,11 +245,11 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.checkPermission(crud: .delete, userCase: userCase, access: access)
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    ref.collection("quests").document("\(dto.uuid)").delete() { error in
+                    ref.collection(access.path).document("\(dto.uuid)").delete() { error in
                         if let error = error {
                             single(.failure(error))
                         } else {
@@ -251,7 +257,7 @@ final class FirebaseService: NetworkService {
                         }
                     }
                 case .receiveQuests:
-                    ref.collection("receiveQuests").document(uid).delete() { error in
+                    ref.collection(access.path).document(uid).delete() { error in
                         if let error = error {
                             single(.failure(error))
                         } else {
@@ -283,7 +289,7 @@ final class FirebaseService: NetworkService {
         return Single<String>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                guard let uid = self.uid else { throw NetworkServiceError.noAuthError }
+                guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let fileName = "\(path.path)/\(uid)-\(UUID())"
                 let StorageReference = self.storage.reference().child("\(fileName)")
 
@@ -336,7 +342,7 @@ final class FirebaseService: NetworkService {
             return Disposables.create()
         }
     }
-    
+
     /// deleteDataStorage
     /// - Parameter fileName: File Name
     /// - Returns: success -> true, Data, failure -> error

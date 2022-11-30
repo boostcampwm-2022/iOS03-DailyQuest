@@ -6,25 +6,26 @@
 //
 
 import RxSwift
+import RxRelay
 import Foundation
 
 enum NetworkServiceError: Error {
     case noNetworkService // NetworkService X
     case noAuthError // uid X
     case permissionDenied // wrong access
-    case needConditionError
+    case needFilterError
     case noUrlError
     case noDataError
 }
 
 protocol NetworkService {
-    var uid: String? { get }
+    var uid: BehaviorRelay<String?> { get }
 
     func signIn(email: String, password: String) -> Single<Bool>
     func signOut() -> Single<Bool>
 
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, condition: NetworkCondition?) -> Observable<T>
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter?) -> Observable<T>
     func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func delete<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
 
