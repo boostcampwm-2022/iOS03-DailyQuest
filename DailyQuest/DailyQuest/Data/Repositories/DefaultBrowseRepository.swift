@@ -55,16 +55,18 @@ extension DefaultBrowseRepository: BrowseRepository {
                             } else if questEvent.isCompleted {
                                 let browseQuest = BrowseQuest(user: user, quests: quests)
                                 browseQuests.append(browseQuest)
+                                
                                 if browseQuests.count == users.count {
                                     let browseQuestsFilter = browseQuests.filter { $0.quests.count != 0 }
-                                    // let deleteResult = self.persistentStorage.deleteBrowseQuests()
-                                    // _ = deleteResult.subscribe { single in
-                                    browseQuestsFilter.forEach { browseQuest in
-                                        _ = self.persistentStorage.saveBrowseQuest(browseQuest: browseQuest)
+                                    _ = self.persistentStorage.deleteBrowseQuests()
+                                        .subscribe { single in
+                                        browseQuestsFilter.forEach { browseQuest in
+                                            _ = self.persistentStorage.saveBrowseQuest(browseQuest: browseQuest).subscribe()
+                                        }
                                     }
-                                    // }
                                     observer.onNext(browseQuestsFilter)
                                 }
+                                
                             }
                         }
                     }
