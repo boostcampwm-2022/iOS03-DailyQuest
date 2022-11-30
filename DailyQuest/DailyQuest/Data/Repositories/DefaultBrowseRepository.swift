@@ -25,55 +25,20 @@ extension DefaultBrowseRepository: BrowseRepository {
     /// Firebase 우선, 실패시 persistentStorage, persistentStorage도 실패시 Error반환
     /// - Returns: Observable<[BrowseQuest]>
     func fetch() -> Observable<[BrowseQuest]> {
-        return Observable.create { observer in
-            let allowUsers = self.networkService.getAllowUsers(limit: 10)
-            var users: [User] = []
-            var browseQuests: [BrowseQuest] = []
-            _ = allowUsers.subscribe { event in
-                if let error = event.error {
-                    _ = self.persistentStorage.fetchBrowseQuests()
-                        .subscribe { event in
-                        if let persistentStorageError = event.error {
-                            // 인터넷 에러가 발생하여 데이터를 가져오지 못 하고, persistentStorage에서도 에러 발생시
-                            observer.onError(persistentStorageError)
-                        } else if let persistentBrowseQuests = event.element {
-                            observer.onNext(persistentBrowseQuests)
-                        } else if event.isCompleted {
-                            observer.onError(error)
-                        }
-                    }
-                } else if let user = event.element {
-                    users.append(user.toDomain())
-                } else if event.isCompleted {
-                    users.forEach { user in
-                        let questObserver = self.networkService
-                            .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today(Date()))
-                        var quests: [Quest] = []
-                        _ = questObserver.subscribe { questEvent in
-                            if let quest = questEvent.element {
-                                quests.append(quest.toDomain())
-                            } else if questEvent.isCompleted {
-                                let browseQuest = BrowseQuest(user: user, quests: quests)
-                                browseQuests.append(browseQuest)
-                                
-                                if browseQuests.count == users.count {
-                                    let browseQuestsFilter = browseQuests.filter { $0.quests.count != 0 }
-                                    _ = self.persistentStorage.deleteBrowseQuests()
-                                        .subscribe { single in
-                                        browseQuestsFilter.forEach { browseQuest in
-                                            _ = self.persistentStorage.saveBrowseQuest(browseQuest: browseQuest).subscribe()
-                                        }
-                                    }
-                                    observer.onNext(browseQuestsFilter)
-                                }
-                                
-                            }
-                        }
-                    }
-                }
+        return self.networkService.getAllowUsers(limit: 10)
+            .map { $0.toDomain() }
+            .flatMap { user in
+            self.networkService
+                .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today(Date()))
+                .map { $0.toDomain() }
+                .toArray()
+                .map { questList in
+                BrowseQuest(user: user, quests: questList)
             }
-            return Disposables.create()
         }
+            .filter { !$0.quests.isEmpty }
+            .toArray()
+            .asObservable()
     }
 }
 
