@@ -10,12 +10,18 @@ import UIKit
 final class BrowseSceneDIContainer {
     
     // MARK: - Repositories
+    func makeBrowseRepository() -> BrowseRepository {
+        return BrowseMockRepo()
+    }
     
     // MARK: - Use Cases
+    func makeBrowseUseCase() -> BrowseUseCase {
+        return DefaultBrowseUseCase(browseRepository: makeBrowseRepository())
+    }
     
     // MARK: - View Models
     func makeBrowseViewModel() -> BrowseViewModel {
-        return BrowseViewModel()
+        return BrowseViewModel(browseUseCase: makeBrowseUseCase())
     }
     
     // MARK: - View Controller

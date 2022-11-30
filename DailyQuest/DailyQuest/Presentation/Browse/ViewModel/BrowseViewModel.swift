@@ -8,26 +8,42 @@
 import Foundation
 
 import RxSwift
+import RxCocoa
 
 final class BrowseViewModel {
-    let user1 = User(uuid: "", nickName: "jinwoong", profileURL: "", backgroundImageURL: "", description: "", allow: false)
-    let quests1 = [
-        Quest(groupId: UUID(), uuid: UUID(), date: Date(), title: "물마시기", currentCount: 2, totalCount: 5),
-        Quest(groupId: UUID(), uuid: UUID(), date: Date(), title: "코딩하기", currentCount: 0, totalCount: 10)
-    ]
-
-    let data: Observable<[(User, [Quest])]>
-    private(set) var users: [User] = []
-
-    let cellCount = [2]
-
-    init() {
-        self.data = .just([(user1, quests1)])
-        self.users.append(contentsOf: [user1])
+    private let browseUseCase: BrowseUseCase
+    private(set) var cellCount: [Int] = []
+    
+    init(browseUseCase: BrowseUseCase) {
+        self.browseUseCase = browseUseCase
+    }
+    
+    struct Input {
+        let viewDidLoad: Observable<Void>
+    }
+    
+    struct Output {
+        let data: Driver<[BrowseItemViewModel]>
+    }
+    
+    func transform(input: Input) -> Output {
+        let data = input
+            .viewDidLoad
+            .flatMap { _ in
+                self.browseUseCase.excute()
+            }
+            .map(transform(with:))
+            .do(onNext: { [weak self] items in
+                self?.cellCount = items.map({ $0.quests.count })
+            })
+            .asDriver(onErrorJustReturn: [])
+        
+        return Output(data: data)
+    }
+    
+    private func transform(with browseQuests: [BrowseQuest]) -> [BrowseItemViewModel] {
+        return browseQuests.map { browseQuest in
+            BrowseItemViewModel(user: browseQuest.user, quests: browseQuest.quests)
+        }
     }
 }
-
-/**
- Usecase
-    - fetching quests, it contains user and his quests.
- */

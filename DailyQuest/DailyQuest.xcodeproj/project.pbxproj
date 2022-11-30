@@ -21,7 +21,7 @@
 		340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */; };
 		340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */; };
 		340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */; };
-		34113BE82934917500AB4919 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BE72934917500AB4919 /* AuthViewModel.swift */; };
+		34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BE72934917500AB4919 /* LoginViewModel.swift */; };
 		34113BEB2934A3B200AB4919 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BEA2934A3B200AB4919 /* LoginViewController.swift */; };
 		34113BED2934BD3D00AB4919 /* TextFieldForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34113BEC2934BD3D00AB4919 /* TextFieldForm.swift */; };
 		3413139C291E480500E607E1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3413139B291E480500E607E1 /* SnapKit */; };
@@ -31,6 +31,8 @@
 		3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */; };
 		3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */; };
 		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
+		3417B1442935DA4A00900454 /* BrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1432935DA4A00900454 /* BrowseUseCase.swift */; };
+		3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */; };
 		342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */; };
 		342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A9292E12C700AE811B /* SettingsViewController.swift */; };
 		342830F2292E196E00AE811B /* CommonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F1292E196E00AE811B /* CommonField.swift */; };
@@ -82,6 +84,19 @@
 		34EC71CE292DEFBF004813CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 34EC71CD292DEFBF004813CB /* Lottie */; };
 		34EC71D0292DF0B5004813CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */; };
 		34EC71D1292DF27E004813CB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
+		34EE0C542935F8F7002BEC23 /* BrowseQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01D9292345990031ECA2 /* BrowseQuest.swift */; };
+		34EE0C562935F944002BEC23 /* BrowseQuest+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C552935F944002BEC23 /* BrowseQuest+Stub.swift */; };
+		34EE0C572935F97E002BEC23 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
+		34EE0C592935F98D002BEC23 /* User+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C582935F98D002BEC23 /* User+Stub.swift */; };
+		34EE0C5B2935FA2E002BEC23 /* BrowseRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C5A2935FA2E002BEC23 /* BrowseRepositoryMock.swift */; };
+		34EE0C5C2935FA4C002BEC23 /* BrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1432935DA4A00900454 /* BrowseUseCase.swift */; };
+		34EE0C5D2935FA6E002BEC23 /* BrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8360029359C8A001DE9DF /* BrowseRepository.swift */; };
+		34EE0C5F2935FBA1002BEC23 /* BrowseUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C5E2935FBA1002BEC23 /* BrowseUseCaseTests.swift */; };
+		34EE0C602935FC47002BEC23 /* DefaultBrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */; };
+		34EE0C622935FD0C002BEC23 /* BrowseUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C612935FD0C002BEC23 /* BrowseUseCaseMock.swift */; };
+		34EE0C642935FD6B002BEC23 /* BrowseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */; };
+		34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552A29236041007AB99E /* BrowseViewModel.swift */; };
+		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34FEFB982935EA6D00954A40 /* Kingfisher */; };
@@ -160,7 +175,7 @@
 		340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
 		340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModelTests.swift; sourceTree = "<group>"; };
 		340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseMock.swift; sourceTree = "<group>"; };
-		34113BE72934917500AB4919 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		34113BE72934917500AB4919 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		34113BEA2934A3B200AB4919 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		34113BEC2934BD3D00AB4919 /* TextFieldForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldForm.swift; sourceTree = "<group>"; };
 		3416FC87292B54DB00B504C5 /* QuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCase.swift; sourceTree = "<group>"; };
@@ -168,6 +183,8 @@
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
 		3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRepositoryMock.swift; sourceTree = "<group>"; };
 		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
+		3417B1432935DA4A00900454 /* BrowseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCase.swift; sourceTree = "<group>"; };
+		3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseUseCase.swift; sourceTree = "<group>"; };
 		342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		342830A9292E12C700AE811B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		342830F1292E196E00AE811B /* CommonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonField.swift; sourceTree = "<group>"; };
@@ -221,6 +238,12 @@
 		34CAE317292B19A3007653AD /* QuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepository.swift; sourceTree = "<group>"; };
 		34D8360029359C8A001DE9DF /* BrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseRepository.swift; sourceTree = "<group>"; };
 		34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		34EE0C552935F944002BEC23 /* BrowseQuest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowseQuest+Stub.swift"; sourceTree = "<group>"; };
+		34EE0C582935F98D002BEC23 /* User+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Stub.swift"; sourceTree = "<group>"; };
+		34EE0C5A2935FA2E002BEC23 /* BrowseRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseRepositoryMock.swift; sourceTree = "<group>"; };
+		34EE0C5E2935FBA1002BEC23 /* BrowseUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCaseTests.swift; sourceTree = "<group>"; };
+		34EE0C612935FD0C002BEC23 /* BrowseUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCaseMock.swift; sourceTree = "<group>"; };
+		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -306,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				340FDFDA292B7A1500C4E3DC /* QuestViewModelTests.swift */,
+				34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				340FDFDD292B7A2C00C4E3DC /* QuestUseCaseMock.swift */,
+				34EE0C612935FD0C002BEC23 /* BrowseUseCaseMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -321,7 +346,7 @@
 		34113BE62934916B00AB4919 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				34113BE72934917500AB4919 /* AuthViewModel.swift */,
+				34113BE72934917500AB4919 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -331,7 +356,6 @@
 			children = (
 				3416FC86292B54BF00B504C5 /* Protocols */,
 				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
-				340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -340,7 +364,6 @@
 			isa = PBXGroup;
 			children = (
 				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
-				340A724829348B1B00B26AA6 /* AuthUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -358,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				3416FC8D292B593C00B504C5 /* Quest+Stub.swift */,
+				34EE0C552935F944002BEC23 /* BrowseQuest+Stub.swift */,
+				34EE0C582935F98D002BEC23 /* User+Stub.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -366,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */,
+				34EE0C5E2935FBA1002BEC23 /* BrowseUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -374,8 +400,42 @@
 			isa = PBXGroup;
 			children = (
 				3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */,
+				34EE0C5A2935FA2E002BEC23 /* BrowseRepositoryMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		3417B13F2935DA1500900454 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				3417B1412935DA2400900454 /* Protocols */,
+				3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */,
+			);
+			path = Browse;
+			sourceTree = "<group>";
+		};
+		3417B1402935DA1B00900454 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3417B1422935DA2E00900454 /* Protocols */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3417B1412935DA2400900454 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3417B1432935DA4A00900454 /* BrowseUseCase.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3417B1422935DA2E00900454 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				340A724829348B1B00B26AA6 /* AuthUseCase.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		342830A5292E0F8600AE811B /* ViewController */ = {
@@ -492,6 +552,9 @@
 		34995516292329F4007AB99E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				3417B1402935DA1B00900454 /* Settings */,
+				340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */,
+				3417B13F2935DA1500900454 /* Browse */,
 				3416FC85292B549900B504C5 /* Home */,
 			);
 			path = UseCases;
@@ -1070,6 +1133,7 @@
 				A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
+				3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */,
 				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
 				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				A5656459292BBDD40033E763 /* String+.swift in Sources */,
@@ -1100,7 +1164,7 @@
 				34874AA629252088000570DF /* AddQuestsViewController.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
-				34113BE82934917500AB4919 /* AuthViewModel.swift in Sources */,
+				34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */,
 				34EE6EB72924C674005AF583 /* QuestView.swift in Sources */,
 				B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */,
 				3499551529232533007AB99E /* UIColor+.swift in Sources */,
@@ -1110,6 +1174,7 @@
 				A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
+				3417B1442935DA4A00900454 /* BrowseUseCase.swift in Sources */,
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
@@ -1144,15 +1209,28 @@
 				A5656457292BB91F0033E763 /* Quest.swift in Sources */,
 				3416FC96292B5B5400B504C5 /* Quest.swift in Sources */,
 				3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */,
+				34EE0C572935F97E002BEC23 /* User.swift in Sources */,
+				34EE0C562935F944002BEC23 /* BrowseQuest+Stub.swift in Sources */,
+				34EE0C642935FD6B002BEC23 /* BrowseViewModelTests.swift in Sources */,
 				3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */,
 				340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */,
 				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
+				34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */,
 				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
+				34EE0C542935F8F7002BEC23 /* BrowseQuest.swift in Sources */,
+				34EE0C5D2935FA6E002BEC23 /* BrowseRepository.swift in Sources */,
 				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
+				34EE0C622935FD0C002BEC23 /* BrowseUseCaseMock.swift in Sources */,
 				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
+				34EE0C5F2935FBA1002BEC23 /* BrowseUseCaseTests.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
+				34EE0C5C2935FA4C002BEC23 /* BrowseUseCase.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
+				34EE0C5B2935FA2E002BEC23 /* BrowseRepositoryMock.swift in Sources */,
+				34EE0C602935FC47002BEC23 /* DefaultBrowseUseCase.swift in Sources */,
 				340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */,
+				34EE0C592935F98D002BEC23 /* User+Stub.swift in Sources */,
+				34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
