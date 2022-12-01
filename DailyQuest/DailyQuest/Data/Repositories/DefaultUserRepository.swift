@@ -46,5 +46,9 @@ extension DefaultUserRepository: UserRepository {
         return self.persistentStorage.deleteUserInfo()
             .map { _ in true }
             .asObservable()
+            .concatMap { _ in
+            return self.networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
+                .map { _ in true }
+        }
     }
 }
