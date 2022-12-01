@@ -73,7 +73,7 @@ final class RealmStorage {
         return entity
     }
 
-    func deleteAllEntity<O: Object>(type: O.Type) throws {
+    func deleteAllEntity<O: Object>(type: O.Type) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
         }
@@ -82,6 +82,7 @@ final class RealmStorage {
                 persistentContainer.delete(entity)
             }
         }
+        return Array(persistentContainer.objects(type))
     }
 
     func findEntities<O: Object>(type: O.Type, filter: NSPredicate) throws -> [O] {

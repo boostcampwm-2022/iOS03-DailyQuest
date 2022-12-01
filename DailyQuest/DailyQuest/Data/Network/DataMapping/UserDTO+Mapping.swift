@@ -14,7 +14,7 @@ struct UserDTO: DTO {
     let backgroundImageURL: String
     let description: String
     let allow: Bool
-    
+
     init() {
         self.uuid = ""
         self.nickName = ""
@@ -22,6 +22,15 @@ struct UserDTO: DTO {
         self.backgroundImageURL = ""
         self.description = ""
         self.allow = false
+    }
+
+    init(user: User) {
+        self.uuid = user.uuid
+        self.nickName = user.nickName
+        self.profileURL = user.profileURL
+        self.backgroundImageURL = user.backgroundImageURL
+        self.description = user.description
+        self.allow = user.allow
     }
 }
 
@@ -33,5 +42,11 @@ extension UserDTO {
              backgroundImageURL: backgroundImageURL,
              description: description,
              allow: allow)
+    }
+}
+
+extension User {
+    func toDTO() -> UserDTO {
+        UserDTO(user: self)
     }
 }

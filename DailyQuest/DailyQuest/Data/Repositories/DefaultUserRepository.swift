@@ -26,16 +26,25 @@ extension DefaultUserRepository: UserRepository {
 
     func readUser() -> Observable<User> {
         return self.persistentStorage.fetchUserInfo()
-            .catch { networkService.read(type: <#T##DTO.Protocol#>, userCase: .currentUser, access: .userInfo) }
+            .catch { _ in
+            return self.networkService.read(type: UserDTO.self, userCase: .currentUser, access: .userInfo, filter: nil)
+                .map { $0.toDomain() }
+        }
     }
 
     func updateUser(by user: User) -> Observable<User> {
-        return self.persistentStorage.saveUserInfo(user: user).asObservable()
+        return self.persistentStorage.updateUserInfo(user: user)
+            .asObservable()
+            .concatMap { _ in
+            return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: user.toDTO())
+                .map { $0.toDomain() }
+                .asObservable()
+        }
     }
 
     func deleteUser() -> Observable<Bool> {
-
+        return self.persistentStorage.deleteUserInfo()
+            .map { _ in true }
+            .asObservable()
     }
-
-
 }
