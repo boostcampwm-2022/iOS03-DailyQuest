@@ -29,7 +29,7 @@ extension DefaultBrowseRepository: BrowseRepository {
             .map { $0.toDomain() }
             .flatMap { user in
             self.networkService
-                .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today("22-11-30".toDate()!))
+                .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today(Date()))
                 .map { $0.toDomain() }
                 .toArray()
                 .asObservable()

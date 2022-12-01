@@ -63,6 +63,7 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
 
             do {
                 try realmStorage.deleteAllEntity(type: BrowseQuestEntity.self)
+                try realmStorage.deleteAllEntity(type: SubQuestEntity.self)
                 single(.success(true))
             } catch let error {
                 single(.failure(RealmStorageError.deleteError(error)))
