@@ -21,4 +21,12 @@ extension DefaultQuestUseCase: QuestUseCase {
     func fetch(by date: Date) -> Observable<[Quest]> {
         return questsRepository.fetch(by: date)
     }
+    
+    func update(with quest: Quest) -> Observable<Bool> {
+        return questsRepository
+            .update(with: quest)
+            .map { _ in true }
+            .catchAndReturn(false)
+            .asObservable()
+    }
 }

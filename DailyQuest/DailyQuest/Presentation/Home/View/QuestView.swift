@@ -28,12 +28,14 @@ final class QuestView: UITableView {
     
     func setup(with viewModel: QuestViewModel) {
         self.viewModel = viewModel
-        
-        bind()
     }
     
-    private func bind() {
-        let output = viewModel.transform(input: QuestViewModel.Input(viewDidLoad: .just(Date()).asObservable()), disposeBag: disposableBag)
+    func bind() {
+        let output = viewModel.transform(
+            input: QuestViewModel
+                .Input(viewDidLoad: .just(Date()).asObservable(),
+                    itemDidClicked: rx.modelSelected(Quest.self).asObservable())
+        )
         
         output
             .data
