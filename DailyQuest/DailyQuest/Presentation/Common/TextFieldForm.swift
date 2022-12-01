@@ -8,7 +8,7 @@
 import UIKit
 
 final class TextFieldForm: UITextField {
-    var textPadding = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    var textPadding = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
