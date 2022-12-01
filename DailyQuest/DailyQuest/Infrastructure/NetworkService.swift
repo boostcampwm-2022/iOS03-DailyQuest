@@ -32,4 +32,6 @@ protocol NetworkService {
     func uploadDataStorage(data: Data, path: StoragePath) -> Single<String>
     func downloadDataStorage(fileName: String) -> Single<Data>
     func deleteDataStorage(fileName: String) -> Single<Bool>
+    
+    func getAllowUsers(limit: Int)->Observable<UserDTO>
 }

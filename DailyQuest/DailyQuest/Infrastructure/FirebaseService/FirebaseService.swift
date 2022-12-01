@@ -67,7 +67,7 @@ final class FirebaseService: NetworkService {
                     if let error = error {
                         single(.failure(error))
                     }
-                    
+
                     self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 }
@@ -83,7 +83,7 @@ final class FirebaseService: NetworkService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
-                
+
                 self.uid.accept(self.auth.currentUser?.uid)
                 single(.success(true))
             } catch let error {
@@ -362,6 +362,32 @@ final class FirebaseService: NetworkService {
                 }
             } catch let error {
                 single(.failure(error))
+            }
+
+            return Disposables.create()
+        }
+    }
+
+    func getAllowUsers(limit: Int) -> Observable<UserDTO> {
+        return Observable<UserDTO>.create { [weak self] observer in
+            do {
+                guard let self = self else { throw NetworkServiceError.noNetworkService }
+                self.db.collection("users")
+                    .whereField("allow", isEqualTo: true)
+                    .limit(to: limit)
+                    .getDocuments { (querySnapshot, error) in
+                    for document in querySnapshot!.documents {
+                        do {
+                            let quest = try document.data(as: UserDTO.self)
+                            observer.onNext(quest)
+                        } catch let error {
+                            observer.onError(error)
+                        }
+                    }
+                    observer.onCompleted()
+                }
+            } catch let error {
+                observer.onError(error)
             }
 
             return Disposables.create()
