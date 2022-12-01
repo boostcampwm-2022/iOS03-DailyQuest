@@ -15,6 +15,14 @@ struct QuestDTO: DTO {
     let currentCount: Int
     let totalCount: Int
 
+    init() {
+        self.groupId = UUID()
+        self.uuid = ""
+        self.date = ""
+        self.title = ""
+        self.currentCount = 0
+        self.totalCount = 0
+    }
 }
 
 extension QuestDTO {

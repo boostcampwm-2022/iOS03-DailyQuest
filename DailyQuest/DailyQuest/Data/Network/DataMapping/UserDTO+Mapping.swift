@@ -14,6 +14,15 @@ struct UserDTO: DTO {
     let backgroundImageURL: String
     let description: String
     let allow: Bool
+    
+    init() {
+        self.uuid = ""
+        self.nickName = ""
+        self.profileURL = ""
+        self.backgroundImageURL = ""
+        self.description = ""
+        self.allow = false
+    }
 }
 
 extension UserDTO {

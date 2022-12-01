@@ -10,10 +10,15 @@ import Foundation
 struct BrowseQuestDTO {
     let user: UserDTO
     let quests: [QuestDTO]
+
+    init() {
+        self.user = UserDTO()
+        self.quests = [QuestDTO()]
+    }
 }
 
 extension BrowseQuestDTO {
-    func toDomain() -> BrowseQuest{
+    func toDomain() -> BrowseQuest {
         return BrowseQuest(user: user.toDomain(), quests: quests.compactMap { $0.toDomain() })
     }
 }
