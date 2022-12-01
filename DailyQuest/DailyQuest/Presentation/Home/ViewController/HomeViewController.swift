@@ -21,6 +21,13 @@ final class HomeViewController: UIViewController {
     private var disposableBag = DisposeBag()
     private var questViewDelegate: QuestViewDelegate?
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
     private lazy var questView: QuestView = {
         let questView = QuestView()
         
@@ -29,6 +36,10 @@ final class HomeViewController: UIViewController {
     
     private lazy var questViewHeader: QuestViewHeader = {
         return QuestViewHeader()
+    }()
+    
+    private lazy var followingView: FollowingView = {
+        return FollowingView()
     }()
     
     // MARK: - Life Cycle
@@ -41,15 +52,28 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         questViewDelegate = QuestViewDelegate(header: questViewHeader)
         
+        questView.delegate = questViewDelegate
+
         view.backgroundColor = .white
         
-        view.addSubview(questView)
+        stackView.addArrangedSubview(followingView)
+        stackView.addArrangedSubview(questView)
         
-        questView.delegate = questViewDelegate
-        questView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        
+        view.addSubview(stackView)
+        
+
+        stackView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+        }
+        
+        followingView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(125)
         }
         
         bind()
@@ -76,4 +100,9 @@ final class HomeViewController: UIViewController {
     private func setup(questViewModel: QuestViewModel) {
         questView.setup(with: questViewModel)
     }
+    
+    private func configureFollowingView() {
+        
+    }
+
 }
