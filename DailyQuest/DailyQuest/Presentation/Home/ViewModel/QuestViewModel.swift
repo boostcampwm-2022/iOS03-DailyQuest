@@ -19,19 +19,28 @@ final class QuestViewModel {
     
     struct Input {
         let viewDidLoad: Observable<Date>
+        let itemDidClicked: Observable<Quest>
     }
     
     struct Output {
         let data: Driver<[Quest]>
     }
     
-    func transform(input: Input, disposeBag: DisposeBag) -> Output {
+    func transform(input: Input) -> Output {
         
-        let data = input
-            .viewDidLoad
+        let updated = input
+            .itemDidClicked
+            .compactMap { $0.increaseCount() }
+            .flatMap(questUseCase.update(with:))
+            .filter({ $0 })
+            .map { _ in Date() }
+            .asObservable()
+        
+        let data = Observable
+            .merge(updated, input.viewDidLoad)
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
-        
+            
         return Output(data: data)
     }
 }

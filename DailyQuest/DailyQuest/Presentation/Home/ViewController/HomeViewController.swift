@@ -56,6 +56,8 @@ final class HomeViewController: UIViewController {
     }
     
     private func bind() {
+        questView.bind()
+        
         /**
          Header에서 버튼이 눌려졌는지를 수신하고 있습니다.
          버튼이 눌러지면 bind내의 클로저가 실행되고, 이는 다시 coordinatorPublisher가 이벤트를 방출하게 합니다.
