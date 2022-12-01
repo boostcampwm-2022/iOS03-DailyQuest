@@ -116,6 +116,7 @@
 		A50F9A3429266F45005C00FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3329266F45005C00FE /* NetworkService.swift */; };
 		A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3629266F6F005C00FE /* FirebaseService.swift */; };
 		A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */; };
+		A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511228F29384FAF00384B4B /* DefaultUserRepository.swift */; };
 		A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
 		A517A84629349D91005CB1E8 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */; };
 		A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
@@ -256,6 +257,7 @@
 		A50F9A3629266F6F005C00FE /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A50F9A3829266FD8005C00FE /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigure.swift; sourceTree = "<group>"; };
+		A511228F29384FAF00384B4B /* DefaultUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
 		A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestEntity+Mapping.swift"; sourceTree = "<group>"; };
 		A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 			children = (
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
 				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
+				A511228F29384FAF00384B4B /* DefaultUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1177,6 +1180,7 @@
 				342830F4292E19B700AE811B /* PlainCell.swift in Sources */,
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */,
+				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
