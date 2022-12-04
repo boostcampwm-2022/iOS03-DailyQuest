@@ -10,12 +10,20 @@ import Foundation
 enum UserCase {
     case currentUser
     case anotherUser(_ uid: String)
+
+    var path: String {
+        return "users"
+    }
 }
 
-enum Access {
+enum Access: String {
     case quests
     case receiveQuests
     case userInfo
+
+    var path: String {
+        return self.rawValue
+    }
 }
 
 enum CRUD {
@@ -25,7 +33,7 @@ enum CRUD {
     case delete
 }
 
-enum NetworkCondition {
+enum NetworkDateFilter {
     case today(_ date: Date)
     case month(_ date: Date)
     case year(_date: Date)

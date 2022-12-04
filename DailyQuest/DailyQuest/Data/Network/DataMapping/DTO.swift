@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DTO: Codable {
-    var uuid: UUID { get }
+    var uuid: String { get }
 }

@@ -11,4 +11,5 @@ import RxSwift
 
 protocol QuestUseCase {
     func fetch(by date: Date) -> Observable<[Quest]>
+    func update(with quest: Quest) -> Observable<Bool>
 }

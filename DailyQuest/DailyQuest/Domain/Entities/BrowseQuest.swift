@@ -9,7 +9,6 @@ import Foundation
 
 // Domain-Entities 이동
 struct BrowseQuest {
-    let uuid: UUID
-    let nickName: String
+    let user: User
     let quests: [Quest]
 }

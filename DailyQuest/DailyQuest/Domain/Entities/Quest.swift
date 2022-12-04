@@ -26,12 +26,18 @@ struct Quest {
      - Parameters:
         - value: 0보다 큰 정수값입니다. 기본값은 1입니다.
      */
-    mutating func increaseCount(with value: Int=1) {
+//    mutating func increaseCount(with value: Int=1) {
+//        guard currentCount + value <= totalCount else {
+//            self.currentCount = totalCount
+//            return
+//        }
+//        self.currentCount += value
+//    }
+    func increaseCount(with value: Int=1) -> Self? {
         guard currentCount + value <= totalCount else {
-            self.currentCount = totalCount
-            return
+            return nil
         }
-        self.currentCount += value
+        return .init(groupId: groupId, uuid: uuid, date: date, title: title, currentCount: currentCount+value, totalCount: totalCount)
     }
     
     /**
