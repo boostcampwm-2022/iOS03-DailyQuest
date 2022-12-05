@@ -11,80 +11,84 @@ import Foundation
 final class DefaultQuestsRepository {
 
     private let persistentStorage: QuestsStorage
+    private let networkService: NetworkService
 
-    init(persistentStorage: QuestsStorage) {
+    init(persistentStorage: QuestsStorage, networkService: NetworkService = FirebaseService.shared) {
         self.persistentStorage = persistentStorage
+        self.networkService = networkService
     }
 }
 
 extension DefaultQuestsRepository: QuestsRepository {
     func save(with quest: [Quest]) -> Single<[Quest]> {
         return persistentStorage.saveQuests(with: quest)
+            .flatMap { quests in
+            return Observable.from(quests)
+                .concatMap { quest in
+                return self.networkService.create(userCase: .currentUser,
+                                                  access: .quests,
+                                                  dto: quest.toDTO())
+            }
+                .map { $0.toDomain() }
+                .toArray()
+                .asObservable()
+                .asSingle()
+        }
     }
 
     func fetch(by date: Date) -> Observable<[Quest]> {
         return persistentStorage.fetchQuests(by: date)
+            .catch { _ in
+            self.networkService.read(type: QuestDTO.self, userCase: .currentUser, access: .quests, filter: .month(Date()))
+                .map { $0.toDomain() }
+                .toArray()
+                .asObservable()
+        }
     }
 
     func update(with quest: Quest) -> Single<Quest> {
         return persistentStorage.updateQuest(with: quest)
+            .flatMap { quest in
+            self.networkService.update(userCase: .currentUser, access: .quests, dto: quest.toDTO())
+        }
+            .map { $0.toDomain() }
+            .asObservable()
+            .asSingle()
     }
 
     func delete(with questId: UUID) -> Single<Quest> {
         return persistentStorage.deleteQuest(with: questId)
+            .flatMap { quest in
+            self.networkService.delete(userCase: .currentUser, access: .quests, dto: quest.toDTO())
+        }
+            .map { $0.toDomain() }
+            .asObservable()
+            .asSingle()
     }
 
     func deleteAll(with groupId: UUID) -> Single<[Quest]> {
         return persistentStorage.deleteQuestGroup(with: groupId)
+            .flatMap { quests in
+            return Observable.from(quests)
+                .concatMap { quest in
+                self.networkService.delete(userCase: .currentUser,
+                                           access: .quests,
+                                           dto: quest.toDTO())
+            }
+                .map { $0.toDomain() }
+                .toArray()
+                .asObservable()
+                .asSingle()
+        }
     }
 
-    func fetch(by uuid: String) -> Observable<[Quest]> {
-        return .just([])
-    }
-}
-
-extension DefaultQuestsRepository {
-    static func test() {
-        let persistentStorage = RealmQuestsStorage()
-        let repository = DefaultQuestsRepository(persistentStorage: persistentStorage)
-        let dummyDate = ["2022-11-17".toDate()!,
-                         "2022-11-18".toDate()!,
-                         "2022-11-19".toDate()!,
-                         "2022-11-20".toDate()!,
-                         "2022-11-21".toDate()!,
-                         "2022-11-22".toDate()!,
-                         "2022-11-23".toDate()!,
-                         "2022-11-24".toDate()!]
-        let dummyData = (0...10).compactMap { i in
-            Quest(groupId: UUID(), uuid: UUID(), date: dummyDate[i % dummyDate.count], title: "\(i) dummyData", currentCount: 0, totalCount: i % 5)
-        }
-
-        print("🍀save")
-        let _ = repository.save(with: dummyData)
-            .subscribe { event in
-            print(event)
-        }
-
-        print("🍀fetch \(Date())")
-
-        let _ = repository.fetch(by: Date())
-            .subscribe { event in
-            print(event)
-        }
-
-        let temp = dummyData[0]
-        print("🍀update \(temp.uuid)")
-        let quest = Quest(groupId: temp.groupId, uuid: temp.uuid, date: temp.date, title: "change", currentCount: temp.currentCount + 1, totalCount: temp.totalCount)
-        let _ = repository.update(with: quest)
-            .subscribe { event in
-            print(event)
-        }
-
-        print("🍀delete \(dummyData[1].uuid)")
-        let _ = repository.delete(with: dummyData[1].uuid)
-            .subscribe { event in
-            print(event)
-        }
-
+    func fetch(by uuid: String) -> Observable<[Quest]> { // 받을 날짜까지 받아와야함
+        return self.networkService.read(type: QuestDTO.self,
+                                        userCase: .anotherUser(uuid),
+                                        access: .quests,
+                                        filter: .month(Date()))
+            .map { $0.toDomain() }
+            .toArray()
+            .asObservable()
     }
 }
