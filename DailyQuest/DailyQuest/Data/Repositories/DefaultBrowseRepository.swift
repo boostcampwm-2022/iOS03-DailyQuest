@@ -65,13 +65,3 @@ extension DefaultBrowseRepository: BrowseRepository {
         }
     }
 }
-
-extension DefaultBrowseRepository {
-    static func test() {
-        let browseRepository = DefaultBrowseRepository(persistentStorage: RealmBrowseQuestsStorage(), networkService: FirebaseService.shared)
-        let fetchBrowseQuestsObserver = browseRepository.fetch()
-        _ = fetchBrowseQuestsObserver.subscribe { event in
-            print(event)
-        }
-    }
-}
