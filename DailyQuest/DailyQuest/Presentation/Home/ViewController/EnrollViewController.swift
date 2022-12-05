@@ -13,7 +13,7 @@ import SnapKit
 
 final class EnrollViewController: UIViewController {
     private var disposableBag = DisposeBag()
-    private let viewModel = EnrollViewModel(dayNamePickerViewModel: DayNamePickerViewModel())
+    private let viewModel = EnrollViewModel()
     
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -92,8 +92,6 @@ final class EnrollViewController: UIViewController {
     }
     
     func bind() {
-        daysPicker.bind(with: viewModel.dayNamePickerViewModel, disposeBag: disposableBag)
-        
         let startDateDidSet = startDate.datePicker.rx
             .controlEvent(.valueChanged)
             .withLatestFrom(startDate.datePicker.rx.date)
@@ -102,6 +100,11 @@ final class EnrollViewController: UIViewController {
             .controlEvent(.valueChanged)
             .withLatestFrom(endDate.datePicker.rx.date)
         
+        let taps = daysPicker.buttons.enumerated().map { index, button in
+            button.rx.tap.map { _ in index + 1 }
+        }
+        let dayButtonDidClicked = Observable.from(taps).merge()
+        
         let output = viewModel.transform(
             input: EnrollViewModel.Input(
                 titleDidChanged: titleField.rx.text.orEmpty.asObservable(),
@@ -109,17 +112,33 @@ final class EnrollViewController: UIViewController {
                 endDateDidSet: endDateDidSet,
                 quantityDidSet: quantityView.quantityField.rx.text.orEmpty
                     .asObservable(),
-                submitButtonDidClicked: submitButton.rx.tap.asObservable()
+                submitButtonDidClicked: submitButton.rx.tap.asObservable(),
+                dayButtonDidClicked: dayButtonDidClicked
             )
         )
         
         bindSubmitButton(output: output)
+        bindDayNamePickerView(output: output)
     }
     
     private func bindSubmitButton(output: EnrollViewModel.Output) {
         output
             .buttonEnabled
             .drive(submitButton.rx.isEnabled)
+            .disposed(by: disposableBag)
+    }
+    
+    private func bindDayNamePickerView(output: EnrollViewModel.Output) {
+        output
+            .dayButtonStatus
+            .bind(onNext: { [weak self] index, isSelected in
+                guard let isSelected = isSelected else { return }
+                if isSelected {
+                    self?.daysPicker.buttons[index-1].configuration?.baseBackgroundColor = .maxYellow
+                } else {
+                    self?.daysPicker.buttons[index-1].configuration?.baseBackgroundColor = .maxLightYellow
+                }
+            })
             .disposed(by: disposableBag)
     }
 }
