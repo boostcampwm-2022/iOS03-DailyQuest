@@ -21,14 +21,26 @@ final class HomeSceneDIContainer {
         return DefaultQuestUseCase(questsRepository: makeQuestsRepository())
     }
     
+    func makeEnrollUseCase() -> EnrollUseCase {
+        return DefaultEnrollUseCase(questsRepository: makeQuestsRepository())
+    }
+    
     // MARK: - View Models
     func makeQuestViewModel() -> QuestViewModel {
         return QuestViewModel(questUseCase: makeQuestUseCase())
     }
     
+    func makeEnrollViewModel() -> EnrollViewModel {
+        return EnrollViewModel(enrollUseCase: makeEnrollUseCase())
+    }
+    
     // MARK: - View Controller
     func makeHomeViewController() -> HomeViewController {
         return HomeViewController.create(with: makeQuestViewModel())
+    }
+    
+    func makeEnrollViewController() -> EnrollViewController {
+        return EnrollViewController.create(with: makeEnrollViewModel())
     }
     
     // MARK: - Flow
