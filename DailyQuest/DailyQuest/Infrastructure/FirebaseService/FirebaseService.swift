@@ -134,7 +134,7 @@ final class FirebaseService: NetworkService {
     ///   - access: quests / receiveQuests / userInfo
     ///   - condition: quests - today(date) / month(date) / year(date)
     /// - Returns: Observable<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter? = nil) -> Observable<T> {
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: DateFilter? = nil) -> Observable<T> {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
