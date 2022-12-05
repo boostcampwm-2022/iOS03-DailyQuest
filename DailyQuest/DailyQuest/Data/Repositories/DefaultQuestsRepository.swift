@@ -38,7 +38,9 @@ extension DefaultQuestsRepository: QuestsRepository {
         return persistentStorage.deleteQuestGroup(with: groupId)
     }
 
-
+    func fetch(by uuid: String) -> Observable<[Quest]> {
+        return .just([])
+    }
 }
 
 extension DefaultQuestsRepository {

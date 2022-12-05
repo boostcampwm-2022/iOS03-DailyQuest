@@ -25,4 +25,6 @@ protocol UserRepository {
     /// 유저정보를 삭제합니다.
     /// - Returns: 삭제 성공 여부를 방출하는 Observable입니다.
     func deleteUser() -> Observable<Bool>
+    
+    func fetchUser(by uuid: String) -> Observable<User>
 }

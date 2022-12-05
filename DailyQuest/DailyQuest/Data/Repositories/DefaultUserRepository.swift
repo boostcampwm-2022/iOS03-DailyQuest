@@ -51,4 +51,8 @@ extension DefaultUserRepository: UserRepository {
                 .map { _ in true }
         }
     }
+    
+    func fetchUser(by uuid: String) -> Observable<User> {
+        .just(User(uuid: "", nickName: "", profileURL: "", backgroundImageURL: "", description: "", allow: true))
+    }
 }
