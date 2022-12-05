@@ -144,6 +144,7 @@
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
 		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
+		A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
 		B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DFC0929227DA800C68A4B /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
@@ -292,6 +293,7 @@
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
 		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
+		A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryManager.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
 		B58DFC0929227DA800C68A4B /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -935,6 +937,7 @@
 		A5AC96D42922356E003B7637 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */,
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
 				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
 				A511228F29384FAF00384B4B /* DefaultUserRepository.swift */,
@@ -1184,6 +1187,7 @@
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
 				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
+				A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */,
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
