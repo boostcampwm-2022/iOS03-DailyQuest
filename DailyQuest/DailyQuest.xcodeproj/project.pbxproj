@@ -116,7 +116,7 @@
 		9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */; };
 		9BD8CD00293829DD00E6EA2F /* FollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */; };
 		9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */; };
-		9BED4DE1293D938400C60631 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE0293D938400C60631 /* ProfileViewController.swift */; };
+		9BED4DE2293DD53500C60631 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE0293D938400C60631 /* ProfileViewController.swift */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */; };
 		A50DE911292B74C500E1FD60 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
@@ -1186,7 +1186,7 @@
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
-				9BED4DE1293D938400C60631 /* ProfileViewController.swift in Sources */,
+				9BED4DE2293DD53500C60631 /* ProfileViewController.swift in Sources */,
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
