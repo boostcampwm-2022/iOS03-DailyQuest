@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 
 final class EnrollViewModel {
+    private var selectedDay = [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false]
+    private var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false])
     
     private var disposableBag = DisposeBag()
-    let dayNamePickerViewModel: DayNamePickerViewModel
     
-    init(dayNamePickerViewModel: DayNamePickerViewModel) {
-        self.dayNamePickerViewModel = dayNamePickerViewModel
+    init() {
+        
     }
     
     struct Input {
@@ -25,20 +26,25 @@ final class EnrollViewModel {
         let endDateDidSet: Observable<Date>
         let quantityDidSet: Observable<String>
         let submitButtonDidClicked: Observable<Void>
+        
+        let dayButtonDidClicked: Observable<Int>
     }
     
     struct Output {
         let buttonEnabled: Driver<Bool>
         let enrollResult: Observable<Bool>
+        let dayButtonStatus: Observable<(Int, Bool?)>
     }
     
     func transform(input: Input) -> Output {
-        let dates = Observable.combineLatest(
+        Observable.combineLatest(
             input.startDateDidSet,
             input.endDateDidSet,
-            dayNamePickerViewModel.selectedDayObservable
+            self.selectedDayObservable
         )
             .compactMap(getDates(start:end:weekday:))
+            .subscribe(onNext: { print($0) })
+            .disposed(by: disposableBag)
         
         let buttonEnabled = Observable.combineLatest(
             input.titleDidChanged,
@@ -47,7 +53,14 @@ final class EnrollViewModel {
             }
             .asDriver(onErrorJustReturn: false)
         
-        return Output(buttonEnabled: buttonEnabled, enrollResult: .just(true))
+        let dayButtonStatus = input
+            .dayButtonDidClicked
+            .map(didClicked(by:))
+            .asObservable()
+        
+        return Output(buttonEnabled: buttonEnabled,
+                      enrollResult: .just(true),
+                      dayButtonStatus: dayButtonStatus)
     }
     
     
@@ -78,5 +91,12 @@ extension EnrollViewModel {
         }
         
         return dates
+    }
+    
+    private func didClicked(by index: Int) -> (Int, Bool?) {
+        selectedDay[index]?.toggle()
+        selectedDayObservable.accept(selectedDay)
+        
+        return (index, selectedDay[index])
     }
 }
