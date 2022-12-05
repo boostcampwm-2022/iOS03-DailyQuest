@@ -105,6 +105,7 @@
 		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */; };
 		34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34FEFB982935EA6D00954A40 /* Kingfisher */; };
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
@@ -262,6 +263,7 @@
 		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
+		34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnrollUseCase.swift; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseRepository.swift; sourceTree = "<group>"; };
 		9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				3416FC86292B54BF00B504C5 /* Protocols */,
 				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
+				34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 				344A459A293DC495007A3D37 /* EnrollUseCase.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
 				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
+				34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
 				345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */,
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,

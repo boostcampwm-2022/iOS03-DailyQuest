@@ -12,8 +12,8 @@ import RxCocoa
 import SnapKit
 
 final class EnrollViewController: UIViewController {
+    private var viewModel: EnrollViewModel!
     private var disposableBag = DisposeBag()
-    private let viewModel = EnrollViewModel()
     
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -62,6 +62,13 @@ final class EnrollViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle
+    static func create(with viewModel: EnrollViewModel) -> EnrollViewController {
+        let vc = EnrollViewController()
+        vc.viewModel = viewModel
+        
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,14 +99,10 @@ final class EnrollViewController: UIViewController {
     }
     
     func bind() {
-        let startDateDidSet = startDate.datePicker.rx
-            .controlEvent(.valueChanged)
-            .withLatestFrom(startDate.datePicker.rx.date)
+        let startDateDidSet = startDate.datePicker.rx.date.asObservable()
         
-        let endDateDidSet = endDate.datePicker.rx
-            .controlEvent(.valueChanged)
-            .withLatestFrom(endDate.datePicker.rx.date)
-        
+        let endDateDidSet = endDate.datePicker.rx.date.asObservable()
+
         let taps = daysPicker.buttons.enumerated().map { index, button in
             button.rx.tap.map { _ in index + 1 }
         }
@@ -119,6 +122,9 @@ final class EnrollViewController: UIViewController {
         
         bindSubmitButton(output: output)
         bindDayNamePickerView(output: output)
+        
+        output.enrollResult.subscribe(onNext: { print($0) })
+            .disposed(by: disposableBag)
     }
     
     private func bindSubmitButton(output: EnrollViewModel.Output) {
