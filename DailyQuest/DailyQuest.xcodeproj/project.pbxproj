@@ -49,6 +49,7 @@
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
+		344A459A293DC495007A3D37 /* EnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A4599293DC495007A3D37 /* EnrollUseCase.swift */; };
 		345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F32937329E00CA51E3 /* EnrollViewController.swift */; };
 		345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F52937430200CA51E3 /* PlanDatePickerView.swift */; };
 		345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F729374D2500CA51E3 /* DayNamePickerView.swift */; };
@@ -211,6 +212,7 @@
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		344A4599293DC495007A3D37 /* EnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollUseCase.swift; sourceTree = "<group>"; };
 		345687F32937329E00CA51E3 /* EnrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
 		345687F52937430200CA51E3 /* PlanDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDatePickerView.swift; sourceTree = "<group>"; };
 		345687F729374D2500CA51E3 /* DayNamePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNamePickerView.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
+				344A4599293DC495007A3D37 /* EnrollUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1228,6 +1231,7 @@
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				34113BED2934BD3D00AB4919 /* TextFieldForm.swift in Sources */,
 				345687FC293786F100CA51E3 /* DayNamePickerViewModel.swift in Sources */,
+				344A459A293DC495007A3D37 /* EnrollUseCase.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
 				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
