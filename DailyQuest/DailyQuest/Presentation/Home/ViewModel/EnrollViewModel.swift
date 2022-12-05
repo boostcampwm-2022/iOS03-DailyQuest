@@ -14,10 +14,12 @@ final class EnrollViewModel {
     private var selectedDay = [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false]
     private var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false])
     
+    private let enrollUseCase: EnrollUseCase
+    
     private var disposableBag = DisposeBag()
     
-    init() {
-        
+    init(enrollUseCase: EnrollUseCase) {
+        self.enrollUseCase = enrollUseCase
     }
     
     struct Input {
@@ -37,14 +39,13 @@ final class EnrollViewModel {
     }
     
     func transform(input: Input) -> Output {
-        Observable.combineLatest(
+        let dates = Observable.combineLatest(
             input.startDateDidSet,
             input.endDateDidSet,
             self.selectedDayObservable
         )
             .compactMap(getDates(start:end:weekday:))
-            .subscribe(onNext: { print($0) })
-            .disposed(by: disposableBag)
+            .asObservable()
         
         let buttonEnabled = Observable.combineLatest(
             input.titleDidChanged,
@@ -58,12 +59,20 @@ final class EnrollViewModel {
             .map(didClicked(by:))
             .asObservable()
         
+        let enrollResult = input.submitButtonDidClicked
+            .withLatestFrom(Observable
+                .combineLatest(
+                    input.titleDidChanged,
+                    dates,
+                    input.quantityDidSet)
+            )
+            .map(createQuests(title:dates:quantity:))
+            .flatMap(enrollUseCase.save(with:))
+            
         return Output(buttonEnabled: buttonEnabled,
-                      enrollResult: .just(true),
+                      enrollResult: enrollResult,
                       dayButtonStatus: dayButtonStatus)
     }
-    
-    
 }
 
 extension EnrollViewModel {
@@ -98,5 +107,20 @@ extension EnrollViewModel {
         selectedDayObservable.accept(selectedDay)
         
         return (index, selectedDay[index])
+    }
+    
+    private func createQuests(title: String, dates: [Date], quantity: String) -> [Quest] {
+        let groupID = UUID()
+        guard let totalCount = Int(quantity) else { return [] }
+        
+        return dates.map { date in
+            Quest(groupId: groupID,
+                  uuid: UUID(),
+                  date: date,
+                  title: title,
+                  currentCount: 0,
+                  totalCount: totalCount
+            )
+        }
     }
 }
