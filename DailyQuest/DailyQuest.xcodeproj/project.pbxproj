@@ -54,7 +54,6 @@
 		345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F52937430200CA51E3 /* PlanDatePickerView.swift */; };
 		345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F729374D2500CA51E3 /* DayNamePickerView.swift */; };
 		345687FA2937815900CA51E3 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F92937815900CA51E3 /* QuantityView.swift */; };
-		345687FC293786F100CA51E3 /* DayNamePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687FB293786F100CA51E3 /* DayNamePickerViewModel.swift */; };
 		345687FE29378AB900CA51E3 /* EnrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687FD29378AB900CA51E3 /* EnrollViewModel.swift */; };
 		34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34642AB52925D9E40052FA0E /* UserInfoView.swift */; };
 		347D258B292C60F40038FCA2 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258A292C60F40038FCA2 /* StatusView.swift */; };
@@ -217,7 +216,6 @@
 		345687F52937430200CA51E3 /* PlanDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDatePickerView.swift; sourceTree = "<group>"; };
 		345687F729374D2500CA51E3 /* DayNamePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNamePickerView.swift; sourceTree = "<group>"; };
 		345687F92937815900CA51E3 /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
-		345687FB293786F100CA51E3 /* DayNamePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNamePickerViewModel.swift; sourceTree = "<group>"; };
 		345687FD29378AB900CA51E3 /* EnrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollViewModel.swift; sourceTree = "<group>"; };
 		34642AB52925D9E40052FA0E /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		347D258A292C60F40038FCA2 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -692,7 +690,6 @@
 			isa = PBXGroup;
 			children = (
 				34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */,
-				345687FB293786F100CA51E3 /* DayNamePickerViewModel.swift */,
 				345687FD29378AB900CA51E3 /* EnrollViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1230,7 +1227,6 @@
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
 				3499552B29236041007AB99E /* BrowseViewModel.swift in Sources */,
 				34113BED2934BD3D00AB4919 /* TextFieldForm.swift in Sources */,
-				345687FC293786F100CA51E3 /* DayNamePickerViewModel.swift in Sources */,
 				344A459A293DC495007A3D37 /* EnrollUseCase.swift in Sources */,
 				3449AD5B2922164B00B87619 /* Quest.swift in Sources */,
 				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
