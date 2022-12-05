@@ -11,8 +11,8 @@ import RxSwift
 import RxRelay
 
 final class DayNamePickerViewModel {
-    private var selectedDay = [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false]
-    private(set) var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false])
+    private var selectedDay = [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false]
+    private(set) var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false])
     private var disposableBag = DisposeBag()
     
     init() { /** usecase injection goes here if needed. */}
@@ -26,7 +26,6 @@ final class DayNamePickerViewModel {
     }
     
     func transform(input: Input) -> Output {
-        print("transform start")
         let switchButtonStatus = input
             .buttonDidClicked
             .map(didClicked(by:))
