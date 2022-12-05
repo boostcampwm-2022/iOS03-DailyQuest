@@ -99,23 +99,28 @@ final class EnrollViewController: UIViewController {
     }
     
     func bind() {
+        let titleDidChanged = titleField.rx.text.orEmpty.asObservable()
         let startDateDidSet = startDate.datePicker.rx.date.asObservable()
-        
         let endDateDidSet = endDate.datePicker.rx.date.asObservable()
-
-        let taps = daysPicker.buttons.enumerated().map { index, button in
-            button.rx.tap.map { _ in index + 1 }
-        }
+        let quantityDidSet = quantityView.quantityField.rx.text.orEmpty.asObservable()
+        let submitButtonDidClicked = submitButton.rx.tap.asObservable()
+        
+        let taps = daysPicker
+            .buttons
+            .enumerated()
+            .map { index, button in
+                button.rx.tap.map { _ in index + 1 }
+            }
+        
         let dayButtonDidClicked = Observable.from(taps).merge()
         
         let output = viewModel.transform(
             input: EnrollViewModel.Input(
-                titleDidChanged: titleField.rx.text.orEmpty.asObservable(),
+                titleDidChanged: titleDidChanged,
                 startDateDidSet: startDateDidSet,
                 endDateDidSet: endDateDidSet,
-                quantityDidSet: quantityView.quantityField.rx.text.orEmpty
-                    .asObservable(),
-                submitButtonDidClicked: submitButton.rx.tap.asObservable(),
+                quantityDidSet: quantityDidSet,
+                submitButtonDidClicked: submitButtonDidClicked,
                 dayButtonDidClicked: dayButtonDidClicked
             )
         )
