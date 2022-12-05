@@ -45,29 +45,5 @@ final class DayNamePickerView: UIStackView {
             self.addArrangedSubview(button)
         }
     }
-    
-    func bind(with viewModel: DayNamePickerViewModel, disposeBag: DisposeBag) {
-        let taps = buttons.enumerated().map { index, button in
-            button.rx.tap.map { _ in index + 1 }
-        }
-        
-        let input = Observable.from(taps).merge()
-        let output = viewModel
-            .transform(
-                input: DayNamePickerViewModel.Input(buttonDidClicked: input)
-            )
-        
-        output
-            .switchButtonStatus
-            .subscribe(onNext: { [weak self] index, isSelected in
-                guard let isSelected = isSelected else { return }
-                if isSelected {
-                    self?.buttons[index-1].configuration?.baseBackgroundColor = .maxYellow
-                } else {
-                    self?.buttons[index-1].configuration?.baseBackgroundColor = .maxLightYellow
-                }
-            })
-            .disposed(by: disposeBag)
-    }
 }
 
