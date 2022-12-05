@@ -103,6 +103,7 @@
 		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD368293DEED600E0DC8A /* FriendViewController.swift */; };
 		34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34FEFB982935EA6D00954A40 /* Kingfisher */; };
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
@@ -258,6 +259,7 @@
 		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
+		34FCD368293DEED600E0DC8A /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseRepository.swift; sourceTree = "<group>"; };
 		9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 		3449AD5E292219D600B87619 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				34FCD367293DEEBC00E0DC8A /* ViewController */,
 				3499551C292332DE007AB99E /* Cells */,
 				B50078D529222F3F0070AFC4 /* CircleCheckView.swift */,
 				3499551F29234637007AB99E /* CustomProgressBar.swift */,
@@ -813,6 +816,14 @@
 				345687F92937815900CA51E3 /* QuantityView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		34FCD367293DEEBC00E0DC8A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34FCD368293DEED600E0DC8A /* FriendViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		34FF6BF3292B7FF7002AFD4D /* Frameworks */ = {
@@ -1215,6 +1226,7 @@
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */,
+				34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */,
 				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
 				9BD8CCF72935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift in Sources */,
 				A51F01D029233C510031ECA2 /* UserInfoEntity+Mapping.swift in Sources */,
