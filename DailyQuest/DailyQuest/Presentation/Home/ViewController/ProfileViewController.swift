@@ -14,9 +14,9 @@ class ProfileViewController: UIViewController {
     // 이미지뷰 크기를 알기 위해 backgroundColor 넣어둠
     private lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
-        backgroundImage.image = UIImage(systemName: "photo")
-        backgroundImage.contentMode = .scaleAspectFill
-        backgroundImage.backgroundColor = .red
+        backgroundImage.image = UIImage(named: "defaultBackground")
+        backgroundImage.contentMode = .scaleToFill
+        //backgroundImage.backgroundColor = .red
         return backgroundImage
     }()
     
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "name"
-        nameLabel.textColor = .white
+        nameLabel.textColor = .maxViolet
         nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         return nameLabel
     }()
@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController {
     private lazy var introduceLabel: UILabel = {
         let introduceLabel = UILabel()
         introduceLabel.text = "한 줄 소개"
-        introduceLabel.textColor = .white
+        introduceLabel.textColor = .maxViolet
         introduceLabel.font = UIFont.systemFont(ofSize: 13)
         return introduceLabel
     }()
@@ -77,7 +77,7 @@ class ProfileViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(100)
             make.height.equalTo(100)
-            make.top.equalTo(backgroundImage.snp.top).offset(50)
+            make.top.equalTo(backgroundImage.snp.bottom).offset(-50)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController {
         
         deleteButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(backgroundImage.snp.bottom).offset(30)
+            make.top.equalTo(introduceLabel.snp.bottom).offset(10)
             make.height.equalTo(50)
             make.width.equalTo(300)
         }
