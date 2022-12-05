@@ -51,10 +51,6 @@ final class QuestViewHeader: UIStackView {
         addArrangedSubview(plusButton)
     }
     
-    /**
-     버튼이 클릭되면 `buttonDidClick` subject가 이벤트를 방출합니다.
-     눌려졌다는 정보만 있으면 되므로, output type은 Void입니다.
-     */
     private func bind() {
         plusButton.rx.tap
             .subscribe(onNext: { [weak self] _ in

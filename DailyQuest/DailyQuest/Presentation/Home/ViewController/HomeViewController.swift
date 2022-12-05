@@ -82,13 +82,6 @@ final class HomeViewController: UIViewController {
     private func bind() {
         questView.bind()
         
-        /**
-         Header에서 버튼이 눌려졌는지를 수신하고 있습니다.
-         버튼이 눌러지면 bind내의 클로저가 실행되고, 이는 다시 coordinatorPublisher가 이벤트를 방출하게 합니다.
-         이 버튼이 눌러졌을 때에는 퀘스트를 추가하는 화면이 띄워져야 하므로, 이벤트의 종류는 .`showAddQuestsFlow`입니다.
-         Note. Combine에서는 `assign(to:)` 오퍼레이터 메서드를 사용하면 이 위치에서 cancellable을 반환하지 않고(rx에서는 disposable)
-         이벤트를 연계해줄 수 있지만, rx에서는 동일한 역할을 해주는 오퍼레이터가 없어서 disposableBag에 `Disposable`을 담아주는 것에 유념해주세요.
-         */
         questViewHeader
             .buttonDidClick
             .bind(onNext: { [weak self] _ in
