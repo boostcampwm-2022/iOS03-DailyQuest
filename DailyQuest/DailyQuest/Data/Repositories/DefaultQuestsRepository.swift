@@ -31,8 +31,6 @@ extension DefaultQuestsRepository: QuestsRepository {
             }
                 .map { $0.toDomain() }
                 .toArray()
-                .asObservable()
-                .asSingle()
         }
     }
 
@@ -77,8 +75,6 @@ extension DefaultQuestsRepository: QuestsRepository {
             }
                 .map { $0.toDomain() }
                 .toArray()
-                .asObservable()
-                .asSingle()
         }
     }
 
