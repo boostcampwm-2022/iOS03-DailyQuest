@@ -145,6 +145,7 @@
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
 		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
 		A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
+		A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
 		B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DFC0929227DA800C68A4B /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
@@ -294,6 +295,7 @@
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
 		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
 		A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryManager.swift; sourceTree = "<group>"; };
+		A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedUserRepository.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
 		B58DFC0929227DA800C68A4B /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -595,6 +597,7 @@
 				340A7245293455CE00B26AA6 /* AuthRepository.swift */,
 				34D8360029359C8A001DE9DF /* BrowseRepository.swift */,
 				3429084E29383D73001812B1 /* UserRepository.swift */,
+				A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1195,6 +1198,7 @@
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
 				9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */,
+				A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				347D258B292C60F40038FCA2 /* StatusView.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
