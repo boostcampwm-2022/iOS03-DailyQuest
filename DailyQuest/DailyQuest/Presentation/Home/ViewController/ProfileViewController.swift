@@ -11,6 +11,7 @@ import Kingfisher
 
 class ProfileViewController: UIViewController {
     
+    // 이미지뷰 크기를 알기 위해 backgroundColor 넣어둠
     private lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.image = UIImage(systemName: "photo")
@@ -47,8 +48,8 @@ class ProfileViewController: UIViewController {
     private lazy var deleteButton: UIButton = {
         let deleteButton = UIButton()
         deleteButton.setTitle("탈퇴하기", for: .normal)
-        deleteButton.setTitleColor(.black, for: .normal)
-        deleteButton.layer.borderWidth = 1
+        deleteButton.setTitleColor(.maxViolet, for: .normal)
+        deleteButton.backgroundColor = .maxYellow
         deleteButton.layer.cornerRadius = 10
         return deleteButton
     }()
