@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 final class DayNamePickerView: UIStackView {
-    private lazy var buttons: [UIButton] = {
+    private(set) lazy var buttons: [UIButton] = {
         let days = ["S", "M", "T", "W", "T", "F", "S"]
 
         return days.map { day in
@@ -48,7 +48,7 @@ final class DayNamePickerView: UIStackView {
     
     func bind(with viewModel: DayNamePickerViewModel, disposeBag: DisposeBag) {
         let taps = buttons.enumerated().map { index, button in
-            button.rx.tap.map { _ in index }
+            button.rx.tap.map { _ in index + 1 }
         }
         
         let input = Observable.from(taps).merge()
@@ -62,9 +62,9 @@ final class DayNamePickerView: UIStackView {
             .subscribe(onNext: { [weak self] index, isSelected in
                 guard let isSelected = isSelected else { return }
                 if isSelected {
-                    self?.buttons[index].configuration?.baseBackgroundColor = .maxYellow
+                    self?.buttons[index-1].configuration?.baseBackgroundColor = .maxYellow
                 } else {
-                    self?.buttons[index].configuration?.baseBackgroundColor = .maxLightYellow
+                    self?.buttons[index-1].configuration?.baseBackgroundColor = .maxLightYellow
                 }
             })
             .disposed(by: disposeBag)
