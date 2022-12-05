@@ -42,7 +42,7 @@ extension RealmUserInfoStorage: UserInfoStorage {
         }
     }
 
-    func saveUserInfo(user: User) -> Single<User> {
+    func updateUserInfo(user: User) -> Single<User> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
@@ -52,7 +52,7 @@ extension RealmUserInfoStorage: UserInfoStorage {
 
             do {
                 // update 성공했을 경우, success(user)
-                try realmStorage.saveEntity(entity: userInfo)
+                try realmStorage.updateEntity(entity: userInfo)
                 single(.success(user))
             } catch let error {
                 // update 성공하지 못했을 경우, failure(error)
@@ -63,5 +63,25 @@ extension RealmUserInfoStorage: UserInfoStorage {
         }
     }
 
+    func deleteUserInfo() -> Single<User> {
+        return Single.create { [weak self] single in
+            guard let realmStorage = self?.realmStorage else {
+                return Disposables.create()
+            }
+
+            do {
+                // update 성공했을 경우, success(user)
+                guard let user = try realmStorage.deleteAllEntity(type: UserInfoEntity.self).first?.toDomain() else {
+                    throw RealmStorageError.noDataError
+                }
+                single(.success(user))
+            } catch let error {
+                // update 성공하지 못했을 경우, failure(error)
+                single(.failure(RealmStorageError.saveError(error)))
+            }
+
+            return Disposables.create()
+        }
+    }
 
 }

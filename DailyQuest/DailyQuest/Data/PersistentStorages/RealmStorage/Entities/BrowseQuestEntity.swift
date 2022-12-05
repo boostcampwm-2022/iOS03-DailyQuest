@@ -12,16 +12,20 @@ final class BrowseQuestEntity: Object {
     @Persisted var uuid: String
     @Persisted var nickName: String
     @Persisted var profileImageURL: String
-    @Persisted var quests: List<QuestEntity>
+    @Persisted var quests: List<SubQuestEntity>
 
     override init() { }
         
-    init(uuid: String, nickName: String, profileImageURL: String, quests: [QuestEntity]) {
+    init(uuid: String, nickName: String, profileImageURL: String, quests: [SubQuestEntity]) {
         self.uuid = uuid
         self.nickName = nickName
         self.profileImageURL = profileImageURL
-        let realmList = List<QuestEntity>()
+        let realmList = List<SubQuestEntity>()
         realmList.append(objectsIn: quests)
         self.quests = realmList
+    }
+    
+    override class func primaryKey() -> String? {
+        "uuid"
     }
 }

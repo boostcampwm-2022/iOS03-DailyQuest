@@ -9,9 +9,11 @@ import UIKit
 
 final class BrowseSceneDIContainer {
     
+    lazy var browseQuestsStorage: BrowseQuestsStorage = RealmBrowseQuestsStorage()
+    
     // MARK: - Repositories
     func makeBrowseRepository() -> BrowseRepository {
-        return BrowseMockRepo()
+        return DefaultBrowseRepository(persistentStorage: browseQuestsStorage)
     }
     
     // MARK: - Use Cases

@@ -55,4 +55,6 @@ protocol QuestsRepository {
      - Returns: 성공시 해당 Quest 배열을, 실패시 error를 방출하는 Observable입니다.
      */
     func deleteAll(with groupId: UUID) -> Single<[Quest]>
+    
+    func fetch(by uuid: String) -> Observable<[Quest]>
 }
