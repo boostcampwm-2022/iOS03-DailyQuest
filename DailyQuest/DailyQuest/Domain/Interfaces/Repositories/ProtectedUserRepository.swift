@@ -5,7 +5,7 @@
 //  Created by 이전희 on 2022/12/05.
 //
 
-import Foundation
+import RxSwift
 
 protocol ProtectedUserRepository {
     /// 유저정보를 삭제합니다.
