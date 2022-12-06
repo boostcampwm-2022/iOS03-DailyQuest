@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+import RxSwift
+
+protocol SettingsUseCase {
+    func isLoggedIn() -> Observable<Bool>
+    func signOut() -> Observable<Bool>
+}
