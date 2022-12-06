@@ -77,6 +77,7 @@ final class RealmStorage {
         return entity
     }
 
+    @discardableResult
     func deleteAllEntity<O: Object>(type: O.Type) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             print(#function)
