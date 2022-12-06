@@ -154,10 +154,9 @@ final class EnrollViewController: UIViewController {
     private func bindToDismiss(output: EnrollViewModel.Output) {
         output
             .enrollResult
-            .bind(onNext: { [weak self] result in
-                if result {
-                    self?.dismiss(animated: true)
-                }
+            .filter({ $0 })
+            .bind(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
             })
             .disposed(by: disposableBag)
     }
