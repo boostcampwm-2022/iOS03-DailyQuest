@@ -10,6 +10,10 @@ import Foundation
 import RxSwift
 
 final class QuestUseCaseMock: QuestUseCase {
+    func update(with quest: Quest) -> RxSwift.Observable<Bool> {
+        .just(true)
+    }
+    
     let quests = [
         Quest.stub(groupId: UUID(),
                    uuid: UUID(),

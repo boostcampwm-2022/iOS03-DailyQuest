@@ -11,12 +11,7 @@ import RxSwift
 import RxCocoa
 
 final class DayNamePickerView: UIStackView {
-    private var selectedDay = [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false]
-    private(set) var selectedDayObservable = BehaviorRelay<[Int: Bool]>(value: [0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false])
-    
-    private var disposableBag = DisposeBag()
-    
-    private lazy var buttons: [UIButton] = {
+    private(set) lazy var buttons: [UIButton] = {
         let days = ["S", "M", "T", "W", "T", "F", "S"]
 
         return days.map { day in
@@ -35,8 +30,6 @@ final class DayNamePickerView: UIStackView {
         super.init(frame: frame)
         
         configureUI()
-        
-        bind()
     }
     
     required init(coder: NSCoder) {
@@ -51,27 +44,6 @@ final class DayNamePickerView: UIStackView {
         buttons.forEach { button in
             self.addArrangedSubview(button)
         }
-    }
-    
-    private func bind() {
-        let taps = buttons.enumerated().map { index, button in
-            button.rx.tap.map { _ in index }
-        }
-        
-        Observable.from(taps).merge()
-            .withUnretained(self)
-            .subscribe(onNext: { (owner, value) in
-                owner.selectedDay[value]?.toggle()
-                owner.selectedDayObservable.accept(owner.selectedDay)
-                
-                guard let isSelected = owner.selectedDay[value] else { return }
-                if isSelected {
-                    owner.buttons[value].configuration?.baseBackgroundColor = .maxYellow
-                } else {
-                    owner.buttons[value].configuration?.baseBackgroundColor = .maxLightYellow
-                }
-            })
-            .disposed(by: disposableBag)
     }
 }
 

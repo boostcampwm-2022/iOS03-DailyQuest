@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class QuantityView: UIView {
     
     private lazy var titleLabel: UILabel = {
@@ -17,10 +20,11 @@ final class QuantityView: UIView {
         return titleLabel
     }()
     
-    private lazy var quantityField: UITextField = {
+    private(set) lazy var quantityField: UITextField = {
         let quantityField = UITextField()
         quantityField.textAlignment = .right
         quantityField.placeholder = "0"
+        quantityField.keyboardType = .numberPad
         
         return quantityField
     }()
@@ -29,8 +33,6 @@ final class QuantityView: UIView {
         super.init(frame: frame)
         
         configureUI()
-        
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -52,9 +54,5 @@ final class QuantityView: UIView {
             make.top.trailing.bottom.equalToSuperview().inset(15)
             make.width.equalToSuperview().multipliedBy(0.3)
         }
-    }
-    
-    private func bind() {
-        
     }
 }

@@ -25,7 +25,7 @@ protocol NetworkService {
     func signOut() -> Single<Bool>
 
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter?) -> Observable<T>
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: DateFilter?) -> Observable<T>
     func update<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func delete<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
 
