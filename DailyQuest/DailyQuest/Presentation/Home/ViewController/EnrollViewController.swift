@@ -12,8 +12,6 @@ import RxCocoa
 import SnapKit
 
 final class EnrollViewController: UIViewController {
-    private(set) var coordinatorPublisher = PublishSubject<Event>()
-    
     private var viewModel: EnrollViewModel!
     private var disposableBag = DisposeBag()
     
@@ -129,7 +127,7 @@ final class EnrollViewController: UIViewController {
         
         bindToSubmitButton(output: output)
         bindToDayNamePickerView(output: output)
-        bindToCoordinatorPublisher(output: output)
+        bindToDismiss(output: output)
     }
     
     private func bindToSubmitButton(output: EnrollViewModel.Output) {
@@ -153,17 +151,14 @@ final class EnrollViewController: UIViewController {
             .disposed(by: disposableBag)
     }
     
-    private func bindToCoordinatorPublisher(output: EnrollViewModel.Output) {
+    private func bindToDismiss(output: EnrollViewModel.Output) {
         output
             .enrollResult
-            .map { result in
+            .bind(onNext: { [weak self] result in
                 if result {
-                    return Event.success
-                } else {
-                    return Event.fail
+                    self?.dismiss(animated: true)
                 }
-            }
-            .bind(to: coordinatorPublisher)
+            })
             .disposed(by: disposableBag)
     }
 }
