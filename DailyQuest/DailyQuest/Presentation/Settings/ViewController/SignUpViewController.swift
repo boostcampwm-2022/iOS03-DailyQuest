@@ -60,7 +60,7 @@ final class SignUpViewController: UIViewController {
     }()
 
     // MARK: Life Cycle
-    static func create(with viewModel: LoginViewModel) -> SignUpViewController {
+    static func create(with viewModel: SignUpViewModel) -> SignUpViewController {
         let vc = SignUpViewController()
         vc.setup(with: viewModel)
         return vc
@@ -123,17 +123,3 @@ extension SignUpViewController {
             .disposed(by: disposableBag)
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct SignUpViewControllerPreview: PreviewProvider{
-    static var previews: some View {
-        UIViewPreview {
-            let view = SignUpViewController().view!
-            return view
-        }
-        .previewLayout(.fixed(width: 500, height: 100))
-    }
-}
-#endif
