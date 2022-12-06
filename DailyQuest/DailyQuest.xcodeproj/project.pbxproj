@@ -126,6 +126,8 @@
 		9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */; };
 		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
 		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
+		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
+		A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */; };
 		A50DE911292B74C500E1FD60 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
@@ -325,6 +327,8 @@
 		9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFollowingCell.swift; sourceTree = "<group>"; };
 		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		A5003AB5293F601E00082A9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A5003AB8293F909300082A9C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserUseCase.swift; sourceTree = "<group>"; };
 		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
 		A50DE910292B74C500E1FD60 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		A50F9A3329266F45005C00FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -445,6 +449,7 @@
 				3416FC86292B54BF00B504C5 /* Protocols */,
 				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
 				34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */,
+				A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 			children = (
 				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
 				344A4599293DC495007A3D37 /* EnrollUseCase.swift */,
+				A5003AB8293F909300082A9C /* UserUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1289,6 +1295,7 @@
 				342830FD292E2AF200AE811B /* NavigateField.swift in Sources */,
 				342830F2292E196E00AE811B /* CommonField.swift in Sources */,
 				342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */,
+				A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */,
 				342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
@@ -1327,6 +1334,7 @@
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */,
 				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
+				A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
