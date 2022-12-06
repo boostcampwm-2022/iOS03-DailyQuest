@@ -51,8 +51,12 @@ extension DefaultUserRepository: UserRepository {
                 .map { _ in true }
         }
     }
-    
+
     func fetchUser(by uuid: String) -> Observable<User> {
-        .just(User(uuid: "", nickName: "", profileURL: "", backgroundImageURL: "", description: "", allow: true))
+        return self.networkService.read(type: UserDTO.self,
+                                        userCase: .anotherUser(uuid),
+                                        access: .userInfo,
+                                        filter: nil)
+            .map { $0.toDomain() }
     }
 }
