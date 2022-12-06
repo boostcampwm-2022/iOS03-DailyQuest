@@ -33,7 +33,7 @@ final class SignUpViewController: UIViewController {
 
     private lazy var passwordField: TextFieldForm = {
         let passwordField = TextFieldForm()
-        passwordField.placeholder = "password"
+        passwordField.placeholder = "password (6글자 이상)"
         passwordField.isSecureTextEntry = true
         
         return passwordField
