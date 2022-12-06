@@ -54,10 +54,34 @@ final class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-    enum Event {
-        case showLoginFlow
+    func showAlert(preferredStyle: UIAlertController.Style = .alert,
+                   completion: (() -> Void)? = nil)
+    {
+        let title = "로그아웃"
+        let message = "로그아웃 하시겠습니까?"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            self?.signOut()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: completion)
     }
     
+    private func signOut() {
+        viewModel
+            .signOut()
+            .subscribe()
+            .disposed(by: disposableBag)
+    }
+}
+
+extension SettingsViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.fields.count
     }
@@ -75,10 +99,13 @@ extension SettingsViewController {
             case .login:
                 itemDidClick.onNext(.showLoginFlow)
             case .logout:
-                viewModel
-                    .signOut()
-                    .subscribe()
-                    .disposed(by: disposableBag)
+                showAlert()
         }
+    }
+}
+
+extension SettingsViewController {
+    enum Event {
+        case showLoginFlow
     }
 }
