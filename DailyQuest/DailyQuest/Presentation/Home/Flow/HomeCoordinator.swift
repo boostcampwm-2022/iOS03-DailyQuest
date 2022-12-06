@@ -49,8 +49,8 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     }
     
     func showAddQuestFlow() {
-        let addQuestsViewController = EnrollViewController()
-        navigationController.present(addQuestsViewController, animated: true)
+        let enrollViewController = homeSceneDIContainer.makeEnrollViewController()
+        navigationController.present(enrollViewController, animated: true)
     }
     
     func showAddFriendsFlow() {
