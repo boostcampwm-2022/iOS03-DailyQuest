@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     // 이미지뷰 크기를 알기 위해 backgroundColor 넣어둠
     private lazy var backgroundImage: UIImageView = {
@@ -96,9 +96,7 @@ class ProfileViewController: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(300)
         }
-        
     }
-    
 }
 
 #if canImport(SwiftUI) && DEBUG
