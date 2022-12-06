@@ -10,5 +10,5 @@ import Foundation
 struct NavigateItemViewModel {
     let title: String
     let imageName: String
-    let viewType: ViewType
+    var viewType: ViewType
 }
