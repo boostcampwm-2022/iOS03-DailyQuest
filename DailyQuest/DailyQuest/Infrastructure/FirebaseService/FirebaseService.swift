@@ -134,7 +134,7 @@ final class FirebaseService: NetworkService {
     ///   - access: quests / receiveQuests / userInfo
     ///   - condition: quests - today(date) / month(date) / year(date)
     /// - Returns: Observable<T>
-    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: NetworkDateFilter? = nil) -> Observable<T> {
+    func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: DateFilter? = nil) -> Observable<T> {
         return Observable<T>.create { [weak self] observer in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
@@ -302,11 +302,11 @@ final class FirebaseService: NetworkService {
                         return
                     }
                     StorageReference.downloadURL { (url, error) in
-                        guard let _ = url else {
+                        guard let downloadUrl = url else {
                             single(.failure(NetworkServiceError.noUrlError))
                             return
                         }
-                        single(.success(fileName))
+                        single(.success(downloadUrl.absoluteString))
                     }
                 }
             } catch let error {

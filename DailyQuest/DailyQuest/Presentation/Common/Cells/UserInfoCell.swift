@@ -14,12 +14,6 @@ final class UserInfoCell: UITableViewCell {
     static let reuseIdentifier = "UserInfoCell"
     
     // MARK: - Components
-    /**
-     이미지와 유저이름 레이블을 담기 위한 스택뷰입니다.
-     수평 스택뷰이며, 중앙 정렬을 통해 각 아이템을 수직축 기준으로 중앙에 위치시켰습니다.
-     Note. Color를 assets에 임의로 등록하였습니다. 동료들이 동일한 이름으로 동일한 색상을 등록할 수도 있으므로,
-     이는 회고시간에 반드시 언급해야 합니다.
-     */
     private lazy var container: UIStackView = {
         let container = UIStackView()
         container.axis = .horizontal
@@ -33,10 +27,6 @@ final class UserInfoCell: UITableViewCell {
         return container
     }()
     
-    /**
-     유저의 프로필 이미지가 들어갈 UIImageView입니다.
-     Note. 원형의 틀을 만들기 위해, render loop의 `layoutSubviews()`메서드를 오버라이드하였음에 유념하세요.
-     */
     private lazy var userImage: UIImageView = {
         let userImage = UIImageView()
         userImage.image = UIImage(systemName: "heart.fill")
@@ -46,9 +36,6 @@ final class UserInfoCell: UITableViewCell {
         return userImage
     }()
     
-    /**
-     유저의 닉네임이 들어갈 레이블입니다.
-     */
     private lazy var userName: UILabel = {
         let userName = UILabel()
         userName.text = " "
@@ -72,10 +59,6 @@ final class UserInfoCell: UITableViewCell {
         userImage.layer.cornerRadius = userImage.frame.height / 2
     }
     
-    /**
-     UI의 constraints를 설정하기 위한 메서드입니다.
-     constraints를 설정하기 전에, 해당 뷰를 먼저 add해야함을 유념하세요.
-     */
     private func configureUI() {
         container.addArrangedSubview(userImage)
         container.addArrangedSubview(userName)
@@ -90,13 +73,7 @@ final class UserInfoCell: UITableViewCell {
             make.width.equalTo(userImage.snp.height)
         }
     }
-    
-    /**
-     인자로 받은 Entity User타입을 통해 그 정보를 기반으로 cell에 아이템을 넣습니다.
-     
-     - Parameters:
-        - user: User타입의 엔티티입니다.
-     */
+
     func setup(with user: User) {
         userName.text = user.nickName
     }

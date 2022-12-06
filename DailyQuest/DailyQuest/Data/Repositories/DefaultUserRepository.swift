@@ -42,6 +42,16 @@ extension DefaultUserRepository: UserRepository {
         }
     }
 
+    func fetchUser(by uuid: String) -> Observable<User> {
+        return self.networkService.read(type: UserDTO.self,
+                                        userCase: .anotherUser(uuid),
+                                        access: .userInfo,
+                                        filter: nil)
+            .map { $0.toDomain() }
+    }
+}
+
+extension DefaultUserRepository: ProtectedUserRepository {
     func deleteUser() -> Observable<Bool> {
         return self.persistentStorage.deleteUserInfo()
             .map { _ in true }

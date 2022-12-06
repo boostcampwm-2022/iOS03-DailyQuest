@@ -11,7 +11,6 @@ import RxSwift
 import SnapKit
 
 final class PlanDatePickerView: UIView {
-    private(set) var date = PublishSubject<Date>()
     private var disposableBag = DisposeBag()
     
     private lazy var titleLabel: UILabel = {
@@ -22,7 +21,7 @@ final class PlanDatePickerView: UIView {
         return titleLabel
     }()
     
-    private lazy var datePicker: UIDatePicker = {
+    private(set) lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         
@@ -33,8 +32,6 @@ final class PlanDatePickerView: UIView {
         super.init(frame: frame)
         
         configureUI()
-        
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -55,14 +52,5 @@ final class PlanDatePickerView: UIView {
         datePicker.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(15)
         }
-    }
-    
-    private func bind() {
-        datePicker
-            .rx
-            .controlEvent(.valueChanged)
-            .withLatestFrom(datePicker.rx.date)
-            .bind(to: date)
-            .disposed(by: disposableBag)
     }
 }

@@ -10,6 +10,10 @@ import Foundation
 import RxSwift
 
 final class QuestRepositoryMock: QuestsRepository {
+    func fetch(by uuid: String, date: Date) -> RxSwift.Observable<[Quest]> {
+        .just([])
+    }
+    
     let quests = [
         Quest.stub(groupId: UUID(),
                    uuid: UUID(),

@@ -33,12 +33,6 @@ enum CRUD {
     case delete
 }
 
-enum NetworkDateFilter {
-    case today(_ date: Date)
-    case month(_ date: Date)
-    case year(_date: Date)
-}
-
 enum StoragePath {
     case profileImages
     case backgroundImages

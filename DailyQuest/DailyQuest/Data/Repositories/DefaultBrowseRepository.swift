@@ -13,9 +13,14 @@ final class DefaultBrowseRepository {
     private let persistentStorage: BrowseQuestsStorage
     private let networkService: NetworkService
 
-    init(persistentStorage: BrowseQuestsStorage, networkService: NetworkService) {
+    private let disposeBag: DisposeBag
+
+    init(persistentStorage: BrowseQuestsStorage,
+         networkService: NetworkService = FirebaseService.shared,
+         repositoryManager: RepositoryManager = RepositoryManager.shared) {
         self.persistentStorage = persistentStorage
         self.networkService = networkService
+        self.disposeBag = repositoryManager.disposeBag
     }
 }
 
@@ -41,11 +46,8 @@ extension DefaultBrowseRepository: BrowseRepository {
             .filter { !$0.quests.isEmpty }
             .toArray()
             .asObservable()
-            .catch { error in
-            return self.persistentStorage.fetchBrowseQuests()
-        }
             .do(afterNext: { browseQuests in
-            _ = self.persistentStorage.deleteBrowseQuests()
+            self.persistentStorage.deleteBrowseQuests()
                 .asObservable()
                 .concatMap { _ in
                 Observable.from(browseQuests)
@@ -56,17 +58,10 @@ extension DefaultBrowseRepository: BrowseRepository {
             }
                 .subscribe(onError: { error in
                 print(error)
-            })
+                }).disposed(by: self.disposeBag)
         })
-    }
-}
-
-extension DefaultBrowseRepository {
-    static func test() {
-        let browseRepository = DefaultBrowseRepository(persistentStorage: RealmBrowseQuestsStorage(), networkService: FirebaseService.shared)
-        let fetchBrowseQuestsObserver = browseRepository.fetch()
-        _ = fetchBrowseQuestsObserver.subscribe { event in
-            print(event)
+            .catch { error in
+            return self.persistentStorage.fetchBrowseQuests()
         }
     }
 }
