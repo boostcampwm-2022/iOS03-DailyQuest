@@ -11,7 +11,7 @@ import RxSwift
 
 final class DefaultAuthUseCase {
     private let authRepository: AuthRepository
-    
+
     init(authRepository: AuthRepository) {
         self.authRepository = authRepository
     }
@@ -22,17 +22,26 @@ extension DefaultAuthUseCase: AuthUseCase {
         return authRepository
             .signIn(email: email, password: password)
             .catch { _ in
-                return .just(false)
-            }
+            return .just(false)
+        }
             .asObservable()
     }
-    
+
     func signOut() -> Observable<Bool> {
         return authRepository
             .signOut()
             .catch { _ in
-                return .just(false)
-            }
+            return .just(false)
+        }
+            .asObservable()
+    }
+
+    func signUp(email: String, password: String, user: User) -> Observable<Bool> {
+        return authRepository
+            .signUp(email: email, password: password, user: user)
+            .catch { _ in
+            return .just(false)
+        }
             .asObservable()
     }
 }

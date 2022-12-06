@@ -32,6 +32,15 @@ struct UserDTO: DTO {
         self.description = user.description
         self.allow = user.allow
     }
+
+    init(uuid: String, userDto: UserDTO) {
+        self.uuid = uuid
+        self.nickName = userDto.nickName
+        self.profileURL = userDto.profileURL
+        self.backgroundImageURL = userDto.backgroundImageURL
+        self.description = userDto.description
+        self.allow = userDto.allow
+    }
 }
 
 extension UserDTO {
