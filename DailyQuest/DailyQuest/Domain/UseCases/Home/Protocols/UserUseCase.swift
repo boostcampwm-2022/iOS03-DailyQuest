@@ -10,4 +10,6 @@ import RxSwift
 protocol UserUseCase {
     func fetch() -> Observable<User>
     func save(with user: User) -> Observable<User>
+    
+    func delete() -> Observable<Bool>
 }
