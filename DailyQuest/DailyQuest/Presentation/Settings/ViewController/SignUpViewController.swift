@@ -26,6 +26,7 @@ final class SignUpViewController: UIViewController {
     private lazy var emailField: TextFieldForm = {
         let emailField = TextFieldForm()
         emailField.placeholder = "email"
+        emailField.autocapitalizationType = .none
 
         return emailField
     }()
@@ -34,20 +35,21 @@ final class SignUpViewController: UIViewController {
         let passwordField = TextFieldForm()
         passwordField.placeholder = "password"
         passwordField.isSecureTextEntry = true
+        
         return passwordField
     }()
 
     private lazy var passwordConfirmField: TextFieldForm = {
         let passwordConfirmField = TextFieldForm()
         passwordConfirmField.placeholder = "password 확인"
-        passwordField.isSecureTextEntry = true
+        passwordConfirmField.isSecureTextEntry = true
         return passwordConfirmField
     }()
 
     private lazy var nickNameField: TextFieldForm = {
         let nickNameField = TextFieldForm()
         nickNameField.placeholder = "닉네임"
-
+        emailField.autocapitalizationType = .none
         return nickNameField
     }()
 
@@ -78,11 +80,11 @@ final class SignUpViewController: UIViewController {
         view.backgroundColor = .white
 
         [emailField,
-         passwordField,
-         passwordConfirmField,
-         nickNameField,
-         submitButton].forEach { field in
-            container.addArrangedSubview(view)
+            passwordField,
+            passwordConfirmField,
+            nickNameField,
+            submitButton].forEach { field in
+            container.addArrangedSubview(field)
         }
 
         view.addSubview(container)
