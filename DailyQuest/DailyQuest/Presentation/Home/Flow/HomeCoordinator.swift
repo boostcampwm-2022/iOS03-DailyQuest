@@ -50,17 +50,5 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func showAddQuestFlow() {
         let enrollViewController = homeSceneDIContainer.makeEnrollViewController()
         navigationController.present(enrollViewController, animated: true)
-        
-        enrollViewController
-            .coordinatorPublisher
-            .bind(onNext: { event in
-                switch event {
-                    case .success:
-                        enrollViewController.dismiss(animated: true)
-                    case .fail:
-                        break
-                }
-            })
-            .disposed(by: disposableBag)
     }
 }
