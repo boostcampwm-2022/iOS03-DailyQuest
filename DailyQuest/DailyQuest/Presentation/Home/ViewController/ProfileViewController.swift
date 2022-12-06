@@ -7,16 +7,18 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
+import RxSwift
+import RxCocoa
 
 final class ProfileViewController: UIViewController {
     
-    // 이미지뷰 크기를 알기 위해 backgroundColor 넣어둠
+    private var viewModel: ProfileViewModel!
+    private var disposableBag = DisposeBag()
+    
     private lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.image = UIImage(named: "defaultBackground")
         backgroundImage.contentMode = .scaleToFill
-        //backgroundImage.backgroundColor = .red
         return backgroundImage
     }()
     
@@ -45,7 +47,7 @@ final class ProfileViewController: UIViewController {
         return introduceLabel
     }()
     
-    private lazy var deleteButton: UIButton = {
+    private lazy var deleteUserButton: UIButton = {
         let deleteButton = UIButton()
         deleteButton.setTitle("탈퇴하기", for: .normal)
         deleteButton.setTitleColor(.maxViolet, for: .normal)
@@ -54,11 +56,17 @@ final class ProfileViewController: UIViewController {
         return deleteButton
     }()
     
-    
+    // MARK: - Life Cycle
+    static func create(with viewModel: ProfileViewModel) -> ProfileViewController {
+        let vc = ProfileViewController()
+        vc.viewModel = viewModel
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
     }
     
     private func configureUI() {
@@ -66,7 +74,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(userImage)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
-        view.addSubview(deleteButton)
+        view.addSubview(deleteUserButton)
         
         backgroundImage.snp.makeConstraints { make in
             make.width.equalToSuperview()
@@ -90,12 +98,27 @@ final class ProfileViewController: UIViewController {
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
         }
         
-        deleteButton.snp.makeConstraints { make in
+        deleteUserButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(introduceLabel.snp.bottom).offset(10)
             make.height.equalTo(50)
             make.width.equalTo(300)
         }
+    }
+    
+    func bind() {
+        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButton.rx.tap.asObservable())
+        let output = viewModel.transform(input: input)
+
+        output
+            .data
+            .drive(onNext: { user in
+                userImage.setImage(with: user.profileURL)
+                backgroundImage.setImage(with: user.backgroundImageURL)
+                nameLabel.text = user.nickName
+                introduceLabel.text = user.description
+            } )
+            .disposed(by: disposableBag)
     }
 }
 
