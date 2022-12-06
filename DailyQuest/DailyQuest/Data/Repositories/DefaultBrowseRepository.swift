@@ -12,15 +12,12 @@ final class DefaultBrowseRepository {
 
     private let persistentStorage: BrowseQuestsStorage
     private let networkService: NetworkService
-
-    private let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag = DisposeBag()
 
     init(persistentStorage: BrowseQuestsStorage,
-         networkService: NetworkService = FirebaseService.shared,
-         repositoryManager: RepositoryManager = RepositoryManager.shared) {
+         networkService: NetworkService = FirebaseService.shared) {
         self.persistentStorage = persistentStorage
         self.networkService = networkService
-        self.disposeBag = repositoryManager.disposeBag
     }
 }
 
