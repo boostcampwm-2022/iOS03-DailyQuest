@@ -51,12 +51,6 @@ extension DefaultQuestsRepository: QuestsRepository {
             .flatMap(updateNetworkService(quest:))
     }
     
-    private func updateNetworkService(quest: Quest) -> Single<Quest> {
-        return networkService.update(userCase: .currentUser, access: .quests, dto: quest.toDTO())
-            .map { $0.toDomain() }
-            .catchAndReturn(quest)
-    }
-    
     func delete(with questId: UUID) -> Single<Quest> {
         return persistentStorage.deleteQuest(with: questId)
             .flatMap { quest in
@@ -89,5 +83,13 @@ extension DefaultQuestsRepository: QuestsRepository {
         .map { $0.toDomain() }
         .toArray()
         .asObservable()
+    }
+}
+
+private extension DefaultQuestsRepository {
+    func updateNetworkService(quest: Quest) -> Single<Quest> {
+        return networkService.update(userCase: .currentUser, access: .quests, dto: quest.toDTO())
+            .map { $0.toDomain() }
+            .catchAndReturn(quest)
     }
 }
