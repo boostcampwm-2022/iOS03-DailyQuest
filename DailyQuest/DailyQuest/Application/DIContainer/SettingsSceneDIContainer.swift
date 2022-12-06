@@ -24,9 +24,17 @@ final class SettingsSceneDIContainer {
         return LoginViewModel(authUseCase: makeAuthUseCase())
     }
     
+    func makeSignUpViewModel() -> SignUpViewModel {
+        return SignUpViewModel(authUseCase: makeAuthUseCase())
+    }
+    
     // MARK: - View Controller
     func makeLoginViewController() -> LoginViewController {
         return LoginViewController.create(with: makeLoginViewModel())
+    }
+    
+    func makeSignUpViewController() -> SignUpViewController {
+        return SignUpViewController.create(with: makeSignUpViewModel())
     }
     
     // MARK: - Flow

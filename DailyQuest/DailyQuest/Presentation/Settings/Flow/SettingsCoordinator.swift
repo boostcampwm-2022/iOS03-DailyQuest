@@ -46,4 +46,9 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
         let loginViewController = settingsSceneDIContainer.makeLoginViewController()
         navigationController.pushViewController(loginViewController, animated: true)
     }
+    
+    func showSignUpFlow() {
+        let signUpViewControllser = settingsSceneDIContainer.makeSignUpViewController()
+        navigationController.pushViewController(signUpViewControllser, animated: true)
+    }
 }
