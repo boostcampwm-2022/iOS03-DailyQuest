@@ -28,10 +28,10 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
     }
     
     func start() {
-        let settingsController = SettingsViewController()
-        navigationController.pushViewController(settingsController, animated: false)
+        let settingsViewController = settingsSceneDIContainer.makeSettingsViewController()
+        navigationController.pushViewController(settingsViewController, animated: false)
         
-        settingsController
+        settingsViewController
             .itemDidClick
             .bind(onNext: { [weak self] event in
                 switch event {
