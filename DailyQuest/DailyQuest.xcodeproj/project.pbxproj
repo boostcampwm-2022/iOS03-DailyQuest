@@ -147,6 +147,45 @@
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
 		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
+		A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
+		A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */; };
+		A5D3C828293DDEBE00F43B76 /* QuestsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */; };
+		A5D3C829293DDF8A00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
+		A5D3C82A293DDF8E00F43B76 /* UserDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */; };
+		A5D3C82B293DDF9000F43B76 /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
+		A5D3C82C293DDF9200F43B76 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
+		A5D3C82D293DDF9400F43B76 /* BrowseQuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF62935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift */; };
+		A5D3C82F293DDF9800F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
+		A5D3C830293DDF9B00F43B76 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
+		A5D3C831293DDF9D00F43B76 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */; };
+		A5D3C832293DDFA000F43B76 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511228F29384FAF00384B4B /* DefaultUserRepository.swift */; };
+		A5D3C833293DDFA200F43B76 /* DefaultBrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */; };
+		A5D3C834293DDFA700F43B76 /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C72923392F0031ECA2 /* UserInfoStorage.swift */; };
+		A5D3C835293DDFA900F43B76 /* RealmUserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01CC29233ABB0031ECA2 /* RealmUserInfoStorage.swift */; };
+		A5D3C836293DDFAB00F43B76 /* UserInfoEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01CF29233C510031ECA2 /* UserInfoEntity+Mapping.swift */; };
+		A5D3C837293DDFB400F43B76 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5D3C838293DDFB600F43B76 /* QuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51189C229226E66008A9D33 /* QuestEntity+Mapping.swift */; };
+		A5D3C839293DDFBB00F43B76 /* BrowseQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01D2292340360031ECA2 /* BrowseQuestsStorage.swift */; };
+		A5D3C83A293DDFBE00F43B76 /* RealmBrowseQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01D7292343A80031ECA2 /* RealmBrowseQuestsStorage.swift */; };
+		A5D3C83B293DDFC000F43B76 /* BrowseQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01DC2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift */; };
+		A5D3C83C293DDFC400F43B76 /* SubQuestEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8C8372936ED0F00988C88 /* SubQuestEntity+Mapping.swift */; };
+		A5D3C83D293DDFCC00F43B76 /* QuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96DB292237C3003B7637 /* QuestEntity.swift */; };
+		A5D3C83E293DDFD000F43B76 /* UserInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01C92923397E0031ECA2 /* UserInfoEntity.swift */; };
+		A5D3C83F293DDFD200F43B76 /* BrowseQuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F01D42923407E0031ECA2 /* BrowseQuestEntity.swift */; };
+		A5D3C840293DDFD400F43B76 /* SubQuestEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8C8352936EC7E00988C88 /* SubQuestEntity.swift */; };
+		A5D3C841293DDFD600F43B76 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96D829223648003B7637 /* RealmStorage.swift */; };
+		A5D3C842293DDFDC00F43B76 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3329266F45005C00FE /* NetworkService.swift */; };
+		A5D3C843293DDFDE00F43B76 /* NetworkConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3E292679BC005C00FE /* NetworkConfigure.swift */; };
+		A5D3C844293DDFE100F43B76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3629266F6F005C00FE /* FirebaseService.swift */; };
+		A5D3C845293DDFEC00F43B76 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5656458292BBDD40033E763 /* String+.swift */; };
+		A5D3C846293DDFEF00F43B76 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
+		A5D3C847293DE06800F43B76 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3429084E29383D73001812B1 /* UserRepository.swift */; };
+		A5D3C848293DE06B00F43B76 /* ProtectedUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */; };
+		A5D3C84A293DF6D500F43B76 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C849293DF6D500F43B76 /* RealmSwift */; };
+		A5D3C84C293DF70B00F43B76 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C84B293DF70B00F43B76 /* FirebaseAuth */; };
+		A5D3C84E293DF70B00F43B76 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C84D293DF70B00F43B76 /* FirebaseDatabase */; };
+		A5D3C850293DF70B00F43B76 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C84F293DF70B00F43B76 /* FirebaseFirestoreSwift */; };
+		A5D3C852293DF70B00F43B76 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C851293DF70B00F43B76 /* FirebaseStorage */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
 		B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5115452292CD07100FDBD22 /* CalendarViewModel.swift */; };
 		B5833F732924C08900503E0D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5833F722924C08900503E0D /* CalendarView.swift */; };
@@ -300,6 +339,9 @@
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
 		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
+		A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryManager.swift; sourceTree = "<group>"; };
+		A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedUserRepository.swift; sourceTree = "<group>"; };
+		A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepositoryTests.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
 		B5115452292CD07100FDBD22 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		B5833F722924C08900503E0D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -329,8 +371,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D3C84E293DF70B00F43B76 /* FirebaseDatabase in Frameworks */,
+				A5D3C84A293DF6D500F43B76 /* RealmSwift in Frameworks */,
 				34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */,
 				34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */,
+				A5D3C852293DF70B00F43B76 /* FirebaseStorage in Frameworks */,
+				A5D3C84C293DF70B00F43B76 /* FirebaseAuth in Frameworks */,
+				A5D3C850293DF70B00F43B76 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +653,7 @@
 				340A7245293455CE00B26AA6 /* AuthRepository.swift */,
 				34D8360029359C8A001DE9DF /* BrowseRepository.swift */,
 				3429084E29383D73001812B1 /* UserRepository.swift */,
+				A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -757,6 +805,7 @@
 			children = (
 				340FDFD8292B61C200C4E3DC /* Presentation */,
 				3416FC8B292B58F600B504C5 /* Domain */,
+				A5D3C824293DDE8700F43B76 /* Data */,
 				3416FC8C292B592C00B504C5 /* Mocks */,
 			);
 			path = DailyQuestTests;
@@ -950,6 +999,7 @@
 		A5AC96D42922356E003B7637 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */,
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
 				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
 				A511228F29384FAF00384B4B /* DefaultUserRepository.swift */,
@@ -996,6 +1046,14 @@
 				A51189C029226DF7008A9D33 /* RealmStorage */,
 			);
 			path = QuestsStorage;
+			sourceTree = "<group>";
+		};
+		A5D3C824293DDE8700F43B76 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1048,6 +1106,11 @@
 			packageProductDependencies = (
 				34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */,
 				34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */,
+				A5D3C849293DF6D500F43B76 /* RealmSwift */,
+				A5D3C84B293DF70B00F43B76 /* FirebaseAuth */,
+				A5D3C84D293DF70B00F43B76 /* FirebaseDatabase */,
+				A5D3C84F293DF70B00F43B76 /* FirebaseFirestoreSwift */,
+				A5D3C851293DF70B00F43B76 /* FirebaseStorage */,
 			);
 			productName = DailyQuestTests;
 			productReference = 34ACC33F291DE9C100741371 /* DailyQuestTests.xctest */;
@@ -1202,6 +1265,7 @@
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
 				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
+				A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */,
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
@@ -1209,6 +1273,7 @@
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
 				9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */,
+				A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				347D258B292C60F40038FCA2 /* StatusView.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
@@ -1261,31 +1326,63 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D3C82F293DDF9800F43B76 /* RepositoryManager.swift in Sources */,
+				A5D3C83C293DDFC400F43B76 /* SubQuestEntity+Mapping.swift in Sources */,
+				A5D3C83D293DDFCC00F43B76 /* QuestEntity.swift in Sources */,
 				A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */,
+				A5D3C832293DDFA000F43B76 /* DefaultUserRepository.swift in Sources */,
 				A5656457292BB91F0033E763 /* Quest.swift in Sources */,
+				A5D3C829293DDF8A00F43B76 /* DataConfigure.swift in Sources */,
+				A5D3C846293DDFEF00F43B76 /* Date+.swift in Sources */,
+				A5D3C845293DDFEC00F43B76 /* String+.swift in Sources */,
+				A5D3C83E293DDFD000F43B76 /* UserInfoEntity.swift in Sources */,
+				A5D3C82C293DDF9200F43B76 /* DTO.swift in Sources */,
 				3416FC96292B5B5400B504C5 /* Quest.swift in Sources */,
+				A5D3C828293DDEBE00F43B76 /* QuestsRepositoryTests.swift in Sources */,
+				A5D3C839293DDFBB00F43B76 /* BrowseQuestsStorage.swift in Sources */,
 				3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */,
+				A5D3C831293DDF9D00F43B76 /* DefaultAuthRepository.swift in Sources */,
+				A5D3C841293DDFD600F43B76 /* RealmStorage.swift in Sources */,
+				A5D3C847293DE06800F43B76 /* UserRepository.swift in Sources */,
+				A5D3C83B293DDFC000F43B76 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				34EE0C572935F97E002BEC23 /* User.swift in Sources */,
+				A5D3C837293DDFB400F43B76 /* RealmQuestsStorage.swift in Sources */,
 				34EE0C562935F944002BEC23 /* BrowseQuest+Stub.swift in Sources */,
 				34EE0C642935FD6B002BEC23 /* BrowseViewModelTests.swift in Sources */,
 				3416FC8E292B593C00B504C5 /* Quest+Stub.swift in Sources */,
+				A5D3C836293DDFAB00F43B76 /* UserInfoEntity+Mapping.swift in Sources */,
+				A5D3C835293DDFA900F43B76 /* RealmUserInfoStorage.swift in Sources */,
 				340FDFD5292B5DB700C4E3DC /* DefaultQuestUseCase.swift in Sources */,
 				3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */,
+				A5D3C82A293DDF8E00F43B76 /* UserDTO+Mapping.swift in Sources */,
+				A5D3C838293DDFB600F43B76 /* QuestEntity+Mapping.swift in Sources */,
+				A5D3C840293DDFD400F43B76 /* SubQuestEntity.swift in Sources */,
 				34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */,
+				A5D3C830293DDF9B00F43B76 /* DefaultQuestsRepository.swift in Sources */,
 				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
 				34EE0C542935F8F7002BEC23 /* BrowseQuest.swift in Sources */,
+				A5D3C83A293DDFBE00F43B76 /* RealmBrowseQuestsStorage.swift in Sources */,
+				A5D3C83F293DDFD200F43B76 /* BrowseQuestEntity.swift in Sources */,
 				34EE0C5D2935FA6E002BEC23 /* BrowseRepository.swift in Sources */,
 				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
+				A5D3C848293DE06B00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				34EE0C622935FD0C002BEC23 /* BrowseUseCaseMock.swift in Sources */,
 				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				34EE0C5F2935FBA1002BEC23 /* BrowseUseCaseTests.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
+				A5D3C844293DDFE100F43B76 /* FirebaseService.swift in Sources */,
 				34EE0C5C2935FA4C002BEC23 /* BrowseUseCase.swift in Sources */,
+				A5D3C834293DDFA700F43B76 /* UserInfoStorage.swift in Sources */,
+				A5D3C82B293DDF9000F43B76 /* QuestDTO+Mapping.swift in Sources */,
+				A5D3C82D293DDF9400F43B76 /* BrowseQuestDTO+Mapping.swift in Sources */,
 				340FDFD3292B5CE300C4E3DC /* QuestsRepository.swift in Sources */,
 				34EE0C5B2935FA2E002BEC23 /* BrowseRepositoryMock.swift in Sources */,
+				A5D3C843293DDFDE00F43B76 /* NetworkConfigure.swift in Sources */,
 				34EE0C602935FC47002BEC23 /* DefaultBrowseUseCase.swift in Sources */,
 				340A72472934573F00B26AA6 /* AuthRepository.swift in Sources */,
 				34EE0C592935F98D002BEC23 /* User+Stub.swift in Sources */,
+				A5D3C833293DDFA200F43B76 /* DefaultBrowseRepository.swift in Sources */,
+				A5D3C842293DDFDC00F43B76 /* NetworkService.swift in Sources */,
 				34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1731,6 +1828,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		A5D3C849293DF6D500F43B76 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5AC96DD292239CA003B7637 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		A5D3C84B293DF70B00F43B76 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A5D3C84D293DF70B00F43B76 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		A5D3C84F293DF70B00F43B76 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		A5D3C851293DF70B00F43B76 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -31,15 +31,13 @@ extension DefaultQuestsRepository: QuestsRepository {
             }
                 .map { $0.toDomain() }
                 .toArray()
-                .asObservable()
-                .asSingle()
         }
     }
 
     func fetch(by date: Date) -> Observable<[Quest]> {
         return persistentStorage.fetchQuests(by: date)
             .catch { _ in
-            self.networkService.read(type: QuestDTO.self, userCase: .currentUser, access: .quests, filter: .month(Date()))
+            self.networkService.read(type: QuestDTO.self, userCase: .currentUser, access: .quests, filter: .today(date))
                 .map { $0.toDomain() }
                 .toArray()
                 .asObservable()
@@ -77,16 +75,14 @@ extension DefaultQuestsRepository: QuestsRepository {
             }
                 .map { $0.toDomain() }
                 .toArray()
-                .asObservable()
-                .asSingle()
         }
     }
 
-    func fetch(by uuid: String) -> Observable<[Quest]> { // 받을 날짜까지 받아와야함
+    func fetch(by uuid: String, date: Date) -> Observable<[Quest]> { // 받을 날짜까지 받아와야함
         return self.networkService.read(type: QuestDTO.self,
                                         userCase: .anotherUser(uuid),
                                         access: .quests,
-                                        filter: .month(Date()))
+                                        filter: .today(date))
             .map { $0.toDomain() }
             .toArray()
             .asObservable()

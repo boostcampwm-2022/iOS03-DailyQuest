@@ -302,11 +302,11 @@ final class FirebaseService: NetworkService {
                         return
                     }
                     StorageReference.downloadURL { (url, error) in
-                        guard let _ = url else {
+                        guard let downloadUrl = url else {
                             single(.failure(NetworkServiceError.noUrlError))
                             return
                         }
-                        single(.success(fileName))
+                        single(.success(downloadUrl.absoluteString))
                     }
                 }
             } catch let error {
