@@ -49,13 +49,17 @@ extension DefaultUserRepository: UserRepository {
 
 extension DefaultUserRepository: ProtectedUserRepository {
     func deleteUser() -> Observable<Bool> {
-        return self.persistentStorage.deleteUserInfo()
+        // return self.persistentStorage.deleteUserInfo()
+        //     .map { _ in true }
+        //     .asObservable()
+        //     .concatMap { _ in
+        //     return self.networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
+        //         .map { _ in true }
+        // }
+        return networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
             .map { _ in true }
+            .catchAndReturn(false)
             .asObservable()
-            .concatMap { _ in
-            return self.networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
-                .map { _ in true }
-        }
     }
 }
 
