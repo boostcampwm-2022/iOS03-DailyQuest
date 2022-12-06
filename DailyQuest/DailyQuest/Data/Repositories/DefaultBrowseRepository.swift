@@ -27,7 +27,7 @@ extension DefaultBrowseRepository: BrowseRepository {
     /// Firebase 우선, 실패시 persistentStorage, persistentStorage도 실패시 Error반환
     /// - Returns: Observable<[BrowseQuest]>
     func fetch() -> Observable<[BrowseQuest]> {
-        return self.networkService.getAllowUsers(limit: 10)
+        return networkService.getAllowUsers(limit: 10)
             .map { $0.toDomain() }
             .flatMap { user in
             self.networkService
