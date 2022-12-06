@@ -11,49 +11,74 @@ import RxSwift
 import RxCocoa
 
 final class SettingsViewController: UITableViewController {
-    enum Event {
-        case showLoginFlow
-    }
+    private var viewModel: SettingsViewModel!
+    private var disposableBag = DisposeBag()
     
     var itemDidClick = PublishSubject<Event>()
     
-    private let fields: [CommonField]  = [
-        ToggleField(viewModel: .init(title: "둘러보기 허용", imageName: "person.crop.circle.badge.checkmark")),
-        PlainField(viewModel: .init(title: "some", info: "some...?", imageName: "pencil")),
-        NavigateField(viewModel: .init(title: "로그인", imageName: "person.circle.fill", viewType: .login)),
-        PlainField(viewModel: .init(title: "앱 버전", info: "0.0.1", imageName: "exclamationmark.transmission"))
-    ]
-    
     // MARK: - Life Cycle
+    static func create(with viewModel: SettingsViewModel) -> SettingsViewController {
+        let vc = SettingsViewController()
+        vc.viewModel = viewModel
+        
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .singleLine
         
         register()
+        
+        bind()
+    }
+    
+    private func bind() {
+        let output = viewModel.transform()
+        
+        output
+            .loginStatusDidChange
+            .subscribe(onNext: { [weak self] in self?.reloadData() })
+            .disposed(by: disposableBag)
+    }
+    
+    private func reloadData() {
+        tableView.reloadData()
+    }
+    
+    private func register() {
+        viewModel.fields.forEach { field in
+            field.register(for: self.tableView)
+        }
+    }
+}
+
+extension SettingsViewController {
+    enum Event {
+        case showLoginFlow
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fields.count
+        return viewModel.fields.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let field = fields[indexPath.row]
+        let field = viewModel.fields[indexPath.row]
         return field.dequeue(for: tableView, at: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let field = fields[indexPath.row]
+        let field = viewModel.fields[indexPath.row]
         guard let type = field.didSelect() else { return }
         
         switch type {
             case .login:
                 itemDidClick.onNext(.showLoginFlow)
-        }
-    }
-    
-    private func register() {
-        fields.forEach { field in
-            field.register(for: self.tableView)
+            case .logout:
+                viewModel
+                    .signOut()
+                    .subscribe()
+                    .disposed(by: disposableBag)
         }
     }
 }
