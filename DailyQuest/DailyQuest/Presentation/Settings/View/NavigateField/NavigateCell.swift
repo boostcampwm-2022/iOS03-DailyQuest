@@ -54,6 +54,6 @@ final class NavigateCell: UITableViewCell {
     
     func setup(with viewModel: NavigateItemViewModel) {
         icon.image = UIImage(systemName: viewModel.imageName)
-        title.text = viewModel.title
+        title.text = viewModel.viewType.rawValue
     }
 }
