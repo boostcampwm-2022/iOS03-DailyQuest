@@ -23,6 +23,15 @@ struct QuestDTO: DTO {
         self.currentCount = 0
         self.totalCount = 0
     }
+    
+    init(groupId: UUID, uuid: String, date: String, title: String, currentCount: Int, totalCount: Int) {
+        self.groupId = groupId
+        self.uuid = uuid
+        self.date = date
+        self.title = title
+        self.currentCount = currentCount
+        self.totalCount = totalCount
+    }
 }
 
 extension QuestDTO {
@@ -33,5 +42,16 @@ extension QuestDTO {
                      title: title,
                      currentCount: currentCount,
                      totalCount: totalCount)
+    }
+}
+
+extension Quest {
+    func toDTO() -> QuestDTO {
+        return QuestDTO(groupId: groupId,
+                        uuid: uuid.uuidString,
+                        date: date.toString,
+                        title: title,
+                        currentCount: currentCount,
+                        totalCount: totalCount)
     }
 }

@@ -146,6 +146,7 @@
 		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
 		B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5115452292CD07100FDBD22 /* CalendarViewModel.swift */; };
 		B5833F732924C08900503E0D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5833F722924C08900503E0D /* CalendarView.swift */; };
@@ -298,6 +299,7 @@
 		A5AC96DB292237C3003B7637 /* QuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestEntity.swift; sourceTree = "<group>"; };
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
+		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
 		B5115452292CD07100FDBD22 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		B5833F722924C08900503E0D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 		34ACC36A291DF04000741371 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */,
 				9B1CFB3C292B580C00CCE97A /* Network */,
 				A5AC96D42922356E003B7637 /* Repositories */,
 				A5AC96D62922359F003B7637 /* PersistentStorages */,
@@ -1176,6 +1179,7 @@
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
 				3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */,
 				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
+				A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */,
 				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				A5656459292BBDD40033E763 /* String+.swift in Sources */,
 				3429084F29383D73001812B1 /* UserRepository.swift in Sources */,
