@@ -8,7 +8,10 @@
 import UIKit
 import SnapKit
 
-class CalendarCell: UICollectionViewCell {
+final class CalendarCell: UICollectionViewCell {
+    
+    /// 재사용 식별자
+    static let reuseIdentifier = "CalendarCell"
     
     // MARK: - Sub Views
     
@@ -45,13 +48,16 @@ class CalendarCell: UICollectionViewCell {
     
     private func setupContstraints() {
         circleCheckView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
-            make.height.equalTo(circleCheckView.snp.width)
+            make.top.equalToSuperview().inset(5)
+            make.centerX.equalToSuperview().priority(.high)
+            make.width.equalTo(self.snp.width).multipliedBy(0.9).inset(5)
+            make.height.equalTo(circleCheckView.snp.width).priority(.required)
         }
         
         dayLabel.snp.makeConstraints { make in
             make.top.equalTo(circleCheckView.snp.bottom).offset(4)
-            make.bottom.horizontalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview().priority(.high)
         }
     }
     
@@ -61,8 +67,29 @@ class CalendarCell: UICollectionViewCell {
     /// - parameters:
     ///     - state : CircleCheckView.State
     ///     - day : Int
-    func configure(state: CircleCheckView.State, day: Int) {
+    func configure(state: CalendarCell.State, day: Int) {
+        self.isHidden = false
+
+        switch state {
+        case .none:
+            self.isHidden = true
+        case .normal:
+            self.circleCheckView.setNormal()
+        case .display(let number):
+            self.circleCheckView.setNumber(to: number)
+        case .done:
+            self.circleCheckView.setDone()
+        }
         dayLabel.text = "\(day)"
-        circleCheckView.updateState(state)
+    }
+}
+
+extension CalendarCell {
+    
+    enum State: Hashable {
+        case none
+        case normal
+        case display(Int)
+        case done
     }
 }
