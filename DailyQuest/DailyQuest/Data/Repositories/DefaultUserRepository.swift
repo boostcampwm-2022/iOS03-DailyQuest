@@ -13,7 +13,7 @@ final class DefaultUserRepository {
     private let persistentStorage: UserInfoStorage
     private let networkService: NetworkService
 
-    init(persistentStorage: UserInfoStorage, networkService: NetworkService) {
+    init(persistentStorage: UserInfoStorage, networkService: NetworkService = FirebaseService.shared) {
         self.persistentStorage = persistentStorage
         self.networkService = networkService
     }
@@ -21,32 +21,28 @@ final class DefaultUserRepository {
 
 extension DefaultUserRepository: UserRepository {
     func isLoggedIn() -> BehaviorRelay<String?> {
-        return self.networkService.uid
+        return networkService.uid
     }
 
     func readUser() -> Observable<User> {
         return self.persistentStorage.fetchUserInfo()
-            .catch { _ in
-            return self.networkService.read(type: UserDTO.self, userCase: .currentUser, access: .userInfo, filter: nil)
-                .map { $0.toDomain() }
+            .catch { [weak self] _ in
+            guard let self = self else { return Observable.just(User()) }
+            return self.fetchUserNetworkService()
         }
     }
 
     func updateUser(by user: User) -> Observable<User> {
-        return self.persistentStorage.updateUserInfo(user: user)
+        return persistentStorage.updateUserInfo(user: user)
             .asObservable()
-            .concatMap { _ in
-            return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: user.toDTO())
-                .map { $0.toDomain() }
-                .asObservable()
-        }
+            .flatMap(updateUserNetworkService(user:))
     }
 
     func fetchUser(by uuid: String) -> Observable<User> {
-        return self.networkService.read(type: UserDTO.self,
-                                        userCase: .anotherUser(uuid),
-                                        access: .userInfo,
-                                        filter: nil)
+        return networkService.read(type: UserDTO.self,
+                                   userCase: .anotherUser(uuid),
+                                   access: .userInfo,
+                                   filter: nil)
             .map { $0.toDomain() }
     }
 }
@@ -62,3 +58,18 @@ extension DefaultUserRepository: ProtectedUserRepository {
         }
     }
 }
+
+private extension DefaultUserRepository {
+    func fetchUserNetworkService() -> Observable<User> {
+        networkService.read(type: UserDTO.self, userCase: .currentUser, access: .userInfo, filter: nil)
+            .map { $0.toDomain() }
+    }
+
+    func updateUserNetworkService(user: User) -> Observable<User> {
+        networkService.update(userCase: .currentUser, access: .userInfo, dto: user.toDTO())
+            .map { $0.toDomain() }
+            .asObservable()
+            .catchAndReturn(user)
+    }
+}
+

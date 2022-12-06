@@ -31,6 +31,7 @@ final class RealmStorage {
     @discardableResult
     func saveEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         try persistentContainer.write {
@@ -41,6 +42,7 @@ final class RealmStorage {
 
     func fetchEntities<O: Object>(type: O.Type, filter: NSPredicate? = nil) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         if let filter = filter {
@@ -53,6 +55,7 @@ final class RealmStorage {
     @discardableResult
     func updateEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         try persistentContainer.write {
@@ -64,6 +67,7 @@ final class RealmStorage {
     @discardableResult
     func deleteEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         try persistentContainer.write {
@@ -73,8 +77,10 @@ final class RealmStorage {
         return entity
     }
 
+    @discardableResult
     func deleteAllEntity<O: Object>(type: O.Type) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         for entity in Array(persistentContainer.objects(type)) {
@@ -87,6 +93,7 @@ final class RealmStorage {
 
     func findEntities<O: Object>(type: O.Type, filter: NSPredicate) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
+            print(#function)
             throw RealmStorageError.realmObjectError
         }
         return Array(persistentContainer.objects(type).filter(filter))

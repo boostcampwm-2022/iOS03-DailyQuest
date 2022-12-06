@@ -13,6 +13,14 @@ final class NavigateField {
     init(viewModel: NavigateItemViewModel) {
         self.viewModel = viewModel
     }
+    
+    func toggle(with status: Bool) {
+        if status {
+            viewModel.viewType = .logout
+        } else {
+            viewModel.viewType = .login
+        }
+    }
 }
 
 extension NavigateField: CommonField {
