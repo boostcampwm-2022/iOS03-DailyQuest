@@ -12,11 +12,11 @@ import RxCocoa
 
 final class SignUpViewModel {
     private let authUseCase: AuthUseCase
-    
+
     init(authUseCase: AuthUseCase) {
         self.authUseCase = authUseCase
     }
-    
+
     struct Input {
         let emailFieldDidEditEvent: Observable<String>
         let passwordFieldDidEditEvent: Observable<String>
@@ -24,12 +24,12 @@ final class SignUpViewModel {
         let nickNameFieldDidEditEvent: Observable<String>
         let submitButtonDidTapEvent: Observable<Void>
     }
-    
+
     struct Output {
         let buttonEnabled: Driver<Bool>
         let signUpResult: Observable<Bool>
     }
-    
+
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
         let buttonEnabled = Observable
             .combineLatest(input.emailFieldDidEditEvent,
@@ -38,32 +38,34 @@ final class SignUpViewModel {
                            input.nickNameFieldDidEditEvent,
                            resultSelector: checkButtonEnble(emailText: passwordText: passwordConfirmText: nickName:))
             .asDriver(onErrorJustReturn: false)
-        
+
         let signUpResult = input
             .submitButtonDidTapEvent
             .withLatestFrom(Observable
-                .combineLatest(input.emailFieldDidEditEvent,
-                               input.passwordFieldDidEditEvent,
-                               input.nickNameFieldDidEditEvent,
-                               resultSelector: { ($0, $1, User(nickName: $2)) }))
+            .combineLatest(input.emailFieldDidEditEvent,
+                           input.passwordFieldDidEditEvent,
+                           input.nickNameFieldDidEditEvent,
+                           resultSelector: { ($0, $1, User(nickName: $2)) }))
             .flatMap (authUseCase.signUp(email: password: user:))
-        
+
         return Output(buttonEnabled: buttonEnabled, signUpResult: signUpResult)
     }
-    
+
     func checkEmpty(_ strArray: [String]) -> Bool {
         return !strArray.reduce(false) { $0 || $1.isEmpty }
     }
-    
+
     func checkSame(str1: String, str2: String) -> Bool {
         return str1 == str2
     }
-    
+
     func checkEmail(str: String) -> Bool {
+
         guard let index = str.firstIndex(of: "@") else { return false }
-        return str.startIndex != index && str.endIndex != index
+        let pos = str.distance(from: str.startIndex, to: index)
+        return 0 < pos && pos < str.count - 1
     }
-    
+
     func checkPasswordCount(str: String) -> Bool {
         return str.count >= 6
     }
