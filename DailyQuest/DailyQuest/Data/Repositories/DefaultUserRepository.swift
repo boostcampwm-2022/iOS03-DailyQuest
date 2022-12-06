@@ -13,7 +13,7 @@ final class DefaultUserRepository {
     private let persistentStorage: UserInfoStorage
     private let networkService: NetworkService
 
-    init(persistentStorage: UserInfoStorage, networkService: NetworkService) {
+    init(persistentStorage: UserInfoStorage, networkService: NetworkService = FirebaseService.shared) {
         self.persistentStorage = persistentStorage
         self.networkService = networkService
     }
