@@ -46,6 +46,9 @@
 		34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283102292E2D9B00AE811B /* ToggleCell.swift */; };
 		34283105292E2E3F00AE811B /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283104292E2E3F00AE811B /* ToggleField.swift */; };
 		3429084F29383D73001812B1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3429084E29383D73001812B1 /* UserRepository.swift */; };
+		34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D91293EF75F0007E661 /* SettingsViewModel.swift */; };
+		34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D93293EF9850007E661 /* SettingsUseCase.swift */; };
+		34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
@@ -105,9 +108,9 @@
 		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
 		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
+		34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */; };
 		34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD368293DEED600E0DC8A /* FriendViewController.swift */; };
 		34FCD36B293DF2F600E0DC8A /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */; };
-		34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */; };
 		34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34FEFB982935EA6D00954A40 /* Kingfisher */; };
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
@@ -253,6 +256,9 @@
 		34283102292E2D9B00AE811B /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		34283104292E2E3F00AE811B /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		3429084E29383D73001812B1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		34404D91293EF75F0007E661 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		34404D93293EF9850007E661 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
+		34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsUseCase.swift; sourceTree = "<group>"; };
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -307,9 +313,9 @@
 		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
 		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
+		34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnrollUseCase.swift; sourceTree = "<group>"; };
 		34FCD368293DEED600E0DC8A /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
-		34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnrollUseCase.swift; sourceTree = "<group>"; };
 		9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseRepository.swift; sourceTree = "<group>"; };
 		9BD8CCF42935C38300E6EA2F /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -426,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				34113BE72934917500AB4919 /* LoginViewModel.swift */,
+				34404D91293EF75F0007E661 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -500,6 +507,7 @@
 			children = (
 				3417B1422935DA2E00900454 /* Protocols */,
 				340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */,
+				34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -516,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				340A724829348B1B00B26AA6 /* AuthUseCase.swift */,
+				34404D93293EF9850007E661 /* SettingsUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1231,6 +1240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */,
 				A5A8C8362936EC7E00988C88 /* SubQuestEntity.swift in Sources */,
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
 				34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */,
@@ -1251,6 +1261,7 @@
 				A5A8C8382936ED0F00988C88 /* SubQuestEntity+Mapping.swift in Sources */,
 				34874AA229250C43000570DF /* UIButton+.swift in Sources */,
 				A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */,
+				34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
 				B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
@@ -1302,6 +1313,7 @@
 				A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
+				34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */,
 				3417B1442935DA4A00900454 /* BrowseUseCase.swift in Sources */,
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,

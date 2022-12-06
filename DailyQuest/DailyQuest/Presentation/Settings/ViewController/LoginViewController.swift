@@ -33,6 +33,7 @@ final class LoginViewController: UIViewController {
     private lazy var passwordField: TextFieldForm = {
         let passwordField = TextFieldForm()
         passwordField.placeholder = "password"
+        passwordField.isSecureTextEntry = true
         
         return passwordField
     }()
