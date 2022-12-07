@@ -23,9 +23,6 @@ extension DefaultQuestsRepository: QuestsRepository {
     func save(with quest: [Quest]) -> Single<[Quest]> {
         return persistentStorage.saveQuests(with: quest)
             .flatMap (saveNetworkService(quests:))
-            .do{ event in
-                print("save", event)
-            }
     }
 
     func fetch(by date: Date) -> Observable<[Quest]> {

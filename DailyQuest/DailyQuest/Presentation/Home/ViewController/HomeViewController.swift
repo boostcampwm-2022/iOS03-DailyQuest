@@ -128,7 +128,6 @@ final class HomeViewController: UIViewController {
     private func bindToQuestView(with output: HomeViewModel.Output) {
         output
             .data
-            .debug()
             .drive(questView.rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
                 cell.setup(with: item)
             }
