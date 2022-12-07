@@ -16,7 +16,6 @@ struct DailyQuestCompletion: Hashable {
         case done
     }
     
-    let uuid: UUID = UUID()
     let day: Date
     let state: State
 }
