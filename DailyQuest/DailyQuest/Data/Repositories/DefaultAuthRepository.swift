@@ -57,6 +57,8 @@ extension DefaultAuthRepository: AuthRepository {
             .do(onSuccess: { [weak self] result in
             if let self = self, result {
                 self.persistentUserStorage.deleteUserInfo()
+                    .map { _ in true }
+                    .catchAndReturn(false)
                     .flatMap { _ in
                     self.persistentQuestsStorage.deleteAllQuests()
                 }
