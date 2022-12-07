@@ -31,6 +31,7 @@ final class HomeViewModel {
 
     struct Output {
         let data: Driver<[Quest]>
+        let userData: Observable<User>
         let isLoggedIn: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
@@ -57,16 +58,22 @@ final class HomeViewModel {
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
 
+        let userData = userUseCase
+            .fetch()
+
+        let isLoggedIn = input
+            .profileButtonDidClicked
+            .flatMap { [weak self] _ in
+            guard let self = self else { return Observable.just(false) }
+            return self.userUseCase.isLoggedIn().take(1)
+        }
+
         input
             .viewDidLoad
             .subscribe(onNext: { [weak self] _ in
             self?.calendarUseCase.setupMonths()
         })
             .disposed(by: disposeBag)
-
-        let isLoggedIn = input
-            .profileButtonDidClicked
-            .flatMap { self.userUseCase.isLoggedIn().take(1) }
 
         input
             .dragEventInCalendar
@@ -91,6 +98,7 @@ final class HomeViewModel {
             .asDriver(onErrorJustReturn: [[], [], []])
 
         return Output(data: data,
+                      userData: userData,
                       isLoggedIn: isLoggedIn,
                       currentMonth: currentMonth,
                       displayDays: displayDays)

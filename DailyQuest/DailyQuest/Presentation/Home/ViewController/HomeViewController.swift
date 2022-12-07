@@ -150,8 +150,9 @@ final class HomeViewController: UIViewController {
 
         bindToCalendarView(with: output)
         bindToQuestHeaderButton()
-        bindToStatusBarProfileButton(with: output)
         bindToQuestView(with: output)
+        bindToStatusBarProfileButton(with: output)
+        bindToStatusBarProfileButtonImage(with: output)
     }
 
     private func bindToCalendarView(with output: HomeViewModel.Output) {
@@ -202,7 +203,18 @@ final class HomeViewController: UIViewController {
     private func bindToStatusBarProfileButton(with output: HomeViewModel.Output) {
         output
             .isLoggedIn
-            .bind (onNext:needLogIn(result:)).disposed(by: disposableBag)
+            .bind (onNext: needLogIn(result:))
+            .disposed(by: disposableBag)
+    }
+
+    private func bindToStatusBarProfileButtonImage(with output: HomeViewModel.Output) {
+        output
+            .userData
+            .bind(onNext: { [weak self] user in
+            guard let self = self else { return }
+            self.statusView.userDataFetched.onNext(user)
+        })
+            .disposed(by: disposableBag)
     }
 }
 

@@ -13,6 +13,7 @@ import SnapKit
 final class StatusView: UIView {
     private var disposableBag = DisposeBag()
     var profileButtonDidClick = PublishSubject<Void>()
+    var userDataFetched = PublishSubject<User>()
 
     // MARK: - Components
     private lazy var iconContainer: UIImageView = {
@@ -50,8 +51,10 @@ final class StatusView: UIView {
         config.image = UIImage(systemName: "person.crop.circle",
                                withConfiguration: largeConfig)
         config.baseForegroundColor = .maxLightGrey
-
-        return UIButton(configuration: config)
+        let button = UIButton(configuration: config)
+        button.layer.cornerRadius = 100
+        button.imageView?.image =
+        return button
     }()
 
     // MARK: - Methods
@@ -107,5 +110,13 @@ final class StatusView: UIView {
             self?.profileButtonDidClick.onNext(())
         })
             .disposed(by: disposableBag)
+
+        userDataFetched
+            .asDriver(onErrorJustReturn: User())
+            .drive(onNext: { [weak self] user in
+            print(user)
+            guard let self = self else { return }
+            self.profileButton.imageView?.setImage(with: user.profileURL)
+        }).disposed(by: disposableBag)
     }
 }
