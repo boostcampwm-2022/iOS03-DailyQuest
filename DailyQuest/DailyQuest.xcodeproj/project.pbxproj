@@ -46,6 +46,7 @@
 		34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283102292E2D9B00AE811B /* ToggleCell.swift */; };
 		34283105292E2E3F00AE811B /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283104292E2E3F00AE811B /* ToggleField.swift */; };
 		3429084F29383D73001812B1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3429084E29383D73001812B1 /* UserRepository.swift */; };
+		3436FCFA293F2654003575C3 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436FCF9293F2654003575C3 /* Notification+.swift */; };
 		34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D91293EF75F0007E661 /* SettingsViewModel.swift */; };
 		34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D93293EF9850007E661 /* SettingsUseCase.swift */; };
 		34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */; };
@@ -63,6 +64,7 @@
 		347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258C292C6E220038FCA2 /* MessageBubble.swift */; };
 		34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874A9F292509A4000570DF /* QuestViewHeader.swift */; };
 		34874AA229250C43000570DF /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA129250C43000570DF /* UIButton+.swift */; };
+		348FCE022940294900E4940C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FCE012940294900E4940C /* HomeViewModel.swift */; };
 		349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349955112923220E007AB99E /* SwiftUIPreview.swift */; };
 		3499551529232533007AB99E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551429232533007AB99E /* UIColor+.swift */; };
 		3499551E29233DEF007AB99E /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551D29233DEF007AB99E /* QuestCell.swift */; };
@@ -107,7 +109,6 @@
 		34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552A29236041007AB99E /* BrowseViewModel.swift */; };
 		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
-		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */; };
 		34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD368293DEED600E0DC8A /* FriendViewController.swift */; };
 		34FCD36B293DF2F600E0DC8A /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */; };
@@ -115,7 +116,6 @@
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
 		34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5E292B8B27002AFD4D /* RxSwift */; };
-		34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
 		9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */; };
@@ -261,6 +261,7 @@
 		34283102292E2D9B00AE811B /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		34283104292E2E3F00AE811B /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		3429084E29383D73001812B1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		3436FCF9293F2654003575C3 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		34404D91293EF75F0007E661 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		34404D93293EF9850007E661 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsUseCase.swift; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		347D258C292C6E220038FCA2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		34874A9F292509A4000570DF /* QuestViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewHeader.swift; sourceTree = "<group>"; };
 		34874AA129250C43000570DF /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		348FCE012940294900E4940C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		349955112923220E007AB99E /* SwiftUIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPreview.swift; sourceTree = "<group>"; };
 		3499551429232533007AB99E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3499551D29233DEF007AB99E /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
@@ -317,7 +319,6 @@
 		34EE0C612935FD0C002BEC23 /* BrowseUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCaseMock.swift; sourceTree = "<group>"; };
 		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
-		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnrollUseCase.swift; sourceTree = "<group>"; };
 		34FCD368293DEED600E0DC8A /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
@@ -644,6 +645,7 @@
 				A5656458292BBDD40033E763 /* String+.swift */,
 				A50F9A3829266FD8005C00FE /* Date+.swift */,
 				9BED4DE9293FA92900C60631 /* UIImageView+.swift */,
+				3436FCF9293F2654003575C3 /* Notification+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -779,10 +781,10 @@
 		34A529DE29247F13001BAD34 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */,
 				345687FD29378AB900CA51E3 /* EnrollViewModel.swift */,
 				B5115452292CD07100FDBD22 /* CalendarViewModel.swift */,
 				9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */,
+				348FCE012940294900E4940C /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1285,7 +1287,6 @@
 				3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */,
 				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
 				A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */,
-				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				A5656459292BBDD40033E763 /* String+.swift in Sources */,
 				3429084F29383D73001812B1 /* UserRepository.swift in Sources */,
 				34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */,
@@ -1309,6 +1310,7 @@
 				342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
+				348FCE022940294900E4940C /* HomeViewModel.swift in Sources */,
 				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
@@ -1348,6 +1350,7 @@
 				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
 				A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
+				3436FCFA293F2654003575C3 /* Notification+.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */,
@@ -1417,7 +1420,6 @@
 				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
 				A5D3C848293DE06B00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				34EE0C622935FD0C002BEC23 /* BrowseUseCaseMock.swift in Sources */,
-				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				34EE0C5F2935FBA1002BEC23 /* BrowseUseCaseTests.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				A5D3C844293DDFE100F43B76 /* FirebaseService.swift in Sources */,

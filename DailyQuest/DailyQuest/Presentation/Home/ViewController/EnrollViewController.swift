@@ -125,21 +125,19 @@ final class EnrollViewController: UIViewController {
             )
         )
         
-        bindSubmitButton(output: output)
-        bindDayNamePickerView(output: output)
-        
-        output.enrollResult.subscribe(onNext: { print($0) })
-            .disposed(by: disposableBag)
+        bindToSubmitButton(output: output)
+        bindToDayNamePickerView(output: output)
+        bindToDismiss(output: output)
     }
     
-    private func bindSubmitButton(output: EnrollViewModel.Output) {
+    private func bindToSubmitButton(output: EnrollViewModel.Output) {
         output
             .buttonEnabled
             .drive(submitButton.rx.isEnabled)
             .disposed(by: disposableBag)
     }
     
-    private func bindDayNamePickerView(output: EnrollViewModel.Output) {
+    private func bindToDayNamePickerView(output: EnrollViewModel.Output) {
         output
             .dayButtonStatus
             .bind(onNext: { [weak self] index, isSelected in
@@ -151,6 +149,23 @@ final class EnrollViewController: UIViewController {
                 }
             })
             .disposed(by: disposableBag)
+    }
+    
+    private func bindToDismiss(output: EnrollViewModel.Output) {
+        output
+            .enrollResult
+            .filter({ $0 })
+            .bind(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: disposableBag)
+    }
+}
+
+extension EnrollViewController {
+    enum Event {
+        case success
+        case fail
     }
 }
 

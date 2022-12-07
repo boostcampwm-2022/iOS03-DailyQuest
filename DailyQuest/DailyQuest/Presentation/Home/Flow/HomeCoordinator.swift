@@ -12,7 +12,6 @@ import RxSwift
 protocol HomeCoordinator: Coordinator {
     func showProfileFlow()
     func showAddQuestFlow()
-    func showAddFriendsFlow()
 }
 
 final class DefaultHomeCoordinator: HomeCoordinator {
@@ -32,6 +31,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func start() {
         let homeViewController = homeSceneDIContainer.makeHomeViewController()
         navigationController.pushViewController(homeViewController, animated: false)
+        navigationController.isNavigationBarHidden = true
         
         homeViewController
             .coordinatorPublisher
@@ -51,9 +51,5 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func showAddQuestFlow() {
         let enrollViewController = homeSceneDIContainer.makeEnrollViewController()
         navigationController.present(enrollViewController, animated: true)
-    }
-    
-    func showAddFriendsFlow() {
-        
     }
 }

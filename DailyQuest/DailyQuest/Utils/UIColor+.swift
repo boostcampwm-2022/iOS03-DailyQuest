@@ -15,4 +15,5 @@ extension UIColor {
     static let maxRed = UIColor(named: "MaxRed") ?? .white
     static let maxViolet = UIColor(named: "MaxViolet") ?? .white
     static let maxYellow = UIColor(named: "MaxYellow") ?? .white
+    static let maxLightBlue = UIColor(named: "MaxLightBlue") ?? .white
 }

@@ -11,39 +11,35 @@ import RxSwift
 import RxCocoa
 
 final class QuestView: UITableView {
-    private var viewModel: QuestViewModel!
     private var disposableBag = DisposeBag()
+    
+    override var contentSize: CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let number = numberOfRows(inSection: 0)
+        return CGSize(width: contentSize.width, height: CGFloat(75*number + 75))
+    }
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
-        rowHeight = 75
-        
-        register(QuestCell.self, forCellReuseIdentifier: QuestCell.reuseIdentifier)
+        configureTableView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with viewModel: QuestViewModel) {
-        self.viewModel = viewModel
-    }
-    
-    func bind() {
-        let output = viewModel.transform(
-            input: QuestViewModel
-                .Input(viewDidLoad: .just(Date()).asObservable(),
-                    itemDidClicked: rx.modelSelected(Quest.self).asObservable())
-        )
+    private func configureTableView() {
+        rowHeight = 75
+        sectionHeaderTopPadding = 0
+        isScrollEnabled = false
         
-        output
-            .data
-            .drive(rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
-                cell.setup(with: item)
-                cell.backgroundColor = .white
-            }
-            .disposed(by: disposableBag)
+        register(QuestCell.self, forCellReuseIdentifier: QuestCell.reuseIdentifier)
     }
 }
 

@@ -35,6 +35,8 @@ final class QuestCell: UITableViewCell {
         let questLabel = UILabel()
         questLabel.text = "0"
         questLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        questLabel.textColor = .maxViolet
+        
         return questLabel
     }()
     
@@ -45,6 +47,8 @@ final class QuestCell: UITableViewCell {
         let countLabel = UILabel()
         countLabel.text = "0"
         countLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        countLabel.textColor = .maxViolet
+        
         return countLabel
     }()
     
@@ -69,7 +73,7 @@ final class QuestCell: UITableViewCell {
         addSubview(questLabel)
         addSubview(countLabel)
         
-        backgroundColor = .maxLightGrey
+        backgroundColor = UIColor(white: 1, alpha: 0)
         
         progressView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
