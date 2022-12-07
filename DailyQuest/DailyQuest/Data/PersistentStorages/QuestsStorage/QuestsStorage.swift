@@ -14,4 +14,5 @@ protocol QuestsStorage {
     func updateQuest(with quest: Quest) -> Single<Quest>
     func deleteQuest(with questId: UUID) -> Single<Quest>
     func deleteQuestGroup(with groupId: UUID) -> Single<[Quest]>
+    func deleteAllQuests() -> Single<[Quest]>
 }

@@ -18,7 +18,6 @@ final class RealmQuestsStorage {
 }
 
 extension RealmQuestsStorage: QuestsStorage {
-
     func saveQuests(with quests: [Quest]) -> Single<[Quest]> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
@@ -91,7 +90,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 let quest = entity.toDomain()
                 try realmStorage.deleteEntity(entity: entity)
                 single(.success(quest))
-                
+
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))
             }
@@ -115,6 +114,27 @@ extension RealmQuestsStorage: QuestsStorage {
                 }
                 single(.success(quests))
 
+            } catch let error {
+                single(.failure(RealmStorageError.saveError(error)))
+            }
+
+            return Disposables.create()
+        }
+    }
+
+    func deleteAllQuests() -> Single<[Quest]> {
+        return Single.create { [weak self] single in
+            guard let realmStorage = self?.realmStorage else {
+                return Disposables.create()
+            }
+            do {
+                let entities = try realmStorage.fetchEntities(type: QuestEntity.self)
+                let quests = entities.compactMap { $0.toDomain() }
+                for entity in entities {
+                    try realmStorage.deleteEntity(entity: entity)
+                }
+                single(.success(quests))
+                
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))
             }

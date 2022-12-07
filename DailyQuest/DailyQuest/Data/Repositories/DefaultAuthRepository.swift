@@ -28,7 +28,6 @@ extension DefaultAuthRepository: AuthRepository {
     func signIn(email: String, password: String) -> Single<Bool> {
         return self.networkService.signIn(email: email, password: password)
             .do(onSuccess: { [weak self] result in
-            print(result)
             if let self = self, result {
                 self.networkService.read(type: UserDTO.self,
                                          userCase: .currentUser,
@@ -47,9 +46,7 @@ extension DefaultAuthRepository: AuthRepository {
                         .toArray()
                         .flatMap(self.persistentQuestsStorage.saveQuests(with:))
                 }
-                    .subscribe { event in
-                        print(event)
-                    }
+                    .subscribe()
                     .disposed(by: self.disposeBag)
             }
         })
@@ -57,6 +54,16 @@ extension DefaultAuthRepository: AuthRepository {
 
     func signOut() -> Single<Bool> {
         return self.networkService.signOut()
+            .do(onSuccess: { [weak self] result in
+            if let self = self, result {
+                self.persistentUserStorage.deleteUserInfo()
+                    .flatMap { _ in
+                    self.persistentQuestsStorage.deleteAllQuests()
+                }
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
+            }
+        })
     }
 
     func signUp(email: String, password: String, user: User) -> Single<Bool> {
