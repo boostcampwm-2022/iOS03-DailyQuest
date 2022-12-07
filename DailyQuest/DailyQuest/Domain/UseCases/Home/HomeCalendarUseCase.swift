@@ -15,12 +15,11 @@ final class HomeCalendarUseCase: CalendarUseCase {
     
     var selectedDate: Observable<Date>
     let currentMonth = BehaviorSubject<Date?>(value: Date())
-    let completionOfMonths = BehaviorSubject<[MonthlyQuestCompletion]>(value: [])
+    let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
     
     init(questsRepository: QuestsRepository, selectedDate: Observable<Date>) {
         self.questsRepository = questsRepository
         self.selectedDate = selectedDate
-        self.setupMonths()
     }
     
     func fetchNextMontlyCompletion() {
@@ -88,7 +87,7 @@ extension HomeCalendarUseCase {
         }
     }
     
-    private func setupMonths() {
+    func setupMonths() {
         let currentMonth = try? currentMonth.value()
         let startDayOfLastMonth = currentMonth?.startDayOfLastMonth
         let startDayOfCurrentMonth = currentMonth?.startDayOfCurrentMonth
@@ -98,7 +97,7 @@ extension HomeCalendarUseCase {
         
         Observable.from(months)
             .concatMap { [weak self] monthDate in
-                guard let self else { return Observable<MonthlyQuestCompletion>.empty() }
+                guard let self else { return Observable<[DailyQuestCompletion]>.empty() }
                 
                 return self.fetchAMontlyCompletion(monthDate)
             }
@@ -109,7 +108,7 @@ extension HomeCalendarUseCase {
             .disposed(by: disposeBag)
     }
     
-    private func fetchAMontlyCompletion(_ month: Date?) -> Observable<MonthlyQuestCompletion> {
+    private func fetchAMontlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
         guard let month = month else { return .empty() }
         
         return Observable.from(month.rangeDaysOfMonth)
@@ -129,7 +128,7 @@ extension HomeCalendarUseCase {
                         return DailyQuestCompletion(day: date, state: .hidden)
                     }
                 
-                return MonthlyQuestCompletion(month: month, states: firstWeekStates + states)
+                return firstWeekStates + states
             }
             .asObservable()
     }
