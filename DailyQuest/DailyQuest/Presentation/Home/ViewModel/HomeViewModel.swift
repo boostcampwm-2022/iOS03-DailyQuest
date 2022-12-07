@@ -13,6 +13,7 @@ import RxCocoa
 final class HomeViewModel {
     private let questUseCase: QuestUseCase
     private var calendarUseCase: CalendarUseCase
+    private var currentDate = Date()
     
     init(questUseCase: QuestUseCase, calendarUseCase: CalendarUseCase) {
         self.questUseCase = questUseCase
@@ -41,17 +42,26 @@ final class HomeViewModel {
             .compactMap { $0.increaseCount() }
             .flatMap(questUseCase.update(with:))
             .filter({ $0 })
-            .map { _ in Date() }
+            .compactMap { [weak self] _ in self?.currentDate }
             .asObservable()
         
         let notification = NotificationCenter
             .default
             .rx
             .notification(.updated)
-            .compactMap({ $0.object as? Date })
+            .compactMap({ $0.object as? [Date] })
+            .withUnretained(self)
+            .compactMap { owner, dates in
+                let result = dates.filter { date in
+                    Calendar.current.isDate(owner.currentDate, inSameDayAs: date)
+                }
+                
+                return !result.isEmpty ? owner.currentDate : nil
+            }
         
         let data = Observable
-            .merge(updated, input.viewDidLoad, notification, input.daySelected)
+            .merge(updated, input.viewDidLoad, input.daySelected, notification)
+            .do(onNext: { [weak self] date in self?.currentDate = date })
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
         
