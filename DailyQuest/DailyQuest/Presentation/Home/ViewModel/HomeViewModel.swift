@@ -32,7 +32,7 @@ final class HomeViewModel {
     struct Output {
         let data: Driver<[Quest]>
         let userData: Observable<User>
-        let isLoggedIn: Observable<Bool>
+        let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
     }
@@ -52,16 +52,24 @@ final class HomeViewModel {
             .rx
             .notification(.updated)
             .compactMap({ $0.object as? Date })
+        
+        let logged = userUseCase
+            .isLoggedIn()
+            .map { _ in Date() }
 
         let data = Observable
-            .merge(updated, input.viewDidLoad, notification, input.daySelected)
+            .merge(updated,
+                   input.viewDidLoad,
+                   notification,
+                   input.daySelected,
+                   logged)
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
 
         let userData = userUseCase
             .fetch()
 
-        let isLoggedIn = input
+        let profileTapResult = input
             .profileButtonDidClicked
             .flatMap { [weak self] _ in
             guard let self = self else { return Observable.just(false) }
@@ -99,7 +107,7 @@ final class HomeViewModel {
 
         return Output(data: data,
                       userData: userData,
-                      isLoggedIn: isLoggedIn,
+                      profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
                       displayDays: displayDays)
     }

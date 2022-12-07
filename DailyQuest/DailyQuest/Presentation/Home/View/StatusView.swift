@@ -114,7 +114,6 @@ final class StatusView: UIView {
         userDataFetched
             .asDriver(onErrorJustReturn: User())
             .drive(onNext: { [weak self] user in
-            print(user)
             guard let self = self else { return }
             self.profileButton.imageView?.setImage(with: user.profileURL)
         }).disposed(by: disposableBag)

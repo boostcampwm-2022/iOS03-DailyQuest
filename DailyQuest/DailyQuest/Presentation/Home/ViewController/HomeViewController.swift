@@ -181,10 +181,6 @@ final class HomeViewController: UIViewController {
             .bind(to: calendarView.yearMonthLabel.rx.text)
             .disposed(by: disposableBag)
     }
-    
-    private func bindViewReload(output: HomeViewModel.Output){
-        
-    }
 
     private func bindToQuestHeaderButton() {
         questViewHeader
@@ -206,7 +202,7 @@ final class HomeViewController: UIViewController {
 
     private func bindToStatusBarProfileButton(with output: HomeViewModel.Output) {
         output
-            .isLoggedIn
+            .profileTapResult
             .bind (onNext: needLogIn(result:))
             .disposed(by: disposableBag)
     }
