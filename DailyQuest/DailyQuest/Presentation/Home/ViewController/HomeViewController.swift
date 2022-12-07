@@ -53,6 +53,14 @@ final class HomeViewController: UIViewController {
         return QuestViewHeader()
     }()
 
+    private lazy var emptySpace: UIImageView = {
+        let emptySpace = UIImageView()
+        emptySpace.image = UIImage(named: "NoMoreQuests")
+        emptySpace.isHidden = true
+
+        return emptySpace
+    }()
+
     // MARK: - Life Cycle
     static func create(with viewModel: HomeViewModel) -> HomeViewController {
         let vc = HomeViewController()
@@ -79,6 +87,7 @@ final class HomeViewController: UIViewController {
         stackView.addArrangedSubview(statusView)
         stackView.addArrangedSubview(calendarView)
         stackView.addArrangedSubview(questView)
+        stackView.addArrangedSubview(emptySpace)
 
         scrollView.addSubview(stackView)
 
@@ -99,6 +108,11 @@ final class HomeViewController: UIViewController {
 
         calendarView.snp.makeConstraints { make in
             make.height.equalTo(calendarView.snp.width).multipliedBy(1.4)
+        }
+
+        emptySpace.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(150)
         }
     }
 
@@ -198,6 +212,12 @@ final class HomeViewController: UIViewController {
             cell.setup(with: item)
         }
             .disposed(by: disposableBag)
+
+        output
+            .data
+            .map({ !$0.isEmpty })
+            .drive(emptySpace.rx.isHidden)
+            .disposed(by: disposableBag)
     }
 
     private func bindToStatusBarProfileButton(with output: HomeViewModel.Output) {
@@ -207,12 +227,22 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposableBag)
     }
 
+
     private func bindToStatusBarProfileButtonImage(with output: HomeViewModel.Output) {
         output
             .userData
             .bind(onNext: { [weak self] user in
             guard let self = self else { return }
             self.statusView.userDataFetched.onNext(user)
+        })
+            .disposed(by: disposableBag)
+    }
+
+    private func bindToStatusBarProfileButton() {
+        statusView
+            .profileButtonDidClick
+            .bind(onNext: { [weak self] _ in
+            self?.coordinatorPublisher.onNext(.showProfileFlow)
         })
             .disposed(by: disposableBag)
     }
