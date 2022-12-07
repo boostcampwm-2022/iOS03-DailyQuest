@@ -53,10 +53,9 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle
-    static func create(with viewModel: HomeViewModel, _ calendarViewModel: CalendarViewModel) -> HomeViewController {
+    static func create(with viewModel: HomeViewModel) -> HomeViewController {
         let vc = HomeViewController()
         vc.viewModel = viewModel
-        vc.calendarView.viewModel = calendarViewModel
         
         return vc
     }
@@ -105,16 +104,68 @@ final class HomeViewController: UIViewController {
     private func bind() {
         let viewDidLoad = Observable.just(Date()).asObservable()
         let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
+        let dragEventInCalendar = calendarView
+            .monthCollectionView
+            .rx
+            .didEndDecelerating
+            .map { [weak self] in
+                guard let indexPath = self?.calendarView
+                    .monthCollectionView
+                    .indexPathsForVisibleItems
+                    .first
+                else {
+                    return CalendarView.ScrollDirection.none
+                }
+                
+                if indexPath.section > 1 {
+                    return CalendarView.ScrollDirection.next
+                } else if indexPath.section < 1 {
+                    return CalendarView.ScrollDirection.prev
+                } else {
+                    return CalendarView.ScrollDirection.none
+                }
+            }
+        
         
         let output = viewModel.transform(
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
-                itemDidClicked: itemDidClick
-            )
+                itemDidClicked: itemDidClick,
+                dragEventInCalendar: dragEventInCalendar
+            ),
+            disposeBag: disposableBag
         )
-        calendarView.bind()
+        
+        bindToCalendarView(with: output)
         bindToQuestHeaderButton()
         bindToQuestView(with: output)
+    }
+    
+    private func bindToCalendarView(with output: HomeViewModel.Output) {
+        output
+            .displayDays
+            .drive(onNext: { [weak self] dailyQuestCompletions in
+                var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
+                let allSectionIndex = dailyQuestCompletions.indices.map { Int($0) }
+                snapshot.appendSections(allSectionIndex)
+                
+                allSectionIndex.forEach { index in
+                    snapshot.appendItems(dailyQuestCompletions[index], toSection: index)
+                }
+                
+                self?.calendarView.dataSource.apply(snapshot, animatingDifferences: false)
+                self?.calendarView.monthCollectionView.layoutIfNeeded()
+                self?.calendarView.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
+                                                       at: .centeredHorizontally,
+                                                       animated: false)
+            })
+            .disposed(by: disposableBag)
+        
+        output
+            .currentMonth
+            .compactMap({ $0?.toFormat })
+            .bind(to: calendarView.yearMonthLabel.rx.text)
+            .disposed(by: disposableBag)
     }
     
     private func bindToQuestHeaderButton() {
