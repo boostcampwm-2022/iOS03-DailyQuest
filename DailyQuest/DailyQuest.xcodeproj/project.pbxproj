@@ -124,6 +124,9 @@
 		9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */; };
 		9BD8CD00293829DD00E6EA2F /* FollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */; };
 		9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */; };
+		9BED4DE2293DD53500C60631 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE0293D938400C60631 /* ProfileViewController.swift */; };
+		9BED4DE8293FA01400C60631 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */; };
+		9BED4DEA293FA92900C60631 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE9293FA92900C60631 /* UIImageView+.swift */; };
 		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
 		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
 		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
@@ -326,6 +329,9 @@
 		9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCell.swift; sourceTree = "<group>"; };
 		9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingView.swift; sourceTree = "<group>"; };
 		9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFollowingCell.swift; sourceTree = "<group>"; };
+		9BED4DE0293D938400C60631 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9BED4DE9293FA92900C60631 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		A5003AB5293F601E00082A9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A5003AB8293F909300082A9C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -541,9 +547,9 @@
 		342830A5292E0F8600AE811B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				342830A9292E12C700AE811B /* SettingsViewController.swift */,
 				34113BEA2934A3B200AB4919 /* LoginViewController.swift */,
 				A5003AB5293F601E00082A9C /* SignUpViewController.swift */,
+				342830A9292E12C700AE811B /* SettingsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -638,6 +644,7 @@
 				34874AA129250C43000570DF /* UIButton+.swift */,
 				A5656458292BBDD40033E763 /* String+.swift */,
 				A50F9A3829266FD8005C00FE /* Date+.swift */,
+				9BED4DE9293FA92900C60631 /* UIImageView+.swift */,
 				3436FCF9293F2654003575C3 /* Notification+.swift */,
 			);
 			path = Utils;
@@ -766,6 +773,7 @@
 			children = (
 				34A529DF29247F1F001BAD34 /* HomeViewController.swift */,
 				345687F32937329E00CA51E3 /* EnrollViewController.swift */,
+				9BED4DE0293D938400C60631 /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -775,6 +783,7 @@
 			children = (
 				345687FD29378AB900CA51E3 /* EnrollViewModel.swift */,
 				B5115452292CD07100FDBD22 /* CalendarViewModel.swift */,
+				9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */,
 				348FCE012940294900E4940C /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1293,6 +1302,7 @@
 				A51F01D52923407E0031ECA2 /* BrowseQuestEntity.swift in Sources */,
 				3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */,
 				9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */,
+				9BED4DEA293FA92900C60631 /* UIImageView+.swift in Sources */,
 				342830FD292E2AF200AE811B /* NavigateField.swift in Sources */,
 				342830F2292E196E00AE811B /* CommonField.swift in Sources */,
 				342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */,
@@ -1305,12 +1315,14 @@
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
+				9BED4DE2293DD53500C60631 /* ProfileViewController.swift in Sources */,
 				34A529D529247932001BAD34 /* AppCoordinator.swift in Sources */,
 				B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */,
 				3499552729235D1E007AB99E /* BrowseItemViewModel.swift in Sources */,
 				9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */,
 				A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				347D258B292C60F40038FCA2 /* StatusView.swift in Sources */,
+				9BED4DE8293FA01400C60631 /* ProfileViewModel.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
 				34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */,

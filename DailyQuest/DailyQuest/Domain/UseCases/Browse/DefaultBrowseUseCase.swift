@@ -25,6 +25,6 @@ extension DefaultBrowseUseCase: BrowseUseCase {
 
 final class BrowseMockRepo: BrowseRepository {
     func fetch() -> RxSwift.Observable<[BrowseQuest]> {
-        return .just([BrowseQuest(user: User(uuid: "", nickName: "test", profileURL: "", backgroundImageURL: "", description: "", allow: false), quests: [])])
+        return .just([BrowseQuest(user: User(uuid: "", nickName: "test", profileURL: "", backgroundImageURL: "", introduce: "", allow: false), quests: [])])
     }
 }
