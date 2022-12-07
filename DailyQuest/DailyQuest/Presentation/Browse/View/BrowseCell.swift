@@ -16,16 +16,14 @@ final class BrowseCell: UITableViewCell {
     static let reuseIdentifier = "BrowseCell"
     
     // MARK: - Components
-    /**
-     아직 사용되고 있는 view는 아닙니다.
-     */
     private lazy var header: UserInfoView = {
         return UserInfoView()
     }()
     
     private lazy var questTableView: UITableView = {
         let questTableView = UITableView()
-        questTableView.backgroundColor = .maxLightGrey
+        questTableView.backgroundColor = .maxLightBlue
+        questTableView.layer.cornerRadius = 15
         
         return questTableView
     }()
