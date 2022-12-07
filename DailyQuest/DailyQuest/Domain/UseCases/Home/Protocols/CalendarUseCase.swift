@@ -13,8 +13,9 @@ protocol CalendarUseCase {
     
     var selectedDate: Observable<Date> { get }
     var currentMonth: BehaviorSubject<Date?> { get }
-    var completionOfMonths: BehaviorSubject<[MonthlyQuestCompletion]> { get }
+    var completionOfMonths: BehaviorSubject<[[DailyQuestCompletion]]> { get }
     
     func fetchNextMontlyCompletion()
     func fetchLastMontlyCompletion()
+    func setupMonths()
 }
