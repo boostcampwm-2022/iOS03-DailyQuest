@@ -24,6 +24,7 @@ final class HomeViewModel {
         let itemDidClicked: Observable<Quest>
         
         let dragEventInCalendar: Observable<CalendarView.ScrollDirection>
+        let daySelected: Observable<Date>
     }
     
     struct Output {
@@ -50,7 +51,7 @@ final class HomeViewModel {
             .compactMap({ $0.object as? Date })
         
         let data = Observable
-            .merge(updated, input.viewDidLoad, notification)
+            .merge(updated, input.viewDidLoad, notification, input.daySelected)
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
         

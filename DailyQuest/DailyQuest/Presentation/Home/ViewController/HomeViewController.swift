@@ -125,13 +125,23 @@ final class HomeViewController: UIViewController {
                     return CalendarView.ScrollDirection.none
                 }
             }
+        let daySelected = calendarView
+            .monthCollectionView
+            .rx
+            .itemSelected
+            .compactMap(calendarView.dataSource.itemIdentifier(for:))
+            .map { dailyQuestCompletion in
+                dailyQuestCompletion.day
+            }
+            .asObservable()
         
         
         let output = viewModel.transform(
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
                 itemDidClicked: itemDidClick,
-                dragEventInCalendar: dragEventInCalendar
+                dragEventInCalendar: dragEventInCalendar,
+                daySelected: daySelected
             ),
             disposeBag: disposableBag
         )
