@@ -13,13 +13,11 @@ final class HomeCalendarUseCase: CalendarUseCase {
     private let questsRepository: QuestsRepository
     private let disposeBag = DisposeBag()
     
-    var selectedDate: Observable<Date>
     let currentMonth = BehaviorSubject<Date?>(value: Date())
     let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
     
-    init(questsRepository: QuestsRepository, selectedDate: Observable<Date>) {
+    init(questsRepository: QuestsRepository) {
         self.questsRepository = questsRepository
-        self.selectedDate = selectedDate
     }
     
     func fetchNextMontlyCompletion() {

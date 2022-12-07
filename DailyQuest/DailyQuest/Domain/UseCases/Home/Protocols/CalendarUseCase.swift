@@ -11,7 +11,6 @@ import RxSwift
 
 protocol CalendarUseCase {
     
-    var selectedDate: Observable<Date> { get }
     var currentMonth: BehaviorSubject<Date?> { get }
     var completionOfMonths: BehaviorSubject<[[DailyQuestCompletion]]> { get }
     
