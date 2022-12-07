@@ -12,7 +12,6 @@ import RxSwift
 protocol HomeCoordinator: Coordinator {
     func showProfileFlow()
     func showAddQuestFlow()
-    func showAddFriendsFlow()
 }
 
 final class DefaultHomeCoordinator: HomeCoordinator {
@@ -51,9 +50,5 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func showAddQuestFlow() {
         let enrollViewController = homeSceneDIContainer.makeEnrollViewController()
         navigationController.present(enrollViewController, animated: true)
-    }
-    
-    func showAddFriendsFlow() {
-        
     }
 }

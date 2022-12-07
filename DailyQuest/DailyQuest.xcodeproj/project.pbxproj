@@ -49,6 +49,7 @@
 		34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D91293EF75F0007E661 /* SettingsViewModel.swift */; };
 		34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D93293EF9850007E661 /* SettingsUseCase.swift */; };
 		34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */; };
+		3436FCFA293F2654003575C3 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436FCF9293F2654003575C3 /* Notification+.swift */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
@@ -259,6 +260,7 @@
 		34404D91293EF75F0007E661 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		34404D93293EF9850007E661 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsUseCase.swift; sourceTree = "<group>"; };
+		3436FCF9293F2654003575C3 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 				34874AA129250C43000570DF /* UIButton+.swift */,
 				A5656458292BBDD40033E763 /* String+.swift */,
 				A50F9A3829266FD8005C00FE /* Date+.swift */,
+				3436FCF9293F2654003575C3 /* Notification+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1328,6 +1331,7 @@
 				345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */,
 				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
+				3436FCFA293F2654003575C3 /* Notification+.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */,
