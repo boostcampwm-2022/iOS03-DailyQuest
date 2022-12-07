@@ -24,13 +24,19 @@ final class ProfileViewController: UIViewController {
         return backgroundImage
     }()
     
-    private lazy var userImage: UIImageView = {
-        let userImage = UIImageView()
-        userImage.image = UIImage(named: "AppIcon")
-        userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = 100.0 / 2
-        userImage.contentMode = .scaleAspectFill
-        return userImage
+    private lazy var cameraIcon: UIImageView = {
+        let cameraIcon = UIImageView()
+        cameraIcon.image = UIImage(systemName: "camera.fill")
+        cameraIcon.clipsToBounds = true
+        cameraIcon.tintColor = .gray
+        cameraIcon.contentMode = .scaleAspectFit
+        cameraIcon.backgroundColor = .white
+        cameraIcon.layer.cornerRadius = 30.0 / 2
+        return cameraIcon
+    }()
+
+    private lazy var userImageView: UserImageView = {
+        return UserImageView()
     }()
     
     private lazy var nameLabel: UILabel = {
@@ -75,7 +81,8 @@ final class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(backgroundImage)
-        view.addSubview(userImage)
+        view.addSubview(cameraIcon)
+        view.addSubview(userImageView)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
         view.addSubview(deleteUserButton)
@@ -85,16 +92,20 @@ final class ProfileViewController: UIViewController {
             make.height.equalTo(300)
         }
         
-        userImage.snp.makeConstraints { make in
+        cameraIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(30)
+            make.left.equalTo(10)
+            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-10)
+        }
+        
+        userImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(100)
             make.top.equalTo(backgroundImage.snp.bottom).offset(-50)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(userImage.snp.bottom).offset(5)
+            make.top.equalTo(userImageView.snp.bottom).offset(5)
         }
         
         introduceLabel.snp.makeConstraints { make in
@@ -111,7 +122,14 @@ final class ProfileViewController: UIViewController {
     }
     
     func bind() {
-        deleteUserButton.rx.tap//.asDriver().drive(onDisposed:  {
+        
+//        userImageView.rx.tapGesture()
+//            .when(.recognized)
+//            .subscribe(onNext: {
+//                present()
+//            }).disposed(by: disposableBag)
+        
+        deleteUserButton.rx.tap
             .subscribe(onNext: {
             self.showAlert()
         }).disposed(by: disposableBag)
@@ -121,7 +139,7 @@ final class ProfileViewController: UIViewController {
         output
             .data
             .drive(onNext: { user in
-                self.userImage.setImage(with: user.profileURL)
+                self.userImageView.userImage.setImage(with: user.profileURL)
                 self.backgroundImage.setImage(with: user.backgroundImageURL)
                 self.nameLabel.text = user.nickName
                 self.introduceLabel.text = user.introduce
@@ -176,4 +194,5 @@ extension ProfileViewController {
         case deleteUser
     }
 }
+
 
