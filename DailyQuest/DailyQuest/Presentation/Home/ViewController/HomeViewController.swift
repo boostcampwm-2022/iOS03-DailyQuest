@@ -182,7 +182,7 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposableBag)
     }
     
-    private func bindViewReload(out){
+    private func bindViewReload(output: HomeViewModel.Output){
         
     }
 
