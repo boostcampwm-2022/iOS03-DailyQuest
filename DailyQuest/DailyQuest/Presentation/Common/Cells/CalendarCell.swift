@@ -78,6 +78,6 @@ final class CalendarCell: UICollectionViewCell {
         case .done:
             self.circleCheckView.setDone()
         }
-        dayLabel.text = "\(completion.day)"
+        dayLabel.text = "\(completion.day.day)"
     }
 }
