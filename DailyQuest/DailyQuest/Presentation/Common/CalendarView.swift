@@ -10,10 +10,9 @@ import SnapKit
 import RxSwift
 
 final class CalendarView: UIView {
-    var viewModel: CalendarViewModel!
     private var disposeBag = DisposeBag()
     
-    private lazy var yearMonthLabel: UILabel = {
+    private(set) lazy var yearMonthLabel: UILabel = {
         let view = UILabel()
         view.adjustsFontSizeToFitWidth = true
         view.font = .systemFont(ofSize: 32, weight: .bold)
@@ -38,7 +37,7 @@ final class CalendarView: UIView {
         return view
     }()
     
-    private lazy var monthCollectionView: UICollectionView = {
+    private(set) lazy var monthCollectionView: UICollectionView = {
         let layout = setupCollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -49,15 +48,7 @@ final class CalendarView: UIView {
         return collectionView
     }()
     
-    private let dateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월"
-        return formatter
-    }()
-    
-    var dataSource: UICollectionViewDiffableDataSource<Int, DailyQuestCompletion>!
-    
-    var displayDays: [[DailyQuestCompletion]] = []
+    private(set) var dataSource: UICollectionViewDiffableDataSource<Int, DailyQuestCompletion>!
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -128,7 +119,6 @@ final class CalendarView: UIView {
             else {
                 preconditionFailure()
             }
-            
             cell.configure(item)
             
             return cell
@@ -137,63 +127,6 @@ final class CalendarView: UIView {
 }
 
 extension CalendarView {
-    
-    func bind() {
-        let viewDidLoad = Observable.just(()).asObservable()
-        let dragEventInCalendar = monthCollectionView
-            .rx
-            .didEndDecelerating
-            .map { [weak self] in
-                guard let indexPath = self?.monthCollectionView.indexPathsForVisibleItems.first else {
-                    return ScrollDirection.none
-                }
-                
-                if indexPath.section > 1 {
-                    return ScrollDirection.next
-                } else if indexPath.section < 1 {
-                    return ScrollDirection.prev
-                } else {
-                    return ScrollDirection.none
-                }
-            }
-        
-        let output = viewModel.transform(
-            input: CalendarViewModel
-                .Input(viewDidLoad: viewDidLoad,
-                       dragEventInCalendar: dragEventInCalendar),
-            disposeBag: disposeBag
-        )
-        
-        output
-            .displayDays
-            .bind(onNext: { [weak self] dailyQuestCompletions in
-                var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
-                let allSectionIndex = dailyQuestCompletions.indices.map { Int($0) }
-                snapshot.appendSections(allSectionIndex)
-                
-                allSectionIndex.forEach { index in
-                    snapshot.appendItems(dailyQuestCompletions[index], toSection: index)
-                }
-                
-                self?.dataSource.apply(snapshot, animatingDifferences: false)
-                self?.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
-                                                       at: .centeredHorizontally,
-                                                       animated: false)
-            })
-            .disposed(by: disposeBag)
-        
-        output
-            .currentMonth
-            .compactMap({ $0 })
-            .map(formatDate(with:))
-            .bind(to: yearMonthLabel.rx.text)
-            .disposed(by: disposeBag)
-    }
-    
-    private func formatDate(with date: Date) -> String {
-        return dateFormatter.string(from: date)
-    }
-    
     enum ScrollDirection {
         case prev
         case next
