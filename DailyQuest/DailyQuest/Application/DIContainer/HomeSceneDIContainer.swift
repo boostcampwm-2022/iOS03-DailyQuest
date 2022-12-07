@@ -39,10 +39,6 @@ final class HomeSceneDIContainer {
         return EnrollViewModel(enrollUseCase: makeEnrollUseCase())
     }
     
-    func makeCalendarViewModel() -> CalendarViewModel {
-        return CalendarViewModel(calendarUseCase: makeCalendarUseCase())
-    }
-    
     // MARK: - View Controller
     func makeHomeViewController() -> HomeViewController {
         return HomeViewController.create(with: makeHomeViewModel())
