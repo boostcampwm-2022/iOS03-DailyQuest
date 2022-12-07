@@ -13,15 +13,15 @@ final class CalendarView: UIView {
     private var viewModel: CalendarViewModel!
     private var disposeBag = DisposeBag()
     
-    lazy var yearMonthLabel: UILabel = {
+    private lazy var yearMonthLabel: UILabel = {
         let view = UILabel()
         view.adjustsFontSizeToFitWidth = true
         view.font = .systemFont(ofSize: 32, weight: .bold)
-        view.text = dateFormatter.string(from: currentDay)
+//        view.text = dateFormatter.string(from: currentDay)
         return view
     }()
     
-    lazy var weekdayLabels: UIStackView = {
+    private lazy var weekdayLabels: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fillEqually
@@ -39,7 +39,7 @@ final class CalendarView: UIView {
         return view
     }()
 
-    lazy var monthCollectionView: UICollectionView = {
+    private lazy var monthCollectionView: UICollectionView = {
         let layout = setupCollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -57,19 +57,11 @@ final class CalendarView: UIView {
         return formatter
     }()
     
-    private var currentDay: Date {
-        didSet {
-            yearMonthLabel.text = dateFormatter.string(from: currentDay)
-        }
-    }
-    
     var dataSource: UICollectionViewDiffableDataSource<Int, DailyQuestCompletion>!
     
     var displayDays: [[DailyQuestCompletion]] = []
     
     override init(frame: CGRect = .zero) {
-        self.currentDay = Date.now
-        
         super.init(frame: frame)
         
         addSubviews()
@@ -80,12 +72,6 @@ final class CalendarView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
     }
     
     private func addSubviews() {
