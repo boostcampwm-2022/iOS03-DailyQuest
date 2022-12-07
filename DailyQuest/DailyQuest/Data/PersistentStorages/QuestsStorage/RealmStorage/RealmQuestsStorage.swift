@@ -69,6 +69,8 @@ extension RealmQuestsStorage: QuestsStorage {
                 try realmStorage.updateEntity(entity: questEntity)
                 single(.success(quest))
             } catch let error {
+                print(#function)
+                print(error)
                 single(.failure(RealmStorageError.saveError(error)))
             }
 

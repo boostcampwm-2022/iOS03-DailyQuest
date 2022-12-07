@@ -14,4 +14,33 @@ struct User {
     let backgroundImageURL: String
     let description: String
     let allow: Bool
+    
+    init(){
+        self.uuid = ""
+        self.nickName = ""
+        self.profileURL = ""
+        self.backgroundImageURL = ""
+        self.description = ""
+        self.allow = false
+    }
+    
+    init(nickName: String){
+        self.uuid = ""
+        self.nickName = nickName
+        self.profileURL = ""
+        self.backgroundImageURL = ""
+        self.description = ""
+        self.allow = false
+    }
+    
+    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, description: String, allow: Bool) {
+        self.uuid = uuid
+        self.nickName = nickName
+        self.profileURL = profileURL
+        self.backgroundImageURL = backgroundImageURL
+        self.description = description
+        self.allow = allow
+    }
+    
+    
 }

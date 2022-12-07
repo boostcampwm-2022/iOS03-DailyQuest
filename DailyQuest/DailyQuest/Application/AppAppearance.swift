@@ -10,7 +10,7 @@ import UIKit
 final class AppAppearance {
     static func setupAppearance() {
         UITabBar.appearance().backgroundColor = .white
-        UITabBar.appearance().tintColor = .maxYellow
+        UITabBar.appearance().tintColor = .maxGreen
         
         UITableViewCell.appearance().selectionStyle = .none
         UITableView.appearance().separatorStyle = .none

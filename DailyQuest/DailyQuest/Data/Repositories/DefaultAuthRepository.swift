@@ -25,4 +25,8 @@ extension DefaultAuthRepository: AuthRepository {
     func signOut() -> Single<Bool> {
         return self.networkService.signOut()
     }
+
+    func signUp(email: String, password: String, user: User) -> Single<Bool> {
+        return self.networkService.signUp(email: email, password: password, userDto: user.toDTO())
+    }
 }

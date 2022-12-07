@@ -29,36 +29,9 @@ final class FirebaseService: NetworkService {
         uid.accept(auth.currentUser?.uid)
     }
 
-    @discardableResult
-    private func documentReference(userCase: UserCase) throws -> DocumentReference {
-        switch userCase {
-        case .currentUser:
-            guard let currentUserUid = uid.value else { throw NetworkServiceError.noAuthError }
-            return db.collection(userCase.path).document(currentUserUid)
-        case let .anotherUser(uid):
-            return db.collection(userCase.path).document(uid)
-        }
-    }
+}
 
-    private func checkPermission(crud: CRUD, userCase: UserCase, access: Access) throws {
-        switch userCase {
-        case .currentUser:
-            switch access {
-            case .receiveQuests:
-                if crud == .create { throw NetworkServiceError.permissionDenied }
-            default:
-                break
-            }
-        case .anotherUser:
-            switch access {
-            case .receiveQuests:
-                if crud == .delete { throw NetworkServiceError.permissionDenied }
-            default:
-                if crud != .read { throw NetworkServiceError.permissionDenied }
-            }
-        }
-    }
-
+extension FirebaseService {
     func signIn(email: String, password: String) -> Single<Bool> {
         return Single.create { [weak self] single in
             do {
@@ -90,6 +63,65 @@ final class FirebaseService: NetworkService {
                 single(.failure(error))
             }
             return Disposables.create()
+        }
+    }
+
+    func signUp(email: String, password: String, userDto: UserDTO) -> Single<Bool> {
+        return Single.create { [weak self] single in
+            guard let self = self else {
+                single(.failure(NetworkServiceError.noNetworkService))
+                return Disposables.create()
+            }
+
+            self.auth.createUser(withEmail: email, password: password) { authResult, error in
+                do {
+                    if let error = error { throw error }
+                    guard let authResult = authResult else { throw NetworkServiceError.noAuthError }
+                    try self.createUser(uuid: authResult.user.uid, userDto: userDto)
+                    single(.success(true))
+                } catch let error {
+                    single(.failure(error))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func createUser(uuid: String, userDto: UserDTO) throws {
+        let userDto = UserDTO(uuid: uuid, userDto: userDto)
+        try db.collection(UserCase.currentUser.path).document(uuid)
+            .setData(from: userDto)
+    }
+}
+
+extension FirebaseService {
+    @discardableResult
+    private func documentReference(userCase: UserCase) throws -> DocumentReference {
+        switch userCase {
+        case .currentUser:
+            guard let currentUserUid = uid.value else { throw NetworkServiceError.noAuthError }
+            return db.collection(userCase.path).document(currentUserUid)
+        case let .anotherUser(uid):
+            return db.collection(userCase.path).document(uid)
+        }
+    }
+
+    private func checkPermission(crud: CRUD, userCase: UserCase, access: Access) throws {
+        switch userCase {
+        case .currentUser:
+            switch access {
+            case .receiveQuests:
+                if crud == .create { throw NetworkServiceError.permissionDenied }
+            default:
+                break
+            }
+        case .anotherUser:
+            switch access {
+            case .receiveQuests:
+                if crud == .delete { throw NetworkServiceError.permissionDenied }
+            default:
+                if crud != .read { throw NetworkServiceError.permissionDenied }
+            }
         }
     }
 

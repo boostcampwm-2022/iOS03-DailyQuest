@@ -46,6 +46,10 @@
 		34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283102292E2D9B00AE811B /* ToggleCell.swift */; };
 		34283105292E2E3F00AE811B /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34283104292E2E3F00AE811B /* ToggleField.swift */; };
 		3429084F29383D73001812B1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3429084E29383D73001812B1 /* UserRepository.swift */; };
+		3436FCFA293F2654003575C3 /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436FCF9293F2654003575C3 /* Notification+.swift */; };
+		34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D91293EF75F0007E661 /* SettingsViewModel.swift */; };
+		34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D93293EF9850007E661 /* SettingsUseCase.swift */; };
+		34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */; };
 		3449AD5B2922164B00B87619 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3449AD5D2922197000B87619 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5C2922197000B87619 /* User.swift */; };
 		3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5F29222B3900B87619 /* UserInfoCell.swift */; };
@@ -60,6 +64,7 @@
 		347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258C292C6E220038FCA2 /* MessageBubble.swift */; };
 		34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874A9F292509A4000570DF /* QuestViewHeader.swift */; };
 		34874AA229250C43000570DF /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874AA129250C43000570DF /* UIButton+.swift */; };
+		348FCE022940294900E4940C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FCE012940294900E4940C /* HomeViewModel.swift */; };
 		349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349955112923220E007AB99E /* SwiftUIPreview.swift */; };
 		3499551529232533007AB99E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551429232533007AB99E /* UIColor+.swift */; };
 		3499551E29233DEF007AB99E /* QuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499551D29233DEF007AB99E /* QuestCell.swift */; };
@@ -104,7 +109,6 @@
 		34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552A29236041007AB99E /* BrowseViewModel.swift */; };
 		34EE0C662935FD7D002BEC23 /* BrowseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3499552629235D1E007AB99E /* BrowseItemViewModel.swift */; };
 		34EE6EB72924C674005AF583 /* QuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB62924C674005AF583 /* QuestView.swift */; };
-		34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */; };
 		34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD368293DEED600E0DC8A /* FriendViewController.swift */; };
 		34FCD36B293DF2F600E0DC8A /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */; };
@@ -112,7 +116,6 @@
 		34FF6C5A292B86F8002AFD4D /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C46292B8014002AFD4D /* SnapKit-Dynamic */; };
 		34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5C292B8B27002AFD4D /* RxCocoa */; };
 		34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C5E292B8B27002AFD4D /* RxSwift */; };
-		34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */; };
 		34FF6C64292B8C26002AFD4D /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 34FF6C63292B8C26002AFD4D /* RxCocoa-Dynamic */; };
 		9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
 		9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF22935BC0D00E6EA2F /* DefaultBrowseRepository.swift */; };
@@ -121,6 +124,10 @@
 		9BD8CCFB2937407100E6EA2F /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */; };
 		9BD8CD00293829DD00E6EA2F /* FollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */; };
 		9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */; };
+		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
+		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
+		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
+		A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */; };
 		A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */; };
 		A50DE911292B74C500E1FD60 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
@@ -149,7 +156,6 @@
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
 		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
-		A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
 		A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */; };
 		A5D3C828293DDEBE00F43B76 /* QuestsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */; };
 		A5D3C829293DDF8A00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
@@ -157,7 +163,6 @@
 		A5D3C82B293DDF9000F43B76 /* QuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CFB3E292B585700CCE97A /* QuestDTO+Mapping.swift */; };
 		A5D3C82C293DDF9200F43B76 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE910292B74C500E1FD60 /* DTO.swift */; };
 		A5D3C82D293DDF9400F43B76 /* BrowseQuestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8CCF62935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift */; };
-		A5D3C82F293DDF9800F43B76 /* RepositoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */; };
 		A5D3C830293DDF9B00F43B76 /* DefaultQuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */; };
 		A5D3C831293DDF9D00F43B76 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */; };
 		A5D3C832293DDFA000F43B76 /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511228F29384FAF00384B4B /* DefaultUserRepository.swift */; };
@@ -258,6 +263,10 @@
 		34283102292E2D9B00AE811B /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
 		34283104292E2E3F00AE811B /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		3429084E29383D73001812B1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		3436FCF9293F2654003575C3 /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
+		34404D91293EF75F0007E661 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		34404D93293EF9850007E661 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
+		34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsUseCase.swift; sourceTree = "<group>"; };
 		3449AD5A2922164B00B87619 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		3449AD5C2922197000B87619 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3449AD5F29222B3900B87619 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -272,6 +281,7 @@
 		347D258C292C6E220038FCA2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		34874A9F292509A4000570DF /* QuestViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewHeader.swift; sourceTree = "<group>"; };
 		34874AA129250C43000570DF /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		348FCE012940294900E4940C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		349955112923220E007AB99E /* SwiftUIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPreview.swift; sourceTree = "<group>"; };
 		3499551429232533007AB99E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3499551D29233DEF007AB99E /* QuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCell.swift; sourceTree = "<group>"; };
@@ -311,7 +321,6 @@
 		34EE0C612935FD0C002BEC23 /* BrowseUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCaseMock.swift; sourceTree = "<group>"; };
 		34EE0C632935FD6B002BEC23 /* BrowseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseViewModelTests.swift; sourceTree = "<group>"; };
 		34EE6EB62924C674005AF583 /* QuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestView.swift; sourceTree = "<group>"; };
-		34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewModel.swift; sourceTree = "<group>"; };
 		34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnrollUseCase.swift; sourceTree = "<group>"; };
 		34FCD368293DEED600E0DC8A /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
@@ -322,6 +331,10 @@
 		9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingCell.swift; sourceTree = "<group>"; };
 		9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingView.swift; sourceTree = "<group>"; };
 		9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFollowingCell.swift; sourceTree = "<group>"; };
+		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		A5003AB5293F601E00082A9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A5003AB8293F909300082A9C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserUseCase.swift; sourceTree = "<group>"; };
 		A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuestsRepository.swift; sourceTree = "<group>"; };
 		A50DE910292B74C500E1FD60 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		A50F9A3329266F45005C00FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -348,7 +361,6 @@
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
 		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
-		A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryManager.swift; sourceTree = "<group>"; };
 		A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedUserRepository.swift; sourceTree = "<group>"; };
 		A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepositoryTests.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
@@ -435,6 +447,8 @@
 			isa = PBXGroup;
 			children = (
 				34113BE72934917500AB4919 /* LoginViewModel.swift */,
+				A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */,
+				34404D91293EF75F0007E661 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -445,6 +459,7 @@
 				3416FC86292B54BF00B504C5 /* Protocols */,
 				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
 				34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */,
+				A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */,
 				B5606666293DDA0900CEFEA8 /* HomeCalendarUseCase.swift */,
 			);
 			path = Home;
@@ -455,6 +470,7 @@
 			children = (
 				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
 				344A4599293DC495007A3D37 /* EnrollUseCase.swift */,
+				A5003AB8293F909300082A9C /* UserUseCase.swift */,
 				B5606664293DD9A000CEFEA8 /* CalendarUseCase.swift */,
 			);
 			path = Protocols;
@@ -511,6 +527,7 @@
 			children = (
 				3417B1422935DA2E00900454 /* Protocols */,
 				340A724A29348C2200B26AA6 /* DefaultAuthUseCase.swift */,
+				34404D95293EF9E50007E661 /* DefaultSettingsUseCase.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -527,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				340A724829348B1B00B26AA6 /* AuthUseCase.swift */,
+				34404D93293EF9850007E661 /* SettingsUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -536,6 +554,7 @@
 			children = (
 				342830A9292E12C700AE811B /* SettingsViewController.swift */,
 				34113BEA2934A3B200AB4919 /* LoginViewController.swift */,
+				A5003AB5293F601E00082A9C /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -632,6 +651,7 @@
 				34874AA129250C43000570DF /* UIButton+.swift */,
 				A5656458292BBDD40033E763 /* String+.swift */,
 				A50F9A3829266FD8005C00FE /* Date+.swift */,
+				3436FCF9293F2654003575C3 /* Notification+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -766,9 +786,9 @@
 		34A529DE29247F13001BAD34 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				34EE6EB82924CAA1005AF583 /* QuestViewModel.swift */,
 				345687FD29378AB900CA51E3 /* EnrollViewModel.swift */,
 				B5115452292CD07100FDBD22 /* CalendarViewModel.swift */,
+				348FCE012940294900E4940C /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1026,7 +1046,6 @@
 		A5AC96D42922356E003B7637 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				A5D3C81F293DD52B00F43B76 /* RepositoryManager.swift */,
 				A50DE905292B53D900E1FD60 /* DefaultQuestsRepository.swift */,
 				A517A84529349D91005CB1E8 /* DefaultAuthRepository.swift */,
 				A511228F29384FAF00384B4B /* DefaultUserRepository.swift */,
@@ -1244,6 +1263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */,
 				A5A8C8362936EC7E00988C88 /* SubQuestEntity.swift in Sources */,
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
 				34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */,
@@ -1265,18 +1285,19 @@
 				A5A8C8382936ED0F00988C88 /* SubQuestEntity+Mapping.swift in Sources */,
 				34874AA229250C43000570DF /* UIButton+.swift in Sources */,
 				A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */,
+				34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
 				B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
 				3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */,
 				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
 				A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */,
-				34EE6EB92924CAA1005AF583 /* QuestViewModel.swift in Sources */,
 				A5656459292BBDD40033E763 /* String+.swift in Sources */,
 				3429084F29383D73001812B1 /* UserRepository.swift in Sources */,
 				34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */,
 				A50DE911292B74C500E1FD60 /* DTO.swift in Sources */,
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
+				A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */,
 				9BD8CCF52935C38300E6EA2F /* UserDTO+Mapping.swift in Sources */,
 				B599EAC2293F3D4D000EC069 /* DailyQuestCompletion.swift in Sources */,
 				A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */,
@@ -1290,11 +1311,12 @@
 				342830FD292E2AF200AE811B /* NavigateField.swift in Sources */,
 				342830F2292E196E00AE811B /* CommonField.swift in Sources */,
 				342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */,
+				A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */,
 				342830FB292E2A5F00AE811B /* NavigateItemViewModel.swift in Sources */,
 				A51F01C82923392F0031ECA2 /* UserInfoStorage.swift in Sources */,
 				34A529E429248178001BAD34 /* SettingsSceneDIContainer.swift in Sources */,
+				348FCE022940294900E4940C /* HomeViewModel.swift in Sources */,
 				340A7246293455CE00B26AA6 /* AuthRepository.swift in Sources */,
-				A5D3C820293DD52B00F43B76 /* RepositoryManager.swift in Sources */,
 				345687FA2937815900CA51E3 /* QuantityView.swift in Sources */,
 				342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */,
 				34A529E029247F1F001BAD34 /* HomeViewController.swift in Sources */,
@@ -1318,6 +1340,7 @@
 				A50DE906292B53D900E1FD60 /* DefaultQuestsRepository.swift in Sources */,
 				34ACC32D291DE9C000741371 /* AppDelegate.swift in Sources */,
 				A5AC96D929223648003B7637 /* RealmStorage.swift in Sources */,
+				34404D96293EF9E50007E661 /* DefaultSettingsUseCase.swift in Sources */,
 				3417B1442935DA4A00900454 /* BrowseUseCase.swift in Sources */,
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
@@ -1330,7 +1353,9 @@
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */,
 				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
+				A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,
+				3436FCFA293F2654003575C3 /* Notification+.swift in Sources */,
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */,
@@ -1345,6 +1370,7 @@
 				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
 				34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
+				A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */,
 				345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */,
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
 				9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */,
@@ -1359,7 +1385,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5D3C82F293DDF9800F43B76 /* RepositoryManager.swift in Sources */,
 				A5D3C83C293DDFC400F43B76 /* SubQuestEntity+Mapping.swift in Sources */,
 				A5D3C83D293DDFCC00F43B76 /* QuestEntity.swift in Sources */,
 				A5656452292BB89A0033E763 /* QuestsStorage.swift in Sources */,
@@ -1401,7 +1426,6 @@
 				340FDFDB292B7A1500C4E3DC /* QuestViewModelTests.swift in Sources */,
 				A5D3C848293DE06B00F43B76 /* ProtectedUserRepository.swift in Sources */,
 				34EE0C622935FD0C002BEC23 /* BrowseUseCaseMock.swift in Sources */,
-				34FF6C60292B8BC9002AFD4D /* QuestViewModel.swift in Sources */,
 				34EE0C5F2935FBA1002BEC23 /* BrowseUseCaseTests.swift in Sources */,
 				340FDFD4292B5DA100C4E3DC /* QuestUseCase.swift in Sources */,
 				A5D3C844293DDFE100F43B76 /* FirebaseService.swift in Sources */,

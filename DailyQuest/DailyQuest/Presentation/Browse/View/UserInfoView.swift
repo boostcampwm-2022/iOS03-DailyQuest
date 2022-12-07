@@ -14,7 +14,7 @@ final class UserInfoView: UIStackView {
     // MARK: - Components
     private lazy var userImage: UIImageView = {
         let userImage = UIImageView()
-        userImage.image = UIImage(systemName: "heart.fill")
+        userImage.image = UIImage(named: "StatusMax")
         userImage.clipsToBounds = true
         userImage.backgroundColor = .white
         
@@ -23,6 +23,8 @@ final class UserInfoView: UIStackView {
     
     private lazy var welcomeLabel: UILabel = {
         let welcomeLabel = UILabel()
+        welcomeLabel.textColor = .white
+        welcomeLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         return welcomeLabel
     }()

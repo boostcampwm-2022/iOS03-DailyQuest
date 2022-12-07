@@ -67,7 +67,7 @@ final class StatusView: UIView {
         iconContainer.snp.makeConstraints { make in
             make.height.equalToSuperview()
             make.width.equalTo(iconContainer.snp.height)
-            make.leading.equalToSuperview()
+            make.top.leading.bottom.equalToSuperview()
         }
         
         addSubview(messageBubble)
@@ -87,8 +87,7 @@ final class StatusView: UIView {
         addSubview(profileButton)
         profileButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
-            make.height.equalToSuperview()
-            make.width.equalTo(profileButton.snp.height)
+            make.centerY.equalToSuperview()
         }
         
         addSubview(statusLabel)
@@ -97,21 +96,4 @@ final class StatusView: UIView {
             make.bottom.equalTo(progressBar.snp.top)
         }
     }
-    
-    // Setup method goes here.
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct StatusViewPreview: PreviewProvider{
-    static var previews: some View {
-        UIViewPreview {
-            let view = StatusView(frame: .zero)
-            
-            return view
-        }
-        .previewLayout(.fixed(width: 500, height: 100))
-    }
-}
-#endif
