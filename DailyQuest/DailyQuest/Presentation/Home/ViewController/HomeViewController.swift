@@ -126,6 +126,7 @@ final class HomeViewController: UIViewController {
                     return CalendarView.ScrollDirection.none
                 }
             }
+        
         let daySelected = calendarView
             .monthCollectionView
             .rx
