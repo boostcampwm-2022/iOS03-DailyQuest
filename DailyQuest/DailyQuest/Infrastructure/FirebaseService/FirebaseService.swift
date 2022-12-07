@@ -56,12 +56,15 @@ extension FirebaseService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
-
-                self.uid.accept(self.auth.currentUser?.uid)
                 single(.success(true))
             } catch let error {
                 single(.failure(error))
             }
+            
+            if let self = self {
+                self.uid.accept(self.auth.currentUser?.uid)
+            }
+
             return Disposables.create()
         }
     }
@@ -91,6 +94,23 @@ extension FirebaseService {
         let userDto = UserDTO(uuid: uuid, userDto: userDto)
         try db.collection(UserCase.currentUser.path).document(uuid)
             .setData(from: userDto)
+    }
+
+    func deleteUser() -> Single<Bool> {
+        return Single.create { [weak self] single in
+            guard let user = self?.auth.currentUser else {
+                single(.failure(NetworkServiceError.noDataError))
+                return Disposables.create()
+            }
+            user.delete { error in
+                if let error = error {
+                    single(.failure(error))
+                } else {
+                    single(.success(true))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }
 

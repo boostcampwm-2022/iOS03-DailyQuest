@@ -5,6 +5,7 @@
 //  Created by 이전희 on 2022/12/01.
 //
 
+import Foundation
 import RxSwift
 import RxRelay
 
@@ -12,6 +13,8 @@ final class DefaultUserRepository {
 
     private let persistentStorage: UserInfoStorage
     private let networkService: NetworkService
+
+    private let disposeBag = DisposeBag()
 
     init(persistentStorage: UserInfoStorage, networkService: NetworkService = FirebaseService.shared) {
         self.persistentStorage = persistentStorage
@@ -24,42 +27,76 @@ extension DefaultUserRepository: UserRepository {
         return networkService.uid
     }
 
-    func readUser() -> Observable<User> {
+    func readUser() -> Single<User> {
         return self.persistentStorage.fetchUserInfo()
             .catch { [weak self] _ in
             guard let self = self else { return Observable.just(User()) }
             return self.fetchUserNetworkService()
         }
+            .asSingle()
     }
 
-    func updateUser(by user: User) -> Observable<User> {
+    func updateUser(by user: User) -> Single<User> {
         return persistentStorage.updateUserInfo(user: user)
             .asObservable()
             .flatMap(updateUserNetworkService(user:))
+            .asSingle()
     }
 
-    func fetchUser(by uuid: String) -> Observable<User> {
+    func fetchUser(by uuid: String) -> Single<User> {
         return networkService.read(type: UserDTO.self,
                                    userCase: .anotherUser(uuid),
                                    access: .userInfo,
                                    filter: nil)
             .map { $0.toDomain() }
+            .asSingle()
     }
+
+    func saveProfileImage(data: Data) -> Single<Bool> {
+        networkService.uploadDataStorage(data: data, path: .profileImages)
+            .flatMap { [weak self] downloadUrl in
+            guard let self = self else { return Single.just(User()) }
+            return self.persistentStorage.fetchUserInfo()
+                .map { $0.setProfileImageURL(profileURL: downloadUrl) }
+                .asSingle()
+        }
+            .flatMap(updateUser(by:))
+            .map { _ in true }
+            .catchAndReturn(false)
+    }
+
+    func saveBackgroundImage(data: Data) -> Single<Bool> {
+        networkService.uploadDataStorage(data: data, path: .backgroundImages)
+            .flatMap { [weak self] downloadUrl in
+            guard let self = self else { return Single.just(User()) }
+            return self.persistentStorage.fetchUserInfo()
+                .map { $0.setBackgroundImageURL(backgroundImageURL: downloadUrl) }
+                .asSingle()
+        }
+            .flatMap(updateUser(by:))
+            .map { _ in true }
+            .catchAndReturn(false)
+
+    }
+
 }
 
 extension DefaultUserRepository: ProtectedUserRepository {
     func deleteUser() -> Observable<Bool> {
-        // return self.persistentStorage.deleteUserInfo()
-        //     .map { _ in true }
-        //     .asObservable()
-        //     .concatMap { _ in
-        //     return self.networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
-        //         .map { _ in true }
-        // }
-        return networkService.delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
+        return networkService
+            .delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
+            .flatMap { [weak self] _ in
+            guard let self = self else { return .just(true) }
+            return self.networkService.deleteUser() }
             .map { _ in true }
             .catchAndReturn(false)
             .asObservable()
+            .do(onNext: { [weak self]_ in
+            guard let self = self else { return }
+            self.networkService.signOut().subscribe()
+                .disposed(by: self.disposeBag)
+        })
+
     }
 }
 
