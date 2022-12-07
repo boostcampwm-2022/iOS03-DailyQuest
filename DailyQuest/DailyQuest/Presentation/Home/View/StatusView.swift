@@ -48,12 +48,12 @@ final class StatusView: UIView {
     private lazy var profileButton: UIButton = {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
         var config = UIButton.Configuration.plain()
-        config.image = UIImage(systemName: "person.crop.circle",
-                               withConfiguration: largeConfig)
         config.baseForegroundColor = .maxLightGrey
         let button = UIButton(configuration: config)
+        button.setImage(UIImage(systemName: "person.crop.circle",
+                                withConfiguration: largeConfig),
+                        for: .normal)
         button.layer.cornerRadius = 100
-        button.imageView?.image =
         return button
     }()
 

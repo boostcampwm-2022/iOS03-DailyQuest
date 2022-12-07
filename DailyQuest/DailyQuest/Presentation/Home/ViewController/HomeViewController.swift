@@ -181,6 +181,10 @@ final class HomeViewController: UIViewController {
             .bind(to: calendarView.yearMonthLabel.rx.text)
             .disposed(by: disposableBag)
     }
+    
+    private func bindViewReload(out){
+        
+    }
 
     private func bindToQuestHeaderButton() {
         questViewHeader
