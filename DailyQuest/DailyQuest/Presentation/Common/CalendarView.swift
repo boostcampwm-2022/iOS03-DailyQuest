@@ -10,14 +10,13 @@ import SnapKit
 import RxSwift
 
 final class CalendarView: UIView {
-    private var viewModel: CalendarViewModel!
+    var viewModel: CalendarViewModel!
     private var disposeBag = DisposeBag()
     
     private lazy var yearMonthLabel: UILabel = {
         let view = UILabel()
         view.adjustsFontSizeToFitWidth = true
         view.font = .systemFont(ofSize: 32, weight: .bold)
-//        view.text = dateFormatter.string(from: currentDay)
         return view
     }()
     
@@ -38,7 +37,7 @@ final class CalendarView: UIView {
         
         return view
     }()
-
+    
     private lazy var monthCollectionView: UICollectionView = {
         let layout = setupCollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -47,7 +46,6 @@ final class CalendarView: UIView {
         collectionView.bounces = false
         collectionView.isPagingEnabled = true
         collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
-        collectionView.delegate = self
         return collectionView
     }()
     
@@ -67,7 +65,6 @@ final class CalendarView: UIView {
         addSubviews()
         setupConstraints()
         setupDataSource()
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -100,13 +97,13 @@ final class CalendarView: UIView {
     private func setupCollectionViewLayout() -> UICollectionViewLayout {
         let itemWidth: CGFloat = 1 / 7
         let groupHeight: CGFloat = 1 / 6
-
+        
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(itemWidth),
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(groupHeight)
@@ -115,10 +112,10 @@ final class CalendarView: UIView {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
-
+        
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         configuration.scrollDirection = .horizontal
-
+        
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: configuration)
         
         return layout
@@ -137,41 +134,69 @@ final class CalendarView: UIView {
             return cell
         }
     }
-    
-    private func applySnapshot() {
-//        var snapshot = NSDiffableDataSourceSnapshot<Int, DisplayDate>()
-//        let allSectionIndex = itemsBySection.indices.map { Int($0) }
-//        snapshot.appendSections(allSectionIndex)
-//        allSectionIndex.forEach { index in
-//            snapshot.appendItems(itemsBySection[index], toSection: index)
-//        }
-//        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-}
-
-extension CalendarView: UICollectionViewDelegate {
-    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        guard let indexPath = monthCollectionView.indexPathsForVisibleItems.first else {
-//            return
-//        }
-//
-//        if indexPath.section > 1 {
-//            nextMonth()
-//        } else if indexPath.section < 1 {
-//            lastMonth()
-//        } else {
-//            return
-//        }
-//
-//        applySnapshot()
-//        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
-//    }
 }
 
 extension CalendarView {
     
-    private func bind() {
+    func bind() {
+        let viewDidLoad = Observable.just(()).asObservable()
+        let dragEventInCalendar = monthCollectionView
+            .rx
+            .didEndDecelerating
+            .map { [weak self] in
+                guard let indexPath = self?.monthCollectionView.indexPathsForVisibleItems.first else {
+                    return ScrollDirection.none
+                }
+                
+                if indexPath.section > 1 {
+                    return ScrollDirection.next
+                } else if indexPath.section < 1 {
+                    return ScrollDirection.prev
+                } else {
+                    return ScrollDirection.none
+                }
+            }
         
+        let output = viewModel.transform(
+            input: CalendarViewModel
+                .Input(viewDidLoad: viewDidLoad,
+                       dragEventInCalendar: dragEventInCalendar),
+            disposeBag: disposeBag
+        )
+        
+        output
+            .displayDays
+            .bind(onNext: { [weak self] dailyQuestCompletions in
+                var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
+                let allSectionIndex = dailyQuestCompletions.indices.map { Int($0) }
+                snapshot.appendSections(allSectionIndex)
+                
+                allSectionIndex.forEach { index in
+                    snapshot.appendItems(dailyQuestCompletions[index], toSection: index)
+                }
+                
+                self?.dataSource.apply(snapshot, animatingDifferences: false)
+                self?.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
+                                                       at: .centeredHorizontally,
+                                                       animated: false)
+            })
+            .disposed(by: disposeBag)
+        
+        output
+            .currentMonth
+            .compactMap({ $0 })
+            .map(formatDate(with:))
+            .bind(to: yearMonthLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    private func formatDate(with date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
+    
+    enum ScrollDirection {
+        case prev
+        case next
+        case none
     }
 }

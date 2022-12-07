@@ -44,7 +44,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
     }
     
     func fetchLastMontlyCompletion() {
-        guard let lastMonth = try? currentMonth.value()?.startDayOfNextMonth else { return }
+        guard let lastMonth = try? currentMonth.value()?.startDayOfLastMonth else { return }
         currentMonth.onNext(lastMonth)
         
         let monthBeforeLast = lastMonth.startDayOfLastMonth

@@ -20,7 +20,7 @@ final class CalendarViewModel {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-        let dragEventInCalendar: Observable<Bool>
+        let dragEventInCalendar: Observable<CalendarView.ScrollDirection>
     }
     
     struct Output {
@@ -39,10 +39,13 @@ final class CalendarViewModel {
         
         input.dragEventInCalendar
             .subscribe(onNext: { [weak self] direction in
-                if direction {
-                    self?.calendarUseCase.fetchNextMontlyCompletion()
-                } else {
-                    self?.calendarUseCase.fetchLastMontlyCompletion()
+                switch direction {
+                    case .prev:
+                        self?.calendarUseCase.fetchLastMontlyCompletion()
+                    case .none:
+                        break
+                    case .next:
+                        self?.calendarUseCase.fetchNextMontlyCompletion()
                 }
             })
             .disposed(by: disposeBag)

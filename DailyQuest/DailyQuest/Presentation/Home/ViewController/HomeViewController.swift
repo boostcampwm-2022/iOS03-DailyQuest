@@ -53,9 +53,10 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle
-    static func create(with viewModel: HomeViewModel) -> HomeViewController {
+    static func create(with viewModel: HomeViewModel, _ calendarViewModel: CalendarViewModel) -> HomeViewController {
         let vc = HomeViewController()
         vc.viewModel = viewModel
+        vc.calendarView.viewModel = calendarViewModel
         
         return vc
     }
@@ -111,7 +112,7 @@ final class HomeViewController: UIViewController {
                 itemDidClicked: itemDidClick
             )
         )
-        
+        calendarView.bind()
         bindToQuestHeaderButton()
         bindToQuestView(with: output)
     }
