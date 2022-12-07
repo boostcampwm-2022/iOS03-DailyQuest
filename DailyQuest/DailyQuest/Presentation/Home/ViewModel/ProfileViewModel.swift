@@ -21,12 +21,12 @@ final class ProfileViewModel {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-        let deleteUserButtonDidClicked: Observable<Void>
+        let deleteUserButtonDidClicked: Observable<ProfileViewController.Event>
     }
     
     struct Output {
         let data: Driver<User>
-        let deleteUserResult: Observable<Bool>
+        let deleteUserResult: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -40,6 +40,7 @@ final class ProfileViewModel {
         let deleteUserResult = input.deleteUserButtonDidClicked.flatMap { _ in
             self.userUseCase.delete()
         }
+        .asDriver(onErrorJustReturn: false)
         return Output(data: data, deleteUserResult: deleteUserResult)
     }
 }
