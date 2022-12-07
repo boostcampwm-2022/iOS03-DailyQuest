@@ -30,14 +30,19 @@ final class HomeSceneDIContainer {
     func makeEnrollUseCase() -> EnrollUseCase {
         return DefaultEnrollUseCase(questsRepository: makeQuestsRepository())
     }
+    
+    func makeCalendarUseCase() -> CalendarUseCase {
+        return HomeCalendarUseCase(questsRepository: makeQuestsRepository())
+    }
 
     func makeUesrUseCase() -> UserUseCase {
         return DefaultUserUseCase(userRepository: makeUserRepository())
     }
-
+    
     // MARK: - View Models
     func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(questUseCase: makeQuestUseCase())
+        return HomeViewModel(questUseCase: makeQuestUseCase(),
+                             calendarUseCase: makeCalendarUseCase())
     }
 
     func makeEnrollViewModel() -> EnrollViewModel {
