@@ -7,8 +7,9 @@
 
 import UIKit
 
-enum ViewType {
-    case login
+enum ViewType: String {
+    case login = "로그인"
+    case logout = "로그아웃"
 }
 
 protocol CommonField {

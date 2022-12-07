@@ -1,8 +1,8 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  DailyQuest
 //
-//  Created by jinwoong Kim on 2022/11/28.
+//  Created by 이전희 on 2022/12/06.
 //
 
 import UIKit
@@ -11,15 +11,9 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-final class LoginViewController: UIViewController {
-    enum Event {
-        case showSignUpFlow
-    }
-
-    private var viewModel: LoginViewModel!
+final class SignUpViewController: UIViewController {
+    private var viewModel: SignUpViewModel!
     private var disposableBag = DisposeBag()
-
-    var itemDidClick = PublishSubject<Event>()
 
     private lazy var container: UIStackView = {
         let container = UIStackView()
@@ -33,37 +27,44 @@ final class LoginViewController: UIViewController {
         let emailField = TextFieldForm()
         emailField.placeholder = "email"
         emailField.autocapitalizationType = .none
+
         return emailField
     }()
 
     private lazy var passwordField: TextFieldForm = {
         let passwordField = TextFieldForm()
-        passwordField.placeholder = "password"
+        passwordField.placeholder = "password (6글자 이상)"
         passwordField.isSecureTextEntry = true
+        
         return passwordField
+    }()
+
+    private lazy var passwordConfirmField: TextFieldForm = {
+        let passwordConfirmField = TextFieldForm()
+        passwordConfirmField.placeholder = "password 확인"
+        passwordConfirmField.isSecureTextEntry = true
+        return passwordConfirmField
+    }()
+
+    private lazy var nickNameField: TextFieldForm = {
+        let nickNameField = TextFieldForm()
+        nickNameField.placeholder = "닉네임"
+        emailField.autocapitalizationType = .none
+        return nickNameField
     }()
 
     private lazy var submitButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .maxYellow
-        config.title = "로그인"
-        emailField.autocapitalizationType = .none
-        return UIButton(configuration: config)
-    }()
-
-    private lazy var signUpButton: UIButton = {
-        var config = UIButton.Configuration.plain()
-        config.baseForegroundColor = .gray
         config.title = "회원가입"
-        config.buttonSize = .small
+
         return UIButton(configuration: config)
     }()
 
     // MARK: Life Cycle
-    static func create(with viewModel: LoginViewModel) -> LoginViewController {
-        let vc = LoginViewController()
+    static func create(with viewModel: SignUpViewModel) -> SignUpViewController {
+        let vc = SignUpViewController()
         vc.setup(with: viewModel)
-
         return vc
     }
 
@@ -78,10 +79,13 @@ final class LoginViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
 
-        container.addArrangedSubview(emailField)
-        container.addArrangedSubview(passwordField)
-        container.addArrangedSubview(submitButton)
-        container.addArrangedSubview(signUpButton)
+        [emailField,
+            passwordField,
+            passwordConfirmField,
+            nickNameField,
+            submitButton].forEach { field in
+            container.addArrangedSubview(field)
+        }
 
         view.addSubview(container)
 
@@ -91,21 +95,18 @@ final class LoginViewController: UIViewController {
         }
     }
 
-    private func setup(with authViewModel: LoginViewModel) {
+    private func setup(with authViewModel: SignUpViewModel) {
         viewModel = authViewModel
     }
 }
 
-extension LoginViewController {
+extension SignUpViewController {
     private func bind() {
-        signUpButton.rx.tap.bind(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.itemDidClick.onNext(.showSignUpFlow)
-        }).disposed(by: disposableBag)
-
-        let input = LoginViewModel.Input(
+        let input = SignUpViewModel.Input(
             emailFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
             passwordFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
+            passwordConfirmFieldDidEditEvent: passwordConfirmField.rx.text.orEmpty.asObservable(),
+            nickNameFieldDidEditEvent: nickNameField.rx.text.orEmpty.asObservable(),
             submitButtonDidTapEvent: submitButton.rx.tap.asObservable()
         )
 
@@ -117,9 +118,9 @@ extension LoginViewController {
             .disposed(by: disposableBag)
 
         output
-            .loginResult
+            .signUpResult
             .subscribe(onNext: { result in
-            print("login result is :::: ", result)
+            print("SignUp result is :::: ", result)
         })
             .disposed(by: disposableBag)
     }
