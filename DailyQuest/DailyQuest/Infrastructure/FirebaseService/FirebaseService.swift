@@ -81,6 +81,7 @@ extension FirebaseService {
                     if let error = error { throw error }
                     guard let authResult = authResult else { throw NetworkServiceError.noAuthError }
                     try self.createUser(uuid: authResult.user.uid, userDto: userDto)
+                    self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 } catch let error {
                     single(.failure(error))
