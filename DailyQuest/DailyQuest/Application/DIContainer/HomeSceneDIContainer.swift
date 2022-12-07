@@ -31,7 +31,8 @@ final class HomeSceneDIContainer {
     
     // MARK: - View Models
     func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(questUseCase: makeQuestUseCase())
+        return HomeViewModel(questUseCase: makeQuestUseCase(),
+                             calendarUseCase: makeCalendarUseCase())
     }
     
     func makeEnrollViewModel() -> EnrollViewModel {
@@ -44,7 +45,7 @@ final class HomeSceneDIContainer {
     
     // MARK: - View Controller
     func makeHomeViewController() -> HomeViewController {
-        return HomeViewController.create(with: makeHomeViewModel(), makeCalendarViewModel())
+        return HomeViewController.create(with: makeHomeViewModel())
     }
     
     func makeEnrollViewController() -> EnrollViewController {
