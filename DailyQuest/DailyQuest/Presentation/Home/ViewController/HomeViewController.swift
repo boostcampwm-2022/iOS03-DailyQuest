@@ -208,7 +208,6 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: Alertable {
     private func needLogIn(result: Bool) {
-        print(result)
         if result {
             coordinatorPublisher.onNext(.showProfileFlow)
         } else {
