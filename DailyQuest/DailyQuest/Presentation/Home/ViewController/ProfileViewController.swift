@@ -119,7 +119,7 @@ final class ProfileViewController: UIViewController {
             self.userImage.setImage(with: user.profileURL)
             self.backgroundImage.setImage(with: user.backgroundImageURL)
             self.nameLabel.text = user.nickName
-            self.introduceLabel.text = user.description
+            self.introduceLabel.text = user.introduce
         })
             .disposed(by: disposableBag)
     }

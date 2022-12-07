@@ -13,17 +13,17 @@ final class UserInfoEntity: Object {
     @Persisted var nickName: String
     @Persisted var profileURL: String
     @Persisted var backgroundImageURL: String
-    @Persisted var userDescription: String
+    @Persisted var introduce: String
     @Persisted var allow: Bool
 
     override init() { }
 
-    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, description: String, allow: Bool) {
+    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, introduce: String, allow: Bool) {
         self.uuid = uuid
         self.nickName = nickName
         self.profileURL = profileURL
         self.backgroundImageURL = backgroundImageURL
-        self.userDescription = description
+        self.introduce = introduce
         self.allow = allow
     }
     

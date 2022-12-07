@@ -12,7 +12,7 @@ struct User {
     let nickName: String
     let profileURL: String
     let backgroundImageURL: String
-    let description: String
+    let introduce: String
     let allow: Bool
     
     init(){
@@ -20,7 +20,7 @@ struct User {
         self.nickName = ""
         self.profileURL = ""
         self.backgroundImageURL = ""
-        self.description = ""
+        self.introduce = ""
         self.allow = false
     }
     
@@ -29,16 +29,16 @@ struct User {
         self.nickName = nickName
         self.profileURL = ""
         self.backgroundImageURL = ""
-        self.description = ""
+        self.introduce = ""
         self.allow = false
     }
     
-    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, description: String, allow: Bool) {
+    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, introduce: String, allow: Bool) {
         self.uuid = uuid
         self.nickName = nickName
         self.profileURL = profileURL
         self.backgroundImageURL = backgroundImageURL
-        self.description = description
+        self.introduce = introduce
         self.allow = allow
     }
     
