@@ -18,14 +18,28 @@ final class HomeViewController: UIViewController {
     
     var coordinatorPublisher = PublishSubject<Event>()
     
+    private var viewModel: HomeViewModel!
     private var disposableBag = DisposeBag()
     private var questViewDelegate: QuestViewDelegate?
+    
+    // MARK: - Components
+    private lazy var scrollView: UIScrollView = {
+        return UIScrollView()
+    }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         
         return stackView
+    }()
+    
+    private lazy var statusView: StatusView = {
+        return StatusView()
+    }()
+    
+    private lazy var calendarView: CalendarView = {
+        return CalendarView()
     }()
     
     private lazy var questView: QuestView = {
@@ -38,14 +52,10 @@ final class HomeViewController: UIViewController {
         return QuestViewHeader()
     }()
     
-    private lazy var followingView: FollowingView = {
-        return FollowingView()
-    }()
-    
     // MARK: - Life Cycle
-    static func create(with viewModel: QuestViewModel) -> HomeViewController {
+    static func create(with viewModel: HomeViewModel) -> HomeViewController {
         let vc = HomeViewController()
-        vc.setup(questViewModel: viewModel)
+        vc.viewModel = viewModel
         
         return vc
     }
@@ -59,29 +69,54 @@ final class HomeViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        stackView.addArrangedSubview(followingView)
-        stackView.addArrangedSubview(questView)
-        
-        
-        view.addSubview(stackView)
-        
-
-        stackView.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
-        }
-        
-        followingView.snp.makeConstraints { make in
-            make.width.equalTo(view.snp.width)
-            make.height.equalTo(125)
-        }
+        configureUI()
         
         bind()
     }
     
-    private func bind() {
-        questView.bind()
+    private func configureUI() {
+        stackView.addArrangedSubview(statusView)
+        stackView.addArrangedSubview(calendarView)
+        stackView.addArrangedSubview(questView)
         
+        scrollView.addSubview(stackView)
+        
+        view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
+        statusView.snp.makeConstraints { make in
+            make.height.equalTo(100)
+        }
+
+        calendarView.snp.makeConstraints { make in
+            make.height.equalTo(calendarView.snp.width).multipliedBy(1.4)
+        }
+    }
+    
+    private func bind() {
+        let viewDidLoad = Observable.just(Date()).asObservable()
+        let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
+        
+        let output = viewModel.transform(
+            input: HomeViewModel.Input(
+                viewDidLoad: viewDidLoad,
+                itemDidClicked: itemDidClick
+            )
+        )
+        
+        bindToQuestHeaderButton()
+        bindToQuestView(with: output)
+    }
+    
+    private func bindToQuestHeaderButton() {
         questViewHeader
             .buttonDidClick
             .bind(onNext: { [weak self] _ in
@@ -90,12 +125,13 @@ final class HomeViewController: UIViewController {
             .disposed(by: disposableBag)
     }
     
-    private func setup(questViewModel: QuestViewModel) {
-        questView.setup(with: questViewModel)
+    private func bindToQuestView(with output: HomeViewModel.Output) {
+        output
+            .data
+            .debug()
+            .drive(questView.rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
+                cell.setup(with: item)
+            }
+            .disposed(by: disposableBag)
     }
-    
-    private func configureFollowingView() {
-        
-    }
-
 }
