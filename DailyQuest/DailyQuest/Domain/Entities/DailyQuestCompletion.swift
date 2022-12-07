@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct DailyQuestCompletion {
+struct DailyQuestCompletion: Hashable {
     
-    enum State {
+    enum State: Hashable {
         case hidden
         case normal
         case notDone(Int)
