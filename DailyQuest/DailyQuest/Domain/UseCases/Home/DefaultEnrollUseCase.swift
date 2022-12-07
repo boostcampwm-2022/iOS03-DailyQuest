@@ -26,13 +26,8 @@ extension DefaultEnrollUseCase: EnrollUseCase {
             }
             .catchAndReturn(false)
             .do(onSuccess: { _ in
-                let today = quests
-                    .filter { quest in
-                        Calendar.current.isDateInToday(quest.date)
-                    }
-                if !today.isEmpty {
-                    NotificationCenter.default.post(name: .updated, object: Date())
-                }
+                let dates = quests.map { $0.date }
+                NotificationCenter.default.post(name: .updated, object: dates)
             })
             .asObservable()
     }
