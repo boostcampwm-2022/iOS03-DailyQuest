@@ -15,18 +15,18 @@ protocol SettingsCoordinator: Coordinator {
 
 final class DefaultSettingsCoordinator: SettingsCoordinator {
     private var disposableBag = DisposeBag()
-
+    
     var finishDelegate: CoordinatorFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     let settingsSceneDIContainer: SettingsSceneDIContainer
-
+    
     init(navigationController: UINavigationController,
          settingsSceneDIContainer: SettingsSceneDIContainer) {
         self.navigationController = navigationController
         self.settingsSceneDIContainer = settingsSceneDIContainer
     }
-
+    
     func start() {
         let settingsViewController = settingsSceneDIContainer.makeSettingsViewController()
         navigationController.pushViewController(settingsViewController, animated: false)
@@ -34,29 +34,29 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
         settingsViewController
             .itemDidClick
             .bind(onNext: { [weak self] event in
-            switch event {
-            case .showLoginFlow:
-                self?.showLoginFlow()
-            }
-        })
+                switch event {
+                    case .showLoginFlow:
+                        self?.showLoginFlow()
+                }
+            })
             .disposed(by: disposableBag)
     }
-
+    
     func showLoginFlow() {
         let loginViewController = settingsSceneDIContainer.makeLoginViewController()
         loginViewController
             .itemDidClick
             .bind(onNext: { [weak self] event in
-            switch event {
-            case .showSignUpFlow:
-                self?.showSignUpFlow()
-            }
-        })
+                switch event {
+                    case .showSignUpFlow:
+                        self?.showSignUpFlow()
+                }
+            })
             .disposed(by: disposableBag)
-
+        
         navigationController.pushViewController(loginViewController, animated: true)
     }
-
+    
     func showSignUpFlow() {
         let signUpViewController = settingsSceneDIContainer.makeSignUpViewController()
         navigationController.pushViewController(signUpViewController, animated: true)

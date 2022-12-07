@@ -36,9 +36,11 @@ final class LoginViewModel {
         
         let loginResult = input
             .submitButtonDidTapEvent
-            .withLatestFrom(Observable
-                .combineLatest(input.emailFieldDidEditEvent,
-                               input.passwordFieldDidEditEvent))
+            .withLatestFrom(
+                Observable
+                    .combineLatest(input.emailFieldDidEditEvent,
+                                   input.passwordFieldDidEditEvent)
+            )
             .flatMap(authUseCase.signIn(email:password:))
         
         return Output(buttonEnabled: buttonEnabled, loginResult: loginResult)

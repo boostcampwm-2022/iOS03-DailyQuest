@@ -31,6 +31,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func start() {
         let homeViewController = homeSceneDIContainer.makeHomeViewController()
         navigationController.pushViewController(homeViewController, animated: false)
+        navigationController.isNavigationBarHidden = true
         
         homeViewController
             .coordinatorPublisher
