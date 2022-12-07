@@ -14,8 +14,8 @@ struct User {
     let backgroundImageURL: String
     let introduce: String
     let allow: Bool
-    
-    init(){
+
+    init() {
         self.uuid = ""
         self.nickName = ""
         self.profileURL = ""
@@ -23,8 +23,8 @@ struct User {
         self.introduce = ""
         self.allow = false
     }
-    
-    init(nickName: String){
+
+    init(nickName: String) {
         self.uuid = ""
         self.nickName = nickName
         self.profileURL = ""
@@ -32,7 +32,7 @@ struct User {
         self.introduce = ""
         self.allow = false
     }
-    
+
     init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, introduce: String, allow: Bool) {
         self.uuid = uuid
         self.nickName = nickName
@@ -41,6 +41,24 @@ struct User {
         self.introduce = introduce
         self.allow = allow
     }
-    
-    
+}
+
+extension User {
+    func setProfileImageURL(profileURL: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: self.allow)
+    }
+
+    func setBackgroundImageURL(backgroundImageURL: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: self.allow)
+    }
 }
