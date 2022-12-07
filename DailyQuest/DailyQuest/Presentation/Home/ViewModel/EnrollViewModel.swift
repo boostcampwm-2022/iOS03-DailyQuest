@@ -68,7 +68,7 @@ final class EnrollViewModel {
             )
             .map(createQuests(title:dates:quantity:))
             .flatMap(enrollUseCase.save(with:))
-            
+        
         return Output(buttonEnabled: buttonEnabled,
                       enrollResult: enrollResult,
                       dayButtonStatus: dayButtonStatus)

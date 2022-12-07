@@ -36,8 +36,14 @@ final class QuestViewModel {
             .map { _ in Date() }
             .asObservable()
         
+        let notification = NotificationCenter
+            .default
+            .rx
+            .notification(.updated)
+            .compactMap({ $0.object as? Date })
+            
         let data = Observable
-            .merge(updated, input.viewDidLoad)
+            .merge(updated, input.viewDidLoad, notification)
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
             
