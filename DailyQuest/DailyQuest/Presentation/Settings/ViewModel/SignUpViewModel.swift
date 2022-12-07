@@ -50,34 +50,35 @@ final class SignUpViewModel {
 
         return Output(buttonEnabled: buttonEnabled, signUpResult: signUpResult)
     }
+}
 
+private extension SignUpViewModel {
     func checkEmpty(_ strArray: [String]) -> Bool {
         return !strArray.reduce(false) { $0 || $1.isEmpty }
     }
-
+    
     func checkSame(str1: String, str2: String) -> Bool {
         return str1 == str2
     }
-
+    
     func checkEmail(str: String) -> Bool {
-
+        
         guard let index = str.firstIndex(of: "@") else { return false }
         let pos = str.distance(from: str.startIndex, to: index)
         return 0 < pos && pos < str.count - 1
     }
-
+    
     func checkPasswordCount(str: String) -> Bool {
         return str.count >= 6
     }
-
+    
     func checkButtonEnble(emailText: String,
                           passwordText: String,
                           passwordConfirmText: String,
                           nickName: String) -> Bool {
         return checkEmail(str: emailText) &&
-            checkEmpty([emailText, passwordText, passwordConfirmText, nickName]) &&
-            checkSame(str1: passwordText, str2: passwordConfirmText) &&
-            checkPasswordCount(str: passwordText)
+        checkEmpty([emailText, passwordText, passwordConfirmText, nickName]) &&
+        checkSame(str1: passwordText, str2: passwordConfirmText) &&
+        checkPasswordCount(str: passwordText)
     }
 }
-
