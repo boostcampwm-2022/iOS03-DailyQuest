@@ -7,18 +7,19 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
-class CalendarView: UIView {
+final class CalendarView: UIView {
+    private var disposeBag = DisposeBag()
     
-    lazy var yearMonthLabel: UILabel = {
+    private(set) lazy var yearMonthLabel: UILabel = {
         let view = UILabel()
         view.adjustsFontSizeToFitWidth = true
         view.font = .systemFont(ofSize: 32, weight: .bold)
-        view.text = dateFormatter.string(from: currentDay)
         return view
     }()
     
-    lazy var weekdayLabels: UIStackView = {
+    private lazy var weekdayLabels: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fillEqually
@@ -35,8 +36,8 @@ class CalendarView: UIView {
         
         return view
     }()
-
-    lazy var monthCollectionView: UICollectionView = {
+    
+    private(set) lazy var monthCollectionView: UICollectionView = {
         let layout = setupCollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -44,31 +45,13 @@ class CalendarView: UIView {
         collectionView.bounces = false
         collectionView.isPagingEnabled = true
         collectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.reuseIdentifier)
-        collectionView.delegate = self
         return collectionView
     }()
     
-    private let dateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월"
-        return formatter
-    }()
-    
-    private var currentDay: Date {
-        didSet {
-            yearMonthLabel.text = dateFormatter.string(from: currentDay)
-        }
-    }
-    
-    var dataSource: UICollectionViewDiffableDataSource<Int, DisplayDate>!
-    
-    var itemsBySection: [[CalendarView.DisplayDate]] = [[], [], []]
+    private(set) var dataSource: UICollectionViewDiffableDataSource<Int, DailyQuestCompletion>!
     
     override init(frame: CGRect = .zero) {
-        self.currentDay = Date.now
-        
         super.init(frame: frame)
-        self.itemsBySection = self.setupMonths()
         
         addSubviews()
         setupConstraints()
@@ -77,12 +60,6 @@ class CalendarView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
     }
     
     private func addSubviews() {
@@ -111,13 +88,13 @@ class CalendarView: UIView {
     private func setupCollectionViewLayout() -> UICollectionViewLayout {
         let itemWidth: CGFloat = 1 / 7
         let groupHeight: CGFloat = 1 / 6
-
+        
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(itemWidth),
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(groupHeight)
@@ -126,10 +103,10 @@ class CalendarView: UIView {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
-
+        
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         configuration.scrollDirection = .horizontal
-
+        
         let layout = UICollectionViewCompositionalLayout(section: section, configuration: configuration)
         
         return layout
@@ -142,86 +119,17 @@ class CalendarView: UIView {
             else {
                 preconditionFailure()
             }
-            
-            cell.configure(state: item.state, day: item.date.day)
+            cell.configure(item)
             
             return cell
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, DisplayDate>()
-        itemsBySection.indices.forEach { index in
-            snapshot.appendSections([index])
-            snapshot.appendItems(itemsBySection[index], toSection: index)
-        }
-        dataSource.apply(snapshot)
-    }
-    
-    private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, DisplayDate>()
-        let allSectionIndex = itemsBySection.indices.map { Int($0) }
-        snapshot.appendSections(allSectionIndex)
-        allSectionIndex.forEach { index in
-            snapshot.appendItems(itemsBySection[index], toSection: index)
-        }
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-}
-
-extension CalendarView: UICollectionViewDelegate {
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard let indexPath = monthCollectionView.indexPathsForVisibleItems.first else {
-            return
-        }
-        
-        if indexPath.section > 1 {
-            nextMonth()
-        } else if indexPath.section < 1 {
-            lastMonth()
-        } else {
-            return
-        }
-        
-        applySnapshot()
-        monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
-    }
-    
-    private func fetchDisplayDaysOfMonth(for date: Date?) -> [DisplayDate] {
-        guard let date else { return [] }
-        
-        return date.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth.map { DisplayDate(date: $0, state: .none) } + date.rangeDaysOfMonth.map { DisplayDate(date: $0, state: .normal) }
-    }
-    
-    private func setupMonths() -> [[DisplayDate]] {
-        let startDayOfPrevMonth = currentDay.startDayOfLastMonth
-        let startDayOfNextMonth = currentDay.startDayOfNextMonth
-        
-        return [startDayOfPrevMonth, currentDay, startDayOfNextMonth].map(fetchDisplayDaysOfMonth(for:))
-    }
-    
-    private func nextMonth() {
-        currentDay = currentDay.nextMonthOfCurrentDay!
-        let monthAfterNext = currentDay.nextMonthOfCurrentDay!
-        let monthAfterNextDisplayDays = fetchDisplayDaysOfMonth(for: monthAfterNext)
-        
-        self.itemsBySection.removeFirst()
-        self.itemsBySection.append(monthAfterNextDisplayDays)
-    }
-    
-    private func lastMonth() {
-        currentDay = currentDay.lastMonthOfCurrentDay!
-        let monthBeforeLast = currentDay.lastMonthOfCurrentDay!
-        let monthBeforeLastDisplayDays = fetchDisplayDaysOfMonth(for: monthBeforeLast)
-        
-        self.itemsBySection.removeLast()
-        self.itemsBySection.insert(monthBeforeLastDisplayDays, at: 0)
     }
 }
 
 extension CalendarView {
-    
-    struct DisplayDate: Hashable {
-        let date: Date
-        let state: CalendarCell.State
+    enum ScrollDirection {
+        case prev
+        case next
+        case none
     }
 }

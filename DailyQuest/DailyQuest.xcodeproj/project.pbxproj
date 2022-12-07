@@ -197,9 +197,13 @@
 		A5D3C850293DF70B00F43B76 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C84F293DF70B00F43B76 /* FirebaseFirestoreSwift */; };
 		A5D3C852293DF70B00F43B76 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A5D3C851293DF70B00F43B76 /* FirebaseStorage */; };
 		B50078D629222F3F0070AFC4 /* CircleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50078D529222F3F0070AFC4 /* CircleCheckView.swift */; };
-		B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5115452292CD07100FDBD22 /* CalendarViewModel.swift */; };
+		B559CE90293DED99001F0987 /* HomeCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5606666293DDA0900CEFEA8 /* HomeCalendarUseCase.swift */; };
+		B5606665293DD9A000CEFEA8 /* CalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5606664293DD9A000CEFEA8 /* CalendarUseCase.swift */; };
+		B5606667293DDA0900CEFEA8 /* HomeCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5606666293DDA0900CEFEA8 /* HomeCalendarUseCase.swift */; };
 		B5833F732924C08900503E0D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5833F722924C08900503E0D /* CalendarView.swift */; };
 		B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DFC0929227DA800C68A4B /* CalendarCell.swift */; };
+		B599EAC2293F3D4D000EC069 /* DailyQuestCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */; };
+		B599EAC4293F3D6C000EC069 /* MonthlyQuestCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,9 +369,12 @@
 		A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedUserRepository.swift; sourceTree = "<group>"; };
 		A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepositoryTests.swift; sourceTree = "<group>"; };
 		B50078D529222F3F0070AFC4 /* CircleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCheckView.swift; sourceTree = "<group>"; };
-		B5115452292CD07100FDBD22 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		B5606664293DD9A000CEFEA8 /* CalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUseCase.swift; sourceTree = "<group>"; };
+		B5606666293DDA0900CEFEA8 /* HomeCalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarUseCase.swift; sourceTree = "<group>"; };
 		B5833F722924C08900503E0D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		B58DFC0929227DA800C68A4B /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestCompletion.swift; sourceTree = "<group>"; };
+		B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyQuestCompletion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +464,7 @@
 				3416FC89292B560800B504C5 /* DefaultQuestUseCase.swift */,
 				34FCD365293DE62700E0DC8A /* DefaultEnrollUseCase.swift */,
 				A5003ABA293F914500082A9C /* DefaultUserUseCase.swift */,
+				B5606666293DDA0900CEFEA8 /* HomeCalendarUseCase.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 				3416FC87292B54DB00B504C5 /* QuestUseCase.swift */,
 				344A4599293DC495007A3D37 /* EnrollUseCase.swift */,
 				A5003AB8293F909300082A9C /* UserUseCase.swift */,
+				B5606664293DD9A000CEFEA8 /* CalendarUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -609,6 +618,8 @@
 				A51F01D9292345990031ECA2 /* BrowseQuest.swift */,
 				3449AD5A2922164B00B87619 /* Quest.swift */,
 				3449AD5C2922197000B87619 /* User.swift */,
+				B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */,
+				B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -782,7 +793,6 @@
 			isa = PBXGroup;
 			children = (
 				345687FD29378AB900CA51E3 /* EnrollViewModel.swift */,
-				B5115452292CD07100FDBD22 /* CalendarViewModel.swift */,
 				9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */,
 				348FCE012940294900E4940C /* HomeViewModel.swift */,
 			);
@@ -1267,6 +1277,7 @@
 				342830F6292E1ACA00AE811B /* PlainItemViewModel.swift in Sources */,
 				345687FE29378AB900CA51E3 /* EnrollViewModel.swift in Sources */,
 				34A529D129247880001BAD34 /* Coordinator.swift in Sources */,
+				B5606665293DD9A000CEFEA8 /* CalendarUseCase.swift in Sources */,
 				34113BEB2934A3B200AB4919 /* LoginViewController.swift in Sources */,
 				340A724929348B1B00B26AA6 /* AuthUseCase.swift in Sources */,
 				3499552029234637007AB99E /* CustomProgressBar.swift in Sources */,
@@ -1282,7 +1293,6 @@
 				A50F9A3F292679BC005C00FE /* NetworkConfigure.swift in Sources */,
 				34404D92293EF75F0007E661 /* SettingsViewModel.swift in Sources */,
 				34A529E7292481E1001BAD34 /* BrowseCoordinator.swift in Sources */,
-				B5115453292CD07100FDBD22 /* CalendarViewModel.swift in Sources */,
 				34A529D329247903001BAD34 /* TabCoordinator.swift in Sources */,
 				3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */,
 				347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */,
@@ -1294,6 +1304,7 @@
 				3449AD5D2922197000B87619 /* User.swift in Sources */,
 				A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */,
 				9BD8CCF52935C38300E6EA2F /* UserDTO+Mapping.swift in Sources */,
+				B599EAC2293F3D4D000EC069 /* DailyQuestCompletion.swift in Sources */,
 				A51F01CD29233ABB0031ECA2 /* RealmUserInfoStorage.swift in Sources */,
 				B5833F732924C08900503E0D /* CalendarView.swift in Sources */,
 				A50F9A3429266F45005C00FE /* NetworkService.swift in Sources */,
@@ -1328,6 +1339,7 @@
 				34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */,
 				34EE6EB72924C674005AF583 /* QuestView.swift in Sources */,
 				B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */,
+				B5606667293DDA0900CEFEA8 /* HomeCalendarUseCase.swift in Sources */,
 				3499551529232533007AB99E /* UIColor+.swift in Sources */,
 				9BD8CD00293829DD00E6EA2F /* FollowingView.swift in Sources */,
 				342830F8292E1B7400AE811B /* PlainField.swift in Sources */,
@@ -1341,6 +1353,7 @@
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
+				B599EAC4293F3D6C000EC069 /* MonthlyQuestCompletion.swift in Sources */,
 				9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */,
 				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
 				342830F4292E19B700AE811B /* PlainCell.swift in Sources */,
@@ -1412,6 +1425,7 @@
 				A5D3C840293DDFD400F43B76 /* SubQuestEntity.swift in Sources */,
 				34EE0C652935FD79002BEC23 /* BrowseViewModel.swift in Sources */,
 				A5D3C830293DDF9B00F43B76 /* DefaultQuestsRepository.swift in Sources */,
+				B559CE90293DED99001F0987 /* HomeCalendarUseCase.swift in Sources */,
 				340FDFDE292B7A2C00C4E3DC /* QuestUseCaseMock.swift in Sources */,
 				34EE0C542935F8F7002BEC23 /* BrowseQuest.swift in Sources */,
 				A5D3C83A293DDFBE00F43B76 /* RealmBrowseQuestsStorage.swift in Sources */,

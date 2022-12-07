@@ -7,13 +7,19 @@
 
 import Foundation
 
- extension Date {
-     var toString: String {
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "yyyy-MM-dd"
-         return dateFormatter.string(from: self)
-     }
- }
+extension Date {
+    var toString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: self)
+    }
+    
+    var toFormat: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월"
+        return dateFormatter.string(from: self)
+    }
+}
 
 extension Date {
     
@@ -107,7 +113,7 @@ extension Date {
         
         return range.compactMap { day -> Date? in
             let components = DateComponents(year: self.year, month: self.month, day: day)
-
+            
             return Calendar.current.nextDate(
                 after: endDayOfLastMonth,
                 matching: components,
