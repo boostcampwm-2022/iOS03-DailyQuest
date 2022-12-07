@@ -30,7 +30,7 @@ final class HomeSceneDIContainer {
     func makeEnrollUseCase() -> EnrollUseCase {
         return DefaultEnrollUseCase(questsRepository: makeQuestsRepository())
     }
-    
+
     func makeCalendarUseCase() -> CalendarUseCase {
         return HomeCalendarUseCase(questsRepository: makeQuestsRepository())
     }
@@ -38,17 +38,18 @@ final class HomeSceneDIContainer {
     func makeUesrUseCase() -> UserUseCase {
         return DefaultUserUseCase(userRepository: makeUserRepository())
     }
-    
+
     // MARK: - View Models
     func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(questUseCase: makeQuestUseCase(),
+        return HomeViewModel(userUseCase: makeUesrUseCase(),
+                             questUseCase: makeQuestUseCase(),
                              calendarUseCase: makeCalendarUseCase())
     }
 
     func makeEnrollViewModel() -> EnrollViewModel {
         return EnrollViewModel(enrollUseCase: makeEnrollUseCase())
     }
-    
+
     func makeProfileViewModel() -> ProfileViewModel {
         return ProfileViewModel(userUseCase: makeUesrUseCase())
     }
@@ -61,7 +62,7 @@ final class HomeSceneDIContainer {
     func makeEnrollViewController() -> EnrollViewController {
         return EnrollViewController.create(with: makeEnrollViewModel())
     }
-    
+
     func makeProfileViewController() -> ProfileViewController {
         return ProfileViewController.create(with: makeProfileViewModel())
     }
