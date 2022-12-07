@@ -1,8 +1,8 @@
 //
-//  QuestViewModel.swift
+//  HomeViewModel.swift
 //  DailyQuest
 //
-//  Created by jinwoong Kim on 2022/11/16.
+//  Created by jinwoong Kim on 2022/12/07.
 //
 
 import Foundation
@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class QuestViewModel {
+final class HomeViewModel {
     private let questUseCase: QuestUseCase
-
+    
     init(questUseCase: QuestUseCase) {
         self.questUseCase = questUseCase
     }
@@ -41,12 +41,12 @@ final class QuestViewModel {
             .rx
             .notification(.updated)
             .compactMap({ $0.object as? Date })
-            
+        
         let data = Observable
             .merge(updated, input.viewDidLoad, notification)
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
-            
+        
         return Output(data: data)
     }
 }
