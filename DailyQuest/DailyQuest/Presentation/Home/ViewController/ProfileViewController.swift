@@ -113,7 +113,6 @@ final class ProfileViewController: UIViewController {
     func bind() {
         deleteUserButton.rx.tap//.asDriver().drive(onDisposed:  {
             .subscribe(onNext: {
-            print("엄")
             self.showAlert()
         }).disposed(by: disposableBag)
         let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked)
@@ -140,7 +139,7 @@ final class ProfileViewController: UIViewController {
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    let message = "오류가 발생했습니다./n잠시 후 다시 시도해주세요."
+                    let message = "오류가 발생했습니다. \n 잠시 후 다시 시도해주세요."
                     let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .cancel)
                     alert.addAction(okAction)
@@ -178,12 +177,3 @@ extension ProfileViewController {
     }
 }
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct ViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        ProfileViewController().showPreview(.iPhone14Pro)
-    }
-}
-#endif
