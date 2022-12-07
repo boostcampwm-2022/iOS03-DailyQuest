@@ -22,7 +22,7 @@ extension BrowseQuestEntity {
                                       nickName: nickName,
                                       profileURL: profileImageURL,
                                       backgroundImageURL: "",
-                                      description: "",
+                                      introduce: "",
                                       allow: false),
                            quests: quests)
     }

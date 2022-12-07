@@ -12,7 +12,7 @@ struct UserDTO: DTO {
     let nickName: String
     let profileURL: String
     let backgroundImageURL: String
-    let description: String
+    let introduce: String
     let allow: Bool
 
     init() {
@@ -20,7 +20,7 @@ struct UserDTO: DTO {
         self.nickName = ""
         self.profileURL = ""
         self.backgroundImageURL = ""
-        self.description = ""
+        self.introduce = ""
         self.allow = false
     }
 
@@ -29,7 +29,7 @@ struct UserDTO: DTO {
         self.nickName = user.nickName
         self.profileURL = user.profileURL
         self.backgroundImageURL = user.backgroundImageURL
-        self.description = user.description
+        self.introduce = user.introduce
         self.allow = user.allow
     }
 
@@ -38,7 +38,7 @@ struct UserDTO: DTO {
         self.nickName = userDto.nickName
         self.profileURL = userDto.profileURL
         self.backgroundImageURL = userDto.backgroundImageURL
-        self.description = userDto.description
+        self.introduce = userDto.introduce
         self.allow = userDto.allow
     }
 }
@@ -49,7 +49,7 @@ extension UserDTO {
              nickName: nickName,
              profileURL: profileURL,
              backgroundImageURL: backgroundImageURL,
-             description: description,
+             introduce: introduce,
              allow: allow)
     }
 }

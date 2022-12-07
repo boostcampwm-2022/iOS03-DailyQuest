@@ -14,7 +14,7 @@ extension UserInfoEntity {
                   nickName: user.nickName,
                   profileURL: user.profileURL,
                   backgroundImageURL: user.backgroundImageURL,
-                  description: user.description,
+                  introduce: user.introduce,
                   allow: user.allow)
     }
 }
@@ -26,7 +26,7 @@ extension UserInfoEntity {
                     nickName: nickName,
                     profileURL: profileURL,
                     backgroundImageURL: backgroundImageURL,
-                    description: description,
+                    introduce: introduce,
                     allow: allow)
     }
 }

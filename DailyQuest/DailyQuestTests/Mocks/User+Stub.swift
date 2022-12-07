@@ -12,13 +12,13 @@ extension User {
                      nickName: String,
                      profileURL: String = "",
                      backgroundImageURL: String = "",
-                     description: String = "",
+                     introduce: String = "",
                      allow: Bool = true) -> Self {
         return .init(uuid: uuid,
                      nickName: nickName,
                      profileURL: profileURL,
                      backgroundImageURL: backgroundImageURL,
-                     description: description,
+                     introduce: introduce,
                      allow: allow)
     }
 }

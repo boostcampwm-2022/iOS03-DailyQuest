@@ -31,7 +31,6 @@ final class RealmStorage {
     @discardableResult
     func saveEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
-            print(#function)
             throw RealmStorageError.realmObjectError
         }
         try persistentContainer.write {

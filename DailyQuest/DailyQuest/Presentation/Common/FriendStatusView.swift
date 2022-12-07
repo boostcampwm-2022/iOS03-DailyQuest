@@ -33,12 +33,12 @@ final class FriendStatusView: UIView {
         return userNameLabel
     }()
     
-    private(set) lazy var userDescriptionLabel: UILabel = {
-        let userDescriptionLabel = UILabel()
-        userDescriptionLabel.text = "userDescriptionLabel"
-        userDescriptionLabel.textColor = .maxLightGrey
+    private(set) lazy var introduceLabel: UILabel = {
+        let introduceLabel = UILabel()
+        introduceLabel.text = "introduceLabel"
+        introduceLabel.textColor = .maxLightGrey
         
-        return userDescriptionLabel
+        return introduceLabel
     }()
     
     // MARK: - Methods
@@ -54,7 +54,7 @@ final class FriendStatusView: UIView {
     
     private func configureUI() {
         labelContainer.addArrangedSubview(userNameLabel)
-        labelContainer.addArrangedSubview(userDescriptionLabel)
+        labelContainer.addArrangedSubview(introduceLabel)
         
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { make in

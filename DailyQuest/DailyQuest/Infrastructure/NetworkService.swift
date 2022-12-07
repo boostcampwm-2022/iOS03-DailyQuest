@@ -24,6 +24,7 @@ protocol NetworkService {
     func signIn(email: String, password: String) -> Single<Bool>
     func signOut() -> Single<Bool>
     func signUp(email: String, password: String, userDto: UserDTO) -> Single<Bool>
+    func deleteUser() -> Single<Bool>
 
     func create<T: DTO>(userCase: UserCase, access: Access, dto: T) -> Single<T>
     func read<T: DTO>(type: T.Type, userCase: UserCase, access: Access, filter: DateFilter?) -> Observable<T>
