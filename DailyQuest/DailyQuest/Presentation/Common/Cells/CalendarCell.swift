@@ -64,32 +64,20 @@ final class CalendarCell: UICollectionViewCell {
     // MARK: - Methods
     
     /// CalendarCell의 UI를 변경하는 메소드
-    /// - parameters:
-    ///     - state : CircleCheckView.State
-    ///     - day : Int
-    func configure(state: CalendarCell.State, day: Int) {
+    /// - Parameter completion: DailyQuestCompletion
+    func configure(_ completion: DailyQuestCompletion) {
         self.isHidden = false
 
-        switch state {
-        case .none:
+        switch completion.state {
+        case .hidden:
             self.isHidden = true
         case .normal:
             self.circleCheckView.setNormal()
-        case .display(let number):
+        case .notDone(let number):
             self.circleCheckView.setNumber(to: number)
         case .done:
             self.circleCheckView.setDone()
         }
-        dayLabel.text = "\(day)"
-    }
-}
-
-extension CalendarCell {
-    
-    enum State: Hashable {
-        case none
-        case normal
-        case display(Int)
-        case done
+        dayLabel.text = "\(completion.day)"
     }
 }
