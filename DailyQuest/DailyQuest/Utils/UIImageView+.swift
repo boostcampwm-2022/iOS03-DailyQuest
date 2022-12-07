@@ -5,14 +5,14 @@
 //  Created by 이다연 on 2022/12/06.
 //
 
-import Foundation
+import UIKit
 import Kingfisher
 
 extension UIImageView {
     func setImage(with urlString: String) {
-        ImageCache.default.retriveImage(forkey: urlString, options: nil) { result in
+        ImageCache.default.retrieveImage(forKey: urlString, options: nil) { result in
             switch result {
-            case .sucess(let value):
+            case .success(let value):
                 if let image = value.image {
                     self.image = image
                 } else {
@@ -23,5 +23,6 @@ extension UIImageView {
             case .failure(let error):
                 print(error)
             }
+        }
     }
 }
