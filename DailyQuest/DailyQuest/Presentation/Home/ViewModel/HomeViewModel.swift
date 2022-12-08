@@ -37,6 +37,7 @@ final class HomeViewModel {
         let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
+        let selectedDateCompletion: Driver<DailyQuestCompletion?>
     }
     
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
@@ -116,7 +117,7 @@ final class HomeViewModel {
         
         let profileTapResult = input
             .profileButtonDidClicked
-            .flatMap { [weak self] res in
+            .flatMap { [weak self] in
                 guard let self = self else { return Observable.just(false) }
                 return self.userUseCase.isLoggedIn().take(1)
             }
@@ -142,6 +143,12 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
+        input.daySelected
+            .bind { [weak self] date in
+                self?.calendarUseCase.selectDate(date)
+            }
+            .disposed(by: disposeBag)
+        
         let currentMonth = calendarUseCase
             .currentMonth
             .asObserver()
@@ -150,11 +157,32 @@ final class HomeViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
         
+        let selectedDateCompletion = calendarUseCase
+            .selectedDateCompletion
+            .asDriver(onErrorJustReturn: nil)
+        
+        notification
+            .subscribe(onNext: { [weak self] date in
+                self?.calendarUseCase.setupMonths()
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter
+            .default
+            .rx
+            .notification(.questStateChanged)
+            .compactMap({ $0.object as? Date })
+            .subscribe(onNext: { [weak self] date in
+                self?.calendarUseCase.refreshMontlyCompletion(for: date)
+            })
+            .disposed(by: disposeBag)
+        
         return Output(data: data,
                       userData: userData,
                       questStatus: questStatus,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
-                      displayDays: displayDays)
+                      displayDays: displayDays,
+                      selectedDateCompletion: selectedDateCompletion)
     }
 }

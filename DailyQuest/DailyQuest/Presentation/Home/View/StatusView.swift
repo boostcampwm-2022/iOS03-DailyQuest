@@ -55,7 +55,8 @@ final class StatusView: UIView {
         
         let button = UIButton(configuration: config)
         button.imageView?.contentMode = .scaleAspectFit
-        button.layer.cornerRadius = 100
+        button.imageView?.clipsToBounds = true
+        button.imageView?.layer.cornerRadius = 10
         return button
     }()
     
@@ -136,8 +137,13 @@ final class StatusView: UIView {
         userDataFetched
             .asDriver(onErrorJustReturn: User())
             .drive(onNext: { [weak self] user in
+                print(user)
                 guard let self = self else { return }
+                if user.profileURL != "" {
                 self.profileButton.setImage(with: user.profileURL)
+                } else {
+                    self.profileButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+                }
             }).disposed(by: disposableBag)
         
         questStatus
@@ -145,7 +151,7 @@ final class StatusView: UIView {
             .drive(onNext: { [weak self] (currentState: Int, totalState: Int) in
                 guard let self = self else { return }
                 self.statusLabel.text = "\(currentState)/\(totalState)"
-                let progressValue = totalState >= 0 ? (Float(currentState) / Float(totalState)) : 0.0
+                let progressValue = totalState > 0 ? (Float(currentState) / Float(totalState)) : 0.0
                 self.progressBar.setProgress(progressValue, animated: true)
             })
             .disposed(by: disposableBag)

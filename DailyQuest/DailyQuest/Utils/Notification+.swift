@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let updated = Notification.Name("updated")
     static let userUpdated = Notification.Name("userUpdated")
+    static let questStateChanged = Notification.Name("questStateChanged")
 }

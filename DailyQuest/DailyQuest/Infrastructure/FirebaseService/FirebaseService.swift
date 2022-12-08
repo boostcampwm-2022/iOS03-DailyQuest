@@ -56,13 +56,10 @@ extension FirebaseService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 try self.auth.signOut()
+                self.uid.accept(nil)
                 single(.success(true))
             } catch let error {
                 single(.failure(error))
-            }
-
-            if let self = self {
-                self.uid.accept(self.auth.currentUser?.uid)
             }
 
             return Disposables.create()
