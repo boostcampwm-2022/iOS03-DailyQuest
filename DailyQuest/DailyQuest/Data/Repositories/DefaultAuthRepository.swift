@@ -45,7 +45,7 @@ extension DefaultAuthRepository: AuthRepository {
                         .map { $0.toDomain() }
                         .toArray()
                         .flatMap(self.persistentQuestsStorage.saveQuests(with:))
-                        .do(onSuccess: { quests in
+                        .do(afterSuccess: { quests in
                             let dates = quests.map { $0.date }
                             NotificationCenter.default.post(name: .userUpdated, object: dates)
                         })
@@ -58,7 +58,7 @@ extension DefaultAuthRepository: AuthRepository {
     
     func signOut() -> Single<Bool> {
         return self.networkService.signOut()
-            .do(onSuccess: { [weak self] result in
+            .do(afterSuccess: { [weak self] result in
                 if let self = self, result {
                     self.persistentUserStorage.deleteUserInfo()
                         .map { _ in true }
@@ -66,7 +66,7 @@ extension DefaultAuthRepository: AuthRepository {
                         .flatMap { _ in
                             self.persistentQuestsStorage.deleteAllQuests()
                         }
-                        .do(onSuccess: { quests in
+                        .do(afterSuccess: { quests in
                             let dates = quests.map { $0.date }
                             NotificationCenter.default.post(name: .userUpdated, object: dates)
                         })

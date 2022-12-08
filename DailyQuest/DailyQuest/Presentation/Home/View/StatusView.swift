@@ -137,8 +137,13 @@ final class StatusView: UIView {
         userDataFetched
             .asDriver(onErrorJustReturn: User())
             .drive(onNext: { [weak self] user in
+                print(user)
                 guard let self = self else { return }
+                if user.profileURL != "" {
                 self.profileButton.setImage(with: user.profileURL)
+                } else {
+                    self.profileButton.setImage(UIImage(systemName: "person.crop.circle"), for: .normal)
+                }
             }).disposed(by: disposableBag)
         
         questStatus
