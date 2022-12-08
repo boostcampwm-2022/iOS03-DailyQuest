@@ -116,6 +116,15 @@ final class HomeViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
 
+        NotificationCenter
+            .default
+            .rx
+            .notification(.questStateChanged)
+            .compactMap({ $0.object as? Date })
+            .subscribe(onNext: { [weak self] date in
+                self?.calendarUseCase.refreshMontlyCompletion(for: date)
+            })
+            .disposed(by: disposeBag)
         return Output(data: data,
                       userData: userData,
                       profileTapResult: profileTapResult,
