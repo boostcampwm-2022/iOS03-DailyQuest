@@ -91,20 +91,21 @@ final class StatusView: UIView {
             make.top.equalToSuperview().inset(10)
         }
         
-        addSubview(progressBar)
-        progressBar.snp.makeConstraints { make in
-            make.leading.equalTo(iconContainer.snp.trailing)
-            make.bottom.equalToSuperview().inset(10)
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.height.equalTo(5)
-        }
-        
         addSubview(profileButton)
         profileButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(15)
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().inset(15)
             make.width.equalTo(profileButton.snp.height).multipliedBy(1.0 / 1.0)
+        }
+        
+        addSubview(progressBar)
+        progressBar.snp.makeConstraints { make in
+            make.leading.equalTo(iconContainer.snp.trailing)
+            make.bottom.equalToSuperview().inset(20)
+            make.width.lessThanOrEqualTo(400)
+            make.trailing.equalTo(profileButton.snp.leading).inset(-40).priority(100)
+            make.height.equalTo(5)
         }
         
         profileButton.imageView?.snp.makeConstraints({ make in
