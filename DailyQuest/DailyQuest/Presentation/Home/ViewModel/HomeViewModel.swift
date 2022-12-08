@@ -161,7 +161,6 @@ final class HomeViewModel {
         
         updateNotification
             .subscribe(onNext: { [weak self] date in
-                print("teds")
                 self?.calendarUseCase.setupMonths()
             })
             .disposed(by: disposeBag)
