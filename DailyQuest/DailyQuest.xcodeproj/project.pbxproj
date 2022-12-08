@@ -205,7 +205,6 @@
 		B5833F732924C08900503E0D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5833F722924C08900503E0D /* CalendarView.swift */; };
 		B58DFC0A29227DA800C68A4B /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58DFC0929227DA800C68A4B /* CalendarCell.swift */; };
 		B599EAC2293F3D4D000EC069 /* DailyQuestCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */; };
-		B599EAC4293F3D6C000EC069 /* MonthlyQuestCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,7 +377,6 @@
 		B5833F722924C08900503E0D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		B58DFC0929227DA800C68A4B /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestCompletion.swift; sourceTree = "<group>"; };
-		B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyQuestCompletion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,7 +621,6 @@
 				3449AD5A2922164B00B87619 /* Quest.swift */,
 				3449AD5C2922197000B87619 /* User.swift */,
 				B599EAC1293F3D4D000EC069 /* DailyQuestCompletion.swift */,
-				B599EAC3293F3D6C000EC069 /* MonthlyQuestCompletion.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1369,7 +1366,6 @@
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
-				B599EAC4293F3D6C000EC069 /* MonthlyQuestCompletion.swift in Sources */,
 				9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */,
 				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
 				342830F4292E19B700AE811B /* PlainCell.swift in Sources */,

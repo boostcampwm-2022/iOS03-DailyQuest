@@ -119,27 +119,27 @@ final class HomeViewController: UIViewController {
     private func bind() {
         let viewDidLoad = Observable.just(Date()).asObservable()
         let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
+        
+        let willEndDragEvent = calendarView
+            .monthCollectionView
+            .rx
+            .willEndDragging
+            .map { (velocity, _) -> CalendarView.ScrollDirection in
+                if velocity.x > 0 {
+                    return .next
+                } else if velocity.x < 0 {
+                    return .prev
+                } else {
+                    return .none
+                }
+            }
+        
         let dragEventInCalendar = calendarView
             .monthCollectionView
             .rx
             .didEndDecelerating
-            .map { [weak self] in
-                guard let indexPath = self?.calendarView
-                    .monthCollectionView
-                    .indexPathsForVisibleItems
-                    .first
-                else {
-                    return CalendarView.ScrollDirection.none
-                }
-                
-                if indexPath.section > 1 {
-                    return CalendarView.ScrollDirection.next
-                } else if indexPath.section < 1 {
-                    return CalendarView.ScrollDirection.prev
-                } else {
-                    return CalendarView.ScrollDirection.none
-                }
-            }
+            .withLatestFrom(willEndDragEvent)
+        
         
         let daySelected = calendarView
             .monthCollectionView
@@ -183,6 +183,17 @@ final class HomeViewController: UIViewController {
                 
                 self?.calendarView.dataSource.apply(snapshot, animatingDifferences: false)
                 self?.calendarView.monthCollectionView.layoutIfNeeded()
+                
+                let selectedItem = dailyQuestCompletions
+                    .flatMap({ $0 })
+                    .first(where: { dailyQuestCompletion in
+                        dailyQuestCompletion.isSelected
+                    })
+                
+                if let selectedItem, let indexPath = self?.calendarView.dataSource.indexPath(for: selectedItem) {
+                    self?.calendarView.monthCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                }
+                
                 self?.calendarView.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
                                                                     at: .centeredHorizontally,
                                                                     animated: false)
@@ -194,17 +205,6 @@ final class HomeViewController: UIViewController {
             .compactMap({ $0?.toFormat })
             .bind(to: calendarView.yearMonthLabel.rx.text)
             .disposed(by: disposableBag)
-        
-        output
-            .selectedDateCompletion
-            .drive(onNext: { [weak self] dailyQuestCompletion in
-                guard let dailyQuestCompletion else { return }
-                
-                let indexPath = self?.calendarView.dataSource.indexPath(for: dailyQuestCompletion)
-                self?.calendarView.monthCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            })
-            .disposed(by: disposableBag)
-            
     }
     
     private func bindToQuestHeaderButton() {

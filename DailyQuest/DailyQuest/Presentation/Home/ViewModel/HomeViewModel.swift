@@ -37,7 +37,6 @@ final class HomeViewModel {
         let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
-        let selectedDateCompletion: Driver<DailyQuestCompletion?>
     }
     
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
@@ -88,13 +87,13 @@ final class HomeViewModel {
                 self?.currentDate = date
             })
             .flatMap(questUseCase.fetch(by:))
-                .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [])
                 
-                let userNotification = NotificationCenter
-                .default
-                .rx
-                .notification(.userUpdated)
-                .map { _ in Date() }
+        let userNotification = NotificationCenter
+            .default
+            .rx
+            .notification(.userUpdated)
+            .map { _ in Date() }
         
         let userData = Observable
             .merge(
@@ -158,11 +157,7 @@ final class HomeViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
         
-        let selectedDateCompletion = calendarUseCase
-            .selectedDateCompletion
-            .asDriver(onErrorJustReturn: nil)
-        
-        notification
+        updateNotification
             .subscribe(onNext: { [weak self] date in
                 self?.calendarUseCase.setupMonths()
             })
@@ -183,7 +178,6 @@ final class HomeViewModel {
                       questStatus: questStatus,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
-                      displayDays: displayDays,
-                      selectedDateCompletion: selectedDateCompletion)
+                      displayDays: displayDays)
     }
 }
