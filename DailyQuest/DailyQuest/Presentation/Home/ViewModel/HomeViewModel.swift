@@ -63,17 +63,17 @@ final class HomeViewModel {
             return !result.isEmpty ? owner.currentDate : nil
         }
 
-        let logged = userUseCase
-            .isLoggedIn()
-            .map { _ in Date() }
-
         let data = Observable
-            .merge(updated,
+            .merge(
+                updated,
                    input.viewDidLoad,
                    notification,
-                   input.daySelected,
-                   logged)
-            .do(onNext: { [weak self] date in self?.currentDate = date })
+                   input.daySelected
+            )
+            .do(onNext: { [weak self] date in
+                self?.currentDate = date
+                print("fetched ❄️❄️❄️")
+            })
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
 
