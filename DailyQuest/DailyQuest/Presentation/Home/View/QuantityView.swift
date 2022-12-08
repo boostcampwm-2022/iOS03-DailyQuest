@@ -15,7 +15,7 @@ final class QuantityView: UIView {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .maxViolet
-        titleLabel.text = "description"
+        titleLabel.text = "목표량"
         
         return titleLabel
     }()
