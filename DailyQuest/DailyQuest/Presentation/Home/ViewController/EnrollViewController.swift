@@ -25,7 +25,7 @@ final class EnrollViewController: UIViewController {
     
     private lazy var titleField: TextFieldForm = {
         let titleField = TextFieldForm()
-        titleField.placeholder = "description"
+        titleField.placeholder = "퀘스트"
         titleField.backgroundColor = .maxYellow
         titleField.layer.cornerRadius = 15
         
@@ -34,12 +34,14 @@ final class EnrollViewController: UIViewController {
     
     private lazy var startDate: PlanDatePickerView = {
         let startDate = PlanDatePickerView()
+        startDate.title("시작 날짜")
         
         return startDate
     }()
     
     private lazy var endDate: PlanDatePickerView = {
         let endDate = PlanDatePickerView()
+        endDate.title("종료 날짜")
         
         return endDate
     }()
