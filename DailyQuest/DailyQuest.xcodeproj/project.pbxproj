@@ -33,6 +33,7 @@
 		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
 		3417B1442935DA4A00900454 /* BrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1432935DA4A00900454 /* BrowseUseCase.swift */; };
 		3417B1462935DA9D00900454 /* DefaultBrowseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */; };
+		341932E3294185A0003DE808 /* StatusView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341932E2294185A0003DE808 /* StatusView+.swift */; };
 		342830A8292E0FAC00AE811B /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */; };
 		342830AA292E12C700AE811B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830A9292E12C700AE811B /* SettingsViewController.swift */; };
 		342830F2292E196E00AE811B /* CommonField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342830F1292E196E00AE811B /* CommonField.swift */; };
@@ -253,6 +254,7 @@
 		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
 		3417B1432935DA4A00900454 /* BrowseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseUseCase.swift; sourceTree = "<group>"; };
 		3417B1452935DA9D00900454 /* DefaultBrowseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBrowseUseCase.swift; sourceTree = "<group>"; };
+		341932E2294185A0003DE808 /* StatusView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatusView+.swift"; sourceTree = "<group>"; };
 		342830A7292E0FAC00AE811B /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		342830A9292E12C700AE811B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		342830F1292E196E00AE811B /* CommonField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonField.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				9BED4DE9293FA92900C60631 /* UIImageView+.swift */,
 				3436FCF9293F2654003575C3 /* Notification+.swift */,
 				34517FCB2940A92100AB77E9 /* Alertable.swift */,
+				341932E2294185A0003DE808 /* StatusView+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1346,6 +1349,7 @@
 				347D258B292C60F40038FCA2 /* StatusView.swift in Sources */,
 				9BED4DE8293FA01400C60631 /* ProfileViewModel.swift in Sources */,
 				34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */,
+				341932E3294185A0003DE808 /* StatusView+.swift in Sources */,
 				34517FCC2940A92100AB77E9 /* Alertable.swift in Sources */,
 				349955292923600A007AB99E /* BrowseViewController.swift in Sources */,
 				34113BE82934917500AB4919 /* LoginViewModel.swift in Sources */,
