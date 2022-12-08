@@ -13,15 +13,15 @@ import RxCocoa
 final class HomeViewModel {
     private let userUseCase: UserUseCase
     private let questUseCase: QuestUseCase
-    private var calendarUseCase: CalendarUseCase
+    private let calendarUseCase: CalendarUseCase
     private var currentDate = Date()
-
+    
     init(userUseCase: UserUseCase, questUseCase: QuestUseCase, calendarUseCase: CalendarUseCase) {
         self.userUseCase = userUseCase
         self.questUseCase = questUseCase
         self.calendarUseCase = calendarUseCase
     }
-
+    
     struct Input {
         let viewDidLoad: Observable<Date>
         let itemDidClicked: Observable<Quest>
@@ -29,18 +29,19 @@ final class HomeViewModel {
         let dragEventInCalendar: Observable<CalendarView.ScrollDirection>
         let daySelected: Observable<Date>
     }
-
+    
     struct Output {
         let data: Driver<[Quest]>
         let userData: Observable<User>
+        let questStatus: Driver<(Int, Int)>
         let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
         let selectedDateCompletion: Driver<DailyQuestCompletion?>
     }
-
+    
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
-
+        
         let updated = input
             .itemDidClicked
             .compactMap { $0.increaseCount() }
@@ -48,64 +49,98 @@ final class HomeViewModel {
             .filter({ $0 })
             .compactMap { [weak self] _ in self?.currentDate }
             .asObservable()
-
-        let notification = NotificationCenter
+        
+        let updateNotification = NotificationCenter
             .default
             .rx
             .notification(.updated)
+        
+        let userUpdateNotification = NotificationCenter
+            .default
+            .rx
+            .notification(.userUpdated)
+        
+        let notification = Observable
+            .merge(
+                updateNotification,
+                userUpdateNotification
+            )
             .compactMap({ $0.object as? [Date] })
             .withUnretained(self)
             .compactMap { owner, dates in
-            
-            let result = dates.filter { date in
-                Calendar.current.isDate(owner.currentDate, inSameDayAs: date)
+                
+                let result = dates.filter { date in
+                    Calendar.current.isDate(owner.currentDate, inSameDayAs: date)
+                }
+                
+                return !result.isEmpty ? owner.currentDate : nil
             }
-
-            return !result.isEmpty ? owner.currentDate : nil
-        }
-
+        
         let data = Observable
             .merge(
                 updated,
-                   input.viewDidLoad,
-                   notification,
-                   input.daySelected
+                input.viewDidLoad,
+                notification,
+                input.daySelected
             )
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
             })
             .flatMap(questUseCase.fetch(by:))
-            .asDriver(onErrorJustReturn: [])
-
-        let userData = userUseCase
-            .fetch()
-
+                .asDriver(onErrorJustReturn: [])
+                
+                let userNotification = NotificationCenter
+                .default
+                .rx
+                .notification(.userUpdated)
+                .map { _ in Date() }
+        
+        let userData = Observable
+            .merge(
+                input.viewDidLoad,
+                userNotification
+            )
+            .map { _ in Void() }
+            .flatMap(userUseCase.fetch)
+        
+        let questStatus = Observable
+            .merge(
+                updated,
+                input.viewDidLoad,
+                notification)
+            .map { _ in Date() }
+            .flatMap(questUseCase.fetch(by:))
+            .map { quests in
+                (quests.reduce(0) { $0 + ($1.state ? 1 : 0) }, quests.count)
+            }
+            .asDriver(onErrorJustReturn: (0, 0))
+        
         let profileTapResult = input
             .profileButtonDidClicked
-            .flatMap { [weak self] _ in
-            guard let self = self else { return Observable.just(false) }
-            return self.userUseCase.isLoggedIn().take(1)
-        }
-
+            .flatMap { [weak self] in
+                guard let self = self else { return Observable.just(false) }
+                return self.userUseCase.isLoggedIn().take(1)
+            }
+        
         input
             .viewDidLoad
             .subscribe(onNext: { [weak self] _ in
-            self?.calendarUseCase.setupMonths()
-        })
+                self?.calendarUseCase.setupMonths()
+            })
             .disposed(by: disposeBag)
-
+        
         input
             .dragEventInCalendar
             .subscribe(onNext: { [weak self] direction in
-            switch direction {
-            case .prev:
-                self?.calendarUseCase.fetchLastMontlyCompletion()
-            case .none:
-                break
-            case .next:
-                self?.calendarUseCase.fetchNextMontlyCompletion()
-            }
-        })
+                switch direction {
+                case .prev:
+                    self?.calendarUseCase.fetchLastMontlyCompletion()
+                case .none:
+                    break
+                case .next:
+                    self?.calendarUseCase.fetchNextMontlyCompletion()
+                }
+            })
             .disposed(by: disposeBag)
         
         input.daySelected
@@ -117,7 +152,7 @@ final class HomeViewModel {
         let currentMonth = calendarUseCase
             .currentMonth
             .asObserver()
-
+        
         let displayDays = calendarUseCase
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
@@ -144,6 +179,7 @@ final class HomeViewModel {
         
         return Output(data: data,
                       userData: userData,
+                      questStatus: questStatus,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
                       displayDays: displayDays,

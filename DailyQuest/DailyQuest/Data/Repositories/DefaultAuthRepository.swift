@@ -47,7 +47,7 @@ extension DefaultAuthRepository: AuthRepository {
                         .flatMap(self.persistentQuestsStorage.saveQuests(with:))
                         .do(onSuccess: { quests in
                             let dates = quests.map { $0.date }
-                            NotificationCenter.default.post(name: .updated, object: dates)
+                            NotificationCenter.default.post(name: .userUpdated, object: dates)
                         })
                     }
                     .subscribe()
@@ -68,7 +68,7 @@ extension DefaultAuthRepository: AuthRepository {
                         }
                         .do(onSuccess: { quests in
                             let dates = quests.map { $0.date }
-                            NotificationCenter.default.post(name: .updated, object: dates)
+                            NotificationCenter.default.post(name: .userUpdated, object: dates)
                         })
                         .subscribe()
                         .disposed(by: self.disposeBag)
