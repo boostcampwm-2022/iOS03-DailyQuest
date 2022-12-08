@@ -69,22 +69,6 @@ final class HomeCalendarUseCase: CalendarUseCase {
 
 extension HomeCalendarUseCase {
     
-    private func calculateDailyState(_ quests: [Quest]) -> DailyQuestCompletion.State {
-        guard !quests.isEmpty else {
-            return .normal
-        }
-        
-        let result = quests.reduce(0) { partialResult, quest in
-            partialResult + (quest.state ? 1 : 0)
-        }
-        
-        if result == quests.count {
-            return .done
-        } else {
-            return .notDone(result)
-        }
-    }
-    
     func setupMonths() {
         let currentMonth = try? currentMonth.value()
         let startDayOfLastMonth = currentMonth?.startDayOfLastMonth
@@ -104,6 +88,20 @@ extension HomeCalendarUseCase {
                 self?.completionOfMonths.onNext(completionOfMonths)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func calculateDailyState(_ quests: [Quest]) -> DailyQuestCompletion.State {
+        guard !quests.isEmpty else {
+            return .normal
+        }
+        
+        let filteredQuests = quests.filter { !$0.state }
+        
+        if filteredQuests.isEmpty {
+            return .done
+        } else {
+            return .notDone(filteredQuests.count)
+        }
     }
     
     private func fetchAMontlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
