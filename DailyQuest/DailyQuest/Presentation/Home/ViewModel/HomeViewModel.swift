@@ -50,7 +50,7 @@ final class HomeViewModel {
             .share()
             .asObservable()
         
-        let updateNotification = NotificationCenter
+        let questUpdateNotification = NotificationCenter
             .default
             .rx
             .notification(.updated)
@@ -60,11 +60,13 @@ final class HomeViewModel {
             .rx
             .notification(.userUpdated)
         
-        let notification = Observable
+        let updateNotification = Observable
             .merge(
-                updateNotification,
+                questUpdateNotification,
                 userUpdateNotification
             )
+        
+        let notification = updateNotification
             .compactMap({ $0.object as? [Date] })
             .withUnretained(self)
             .compactMap { owner, dates in
@@ -157,8 +159,9 @@ final class HomeViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
         
-        notification
+        updateNotification
             .subscribe(onNext: { [weak self] date in
+                print("teds")
                 self?.calendarUseCase.setupMonths()
             })
             .disposed(by: disposeBag)
