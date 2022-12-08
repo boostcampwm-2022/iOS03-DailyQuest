@@ -9,25 +9,26 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxGesture
+import PhotosUI
 
 final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel!
     private var disposableBag = DisposeBag()
     
-    private var deleteUserButtonDidClicked = PublishSubject<Event>()
+    private let deleteUserButtonDidClicked = PublishSubject<Event>()
+    private let changeProfileImage = PublishSubject<UIImage?>()
     
-    private lazy var backgroundImage: UIImageView = {
-        let backgroundImage = UIImageView()
-        backgroundImage.image = UIImage(named: "defaultBackground")
-        backgroundImage.contentMode = .scaleToFill
-        return backgroundImage
+    private lazy var imagePicker: PHPickerViewController = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        var imagePicker = PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        return imagePicker
     }()
     
-    private lazy var cameraIcon: CameraIconView = {
-        return CameraIconView()
-    }()
-
     private lazy var userImageView: UserImageView = {
         return UserImageView()
     }()
@@ -49,7 +50,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private lazy var editIntroduceButton: UIButton = {
-       let editIntroduceButton = UIButton()
+        let editIntroduceButton = UIButton()
         editIntroduceButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         editIntroduceButton.tintColor = .gray
         return editIntroduceButton
@@ -80,28 +81,15 @@ final class ProfileViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         
-        view.addSubview(backgroundImage)
-        view.addSubview(cameraIcon)
         view.addSubview(userImageView)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
         view.addSubview(editIntroduceButton)
         view.addSubview(deleteUserButton)
         
-        backgroundImage.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(300)
-            make.top.left.right.equalToSuperview()
-        }
-        
-        cameraIcon.snp.makeConstraints { make in
-            make.left.equalTo(10)
-            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-10)
-        }
-        
         userImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(backgroundImage.snp.bottom).offset(-50)
+            make.top.equalToSuperview().offset(50)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -129,25 +117,27 @@ final class ProfileViewController: UIViewController {
     }
     
     func bind() {
+        userImageView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: {
+                [weak self] _ in
+                guard let self = self else { return }
+                self.imagePicker.view.tag = 0
+                self.present(self.imagePicker, animated: true)
+            }).disposed(by: disposableBag)
         
-//        userImageView.rx.tapGesture()
-//            .when(.recognized)
-//            .subscribe(onNext: {
-//                present()
-//            }).disposed(by: disposableBag)
         
         deleteUserButton.rx.tap
             .subscribe(onNext: {
-            self.showAlert()
-        }).disposed(by: disposableBag)
-        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked)
+                self.showAlert()
+            }).disposed(by: disposableBag)
+        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked, changeProfileImage: changeProfileImage)
         let output = viewModel.transform(input: input)
         
         output
             .data
             .drive(onNext: { user in
                 self.userImageView.userImage.setImage(with: user.profileURL)
-                self.backgroundImage.setImage(with: user.backgroundImageURL)
                 self.nameLabel.text = user.nickName
                 self.introduceLabel.text = user.introduce
             })
@@ -169,6 +159,17 @@ final class ProfileViewController: UIViewController {
                     let okAction = UIAlertAction(title: "OK", style: .cancel)
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposableBag)
+        
+        output
+            .changeProfileImageResult
+            .drive(onNext: { user in
+                if user.profileURL != "" {
+                    self.userImageView.userImage.setImage(with: user.profileURL)
+                } else {
+                    self.userImageView.userImage.image = UIImage(named: "AppIcon")
                 }
             })
             .disposed(by: disposableBag)
@@ -199,6 +200,26 @@ extension ProfileViewController {
 extension ProfileViewController {
     enum Event {
         case deleteUser
+    }
+}
+
+extension ProfileViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard error == nil else { return }
+                DispatchQueue.main.async {
+                    let image = image as? UIImage
+                    self?.changeProfileImage.onNext(image)
+                }
+            }
+        }
     }
 }
 

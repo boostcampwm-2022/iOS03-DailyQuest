@@ -131,6 +131,7 @@
 		9BED4DEA293FA92900C60631 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE9293FA92900C60631 /* UIImageView+.swift */; };
 		9BED4DEC2940EA8900C60631 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DEB2940EA8900C60631 /* UserImageView.swift */; };
 		9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DED2941932200C60631 /* CameraIconView.swift */; };
+		9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 9BED4DF02941C47D00C60631 /* RxGesture */; };
 		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
 		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
 		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
@@ -400,6 +401,7 @@
 				34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */,
 				34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */,
 				3409154D292DE5CC007873A8 /* FirebaseFirestore in Frameworks */,
+				9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */,
 				3409154F292DE5CC007873A8 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1155,6 +1157,7 @@
 				34091550292DE5CC007873A8 /* FirebaseStorage */,
 				34EC71CD292DEFBF004813CB /* Lottie */,
 				34FEFB982935EA6D00954A40 /* Kingfisher */,
+				9BED4DF02941C47D00C60631 /* RxGesture */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -1245,6 +1248,7 @@
 				34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				34EC71CC292DEFBF004813CB /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				34FEFB972935EA6D00954A40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -1835,6 +1839,14 @@
 				kind = branch;
 			};
 		};
+		9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1908,6 +1920,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = "RxCocoa-Dynamic";
+		};
+		9BED4DF02941C47D00C60631 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */ = {
 			isa = XCSwiftPackageProductDependency;
