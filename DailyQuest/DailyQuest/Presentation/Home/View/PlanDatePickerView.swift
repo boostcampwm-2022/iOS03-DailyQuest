@@ -24,6 +24,7 @@ final class PlanDatePickerView: UIView {
     private(set) lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
+        datePicker.locale = .init(identifier: "ko_KR")
         
         return datePicker
     }()
@@ -52,5 +53,9 @@ final class PlanDatePickerView: UIView {
         datePicker.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(15)
         }
+    }
+    
+    func title(_ title: String) {
+        titleLabel.text = title
     }
 }
