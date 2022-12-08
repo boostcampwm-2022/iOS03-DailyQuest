@@ -70,7 +70,7 @@ class FollowingView: UIView {
 
 extension FollowingView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("User tapped on item \(indexPath.row)")
+        
     }
 }
 

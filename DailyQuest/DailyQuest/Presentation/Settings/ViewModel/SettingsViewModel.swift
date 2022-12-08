@@ -28,8 +28,6 @@ final class SettingsViewModel {
             plainField,
             navigateField
         ]
-        
-        print(self.fields.count)
     }
     
     struct Input {}

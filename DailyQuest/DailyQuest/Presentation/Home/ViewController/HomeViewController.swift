@@ -240,7 +240,6 @@ final class HomeViewController: UIViewController {
     private func bindToStatusView(with output: HomeViewModel.Output) {
         output
             .profileTapResult
-            .do(onNext: { _ in print("✅✅") })
             .bind(onNext: needLogIn(result:))
             .disposed(by: disposableBag)
         

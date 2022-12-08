@@ -57,9 +57,5 @@ final class QuestViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return header
     }
-    
-    deinit {
-        print("deinit")
-    }
 }
 
