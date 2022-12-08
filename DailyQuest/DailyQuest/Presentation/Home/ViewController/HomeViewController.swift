@@ -229,12 +229,6 @@ final class HomeViewController: UIViewController {
             .map({ !$0.isEmpty })
             .drive(emptySpace.rx.isHidden)
             .disposed(by: disposableBag)
-        
-        output
-            .data
-            .map({ !$0.isEmpty })
-            .drive(emptySpace.rx.isHidden)
-            .disposed(by: disposableBag)
     }
     
     private func bindToStatusView(with output: HomeViewModel.Output) {
