@@ -10,10 +10,12 @@ import UIKit
 final class SettingsSceneDIContainer {
 
     lazy var userInfoStorage: UserInfoStorage = RealmUserInfoStorage()
+    lazy var questsStorage: QuestsStorage = RealmQuestsStorage()
 
     // MARK: - Repositories
     func makeAuthRepository() -> AuthRepository {
-        return DefaultAuthRepository()
+        return DefaultAuthRepository(persistentQuestsStorage: questsStorage,
+                                     persistentUserStorage: userInfoStorage)
     }
 
     func makeUserRepository() -> UserRepository {
@@ -38,7 +40,7 @@ final class SettingsSceneDIContainer {
     func makeSignUpViewModel() -> SignUpViewModel {
         return SignUpViewModel(authUseCase: makeAuthUseCase())
     }
-    
+
     func makeSettingsViewModel() -> SettingsViewModel {
         return SettingsViewModel(settingsUseCase: makeSettingsUseCase())
     }
@@ -51,7 +53,7 @@ final class SettingsSceneDIContainer {
     func makeSignUpViewController() -> SignUpViewController {
         return SignUpViewController.create(with: makeSignUpViewModel())
     }
-    
+
     func makeSettingsViewController() -> SettingsViewController {
         return SettingsViewController.create(with: makeSettingsViewModel())
     }
