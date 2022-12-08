@@ -162,11 +162,19 @@ final class HomeViewController: UIViewController {
             disposeBag: disposableBag
         )
         
+        bindToQuestViewHeader(with: output)
         bindToCalendarView(with: output)
         bindToQuestHeaderButton()
         bindToQuestView(with: output)
         bindToStatusView(with: output)
         
+    }
+    
+    private func bindToQuestViewHeader(with output: HomeViewModel.Output) {
+        output
+            .questHeaderLabel
+            .bind(to: questViewHeader.titleLabel.rx.text)
+            .disposed(by: disposableBag)
     }
     
     private func bindToCalendarView(with output: HomeViewModel.Output) {
