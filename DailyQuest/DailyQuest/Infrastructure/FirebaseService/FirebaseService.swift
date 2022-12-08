@@ -18,9 +18,9 @@ final class FirebaseService: NetworkService {
     private let auth: Auth
     private let db: Firestore
     private let storage: Storage
-
+    
     private(set) var uid: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-
+    
     private init() {
         FirebaseApp.configure()
         db = Firestore.firestore()
@@ -28,7 +28,7 @@ final class FirebaseService: NetworkService {
         storage = Storage.storage()
         uid.accept(auth.currentUser?.uid)
     }
-
+    
 }
 
 extension FirebaseService {
@@ -40,7 +40,7 @@ extension FirebaseService {
                     if let error = error {
                         single(.failure(error))
                     }
-
+                    
                     self.uid.accept(self.auth.currentUser?.uid)
                     single(.success(true))
                 }
@@ -50,7 +50,7 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     func signOut() -> Single<Bool> {
         return Single.create { [weak self] single in
             do {
@@ -61,18 +61,18 @@ extension FirebaseService {
             } catch let error {
                 single(.failure(error))
             }
-
+            
             return Disposables.create()
         }
     }
-
+    
     func signUp(email: String, password: String, userDto: UserDTO) -> Single<Bool> {
         return Single.create { [weak self] single in
             guard let self = self else {
                 single(.failure(NetworkServiceError.noNetworkService))
                 return Disposables.create()
             }
-
+            
             self.auth.createUser(withEmail: email, password: password) { authResult, error in
                 do {
                     if let error = error { throw error }
@@ -87,13 +87,13 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     func createUser(uuid: String, userDto: UserDTO) throws {
         let userDto = UserDTO(uuid: uuid, userDto: userDto)
         try db.collection(UserCase.currentUser.path).document(uuid)
             .setData(from: userDto)
     }
-
+    
     func deleteUser() -> Single<Bool> {
         return Single.create { [weak self] single in
             guard let user = self?.auth.currentUser else {
@@ -123,7 +123,7 @@ extension FirebaseService {
             return db.collection(userCase.path).document(uid)
         }
     }
-
+    
     private func checkPermission(crud: CRUD, userCase: UserCase, access: Access) throws {
         switch userCase {
         case .currentUser:
@@ -142,7 +142,7 @@ extension FirebaseService {
             }
         }
     }
-
+    
     /// Create
     /// - Parameters:
     ///   - userCase: current User / another User
@@ -176,7 +176,7 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     /// Read
     /// - Parameters:
     ///   - type: return Type
@@ -223,7 +223,7 @@ extension FirebaseService {
                         }
                         observer.onCompleted()
                     }
-
+                    
                 case .receiveQuests:
                     ref.collection(access.path).getDocuments { (querySnapshot, error) in
                         for document in querySnapshot!.documents {
@@ -253,7 +253,7 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     /// Update
     /// - Parameters:
     ///   - userCase: current User / another User
@@ -287,7 +287,7 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     /// Delete
     /// - Parameters:
     ///   - userCase: current User / another User
@@ -333,7 +333,7 @@ extension FirebaseService {
             return Disposables.create()
         }
     }
-
+    
     /// uploadDataStorage
     /// - Parameters:
     ///   - data: Image Data
@@ -346,10 +346,10 @@ extension FirebaseService {
                 guard let uid = self.uid.value else { throw NetworkServiceError.noAuthError }
                 let fileName = "\(path.path)/\(uid)-\(UUID())"
                 let StorageReference = self.storage.reference().child("\(fileName)")
-
+                
                 let metaData = StorageMetadata()
                 metaData.contentType = "image/jpeg"
-
+                
                 StorageReference.putData(data, metadata: metaData) { metaData, error in
                     if let error = error {
                         single(.failure(error))
@@ -366,11 +366,11 @@ extension FirebaseService {
             } catch let error {
                 single(.failure(error))
             }
-
+            
             return Disposables.create()
         }
     }
-
+    
     /// downloadDataStorage
     /// - Parameter fileName: File Name
     /// - Returns: success -> Image Data, failure -> error
@@ -378,10 +378,10 @@ extension FirebaseService {
         return Single<Data>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-
+                
                 let storageReference = self.storage.reference().child(fileName)
                 let megaByte = Int64(1 * 1024 * 1024)
-
+                
                 storageReference.getData(maxSize: megaByte) { data, error in
                     guard let imageData = data else {
                         single(.failure(NetworkServiceError.noDataError))
@@ -392,21 +392,21 @@ extension FirebaseService {
             } catch let error {
                 single(.failure(error))
             }
-
+            
             return Disposables.create()
         }
     }
-
+    
     /// deleteDataStorage
     /// - Parameter fileName: File Name
     /// - Returns: success -> true, Data, failure -> error
-    func deleteDataStorage(fileName: String) -> Single<Bool> {
+    func deleteDataStorage(forUrl: String) -> Single<Bool> {
         return Single<Bool>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-
-                let storageReference = self.storage.reference().child(fileName)
-
+                
+                let storageReference = self.storage.reference(forURL: forUrl)
+                
                 storageReference.delete { error in
                     if let error = error {
                         single(.failure(error))
@@ -417,11 +417,11 @@ extension FirebaseService {
             } catch let error {
                 single(.failure(error))
             }
-
+            
             return Disposables.create()
         }
     }
-
+    
     func getAllowUsers(limit: Int) -> Observable<UserDTO> {
         return Observable<UserDTO>.create { [weak self] observer in
             do {
@@ -430,22 +430,22 @@ extension FirebaseService {
                     .whereField("allow", isEqualTo: true)
                     .limit(to: limit)
                     .getDocuments { (querySnapshot, error) in
-                    for document in querySnapshot!.documents {
-                        do {
-                            let quest = try document.data(as: UserDTO.self)
-                            observer.onNext(quest)
-                        } catch let error {
-                            observer.onError(error)
+                        for document in querySnapshot!.documents {
+                            do {
+                                let quest = try document.data(as: UserDTO.self)
+                                observer.onNext(quest)
+                            } catch let error {
+                                observer.onError(error)
+                            }
                         }
+                        observer.onCompleted()
                     }
-                    observer.onCompleted()
-                }
             } catch let error {
                 observer.onError(error)
             }
-
+            
             return Disposables.create()
         }
     }
-
+    
 }
