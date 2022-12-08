@@ -36,7 +36,7 @@ final class ProfileViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.text = "name"
         nameLabel.textColor = .maxViolet
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         return nameLabel
     }()
     
@@ -44,8 +44,15 @@ final class ProfileViewController: UIViewController {
         let introduceLabel = UILabel()
         introduceLabel.text = "한 줄 소개"
         introduceLabel.textColor = .maxViolet
-        introduceLabel.font = UIFont.systemFont(ofSize: 13)
+        introduceLabel.font = UIFont.systemFont(ofSize: 15)
         return introduceLabel
+    }()
+    
+    private lazy var editIntroduceButton: UIButton = {
+       let editIntroduceButton = UIButton()
+        editIntroduceButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+        editIntroduceButton.tintColor = .gray
+        return editIntroduceButton
     }()
     
     private lazy var deleteUserButton: UIButton = {
@@ -78,6 +85,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(userImageView)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
+        view.addSubview(editIntroduceButton)
         view.addSubview(deleteUserButton)
         
         backgroundImage.snp.makeConstraints { make in
@@ -104,6 +112,12 @@ final class ProfileViewController: UIViewController {
         introduceLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
+        }
+        
+        editIntroduceButton.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.left.equalTo(introduceLabel.snp.right).offset(5)
         }
         
         deleteUserButton.snp.makeConstraints { make in

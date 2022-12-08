@@ -20,8 +20,8 @@ final class CameraIconView: UIView {
         backgroundView.layer.cornerRadius = 30.0 / 2
         backgroundView.layer.shadowColor = UIColor.black.cgColor
         backgroundView.layer.masksToBounds = false
-        backgroundView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        backgroundView.layer.shadowRadius = 5
+        backgroundView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        backgroundView.layer.shadowRadius = 3
         backgroundView.layer.shadowOpacity = 0.3
         return backgroundView
     }()
