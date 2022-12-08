@@ -57,6 +57,10 @@ extension DefaultUserRepository: UserRepository {
             .flatMap { [weak self] downloadUrl in
                 guard let self = self else { return Single.just(User()) }
                 return self.persistentStorage.fetchUserInfo()
+                    .flatMap { user in
+                        self.networkService.deleteDataStorage(forUrl: user.profileURL)
+                            .map{ _ in user }
+                    }
                     .map { $0.setProfileImageURL(profileURL: downloadUrl) }
                     .asSingle()
             }
@@ -66,15 +70,19 @@ extension DefaultUserRepository: UserRepository {
             .do(afterSuccess: { _ in
                 NotificationCenter.default.post(name: .userUpdated, object: nil)
             })
-    }
+                }
     
     func saveBackgroundImage(data: Data) -> Single<Bool> {
         networkService.uploadDataStorage(data: data, path: .backgroundImages)
             .flatMap { [weak self] downloadUrl in
                 guard let self = self else { return Single.just(User()) }
                 return self.persistentStorage.fetchUserInfo()
-                    .map { $0.setBackgroundImageURL(backgroundImageURL: downloadUrl) }
-                    .asSingle()
+                    .flatMap { user in
+                    self.networkService.deleteDataStorage(forUrl: user.backgroundImageURL)
+                        .map{ _ in user }
+                }
+                .map { $0.setBackgroundImageURL(backgroundImageURL: downloadUrl) }
+                .asSingle()
             }
             .flatMap(updateUser(by:))
             .map { _ in true }
@@ -82,7 +90,7 @@ extension DefaultUserRepository: UserRepository {
             .do(afterSuccess: { _ in
                 NotificationCenter.default.post(name: .userUpdated, object: nil)
             })
-    }
+                }
     
 }
 
