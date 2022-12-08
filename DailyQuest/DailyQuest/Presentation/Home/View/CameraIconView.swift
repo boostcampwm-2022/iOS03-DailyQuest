@@ -57,6 +57,7 @@ final class CameraIconView: UIView {
         }
         
         backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
             make.width.height.equalTo(30)
         }
     }

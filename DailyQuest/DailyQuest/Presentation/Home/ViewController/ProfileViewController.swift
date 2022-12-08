@@ -83,11 +83,12 @@ final class ProfileViewController: UIViewController {
         backgroundImage.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(300)
+            make.top.left.right.equalToSuperview()
         }
         
         cameraIcon.snp.makeConstraints { make in
             make.left.equalTo(10)
-            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-40)
+            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-10)
         }
         
         userImageView.snp.makeConstraints { make in

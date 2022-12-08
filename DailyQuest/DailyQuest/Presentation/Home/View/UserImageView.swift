@@ -45,25 +45,11 @@ final class UserImageView: UIView {
             make.width.height.equalTo(100)
         }
         cameraIcon.snp.makeConstraints { make in
-            make.left.equalTo(80)
-            make.top.equalTo(80)
+            make.left.equalTo(75)
+            make.top.equalTo(75)
         }
         self.snp.makeConstraints { make in
             make.width.height.equalTo(110)
         }
     }
 }
-
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct UserImageViewPreview: PreviewProvider{
-    static var previews: some View {
-        UIViewPreview {
-            let view = UserImageView(frame: .zero)
-            return view
-        }.previewLayout(.fixed(width: 120, height: 120))
-    }
-}
-#endif
