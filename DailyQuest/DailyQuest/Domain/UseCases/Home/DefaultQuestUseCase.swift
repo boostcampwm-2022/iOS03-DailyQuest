@@ -25,6 +25,11 @@ extension DefaultQuestUseCase: QuestUseCase {
     func update(with quest: Quest) -> Observable<Bool> {
         return questsRepository
             .update(with: quest)
+            .do(onSuccess: { quest in
+                if quest.state {
+                    NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
+                }
+            })
             .map { _ in true }
             .catchAndReturn(false)
             .asObservable()
