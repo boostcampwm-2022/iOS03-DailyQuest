@@ -104,8 +104,23 @@ private extension DefaultQuestsRepository {
 }
 
 private extension DefaultQuestsRepository {
-    // func qusetsSync() -> Single<Bool>{
-    //     persistentStorage.fetchQuests()
-    //     networkService.read(type: QuestDTO, userCase: .currentUser, access: .quests, filter: nil)
-    // }
+    func qusetsSync() -> Single<Bool> {
+        persistentStorage.fetchQuests()
+            .flatMap { [weak self] persistentStorageQuests in
+                guard let self = self else { return Single<[Quest]>.just([]) }
+                return self.networkService.read(type: QuestDTO.self, userCase: .currentUser, access: .quests, filter: nil)
+                    .map { $0.toDomain() }
+                    .toArray()
+                    .map { networkServiceQuests in
+                        let networkServiceQuestsDict = Dictionary(uniqueKeysWithValues: networkServiceQuests.map { ($0.uuid, $0) })
+                        return persistentStorageQuests.filter { networkServiceQuestsDict[$0.uuid] != $0 }
+                    }
+            }
+            .flatMap { [weak self] syncQuests in
+                guard let self = self else { return Single<Bool>.just(false) }
+                return self.persistentStorage.saveQuests(with: syncQuests)
+                    .map { _ in true }
+                    .catchAndReturn(false)
+            }
+    }
 }
