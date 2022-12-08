@@ -28,6 +28,18 @@ final class CalendarCell: UICollectionViewCell {
         return view
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                self.circleCheckView.layer.borderWidth = 3.0
+                self.circleCheckView.layer.borderColor = UIColor.maxDarkYellow.cgColor
+            } else {
+                self.circleCheckView.layer.borderWidth = 0.0
+                self.circleCheckView.layer.borderColor = nil
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

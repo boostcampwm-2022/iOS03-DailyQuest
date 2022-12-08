@@ -39,6 +39,10 @@ extension Date {
         return Calendar.current.component(.weekday, from: self)
     }
     
+    var startOfDay: Date {
+        return Calendar.current.startOfDay(for: self)
+    }
+    
     var nextMonthOfCurrentDay: Date? {
         return Calendar.current.date(byAdding: .month, value: 1, to: self)
     }
