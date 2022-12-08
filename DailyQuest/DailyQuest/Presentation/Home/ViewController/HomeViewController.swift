@@ -52,12 +52,12 @@ final class HomeViewController: UIViewController {
     private lazy var questViewHeader: QuestViewHeader = {
         return QuestViewHeader()
     }()
-    
+
     private lazy var emptySpace: UIImageView = {
         let emptySpace = UIImageView()
         emptySpace.image = UIImage(named: "NoMoreQuests")
         emptySpace.isHidden = true
-        
+
         return emptySpace
     }()
     
@@ -88,7 +88,7 @@ final class HomeViewController: UIViewController {
         stackView.addArrangedSubview(calendarView)
         stackView.addArrangedSubview(questView)
         stackView.addArrangedSubview(emptySpace)
-        
+
         scrollView.addSubview(stackView)
         
         view.addSubview(scrollView)
@@ -109,7 +109,7 @@ final class HomeViewController: UIViewController {
         calendarView.snp.makeConstraints { make in
             make.height.equalTo(calendarView.snp.width).multipliedBy(1.4)
         }
-        
+
         emptySpace.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(150)
@@ -124,49 +124,51 @@ final class HomeViewController: UIViewController {
             .rx
             .didEndDecelerating
             .map { [weak self] in
-                guard let indexPath = self?.calendarView
-                    .monthCollectionView
-                    .indexPathsForVisibleItems
-                    .first
+            guard let indexPath = self?.calendarView
+                .monthCollectionView
+                .indexPathsForVisibleItems
+                .first
                 else {
-                    return CalendarView.ScrollDirection.none
-                }
-                
-                if indexPath.section > 1 {
-                    return CalendarView.ScrollDirection.next
-                } else if indexPath.section < 1 {
-                    return CalendarView.ScrollDirection.prev
-                } else {
-                    return CalendarView.ScrollDirection.none
-                }
+                return CalendarView.ScrollDirection.none
             }
-        
+
+            if indexPath.section > 1 {
+                return CalendarView.ScrollDirection.next
+            } else if indexPath.section < 1 {
+                return CalendarView.ScrollDirection.prev
+            } else {
+                return CalendarView.ScrollDirection.none
+            }
+        }
+
         let daySelected = calendarView
             .monthCollectionView
             .rx
             .itemSelected
             .compactMap(calendarView.dataSource.itemIdentifier(for:))
             .map { dailyQuestCompletion in
-                dailyQuestCompletion.day
-            }
+            dailyQuestCompletion.day
+        }
             .asObservable()
         
         let output = viewModel.transform(
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
                 itemDidClicked: itemDidClick,
+                profileButtonDidClicked: statusView.profileButtonDidClick,
                 dragEventInCalendar: dragEventInCalendar,
                 daySelected: daySelected
             ),
             disposeBag: disposableBag
         )
-        
+
         bindToCalendarView(with: output)
         bindToQuestHeaderButton()
-        bindToStatusBarProfileButton()
         bindToQuestView(with: output)
+        bindToStatusBarProfileButton(with: output)
+        bindToStatusBarProfileButtonImage(with: output)
     }
-    
+
     private func bindToCalendarView(with output: HomeViewModel.Output) {
         output
             .displayDays
@@ -186,14 +188,14 @@ final class HomeViewController: UIViewController {
                                                                     animated: false)
             })
             .disposed(by: disposableBag)
-        
+
         output
             .currentMonth
             .compactMap({ $0?.toFormat })
             .bind(to: calendarView.yearMonthLabel.rx.text)
             .disposed(by: disposableBag)
     }
-    
+
     private func bindToQuestHeaderButton() {
         questViewHeader
             .buttonDidClick
@@ -216,6 +218,30 @@ final class HomeViewController: UIViewController {
             .map({ !$0.isEmpty })
             .drive(emptySpace.rx.isHidden)
             .disposed(by: disposableBag)
+
+        output
+            .data
+            .map({ !$0.isEmpty })
+            .drive(emptySpace.rx.isHidden)
+            .disposed(by: disposableBag)
+    }
+
+    private func bindToStatusBarProfileButton(with output: HomeViewModel.Output) {
+        output
+            .profileTapResult
+            .bind (onNext: needLogIn(result:))
+            .disposed(by: disposableBag)
+    }
+
+
+    private func bindToStatusBarProfileButtonImage(with output: HomeViewModel.Output) {
+        output
+            .userData
+            .bind(onNext: { [weak self] user in
+            guard let self = self else { return }
+            self.statusView.userDataFetched.onNext(user)
+        })
+            .disposed(by: disposableBag)
     }
     
     private func bindToStatusBarProfileButton() {
@@ -225,5 +251,15 @@ final class HomeViewController: UIViewController {
                 self?.coordinatorPublisher.onNext(.showProfileFlow)
             })
             .disposed(by: disposableBag)
+    }
+}
+
+extension HomeViewController: Alertable {
+    private func needLogIn(result: Bool) {
+        if result {
+            coordinatorPublisher.onNext(.showProfileFlow)
+        } else {
+            showAlert(title: "로그인 필요", message: "프로필 화면을 보려면 로그인해주세요.")
+        }
     }
 }

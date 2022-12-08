@@ -77,7 +77,7 @@ extension RealmUserInfoStorage: UserInfoStorage {
                 single(.success(user))
             } catch let error {
                 // update 성공하지 못했을 경우, failure(error)
-                single(.failure(RealmStorageError.saveError(error)))
+                single(.failure(RealmStorageError.deleteError(error)))
             }
 
             return Disposables.create()
