@@ -16,92 +16,106 @@ final class HomeViewController: UIViewController {
         case showAddQuestsFlow
         case showProfileFlow
     }
-
+    
     var coordinatorPublisher = PublishSubject<Event>()
-
+    
     private var viewModel: HomeViewModel!
     private var disposableBag = DisposeBag()
     private var questViewDelegate: QuestViewDelegate?
-
+    
     // MARK: - Components
     private lazy var scrollView: UIScrollView = {
         return UIScrollView()
     }()
-
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-
+        
         return stackView
     }()
-
+    
     private lazy var statusView: StatusView = {
         return StatusView()
     }()
-
+    
     private lazy var calendarView: CalendarView = {
         return CalendarView()
     }()
-
+    
     private lazy var questView: QuestView = {
         let questView = QuestView()
-
+        
         return questView
     }()
-
+    
     private lazy var questViewHeader: QuestViewHeader = {
         return QuestViewHeader()
     }()
-
+    
+    private lazy var emptySpace: UIImageView = {
+        let emptySpace = UIImageView()
+        emptySpace.image = UIImage(named: "NoMoreQuests")
+        emptySpace.isHidden = true
+        
+        return emptySpace
+    }()
+    
     // MARK: - Life Cycle
     static func create(with viewModel: HomeViewModel) -> HomeViewController {
         let vc = HomeViewController()
         vc.viewModel = viewModel
-
+        
         return vc
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         questViewDelegate = QuestViewDelegate(header: questViewHeader)
-
+        
         questView.delegate = questViewDelegate
-
+        
         view.backgroundColor = .white
-
+        
         configureUI()
-
+        
         bind()
     }
-
+    
     private func configureUI() {
         stackView.addArrangedSubview(statusView)
         stackView.addArrangedSubview(calendarView)
         stackView.addArrangedSubview(questView)
-
+        stackView.addArrangedSubview(emptySpace)
+        
         scrollView.addSubview(stackView)
-
+        
         view.addSubview(scrollView)
-
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
-
+        
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
-
+        
         statusView.snp.makeConstraints { make in
             make.height.equalTo(100)
         }
-
+        
         calendarView.snp.makeConstraints { make in
             make.height.equalTo(calendarView.snp.width).multipliedBy(1.4)
         }
+        
+        emptySpace.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(150)
+        }
     }
-
+    
     private func bind() {
         let viewDidLoad = Observable.just(Date()).asObservable()
         let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
@@ -136,7 +150,7 @@ final class HomeViewController: UIViewController {
                 dailyQuestCompletion.day
             }
             .asObservable()
-
+        
         let output = viewModel.transform(
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
@@ -168,8 +182,8 @@ final class HomeViewController: UIViewController {
                 self?.calendarView.dataSource.apply(snapshot, animatingDifferences: false)
                 self?.calendarView.monthCollectionView.layoutIfNeeded()
                 self?.calendarView.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
-                                                       at: .centeredHorizontally,
-                                                       animated: false)
+                                                                    at: .centeredHorizontally,
+                                                                    animated: false)
             })
             .disposed(by: disposableBag)
         
@@ -184,26 +198,32 @@ final class HomeViewController: UIViewController {
         questViewHeader
             .buttonDidClick
             .bind(onNext: { [weak self] _ in
-            self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
-        })
+                self?.coordinatorPublisher.onNext(.showAddQuestsFlow)
+            })
             .disposed(by: disposableBag)
     }
-
+    
     private func bindToQuestView(with output: HomeViewModel.Output) {
         output
             .data
             .drive(questView.rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
-            cell.setup(with: item)
-        }
+                cell.setup(with: item)
+            }
+            .disposed(by: disposableBag)
+        
+        output
+            .data
+            .map({ !$0.isEmpty })
+            .drive(emptySpace.rx.isHidden)
             .disposed(by: disposableBag)
     }
-
+    
     private func bindToStatusBarProfileButton() {
         statusView
             .profileButtonDidClick
             .bind(onNext: { [weak self] _ in
-            self?.coordinatorPublisher.onNext(.showProfileFlow)
-        })
+                self?.coordinatorPublisher.onNext(.showProfileFlow)
+            })
             .disposed(by: disposableBag)
     }
 }

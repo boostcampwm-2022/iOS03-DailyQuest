@@ -44,21 +44,33 @@ final class DefaultSettingsCoordinator: SettingsCoordinator {
     
     func showLoginFlow() {
         let loginViewController = settingsSceneDIContainer.makeLoginViewController()
+        navigationController.pushViewController(loginViewController, animated: true)
+        
         loginViewController
             .itemDidClick
             .bind(onNext: { [weak self] event in
                 switch event {
                     case .showSignUpFlow:
                         self?.showSignUpFlow()
+                    case .back:
+                        self?.navigationController.popViewController(animated: true)
                 }
             })
             .disposed(by: disposableBag)
-        
-        navigationController.pushViewController(loginViewController, animated: true)
     }
     
     func showSignUpFlow() {
         let signUpViewController = settingsSceneDIContainer.makeSignUpViewController()
         navigationController.pushViewController(signUpViewController, animated: true)
+        
+        signUpViewController
+            .itemDidClick
+            .bind(onNext: { [weak self] event in
+                switch event {
+                    case .back:
+                        self?.navigationController.popToRootViewController(animated: true)
+                }
+            })
+            .disposed(by: disposableBag)
     }
 }
