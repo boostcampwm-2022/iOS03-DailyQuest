@@ -194,17 +194,6 @@ final class HomeViewController: UIViewController {
             .compactMap({ $0?.toFormat })
             .bind(to: calendarView.yearMonthLabel.rx.text)
             .disposed(by: disposableBag)
-        
-        output
-            .selectedDateCompletion
-            .drive(onNext: { [weak self] dailyQuestCompletion in
-                guard let dailyQuestCompletion else { return }
-                
-                let indexPath = self?.calendarView.dataSource.indexPath(for: dailyQuestCompletion)
-                self?.calendarView.monthCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            })
-            .disposed(by: disposableBag)
-            
     }
     
     private func bindToQuestHeaderButton() {
