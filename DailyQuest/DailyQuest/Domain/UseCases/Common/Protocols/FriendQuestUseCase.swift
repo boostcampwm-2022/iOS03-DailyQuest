@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+import RxSwift
+
+protocol FriendQuestUseCase {
+    func fetch(with uuid: String, by date: Date) -> Observable<[Quest]>
+}

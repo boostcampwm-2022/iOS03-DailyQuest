@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+import RxSwift
+
+final class DefaultFriendUseCase {
+    private let questsRepository: QuestsRepository
+    
+    init(questsRepository: QuestsRepository) {
+        self.questsRepository = questsRepository
+    }
+}
+
+extension DefaultFriendUseCase: FriendQuestUseCase {
+    func fetch(with uuid: String, by date: Date) -> Observable<[Quest]> {
+        return questsRepository.fetch(by: uuid, date: date)
+    }
+}
