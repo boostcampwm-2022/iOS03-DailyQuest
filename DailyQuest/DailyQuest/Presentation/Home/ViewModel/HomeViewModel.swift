@@ -157,8 +157,6 @@ final class HomeViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
         
-        
-        
         notification
             .subscribe(onNext: { [weak self] date in
                 self?.calendarUseCase.setupMonths()
