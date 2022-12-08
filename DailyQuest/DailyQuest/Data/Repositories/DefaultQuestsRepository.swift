@@ -9,7 +9,6 @@ import RxSwift
 import Foundation
 
 final class DefaultQuestsRepository {
-
     private let persistentStorage: QuestsStorage
     private let networkService: NetworkService
 

@@ -60,7 +60,7 @@ extension FirebaseService {
             } catch let error {
                 single(.failure(error))
             }
-            
+
             if let self = self {
                 self.uid.accept(self.auth.currentUser?.uid)
             }
@@ -195,22 +195,25 @@ extension FirebaseService {
                 let ref = try self.documentReference(userCase: userCase)
                 switch access {
                 case .quests:
-                    guard let filter = filter else { throw NetworkServiceError.needFilterError }
                     var query: Query? = nil
-                    switch filter {
-                    case let .today(date):
+                    if let filter = filter {
+                        switch filter {
+                        case let .today(date):
+                            query = ref.collection(access.path)
+                                .whereField("date", isEqualTo: date.toString)
+                        case let .month(date):
+                            let month = date.toString.components(separatedBy: "-")[0...1].joined(separator: "-")
+                            query = ref.collection(access.path)
+                                .whereField("date", isGreaterThan: "\(month)-00")
+                                .whereField("date", isLessThan: "\(month)-40")
+                        case let .year(date):
+                            let year = date.toString.components(separatedBy: "-")[0]
+                            query = ref.collection(access.path)
+                                .whereField("date", isGreaterThan: "\(year)-01-00")
+                                .whereField("date", isLessThan: "\(year)-12-40")
+                        }
+                    } else {
                         query = ref.collection(access.path)
-                            .whereField("date", isEqualTo: date.toString)
-                    case let .month(date):
-                        let month = date.toString.components(separatedBy: "-")[0...1].joined(separator: "-")
-                        query = ref.collection(access.path)
-                            .whereField("date", isGreaterThan: "\(month)-00")
-                            .whereField("date", isLessThan: "\(month)-40")
-                    case let .year(date):
-                        let year = date.toString.components(separatedBy: "-")[0]
-                        query = ref.collection(access.path)
-                            .whereField("date", isGreaterThan: "\(year)-01-00")
-                            .whereField("date", isLessThan: "\(year)-12-40")
                     }
                     query?.getDocuments { (querySnapshot, err) in
                         for document in querySnapshot!.documents {
@@ -223,6 +226,7 @@ extension FirebaseService {
                         }
                         observer.onCompleted()
                     }
+
                 case .receiveQuests:
                     ref.collection(access.path).getDocuments { (querySnapshot, error) in
                         for document in querySnapshot!.documents {
