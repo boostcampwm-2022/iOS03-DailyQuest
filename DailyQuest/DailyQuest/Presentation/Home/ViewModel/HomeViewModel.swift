@@ -48,6 +48,7 @@ final class HomeViewModel {
             .flatMap(questUseCase.update(with:))
             .filter({ $0 })
             .compactMap { [weak self] _ in self?.currentDate }
+            .share()
             .asObservable()
         
         let updateNotification = NotificationCenter
