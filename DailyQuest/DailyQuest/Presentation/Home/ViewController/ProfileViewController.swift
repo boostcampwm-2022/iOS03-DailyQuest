@@ -9,35 +9,35 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxGesture
+import PhotosUI
 
 final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel!
     private var disposableBag = DisposeBag()
     
-    private var deleteUserButtonDidClicked = PublishSubject<Event>()
+    private let deleteUserButtonDidClicked = PublishSubject<Event>()
+    private let changeProfileImage = PublishSubject<UIImage?>()
     
-    private lazy var backgroundImage: UIImageView = {
-        let backgroundImage = UIImageView()
-        backgroundImage.image = UIImage(named: "defaultBackground")
-        backgroundImage.contentMode = .scaleToFill
-        return backgroundImage
+    private lazy var imagePicker: PHPickerViewController = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        var imagePicker = PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        return imagePicker
     }()
     
-    private lazy var userImage: UIImageView = {
-        let userImage = UIImageView()
-        userImage.image = UIImage(named: "AppIcon")
-        userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = 100.0 / 2
-        userImage.contentMode = .scaleAspectFill
-        return userImage
+    private lazy var userImageView: UserImageView = {
+        return UserImageView()
     }()
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "name"
         nameLabel.textColor = .maxViolet
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         return nameLabel
     }()
     
@@ -45,8 +45,15 @@ final class ProfileViewController: UIViewController {
         let introduceLabel = UILabel()
         introduceLabel.text = "한 줄 소개"
         introduceLabel.textColor = .maxViolet
-        introduceLabel.font = UIFont.systemFont(ofSize: 13)
+        introduceLabel.font = UIFont.systemFont(ofSize: 15)
         return introduceLabel
+    }()
+    
+    private lazy var editIntroduceButton: UIButton = {
+        let editIntroduceButton = UIButton()
+        editIntroduceButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+        editIntroduceButton.tintColor = .gray
+        return editIntroduceButton
     }()
     
     private lazy var deleteUserButton: UIButton = {
@@ -74,32 +81,31 @@ final class ProfileViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         
-        view.addSubview(backgroundImage)
-        view.addSubview(userImage)
+        view.addSubview(userImageView)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
+        view.addSubview(editIntroduceButton)
         view.addSubview(deleteUserButton)
         
-        backgroundImage.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(300)
-        }
-        
-        userImage.snp.makeConstraints { make in
+        userImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-            make.top.equalTo(backgroundImage.snp.bottom).offset(-50)
+            make.top.equalToSuperview().offset(50)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(userImage.snp.bottom).offset(5)
+            make.top.equalTo(userImageView.snp.bottom).offset(5)
         }
         
         introduceLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
+        }
+        
+        editIntroduceButton.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.left.equalTo(introduceLabel.snp.right).offset(5)
         }
         
         deleteUserButton.snp.makeConstraints { make in
@@ -111,18 +117,27 @@ final class ProfileViewController: UIViewController {
     }
     
     func bind() {
-        deleteUserButton.rx.tap//.asDriver().drive(onDisposed:  {
+        userImageView.rx.tapGesture()
+            .when(.recognized)
             .subscribe(onNext: {
-            self.showAlert()
-        }).disposed(by: disposableBag)
-        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked)
+                [weak self] _ in
+                guard let self = self else { return }
+                self.imagePicker.view.tag = 0
+                self.present(self.imagePicker, animated: true)
+            }).disposed(by: disposableBag)
+        
+        
+        deleteUserButton.rx.tap
+            .subscribe(onNext: {
+                self.showAlert()
+            }).disposed(by: disposableBag)
+        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked, changeProfileImage: changeProfileImage)
         let output = viewModel.transform(input: input)
         
         output
             .data
             .drive(onNext: { user in
-                self.userImage.setImage(with: user.profileURL)
-                self.backgroundImage.setImage(with: user.backgroundImageURL)
+                self.userImageView.userImage.setImage(with: user.profileURL)
                 self.nameLabel.text = user.nickName
                 self.introduceLabel.text = user.introduce
             })
@@ -144,6 +159,17 @@ final class ProfileViewController: UIViewController {
                     let okAction = UIAlertAction(title: "OK", style: .cancel)
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposableBag)
+        
+        output
+            .changeProfileImageResult
+            .drive(onNext: { user in
+                if user.profileURL != "" {
+                    self.userImageView.userImage.setImage(with: user.profileURL)
+                } else {
+                    self.userImageView.userImage.image = UIImage(named: "AppIcon")
                 }
             })
             .disposed(by: disposableBag)
@@ -176,4 +202,25 @@ extension ProfileViewController {
         case deleteUser
     }
 }
+
+extension ProfileViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard error == nil else { return }
+                DispatchQueue.main.async {
+                    let image = image as? UIImage
+                    self?.changeProfileImage.onNext(image)
+                }
+            }
+        }
+    }
+}
+
 

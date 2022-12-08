@@ -5,7 +5,7 @@
 //  Created by 이다연 on 2022/12/06.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
@@ -22,11 +22,13 @@ final class ProfileViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
         let deleteUserButtonDidClicked: Observable<ProfileViewController.Event>
+        let changeProfileImage: Observable<UIImage?>
     }
     
     struct Output {
         let data: Driver<User>
         let deleteUserResult: Driver<Bool>
+        let changeProfileImageResult: Driver<User>
     }
     
     func transform(input: Input) -> Output {
@@ -40,7 +42,25 @@ final class ProfileViewModel {
         let deleteUserResult = input.deleteUserButtonDidClicked.flatMap { _ in
             self.userUseCase.delete()
         }
-        .asDriver(onErrorJustReturn: false)
-        return Output(data: data, deleteUserResult: deleteUserResult)
+            .asDriver(onErrorJustReturn: false)
+        
+        let changeProfileImageResult = input.changeProfileImage.flatMap { image in
+            
+            guard let image = image else {
+                return Observable<UIImage?>.just(nil)
+            }
+            
+            guard let data = image.jpegData(compressionQuality: 0.9) else {
+                return Observable<UIImage?>.just(nil)
+            }
+            return self.userUseCase.saveProfileImage(data: data)
+                .map{ _ in image }
+                .catchAndReturn(nil)
+        }.map{ _ in
+            Void()
+        }.flatMap(userUseCase.fetch)
+            .asDriver(onErrorJustReturn: User())
+        
+        return Output(data: data, deleteUserResult: deleteUserResult, changeProfileImageResult: changeProfileImageResult)
     }
 }

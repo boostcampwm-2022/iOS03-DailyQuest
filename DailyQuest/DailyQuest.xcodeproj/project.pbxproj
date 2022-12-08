@@ -129,6 +129,9 @@
 		9BED4DE2293DD53500C60631 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE0293D938400C60631 /* ProfileViewController.swift */; };
 		9BED4DE8293FA01400C60631 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */; };
 		9BED4DEA293FA92900C60631 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE9293FA92900C60631 /* UIImageView+.swift */; };
+		9BED4DEC2940EA8900C60631 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DEB2940EA8900C60631 /* UserImageView.swift */; };
+		9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DED2941932200C60631 /* CameraIconView.swift */; };
+		9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 9BED4DF02941C47D00C60631 /* RxGesture */; };
 		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
 		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
 		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
@@ -339,6 +342,8 @@
 		9BED4DE0293D938400C60631 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9BED4DE9293FA92900C60631 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		9BED4DEB2940EA8900C60631 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
+		9BED4DED2941932200C60631 /* CameraIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraIconView.swift; sourceTree = "<group>"; };
 		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		A5003AB5293F601E00082A9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A5003AB8293F909300082A9C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -394,6 +399,7 @@
 				34FF6C5F292B8B27002AFD4D /* RxSwift in Frameworks */,
 				34FEFB992935EA6D00954A40 /* Kingfisher in Frameworks */,
 				3409154D292DE5CC007873A8 /* FirebaseFirestore in Frameworks */,
+				9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */,
 				3409154F292DE5CC007873A8 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,6 +940,8 @@
 				345687F52937430200CA51E3 /* PlanDatePickerView.swift */,
 				345687F729374D2500CA51E3 /* DayNamePickerView.swift */,
 				345687F92937815900CA51E3 /* QuantityView.swift */,
+				9BED4DEB2940EA8900C60631 /* UserImageView.swift */,
+				9BED4DED2941932200C60631 /* CameraIconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1146,6 +1154,7 @@
 				34091550292DE5CC007873A8 /* FirebaseStorage */,
 				34EC71CD292DEFBF004813CB /* Lottie */,
 				34FEFB982935EA6D00954A40 /* Kingfisher */,
+				9BED4DF02941C47D00C60631 /* RxGesture */,
 			);
 			productName = DailyQuest;
 			productReference = 34ACC329291DE9C000741371 /* DailyQuest.app */;
@@ -1236,6 +1245,7 @@
 				34091549292DE5CC007873A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				34EC71CC292DEFBF004813CB /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				34FEFB972935EA6D00954A40 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 34ACC32A291DE9C000741371 /* Products */;
 			projectDirPath = "";
@@ -1293,6 +1303,7 @@
 				340A724929348B1B00B26AA6 /* AuthUseCase.swift in Sources */,
 				3499552029234637007AB99E /* CustomProgressBar.swift in Sources */,
 				34A529E22924816A001BAD34 /* BrowseSceneDIContainer.swift in Sources */,
+				9BED4DEC2940EA8900C60631 /* UserImageView.swift in Sources */,
 				34A529E929248B58001BAD34 /* AppAppearance.swift in Sources */,
 				34283105292E2E3F00AE811B /* ToggleField.swift in Sources */,
 				A517A84629349D91005CB1E8 /* DefaultAuthRepository.swift in Sources */,
@@ -1395,6 +1406,7 @@
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
 				9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */,
 				3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */,
+				9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 				34A529D829247A87001BAD34 /* HomeCoordinator.swift in Sources */,
 				34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */,
@@ -1823,6 +1835,14 @@
 				kind = branch;
 			};
 		};
+		9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		A50DE907292B73B900E1FD60 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1896,6 +1916,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34FF6C5B292B8B27002AFD4D /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = "RxCocoa-Dynamic";
+		};
+		9BED4DF02941C47D00C60631 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9BED4DEF2941C47D00C60631 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		A50DE90A292B73B900E1FD60 /* FirebaseDatabaseSwift */ = {
 			isa = XCSwiftPackageProductDependency;
