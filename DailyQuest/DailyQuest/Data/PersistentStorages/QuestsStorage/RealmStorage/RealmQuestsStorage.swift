@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 
 final class RealmQuestsStorage {
-
+    
     private let realmStorage: RealmStorage
-
+    
     init(realmStorage: RealmStorage = RealmStorage.shared) {
         self.realmStorage = realmStorage
     }
@@ -23,7 +23,6 @@ extension RealmQuestsStorage: QuestsStorage {
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
-
             do {
                 for quest in quests {
                     let questEntity = QuestEntity(quest: quest)
@@ -32,32 +31,28 @@ extension RealmQuestsStorage: QuestsStorage {
                 single(.success(quests))
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))
-
             }
             return Disposables.create()
         }
     }
-
-    func fetchQuests(by date: Date) -> Observable<[Quest]> {
-        return Observable<[Quest]>.create { [weak self] observer in
+    
+    func fetchQuests(by date: Date) -> Single<[Quest]> {
+        return Single<[Quest]>.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
-
             do {
                 let quests = try realmStorage
                     .fetchEntities(type: QuestEntity.self, filter: NSPredicate(format: "date == %@", date.toString))
                     .compactMap { $0.toDomain() }
-                observer.onNext(quests)
-                observer.onCompleted()
+                single(.success(quests))
             } catch let error {
-                observer.onError(error)
+                single(.failure(error))
             }
-
             return Disposables.create()
         }
     }
-
+    
     func updateQuest(with quest: Quest) -> Single<Quest> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
@@ -68,21 +63,17 @@ extension RealmQuestsStorage: QuestsStorage {
                 try realmStorage.updateEntity(entity: questEntity)
                 single(.success(quest))
             } catch let error {
-                print(#function)
-                print(error)
-                single(.failure(RealmStorageError.saveError(error)))
+                single(.failure(RealmStorageError.updateError(error)))
             }
-
             return Disposables.create()
         }
     }
-
+    
     func deleteQuest(with questId: UUID) -> Single<Quest> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
-
             do {
                 guard let entity = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "uuid == %@", questId as CVarArg)).first else {
                     throw RealmStorageError.noDataError
@@ -90,22 +81,20 @@ extension RealmQuestsStorage: QuestsStorage {
                 let quest = entity.toDomain()
                 try realmStorage.deleteEntity(entity: entity)
                 single(.success(quest))
-
             } catch let error {
                 single(.failure(RealmStorageError.deleteError(error)))
             }
-
             return Disposables.create()
         }
-
+        
     }
-
+    
     func deleteQuestGroup(with groupId: UUID) -> Single<[Quest]> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
-
+            
             do {
                 let entities = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "groupId == %@", groupId as CVarArg))
                 let quests = entities.compactMap { $0.toDomain() }
@@ -113,15 +102,13 @@ extension RealmQuestsStorage: QuestsStorage {
                     try realmStorage.deleteEntity(entity: entity)
                 }
                 single(.success(quests))
-
             } catch let error {
                 single(.failure(RealmStorageError.deleteError(error)))
             }
-
             return Disposables.create()
         }
     }
-
+    
     func deleteAllQuests() -> Single<[Quest]> {
         return Single.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
@@ -134,11 +121,29 @@ extension RealmQuestsStorage: QuestsStorage {
                     try realmStorage.deleteEntity(entity: entity)
                 }
                 single(.success(quests))
-                
             } catch let error {
                 single(.failure(RealmStorageError.deleteError(error)))
             }
-
+            
+            return Disposables.create()
+        }
+    }
+    
+    func fetchQuests() -> Single<[Quest]> {
+        return Single.create { [weak self] single in
+            guard let realmStorage = self?.realmStorage else {
+                return Disposables.create()
+            }
+            
+            do {
+                let quests = try realmStorage
+                    .fetchEntities(type: QuestEntity.self, filter: nil)
+                    .compactMap { $0.toDomain() }
+                single(.success(quests))
+            } catch let error {
+                single(.failure(error))
+            }
+            
             return Disposables.create()
         }
     }

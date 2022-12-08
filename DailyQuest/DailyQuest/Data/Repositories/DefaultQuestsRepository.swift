@@ -26,6 +26,7 @@ extension DefaultQuestsRepository: QuestsRepository {
     
     func fetch(by date: Date) -> Observable<[Quest]> {
         return persistentStorage.fetchQuests(by: date)
+            .asObservable()
             .catch { [weak self] _ in
                 guard let self = self else { return Observable.just([]) }
                 return self.fetchNetworkService(date: date)
@@ -88,7 +89,7 @@ private extension DefaultQuestsRepository {
     }
     
     func deleteNetworkService(quest: Quest) -> Single<Quest> {
-        self.networkService.delete(userCase: .currentUser, access: .quests, dto: quest.toDTO())
+        return networkService.delete(userCase: .currentUser, access: .quests, dto: quest.toDTO())
             .map { $0.toDomain() }
             .catchAndReturn(quest)
     }
@@ -100,4 +101,11 @@ private extension DefaultQuestsRepository {
             .catchAndReturn(quests)
     }
     
+}
+
+private extension DefaultQuestsRepository {
+    // func qusetsSync() -> Single<Bool>{
+    //     persistentStorage.fetchQuests()
+    //     networkService.read(type: QuestDTO, userCase: .currentUser, access: .quests, filter: nil)
+    // }
 }
