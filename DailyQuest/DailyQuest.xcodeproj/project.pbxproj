@@ -62,6 +62,11 @@
 		345687FA2937815900CA51E3 /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687F92937815900CA51E3 /* QuantityView.swift */; };
 		345687FE29378AB900CA51E3 /* EnrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345687FD29378AB900CA51E3 /* EnrollViewModel.swift */; };
 		34642AB62925D9E40052FA0E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34642AB52925D9E40052FA0E /* UserInfoView.swift */; };
+		3472E8F129420D9600BB304F /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F029420D9600BB304F /* FriendViewModel.swift */; };
+		3472E8F52942135D00BB304F /* FriendQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */; };
+		3472E8F7294213BE00BB304F /* DefaultFriendQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F6294213BE00BB304F /* DefaultFriendQuestUseCase.swift */; };
+		3472E8F929421C7C00BB304F /* FriendCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */; };
+		3472E8FB29421CB500BB304F /* DefaultFriendCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8FA29421CB500BB304F /* DefaultFriendCalendarUseCase.swift */; };
 		347D258B292C60F40038FCA2 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258A292C60F40038FCA2 /* StatusView.swift */; };
 		347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258C292C6E220038FCA2 /* MessageBubble.swift */; };
 		34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34874A9F292509A4000570DF /* QuestViewHeader.swift */; };
@@ -286,6 +291,11 @@
 		345687F92937815900CA51E3 /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
 		345687FD29378AB900CA51E3 /* EnrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollViewModel.swift; sourceTree = "<group>"; };
 		34642AB52925D9E40052FA0E /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		3472E8F029420D9600BB304F /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
+		3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendQuestUseCase.swift; sourceTree = "<group>"; };
+		3472E8F6294213BE00BB304F /* DefaultFriendQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFriendQuestUseCase.swift; sourceTree = "<group>"; };
+		3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCalendarUseCase.swift; sourceTree = "<group>"; };
+		3472E8FA29421CB500BB304F /* DefaultFriendCalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFriendCalendarUseCase.swift; sourceTree = "<group>"; };
 		347D258A292C60F40038FCA2 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		347D258C292C6E220038FCA2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		34874A9F292509A4000570DF /* QuestViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewHeader.swift; sourceTree = "<group>"; };
@@ -636,6 +646,7 @@
 		3449AD5E292219D600B87619 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3472E8EF29420D8D00BB304F /* ViewModel */,
 				34FCD367293DEEBC00E0DC8A /* ViewController */,
 				3499551C292332DE007AB99E /* Cells */,
 				B50078D529222F3F0070AFC4 /* CircleCheckView.swift */,
@@ -654,6 +665,33 @@
 				3499552229234D5F007AB99E /* BrowseCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3472E8EF29420D8D00BB304F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3472E8F029420D9600BB304F /* FriendViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3472E8F22942133B00BB304F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3472E8F32942134000BB304F /* Protocols */,
+				3472E8FA29421CB500BB304F /* DefaultFriendCalendarUseCase.swift */,
+				3472E8F6294213BE00BB304F /* DefaultFriendQuestUseCase.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3472E8F32942134000BB304F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */,
+				3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		34995510292321FD007AB99E /* Utils */ = {
@@ -686,6 +724,7 @@
 		34995516292329F4007AB99E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				3472E8F22942133B00BB304F /* Common */,
 				3417B1402935DA1B00900454 /* Settings */,
 				3417B13F2935DA1500900454 /* Browse */,
 				3416FC85292B549900B504C5 /* Home */,
@@ -1294,6 +1333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */,
+				3472E8F929421C7C00BB304F /* FriendCalendarUseCase.swift in Sources */,
 				A5A8C8362936EC7E00988C88 /* SubQuestEntity.swift in Sources */,
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
 				34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */,
@@ -1335,6 +1375,7 @@
 				A50F9A3429266F45005C00FE /* NetworkService.swift in Sources */,
 				A51F01DA292345990031ECA2 /* BrowseQuest.swift in Sources */,
 				A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */,
+				3472E8F129420D9600BB304F /* FriendViewModel.swift in Sources */,
 				A51F01D52923407E0031ECA2 /* BrowseQuestEntity.swift in Sources */,
 				3416FC8A292B560800B504C5 /* DefaultQuestUseCase.swift in Sources */,
 				9BD8CCF32935BC0D00E6EA2F /* DefaultBrowseRepository.swift in Sources */,
@@ -1380,6 +1421,7 @@
 				A51189C329226E66008A9D33 /* QuestEntity+Mapping.swift in Sources */,
 				A51F01D3292340360031ECA2 /* BrowseQuestsStorage.swift in Sources */,
 				A50F9A3729266F6F005C00FE /* FirebaseService.swift in Sources */,
+				3472E8F52942135D00BB304F /* FriendQuestUseCase.swift in Sources */,
 				9B1CFB3F292B585700CCE97A /* QuestDTO+Mapping.swift in Sources */,
 				34874AA0292509A4000570DF /* QuestViewHeader.swift in Sources */,
 				342830F4292E19B700AE811B /* PlainCell.swift in Sources */,
@@ -1405,6 +1447,7 @@
 				34283101292E2D7A00AE811B /* ToggleItemViewModel.swift in Sources */,
 				34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
+				3472E8FB29421CB500BB304F /* DefaultFriendCalendarUseCase.swift in Sources */,
 				A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */,
 				345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */,
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
@@ -1413,6 +1456,7 @@
 				9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 				34A529D829247A87001BAD34 /* HomeCoordinator.swift in Sources */,
+				3472E8F7294213BE00BB304F /* DefaultFriendQuestUseCase.swift in Sources */,
 				34283103292E2D9B00AE811B /* ToggleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

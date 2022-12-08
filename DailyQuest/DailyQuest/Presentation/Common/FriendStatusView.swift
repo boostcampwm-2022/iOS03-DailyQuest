@@ -15,6 +15,8 @@ final class FriendStatusView: UIView {
     private(set) lazy var profileImageView: UIImageView = {
         let profileImageView = UIImageView()
         profileImageView.image = UIImage(named: "StatusMax")
+        profileImageView.layer.cornerRadius = 35
+        profileImageView.clipsToBounds = true
         
         return profileImageView
     }()
@@ -58,15 +60,14 @@ final class FriendStatusView: UIView {
         
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.width.equalTo(profileImageView.snp.height)
-            make.leading.equalToSuperview()
+            make.height.width.equalTo(70)
             make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(15)
         }
         
         addSubview(labelContainer)
         labelContainer.snp.makeConstraints { make in
-            make.leading.equalTo(profileImageView.snp.trailing)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(15)
             make.centerY.equalToSuperview()
         }
     }
