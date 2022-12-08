@@ -36,6 +36,7 @@ final class HomeViewModel {
         let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
         let displayDays: Driver<[[DailyQuestCompletion]]>
+        let selectedDateCompletion: Driver<DailyQuestCompletion?>
     }
 
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
@@ -72,7 +73,6 @@ final class HomeViewModel {
             )
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
-                print("fetched ❄️❄️❄️")
             })
             .flatMap(questUseCase.fetch(by:))
             .asDriver(onErrorJustReturn: [])
@@ -107,7 +107,13 @@ final class HomeViewModel {
             }
         })
             .disposed(by: disposeBag)
-
+        
+        input.daySelected
+            .bind { [weak self] date in
+                self?.calendarUseCase.selectDate(date)
+            }
+            .disposed(by: disposeBag)
+        
         let currentMonth = calendarUseCase
             .currentMonth
             .asObserver()
@@ -115,7 +121,17 @@ final class HomeViewModel {
         let displayDays = calendarUseCase
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
-
+        
+        let selectedDateCompletion = calendarUseCase
+            .selectedDateCompletion
+            .asDriver(onErrorJustReturn: nil)
+        
+        notification
+            .subscribe(onNext: { [weak self] date in
+                self?.calendarUseCase.setupMonths()
+            })
+            .disposed(by: disposeBag)
+        
         NotificationCenter
             .default
             .rx
@@ -125,10 +141,12 @@ final class HomeViewModel {
                 self?.calendarUseCase.refreshMontlyCompletion(for: date)
             })
             .disposed(by: disposeBag)
+        
         return Output(data: data,
                       userData: userData,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
-                      displayDays: displayDays)
+                      displayDays: displayDays,
+                      selectedDateCompletion: selectedDateCompletion)
     }
 }
