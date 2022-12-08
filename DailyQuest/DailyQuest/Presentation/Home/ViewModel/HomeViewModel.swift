@@ -13,7 +13,7 @@ import RxCocoa
 final class HomeViewModel {
     private let userUseCase: UserUseCase
     private let questUseCase: QuestUseCase
-    private var calendarUseCase: CalendarUseCase
+    private let calendarUseCase: CalendarUseCase
     private var currentDate = Date()
 
     init(userUseCase: UserUseCase, questUseCase: QuestUseCase, calendarUseCase: CalendarUseCase) {
