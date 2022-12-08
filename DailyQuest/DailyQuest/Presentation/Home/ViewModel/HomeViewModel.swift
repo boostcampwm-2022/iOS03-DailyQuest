@@ -14,7 +14,6 @@ final class HomeViewModel {
     private let userUseCase: UserUseCase
     private let questUseCase: QuestUseCase
     private var calendarUseCase: CalendarUseCase
-
     private var currentDate = Date()
 
     init(userUseCase: UserUseCase, questUseCase: QuestUseCase, calendarUseCase: CalendarUseCase) {
@@ -56,6 +55,7 @@ final class HomeViewModel {
             .compactMap({ $0.object as? [Date] })
             .withUnretained(self)
             .compactMap { owner, dates in
+            
             let result = dates.filter { date in
                 Calendar.current.isDate(owner.currentDate, inSameDayAs: date)
             }
