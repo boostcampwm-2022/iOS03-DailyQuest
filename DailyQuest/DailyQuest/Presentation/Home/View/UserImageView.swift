@@ -19,16 +19,10 @@ final class UserImageView: UIView {
         return userImage
     }()
     
-    private lazy var cameraIcon: UIImageView = {
-        let cameraIcon = UIImageView()
-        cameraIcon.image = UIImage(systemName: "camera.fill")
-        cameraIcon.clipsToBounds = true
-        cameraIcon.tintColor = .gray
-        cameraIcon.contentMode = .scaleAspectFit
-        cameraIcon.backgroundColor = .white
-        cameraIcon.layer.cornerRadius = 30.0 / 2
-        return cameraIcon
+    private lazy var cameraIcon: CameraIconView = {
+        return CameraIconView()
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,12 +44,10 @@ final class UserImageView: UIView {
             make.centerX.centerY.equalToSuperview()
             make.width.height.equalTo(100)
         }
-        
         cameraIcon.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
-            make.right.bottom.equalToSuperview()
+            make.left.equalTo(80)
+            make.top.equalTo(80)
         }
-        
         self.snp.makeConstraints { make in
             make.width.height.equalTo(110)
         }
@@ -71,7 +63,7 @@ struct UserImageViewPreview: PreviewProvider{
         UIViewPreview {
             let view = UserImageView(frame: .zero)
             return view
-        }.previewLayout(.fixed(width: 110, height: 110))
+        }.previewLayout(.fixed(width: 120, height: 120))
     }
 }
 #endif

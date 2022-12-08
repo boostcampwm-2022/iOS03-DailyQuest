@@ -24,15 +24,8 @@ final class ProfileViewController: UIViewController {
         return backgroundImage
     }()
     
-    private lazy var cameraIcon: UIImageView = {
-        let cameraIcon = UIImageView()
-        cameraIcon.image = UIImage(systemName: "camera.fill")
-        cameraIcon.clipsToBounds = true
-        cameraIcon.tintColor = .gray
-        cameraIcon.contentMode = .scaleAspectFit
-        cameraIcon.backgroundColor = .white
-        cameraIcon.layer.cornerRadius = 30.0 / 2
-        return cameraIcon
+    private lazy var cameraIcon: CameraIconView = {
+        return CameraIconView()
     }()
 
     private lazy var userImageView: UserImageView = {
@@ -93,9 +86,8 @@ final class ProfileViewController: UIViewController {
         }
         
         cameraIcon.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
             make.left.equalTo(10)
-            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-10)
+            make.bottom.equalTo(backgroundImage.snp.bottom).offset(-40)
         }
         
         userImageView.snp.makeConstraints { make in
