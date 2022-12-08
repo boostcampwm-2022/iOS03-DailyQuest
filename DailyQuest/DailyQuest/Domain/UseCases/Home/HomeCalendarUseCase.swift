@@ -15,6 +15,8 @@ final class HomeCalendarUseCase: CalendarUseCase {
     
     let currentMonth = BehaviorSubject<Date?>(value: Date())
     let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
+    let selectedDate = BehaviorSubject<Date>(value: Date())
+    let selectedDateCompletion = BehaviorSubject<DailyQuestCompletion?>(value: nil)
     
     init(questsRepository: QuestsRepository) {
         self.questsRepository = questsRepository
@@ -65,9 +67,6 @@ final class HomeCalendarUseCase: CalendarUseCase {
             })
             .disposed(by: disposeBag)
     }
-}
-
-extension HomeCalendarUseCase {
     
     func setupMonths() {
         let currentMonth = try? currentMonth.value()
@@ -89,6 +88,43 @@ extension HomeCalendarUseCase {
             })
             .disposed(by: disposeBag)
     }
+    
+    func refreshMontlyCompletion(for date: Date) {
+        guard
+            let months = try? self.completionOfMonths.value(),
+            let index = months.firstIndex(where: { month in
+                month.contains { dailyQuestCompletion in
+                    (dailyQuestCompletion.state != .hidden)
+                    && (dailyQuestCompletion.day.startOfDay == date.startOfDay)
+                }
+            }),
+            let reloadMonth = months[index].last?.day.startDayOfCurrentMonth
+        else {
+            return
+        }
+        
+        fetchAMontlyCompletion(reloadMonth)
+            .subscribe(onNext: { [weak self] monthlyCompletion in
+                guard
+                    let self,
+                    var values = try? self.completionOfMonths.value()
+                else {
+                    return
+                }
+                
+                values[index] = monthlyCompletion
+                
+                self.completionOfMonths.onNext(values)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func selectDate(_ date: Date) {
+        selectedDate.onNext(date)
+    }
+}
+
+extension HomeCalendarUseCase {
     
     private func calculateDailyState(_ quests: [Quest]) -> DailyQuestCompletion.State {
         guard !quests.isEmpty else {
@@ -114,7 +150,14 @@ extension HomeCalendarUseCase {
                 return self.questsRepository
                     .fetch(by: date)
                     .map { quests -> DailyQuestCompletion in
-                        return DailyQuestCompletion(day: date, state: self.calculateDailyState(quests))
+                        let completion = DailyQuestCompletion(day: date, state: self.calculateDailyState(quests))
+                        
+                        if let selectedDate = try? self.selectedDate.value(),
+                           selectedDate.startOfDay == date {
+                            self.selectedDateCompletion.onNext(completion)
+                        }
+                        
+                        return completion
                     }
             }
             .toArray()
