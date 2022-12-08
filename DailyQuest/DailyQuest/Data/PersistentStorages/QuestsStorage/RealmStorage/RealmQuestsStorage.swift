@@ -92,7 +92,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 single(.success(quest))
 
             } catch let error {
-                single(.failure(RealmStorageError.saveError(error)))
+                single(.failure(RealmStorageError.deleteError(error)))
             }
 
             return Disposables.create()
@@ -115,7 +115,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 single(.success(quests))
 
             } catch let error {
-                single(.failure(RealmStorageError.saveError(error)))
+                single(.failure(RealmStorageError.deleteError(error)))
             }
 
             return Disposables.create()
@@ -136,7 +136,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 single(.success(quests))
                 
             } catch let error {
-                single(.failure(RealmStorageError.saveError(error)))
+                single(.failure(RealmStorageError.deleteError(error)))
             }
 
             return Disposables.create()

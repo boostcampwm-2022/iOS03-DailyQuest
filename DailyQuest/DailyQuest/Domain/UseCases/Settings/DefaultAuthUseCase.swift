@@ -30,9 +30,7 @@ extension DefaultAuthUseCase: AuthUseCase {
     func signOut() -> Observable<Bool> {
         return authRepository
             .signOut()
-            .catch { _ in
-            return .just(false)
-        }
+            .catchAndReturn(false)
             .asObservable()
     }
 

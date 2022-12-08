@@ -13,17 +13,21 @@ import SnapKit
 final class StatusView: UIView {
     private var disposableBag = DisposeBag()
     var profileButtonDidClick = PublishSubject<Void>()
+    var userDataFetched = PublishSubject<User>()
+
+    private let messages = ["화이팅", "잘 할 수 있어", "오늘은 공부를 해보자!", "Hello, World!", "🎹🎵🎶🎵🎶"]
 
     // MARK: - Components
-    private lazy var iconContainer: UIImageView = {
-        let iconContainer = UIImageView()
-        iconContainer.image = UIImage(named: "StatusMax")
-
+    private lazy var iconContainer: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "StatusMax")
+        let iconContainer = UIButton(configuration: config)
+        iconContainer.imageView?.contentMode = .scaleToFill
         return iconContainer
     }()
 
     private lazy var messageBubble: MessageBubbleLabel = {
-        return MessageBubbleLabel()
+        return MessageBubbleLabel(text: getRandomMessage())
     }()
 
     private lazy var statusLabel: UILabel = {
@@ -47,11 +51,11 @@ final class StatusView: UIView {
     private lazy var profileButton: UIButton = {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .bold, scale: .large)
         var config = UIButton.Configuration.plain()
+        config.baseForegroundColor = .maxLightGrey
         config.image = UIImage(systemName: "person.crop.circle",
                                withConfiguration: largeConfig)
-        config.baseForegroundColor = .maxLightGrey
-
-        return UIButton(configuration: config)
+        let button = UIButton(configuration: config)
+        return button
     }()
 
     // MARK: - Methods
@@ -72,6 +76,10 @@ final class StatusView: UIView {
             make.height.equalToSuperview()
             make.width.equalTo(iconContainer.snp.height)
             make.top.leading.bottom.equalToSuperview()
+        }
+
+        iconContainer.imageView?.snp.makeConstraints { make in
+            make.width.height.equalToSuperview()
         }
 
         addSubview(messageBubble)
@@ -102,10 +110,32 @@ final class StatusView: UIView {
     }
 
     private func bind() {
+        iconContainer.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.messageBubble.setText(text: self.getRandomMessage())
+        })
+            .disposed(by: disposableBag)
+
         profileButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
             self?.profileButtonDidClick.onNext(())
         })
             .disposed(by: disposableBag)
+
+        userDataFetched
+            .asDriver(onErrorJustReturn: User())
+            .drive(onNext: { [weak self] user in
+            guard let self = self else { return }
+            self.profileButton.imageView?.setImage(with: user.profileURL)
+        }).disposed(by: disposableBag)
+
+
+    }
+}
+
+extension StatusView {
+    private func getRandomMessage() -> String {
+        return messages.randomElement() ?? "Hello,World!"
     }
 }

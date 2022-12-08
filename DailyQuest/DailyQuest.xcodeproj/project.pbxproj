@@ -840,10 +840,7 @@
 				34ACC36A291DF04000741371 /* Data */,
 				A50F9A3229266F26005C00FE /* Infrastructure */,
 				34995510292321FD007AB99E /* Utils */,
-				34ACC335291DE9C100741371 /* Assets.xcassets */,
-				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
-				34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */,
-				34ACC33A291DE9C100741371 /* Info.plist */,
+				34BCACFE29417AC400E49041 /* Resource */,
 			);
 			path = DailyQuest;
 			sourceTree = "<group>";
@@ -911,6 +908,17 @@
 				A5AC96D62922359F003B7637 /* PersistentStorages */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		34BCACFE29417AC400E49041 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				34ACC335291DE9C100741371 /* Assets.xcassets */,
+				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
+				34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */,
+				34ACC33A291DE9C100741371 /* Info.plist */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		34EE6EB52924C657005AF583 /* View */ = {
@@ -1616,7 +1624,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DailyQuest/Info.plist;
+				INFOPLIST_FILE = DailyQuest/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1643,7 +1651,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DailyQuest/Info.plist;
+				INFOPLIST_FILE = DailyQuest/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

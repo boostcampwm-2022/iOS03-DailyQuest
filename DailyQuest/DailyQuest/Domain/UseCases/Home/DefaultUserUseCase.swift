@@ -29,21 +29,26 @@ extension DefaultUserUseCase: UserUseCase {
     
     func fetch() -> Observable<User> {
         return userRepository.readUser()
+            .catchAndReturn(User())
             .asObservable()
+            
     }
     
     func save(with user: User) -> Observable<User> {
         return userRepository.updateUser(by: user)
+            .catchAndReturn(User())
             .asObservable()
     }
     
     func saveProfileImage(data: Data) -> Observable<Bool> {
         return userRepository.saveProfileImage(data: data)
+            .catchAndReturn(false)
             .asObservable()
     }
     
     func saveBackgroundImage(data: Data) -> Observable<Bool> {
         return userRepository.saveBackgroundImage(data: data)
+            .catchAndReturn(false)
             .asObservable()
     }
 
