@@ -89,7 +89,7 @@ extension EnrollViewModel {
         var dates: [Date] = []
         var date = start
         
-        while date <= end {
+        while date.startOfDay <= end.startOfDay {
             guard let weekday = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date).weekday else { return nil }
             if weekdays.contains(weekday) {
                 dates.append(date)
