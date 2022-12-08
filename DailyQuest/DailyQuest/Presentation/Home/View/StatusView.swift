@@ -55,7 +55,8 @@ final class StatusView: UIView {
         
         let button = UIButton(configuration: config)
         button.imageView?.contentMode = .scaleAspectFit
-        button.layer.cornerRadius = 100
+        button.imageView?.clipsToBounds = true
+        button.imageView?.layer.cornerRadius = 10
         return button
     }()
     
