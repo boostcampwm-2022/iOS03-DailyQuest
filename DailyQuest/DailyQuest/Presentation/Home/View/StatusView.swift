@@ -145,7 +145,7 @@ final class StatusView: UIView {
             .drive(onNext: { [weak self] (currentState: Int, totalState: Int) in
                 guard let self = self else { return }
                 self.statusLabel.text = "\(currentState)/\(totalState)"
-                let progressValue = totalState >= 0 ? (Float(currentState) / Float(totalState)) : 0.0
+                let progressValue = totalState > 0 ? (Float(currentState) / Float(totalState)) : 0.0
                 self.progressBar.setProgress(progressValue, animated: true)
             })
             .disposed(by: disposableBag)

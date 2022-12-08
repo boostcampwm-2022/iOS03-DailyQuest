@@ -116,7 +116,7 @@ final class HomeViewModel {
         
         let profileTapResult = input
             .profileButtonDidClicked
-            .flatMap { [weak self] res in
+            .flatMap { [weak self] in
                 guard let self = self else { return Observable.just(false) }
                 return self.userUseCase.isLoggedIn().take(1)
             }

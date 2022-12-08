@@ -229,7 +229,8 @@ final class HomeViewController: UIViewController {
     private func bindToStatusView(with output: HomeViewModel.Output) {
         output
             .profileTapResult
-            .bind (onNext: needLogIn(result:))
+            .do(onNext: { _ in print("✅✅") })
+            .bind(onNext: needLogIn(result:))
             .disposed(by: disposableBag)
         
         output
@@ -242,13 +243,6 @@ final class HomeViewController: UIViewController {
         
         output.questStatus
             .drive(onNext: self.statusView.questStatus.onNext)
-            .disposed(by: disposableBag)
-        
-        statusView
-            .profileButtonDidClick
-            .bind(onNext: { [weak self] _ in
-                self?.coordinatorPublisher.onNext(.showProfileFlow)
-            })
             .disposed(by: disposableBag)
     }
 }
