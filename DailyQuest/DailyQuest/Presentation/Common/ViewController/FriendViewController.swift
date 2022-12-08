@@ -114,12 +114,6 @@ final class FriendViewController: UIViewController {
                 }
             }
         
-        let dragEventInCalendar = calendarView
-            .monthCollectionView
-            .rx
-            .didEndDecelerating
-            .withLatestFrom(willEndDragEvent)
-        
         let daySelected = calendarView
             .monthCollectionView
             .rx
@@ -133,7 +127,6 @@ final class FriendViewController: UIViewController {
         let output = viewModel.transform(
             input: FriendViewModel.Input(
                 viewDidLoad: viewDidLoad,
-                dragEventInCalendar: dragEventInCalendar,
                 daySelected: daySelected
             ),
             disposableBag: disposableBag

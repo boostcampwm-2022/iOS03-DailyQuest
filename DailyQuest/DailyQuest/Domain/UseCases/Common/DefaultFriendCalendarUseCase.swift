@@ -25,100 +25,16 @@ final class DefaultFriendCalendarUseCase: FriendCalendarUseCase {
         self.questsRepository = questsRepository
     }
     
-    func fetchNextMontlyCompletion() {
-        guard let nextMonth = try? currentMonth.value()?.startDayOfNextMonth else { return }
-        currentMonth.onNext(nextMonth)
-        
-        let monthAfterNext = nextMonth.startDayOfNextMonth
-        
-        fetchAMontlyCompletion(monthAfterNext)
-            .subscribe(onNext: { [weak self] monthlyCompletion in
-                guard
-                    let self,
-                    var values = try? self.completionOfMonths.value()
-                else {
-                    return
-                }
-                
-                values.removeFirst()
-                values.append(monthlyCompletion)
-                
-                self.completionOfMonths.onNext(values)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func fetchLastMontlyCompletion() {
-        guard let lastMonth = try? currentMonth.value()?.startDayOfLastMonth else { return }
-        currentMonth.onNext(lastMonth)
-        
-        let monthBeforeLast = lastMonth.startDayOfLastMonth
-        
-        fetchAMontlyCompletion(monthBeforeLast)
-            .subscribe(onNext: { [weak self] monthlyCompletion in
-                guard
-                    let self,
-                    var values = try? self.completionOfMonths.value()
-                else {
-                    return
-                }
-                
-                values.removeLast()
-                values.insert(monthlyCompletion, at: 0)
-                
-                self.completionOfMonths.onNext(values)
-            })
-            .disposed(by: disposeBag)
-    }
-    
     func setupMonths() {
         let currentMonth = try? currentMonth.value()
-        let startDayOfLastMonth = currentMonth?.startDayOfLastMonth
         let startDayOfCurrentMonth = currentMonth?.startDayOfCurrentMonth
-        let startDayOfNextMonth = currentMonth?.startDayOfNextMonth
         
-        let months = [startDayOfLastMonth, startDayOfCurrentMonth, startDayOfNextMonth]
+        let months = startDayOfCurrentMonth
         
-        Observable.from(months)
-            .concatMap { [weak self] monthDate in
-                guard let self else { return Observable<[DailyQuestCompletion]>.empty() }
-                
-                return self.fetchAMontlyCompletion(monthDate)
-            }
-            .toArray()
-            .subscribe(onSuccess: { [weak self] completionOfMonths in
-                self?.completionOfMonths.onNext(completionOfMonths)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func refreshMontlyCompletion(for date: Date) {
-        guard
-            let months = try? self.completionOfMonths.value(),
-            let index = months.firstIndex(where: { month in
-                month.contains { dailyQuestCompletion in
-                    (dailyQuestCompletion.state != .hidden)
-                    && (dailyQuestCompletion.day.startOfDay == date.startOfDay)
-                }
-            }),
-            let reloadMonth = months[index].last?.day.startDayOfCurrentMonth
-        else {
-            return
-        }
-        
-        fetchAMontlyCompletion(reloadMonth)
-            .subscribe(onNext: { [weak self] monthlyCompletion in
-                guard
-                    let self,
-                    var values = try? self.completionOfMonths.value()
-                else {
-                    return
-                }
-                
-                values[index] = monthlyCompletion
-                
-                self.completionOfMonths.onNext(values)
-            })
+        Observable.just(months)
+            .flatMap(fetchAMontlyCompletion(_:))
+            .map { [[], $0, []] }
+            .bind(to: completionOfMonths)
             .disposed(by: disposeBag)
     }
     
