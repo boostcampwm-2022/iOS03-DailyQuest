@@ -19,6 +19,7 @@ final class SyncManager {
         guard FirebaseService.shared.uid.value != nil else {return }
         let taskId = app.beginBackgroundTask()
         self.qusetsSync()
+            .timeout(.seconds(20), scheduler: MainScheduler.instance)
             .subscribe(onSuccess:{ res in
                 print("✅",res)
                 self.app.endBackgroundTask(taskId)

@@ -44,7 +44,8 @@ extension DefaultBrowseRepository: BrowseRepository {
                 .subscribe()
                 .disposed(by: self.disposeBag)
         })
-            .catch { error in
+            .timeout(.seconds(5), scheduler: MainScheduler.instance)
+            .catch { _ in
             return self.persistentStorage.fetchBrowseQuests()
         }
     }
