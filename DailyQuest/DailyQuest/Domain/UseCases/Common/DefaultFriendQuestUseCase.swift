@@ -18,7 +18,7 @@ final class DefaultFriendUseCase {
 }
 
 extension DefaultFriendUseCase: FriendQuestUseCase {
-    func fetch(with uuid: String, by date: Date) -> Observable<[Quest]> {
+    func fetch(with uuid: String, by date: Date) -> Single<[Quest]> {
         return questsRepository.fetch(by: uuid, date: date)
     }
 }

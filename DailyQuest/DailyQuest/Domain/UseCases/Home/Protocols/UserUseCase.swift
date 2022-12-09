@@ -10,11 +10,11 @@ import RxSwift
 
 protocol UserUseCase {
     func isLoggedIn() -> Observable<Bool>
-    func fetch() -> Observable<User>
-    func save(with user: User) -> Observable<User>
+    func fetch() -> Single<User>
+    func save(with user: User) -> Single<User>
     
-    func saveProfileImage(data: Data) -> Observable<Bool>
-    func saveBackgroundImage(data: Data) -> Observable<Bool>
+    func saveProfileImage(data: Data) -> Single<Bool>
+    func saveBackgroundImage(data: Data) -> Single<Bool>
     
-    func delete() -> Observable<Bool>
+    func delete() -> Single<Bool>
 }

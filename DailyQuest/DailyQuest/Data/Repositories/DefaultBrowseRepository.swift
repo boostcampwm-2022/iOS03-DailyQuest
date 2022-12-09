@@ -26,14 +26,14 @@ extension DefaultBrowseRepository: BrowseRepository {
     /// Fetch BrowseQuests
     /// Firebase 우선, 실패시 persistentStorage, persistentStorage도 실패시 Error반환
     /// - Returns: Observable<[BrowseQuest]>
-    func fetch() -> Observable<[BrowseQuest]> {
-        return self.networkService.getAllowUsers(limit: 10)
+    func fetch() -> Single<[BrowseQuest]> {
+        let uid = networkService.uid.value
+        return networkService.getAllowUsers(limit: 10)
             .map { $0.toDomain() }
             .flatMap(fetchBrowseQuestNetworkService(user:))
-            .filter { !$0.quests.isEmpty }
+            .filter { !$0.quests.isEmpty &&  uid != $0.user.uuid }
             .toArray()
-            .asObservable()
-            .do(afterNext: { [weak self] browseQuests in
+            .do(afterSuccess: { [weak self] browseQuests in
             guard let self = self else { return }
             self.persistentStorage.deleteBrowseQuests()
                 .asObservable()
@@ -44,20 +44,21 @@ extension DefaultBrowseRepository: BrowseRepository {
                 .subscribe()
                 .disposed(by: self.disposeBag)
         })
-            .catch { error in
-            return self.persistentStorage.fetchBrowseQuests()
+            .timeout(.seconds(5), scheduler: MainScheduler.instance)
+            .catch { [weak self] _ in
+                guard let self = self else { return Single.just([])}
+                return self.persistentStorage.fetchBrowseQuests()
         }
     }
 }
 
 private extension DefaultBrowseRepository {
-    func fetchBrowseQuestNetworkService(user: User) -> Observable<BrowseQuest> {
+    func fetchBrowseQuestNetworkService(user: User) -> Single<BrowseQuest> {
         networkService
             .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today(Date()))
             .map { $0.toDomain() }
             .toArray()
-            .asObservable()
-            .map { return BrowseQuest(user: user, quests: $0) }
+            .map { BrowseQuest(user: user, quests: $0) }
     }
 
     func saveBrowseQuestPersistentStorage(browseQuest: BrowseQuest) -> Observable<BrowseQuest> {

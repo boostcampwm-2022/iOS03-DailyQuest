@@ -26,7 +26,7 @@ protocol QuestsRepository {
         - date: 받아오길 원하는 날짜입니다.
      - Returns: Quest의 배열을 방출하는 Observable입니다. 비어있다면 비어있는 배열을 방출합니다.
      */
-    func fetch(by date: Date) -> Observable<[Quest]>
+    func fetch(by date: Date) -> Single<[Quest]>
 
     /**
      해당 날짜의 퀘스트 값(`currentCount`)을 업데이트 합니다.
@@ -56,5 +56,5 @@ protocol QuestsRepository {
      */
     func deleteAll(with groupId: UUID) -> Single<[Quest]>
 
-    func fetch(by uuid: String, date: Date) -> Observable<[Quest]>
+    func fetch(by uuid: String, date: Date) -> Single<[Quest]>
 }

@@ -54,7 +54,7 @@ final class StatusView: UIView {
         config.image = UIImage(systemName: "person.crop.circle")
         
         let button = UIButton(configuration: config)
-        button.imageView?.contentMode = .scaleAspectFit
+        button.imageView?.contentMode = .scaleAspectFill
         button.imageView?.clipsToBounds = true
         button.imageView?.layer.cornerRadius = 10
         return button

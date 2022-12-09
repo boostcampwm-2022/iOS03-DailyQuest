@@ -168,6 +168,7 @@
 		A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5AC96DE292239CA003B7637 /* RealmSwift */; };
 		A5AC96E629223F06003B7637 /* QuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E529223F06003B7637 /* QuestsStorage.swift */; };
 		A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */; };
+		A5BD61E629423FBB0075970F /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BD61E529423FBB0075970F /* SyncManager.swift */; };
 		A5D3C813293DB1BE00F43B76 /* DataConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */; };
 		A5D3C823293DDDAD00F43B76 /* ProtectedUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */; };
 		A5D3C828293DDEBE00F43B76 /* QuestsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */; };
@@ -383,6 +384,7 @@
 		A5AC96DB292237C3003B7637 /* QuestEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestEntity.swift; sourceTree = "<group>"; };
 		A5AC96E529223F06003B7637 /* QuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsStorage.swift; sourceTree = "<group>"; };
 		A5AC96E729223F27003B7637 /* RealmQuestsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmQuestsStorage.swift; sourceTree = "<group>"; };
+		A5BD61E529423FBB0075970F /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		A5D3C812293DB1BE00F43B76 /* DataConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConfigure.swift; sourceTree = "<group>"; };
 		A5D3C822293DDDAD00F43B76 /* ProtectedUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedUserRepository.swift; sourceTree = "<group>"; };
 		A5D3C827293DDEBE00F43B76 /* QuestsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestsRepositoryTests.swift; sourceTree = "<group>"; };
@@ -919,6 +921,7 @@
 				34ACC32E291DE9C000741371 /* SceneDelegate.swift */,
 				34A529D429247932001BAD34 /* AppCoordinator.swift */,
 				34A529E829248B58001BAD34 /* AppAppearance.swift */,
+				A5BD61E529423FBB0075970F /* SyncManager.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1425,6 +1428,7 @@
 				34FCD36B293DF2F600E0DC8A /* FriendStatusView.swift in Sources */,
 				A51F01CA2923397E0031ECA2 /* UserInfoEntity.swift in Sources */,
 				345687F42937329E00CA51E3 /* EnrollViewController.swift in Sources */,
+				A5BD61E629423FBB0075970F /* SyncManager.swift in Sources */,
 				A511229029384FAF00384B4B /* DefaultUserRepository.swift in Sources */,
 				A5003ABB293F914500082A9C /* DefaultUserUseCase.swift in Sources */,
 				342830FF292E2B2A00AE811B /* NavigateCell.swift in Sources */,

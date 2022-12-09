@@ -30,7 +30,7 @@ struct User {
         self.profileURL = ""
         self.backgroundImageURL = ""
         self.introduce = ""
-        self.allow = false
+        self.allow = true
     }
 
     init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, introduce: String, allow: Bool) {

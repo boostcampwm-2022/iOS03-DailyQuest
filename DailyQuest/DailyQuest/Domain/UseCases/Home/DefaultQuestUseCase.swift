@@ -18,11 +18,11 @@ final class DefaultQuestUseCase {
 }
 
 extension DefaultQuestUseCase: QuestUseCase {
-    func fetch(by date: Date) -> Observable<[Quest]> {
+    func fetch(by date: Date) -> Single<[Quest]> {
         return questsRepository.fetch(by: date)
     }
     
-    func update(with quest: Quest) -> Observable<Bool> {
+    func update(with quest: Quest) -> Single<Bool> {
         return questsRepository
             .update(with: quest)
             .do(onSuccess: { quest in
@@ -32,6 +32,5 @@ extension DefaultQuestUseCase: QuestUseCase {
             })
             .map { _ in true }
             .catchAndReturn(false)
-            .asObservable()
     }
 }

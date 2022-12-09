@@ -17,40 +17,27 @@ final class RealmUserInfoStorage {
 }
 
 extension RealmUserInfoStorage: UserInfoStorage {
-    func fetchUserInfo() -> Observable<User> {
-        return Observable<User>.create { [weak self] observer in
-            guard let realmStorage = self?.realmStorage else {
-                // self가 존재하지 않을 경우, 반환하지 않고 종료
-                return Disposables.create()
-            }
-
+    func fetchUserInfo() -> Single<User> {
+        return Single<User>.create { [weak self] single in
             do {
+                guard let realmStorage = self?.realmStorage else { throw RealmStorageError.realmObjectError }
                 guard let userInfoEntity = try realmStorage.fetchEntities(type: UserInfoEntity.self)
                     .first else {
                     throw RealmStorageError.noDataError
                 }
-
-                observer.onNext(userInfoEntity.toDomain())
-                observer.onCompleted()
+                single(.success(userInfoEntity.toDomain()))
             } catch let error {
-                // Realm을 불러올 수 없을 경우, realmObjectError
-                // User 정보가 없을 경우, noDataError
-                observer.onError(error)
+                single(.failure(error))
             }
-
             return Disposables.create()
         }
     }
 
     func updateUserInfo(user: User) -> Single<User> {
         return Single.create { [weak self] single in
-            guard let realmStorage = self?.realmStorage else {
-                return Disposables.create()
-            }
-
             let userInfo = UserInfoEntity(user: user)
-
             do {
+                guard let realmStorage = self?.realmStorage else { throw RealmStorageError.realmObjectError }
                 // update 성공했을 경우, success(user)
                 try realmStorage.updateEntity(entity: userInfo)
                 single(.success(user))
@@ -65,12 +52,8 @@ extension RealmUserInfoStorage: UserInfoStorage {
 
     func deleteUserInfo() -> Single<User> {
         return Single.create { [weak self] single in
-            guard let realmStorage = self?.realmStorage else {
-                return Disposables.create()
-            }
-
             do {
-                // update 성공했을 경우, success(user)
+                guard let realmStorage = self?.realmStorage else { throw RealmStorageError.realmObjectError }
                 guard let user = try realmStorage.deleteAllEntity(type: UserInfoEntity.self).first?.toDomain() else {
                     throw RealmStorageError.noDataError
                 }
@@ -79,7 +62,6 @@ extension RealmUserInfoStorage: UserInfoStorage {
                 // update 성공하지 못했을 경우, failure(error)
                 single(.failure(RealmStorageError.deleteError(error)))
             }
-
             return Disposables.create()
         }
     }

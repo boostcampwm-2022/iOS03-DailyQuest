@@ -78,5 +78,6 @@ final class FriendViewModel {
 private extension FriendViewModel {
     func fetch(by date: Date) -> Observable<[Quest]> {
         return friendQuestUseCase.fetch(with: user.uuid, by: date)
+            .asObservable()
     }
 }

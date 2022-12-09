@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol UserInfoStorage {
-    func fetchUserInfo() -> Observable<User>
+    func fetchUserInfo() -> Single<User>
     func updateUserInfo(user: User) -> Single<User>
     func deleteUserInfo() -> Single<User>
 }

@@ -24,10 +24,10 @@ extension DefaultQuestsRepository: QuestsRepository {
             .flatMap (saveNetworkService(quests:))
     }
     
-    func fetch(by date: Date) -> Observable<[Quest]> {
+    func fetch(by date: Date) -> Single<[Quest]> {
         return persistentStorage.fetchQuests(by: date)
             .catch { [weak self] _ in
-                guard let self = self else { return Observable.just([]) }
+                guard let self = self else { return Single.just([]) }
                 return self.fetchNetworkService(date: date)
             }
             .catchAndReturn([])
@@ -48,14 +48,13 @@ extension DefaultQuestsRepository: QuestsRepository {
             .flatMap(deleteAllNetworkService(quests:))
     }
     
-    func fetch(by uuid: String, date: Date) -> Observable<[Quest]> {
+    func fetch(by uuid: String, date: Date) -> Single<[Quest]> {
         return networkService.read(type: QuestDTO.self,
                                    userCase: .anotherUser(uuid),
                                    access: .quests,
                                    filter: .today(date))
         .map { $0.toDomain() }
         .toArray()
-        .asObservable()
     }
 }
 
@@ -73,11 +72,10 @@ private extension DefaultQuestsRepository {
             .toArray()
     }
     
-    func fetchNetworkService(date: Date) -> Observable<[Quest]> {
+    func fetchNetworkService(date: Date) -> Single<[Quest]> {
         return networkService.read(type: QuestDTO.self, userCase: .currentUser, access: .quests, filter: .today(date))
             .map { $0.toDomain() }
             .toArray()
-            .asObservable()
             .catchAndReturn([])
     }
     
@@ -88,7 +86,7 @@ private extension DefaultQuestsRepository {
     }
     
     func deleteNetworkService(quest: Quest) -> Single<Quest> {
-        self.networkService.delete(userCase: .currentUser, access: .quests, dto: quest.toDTO())
+        return networkService.delete(userCase: .currentUser, access: .quests, dto: quest.toDTO())
             .map { $0.toDomain() }
             .catchAndReturn(quest)
     }
