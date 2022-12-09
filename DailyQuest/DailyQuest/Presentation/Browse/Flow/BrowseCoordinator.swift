@@ -7,11 +7,15 @@
 
 import UIKit
 
+import RxSwift
+
 protocol BrowseCoordinator: Coordinator {
-    func showDetailFlow()
+    func showFriendFlow(with user: User)
 }
 
 final class DefaultBrowseCoordinator: BrowseCoordinator {
+    private var disposableBag = DisposeBag()
+    
     var finishDelegate: CoordinatorFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -26,10 +30,16 @@ final class DefaultBrowseCoordinator: BrowseCoordinator {
     func start() {
         let browseViewController = browseSceneDIContainer.makeBrowseViewController()
         navigationController.pushViewController(browseViewController, animated: false)
+        
+        browseViewController
+            .coordinatorPublisher
+            .subscribe(onNext: showFriendFlow(with:))
+            .disposed(by: disposableBag)
     }
     
-    func showDetailFlow() {
-        
+    func showFriendFlow(with user: User) {
+        let friendViewController = browseSceneDIContainer.makeFriendViewController(with: user)
+        navigationController.present(friendViewController, animated: true)
     }
 }
 

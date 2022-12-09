@@ -25,7 +25,7 @@ final class QuestViewHeader: UIStackView {
         return titleLabel
     }()
     
-    private lazy var plusButton: UIButton = {
+    private(set) lazy var plusButton: UIButton = {
         var config = UIButton.Configuration.maxStyle()
         let plusButton = UIButton(configuration: config)
                 

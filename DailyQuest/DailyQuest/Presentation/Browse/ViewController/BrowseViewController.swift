@@ -11,6 +11,9 @@ import RxSwift
 import RxCocoa
 
 final class BrowseViewController: UITableViewController {
+    
+    var coordinatorPublisher = PublishSubject<User>()
+    
     private var viewModel: BrowseViewModel!
     private var disposableBag = DisposeBag()
     
@@ -51,7 +54,13 @@ final class BrowseViewController: UITableViewController {
                 cell.setup(with: item)
             }
             .disposed(by: disposableBag)
-            
+        
+        tableView
+            .rx
+            .modelSelected(BrowseItemViewModel.self)
+            .map { $0.user }
+            .bind(to: coordinatorPublisher)
+            .disposed(by: disposableBag)
     }
 }
 
