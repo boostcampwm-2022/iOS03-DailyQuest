@@ -632,6 +632,17 @@
 			path = PlainField;
 			sourceTree = "<group>";
 		};
+		344280AF294339BA00359A99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */,
+				9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */,
+				34EE6EB62924C674005AF583 /* QuestView.swift */,
+				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3449AD592922162E00B87619 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,13 +657,13 @@
 		3449AD5E292219D600B87619 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				344280AF294339BA00359A99 /* View */,
 				3472E8EF29420D8D00BB304F /* ViewModel */,
 				34FCD367293DEEBC00E0DC8A /* ViewController */,
 				3499551C292332DE007AB99E /* Cells */,
 				B50078D529222F3F0070AFC4 /* CircleCheckView.swift */,
 				3499551F29234637007AB99E /* CustomProgressBar.swift */,
 				34113BEC2934BD3D00AB4919 /* TextFieldForm.swift */,
-				34FCD36A293DF2F600E0DC8A /* FriendStatusView.swift */,
 				B5833F722924C08900503E0D /* CalendarView.swift */,
 			);
 			path = Common;
@@ -788,6 +799,8 @@
 		3499551C292332DE007AB99E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */,
+				9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */,
 				B58DFC0929227DA800C68A4B /* CalendarCell.swift */,
 				3449AD5F29222B3900B87619 /* UserInfoCell.swift */,
 				3499551D29233DEF007AB99E /* QuestCell.swift */,
@@ -972,13 +985,8 @@
 		34EE6EB52924C657005AF583 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				34EE6EB62924C674005AF583 /* QuestView.swift */,
-				34874A9F292509A4000570DF /* QuestViewHeader.swift */,
 				347D258A292C60F40038FCA2 /* StatusView.swift */,
 				347D258C292C6E220038FCA2 /* MessageBubble.swift */,
-				9BD8CCFA2937407100E6EA2F /* FollowingCell.swift */,
-				9BD8CCFF293829DD00E6EA2F /* FollowingView.swift */,
-				9BD8CD012938418500E6EA2F /* LastFollowingCell.swift */,
 				345687F52937430200CA51E3 /* PlanDatePickerView.swift */,
 				345687F729374D2500CA51E3 /* DayNamePickerView.swift */,
 				345687F92937815900CA51E3 /* QuantityView.swift */,
