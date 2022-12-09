@@ -110,7 +110,7 @@ final class ProfileViewController: UIViewController {
         
         deleteUserButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(introduceLabel.snp.bottom).offset(10)
+            make.top.equalTo(editIntroduceButton.snp.bottom).offset(10)
             make.height.equalTo(50)
             make.width.equalTo(300)
         }
@@ -122,15 +122,30 @@ final class ProfileViewController: UIViewController {
             .subscribe(onNext: {
                 [weak self] _ in
                 guard let self = self else { return }
-                self.imagePicker.view.tag = 0
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposableBag)
         
+        editIntroduceButton.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: {
+                [weak self] _ in
+                let message = "한줄소개를 작성해주세요."
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                    
+                   
+                }
+                alert.addAction(okAction)
+                alert.addTextField ()
+                self?.present(alert, animated: true, completion: nil)
+            }
+            )
         
         deleteUserButton.rx.tap
             .subscribe(onNext: {
                 self.showAlert()
             }).disposed(by: disposableBag)
+        
         let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(), deleteUserButtonDidClicked: deleteUserButtonDidClicked, changeProfileImage: changeProfileImage)
         let output = viewModel.transform(input: input)
         
