@@ -16,9 +16,9 @@ final class QuestViewHeader: UIStackView {
     var buttonDidClick = PublishSubject<Void>()
     
     // MARK: - Components
-    private lazy var titleLabel: UILabel = {
+    private(set) lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Today Quest"
+        titleLabel.text = "Today Quests"
         titleLabel.textColor = .maxViolet
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         
