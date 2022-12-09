@@ -18,7 +18,7 @@ final class DefaultEnrollUseCase {
 }
 
 extension DefaultEnrollUseCase: EnrollUseCase {
-    func save(with quests: [Quest]) -> Observable<Bool> {
+    func save(with quests: [Quest]) -> Single<Bool> {
         return questsRepository
             .save(with: quests)
             .map { _ in
@@ -29,6 +29,5 @@ extension DefaultEnrollUseCase: EnrollUseCase {
                 let dates = quests.map { $0.date }
                 NotificationCenter.default.post(name: .updated, object: dates)
             })
-            .asObservable()
     }
 }

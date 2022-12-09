@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol BrowseUseCase {
-    func excute() -> Observable<[BrowseQuest]>
+    func excute() -> Single<[BrowseQuest]>
 }

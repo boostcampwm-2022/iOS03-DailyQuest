@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol QuestUseCase {
-    func fetch(by date: Date) -> Observable<[Quest]>
-    func update(with quest: Quest) -> Observable<Bool>
+    func fetch(by date: Date) -> Single<[Quest]>
+    func update(with quest: Quest) -> Single<Bool>
 }

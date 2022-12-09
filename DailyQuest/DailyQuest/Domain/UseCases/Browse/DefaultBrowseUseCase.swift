@@ -18,13 +18,13 @@ final class DefaultBrowseUseCase {
 }
 
 extension DefaultBrowseUseCase: BrowseUseCase {
-    func excute() -> Observable<[BrowseQuest]> {
+    func excute() -> Single<[BrowseQuest]> {
         return browseRepository.fetch()
     }
 }
 
 final class BrowseMockRepo: BrowseRepository {
-    func fetch() -> RxSwift.Observable<[BrowseQuest]> {
+    func fetch() -> Single<[BrowseQuest]> {
         return .just([BrowseQuest(user: User(uuid: "", nickName: "test", profileURL: "", backgroundImageURL: "", introduce: "", allow: false), quests: [])])
     }
 }

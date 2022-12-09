@@ -17,8 +17,8 @@ final class RealmBrowseQuestsStorage {
 }
 
 extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
-    func fetchBrowseQuests() -> Observable<[BrowseQuest]> {
-        return Observable<[BrowseQuest]>.create { [weak self] observer in
+    func fetchBrowseQuests() -> Single<[BrowseQuest]> {
+        return Single<[BrowseQuest]>.create { [weak self] single in
             guard let realmStorage = self?.realmStorage else {
                 return Disposables.create()
             }
@@ -26,10 +26,9 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             do {
                 let browseQuests = try realmStorage.fetchEntities(type: BrowseQuestEntity.self)
                     .compactMap { $0.toDomain() }
-                observer.onNext(browseQuests)
-                observer.onCompleted()
+                single(.success(browseQuests))
             } catch let error {
-                observer.onError(error)
+                single(.failure(error))
             }
 
             return Disposables.create()

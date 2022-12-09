@@ -148,6 +148,7 @@ extension HomeCalendarUseCase {
                 
                 return self.questsRepository
                     .fetch(by: date)
+                    .asObservable()
                     .map { quests -> DailyQuestCompletion in
                         let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false
                         

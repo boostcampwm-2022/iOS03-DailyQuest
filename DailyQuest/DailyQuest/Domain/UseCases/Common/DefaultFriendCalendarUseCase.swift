@@ -68,6 +68,7 @@ extension DefaultFriendCalendarUseCase {
                 
                 return self.questsRepository
                     .fetch(by: self.user.uuid, date: date)
+                    .asObservable()
                     .map { quests -> DailyQuestCompletion in
                         let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false
                         

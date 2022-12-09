@@ -56,6 +56,7 @@ final class ProfileViewModel {
             return self.userUseCase.saveProfileImage(data: data)
                 .map{ _ in image }
                 .catchAndReturn(nil)
+                .asObservable()
         }.map{ _ in
             Void()
         }.flatMap(userUseCase.fetch)

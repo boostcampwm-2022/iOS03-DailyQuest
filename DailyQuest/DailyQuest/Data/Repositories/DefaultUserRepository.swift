@@ -30,17 +30,14 @@ extension DefaultUserRepository: UserRepository {
     func readUser() -> Single<User> {
         return self.persistentStorage.fetchUserInfo()
             .catch { [weak self] _ in
-                guard let self = self else { return Observable.just(User()) }
+                guard let self = self else { return Single.just(User()) }
                 return self.fetchUserNetworkService()
             }
-            .asSingle()
     }
     
     func updateUser(by user: User) -> Single<User> {
         return persistentStorage.updateUserInfo(user: user)
-            .asObservable()
             .flatMap(updateUserNetworkService(user:))
-            .asSingle()
     }
     
     func fetchUser(by uuid: String) -> Single<User> {
@@ -67,13 +64,12 @@ extension DefaultUserRepository: UserRepository {
                         return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: userDto)
                     }
                     .map { $0.toDomain() }
-                    .asSingle()
             }
             .flatMap(updateUser(by:))
             .map { _ in true }
             .catchAndReturn(false)
-            .do(afterSuccess: { _ in
-                NotificationCenter.default.post(name: .userUpdated, object: nil)
+            .do(afterSuccess: { result in
+                NotificationCenter.default.post(name: .userUpdated, object: result)
             })
     }
     
@@ -92,7 +88,6 @@ extension DefaultUserRepository: UserRepository {
                         return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: userDto)
                     }
                     .map { $0.toDomain() }
-                    .asSingle()
             }
             .flatMap(updateUser(by:))
             .map { _ in true }
@@ -105,11 +100,11 @@ extension DefaultUserRepository: UserRepository {
 }
 
 extension DefaultUserRepository: ProtectedUserRepository {
-    func deleteUser() -> Observable<Bool> {
+    func deleteUser() -> Single<Bool> {
         return networkService
             .delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
             .flatMap { [weak self] _ in
-                guard let self = self else { return .just(true) }
+                guard let self = self else { return .just(false) }
                 return self.networkService.deleteUser()
                     .flatMap { _ in
                         return self.persistentStorage.deleteUserInfo()
@@ -117,8 +112,7 @@ extension DefaultUserRepository: ProtectedUserRepository {
                     }
             }
             .catchAndReturn(false)
-            .asObservable()
-            .do(onNext: { [weak self]_ in
+            .do(onSuccess: { [weak self]_ in
                 guard let self = self else { return }
                 self.networkService.signOut().subscribe()
                     .disposed(by: self.disposeBag)
@@ -127,15 +121,15 @@ extension DefaultUserRepository: ProtectedUserRepository {
 }
 
 private extension DefaultUserRepository {
-    func fetchUserNetworkService() -> Observable<User> {
+    func fetchUserNetworkService() -> Single<User> {
         networkService.read(type: UserDTO.self, userCase: .currentUser, access: .userInfo, filter: nil)
             .map { $0.toDomain() }
+            .asSingle()
     }
     
-    func updateUserNetworkService(user: User) -> Observable<User> {
+    func updateUserNetworkService(user: User) -> Single<User> {
         networkService.update(userCase: .currentUser, access: .userInfo, dto: user.toDTO())
             .map { $0.toDomain() }
-            .asObservable()
             .catchAndReturn(user)
     }
 }

@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol EnrollUseCase {
-    func save(with quests: [Quest]) -> Observable<Bool>
+    func save(with quests: [Quest]) -> Single<Bool>
 }

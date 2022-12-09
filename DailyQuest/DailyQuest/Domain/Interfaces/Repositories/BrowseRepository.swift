@@ -9,5 +9,5 @@ import RxSwift
 
 protocol BrowseRepository {
     // TODO: 무한 스크롤을 위한 페이징 추가
-    func fetch() -> Observable<[BrowseQuest]>
+    func fetch() -> Single<[BrowseQuest]>
 }
