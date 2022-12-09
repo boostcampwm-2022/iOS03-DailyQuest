@@ -58,11 +58,15 @@ extension DefaultUserRepository: UserRepository {
                 guard let self = self else { return Single.just(User()) }
                 return self.persistentStorage.fetchUserInfo()
                     .flatMap { user in
-                        self.networkService.deleteDataStorage(forUrl: user.profileURL)
+                        return self.networkService.deleteDataStorage(forUrl: user.profileURL)
                             .catchAndReturn(false)
                             .map{ _ in user }
                     }
-                    .map { $0.setProfileImageURL(profileURL: downloadUrl) }
+                    .map { $0.setProfileImageURL(profileURL: downloadUrl).toDTO() }
+                    .flatMap{ userDto in
+                        return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: userDto)
+                    }
+                    .map { $0.toDomain() }
                     .asSingle()
             }
             .flatMap(updateUser(by:))
@@ -83,7 +87,11 @@ extension DefaultUserRepository: UserRepository {
                             .catchAndReturn(false)
                             .map{ _ in user }
                     }
-                    .map { $0.setBackgroundImageURL(backgroundImageURL: downloadUrl) }
+                    .map { $0.setBackgroundImageURL(backgroundImageURL: downloadUrl).toDTO() }
+                    .flatMap{ userDto in
+                        return self.networkService.update(userCase: .currentUser, access: .userInfo, dto: userDto)
+                    }
+                    .map { $0.toDomain() }
                     .asSingle()
             }
             .flatMap(updateUser(by:))
@@ -102,8 +110,12 @@ extension DefaultUserRepository: ProtectedUserRepository {
             .delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
             .flatMap { [weak self] _ in
                 guard let self = self else { return .just(true) }
-                return self.networkService.deleteUser() }
-            .map { _ in true }
+                return self.networkService.deleteUser()
+                    .flatMap { _ in
+                        return self.persistentStorage.deleteUserInfo()
+                            .map{ _ in true}
+                    }
+            }
             .catchAndReturn(false)
             .asObservable()
             .do(onNext: { [weak self]_ in
