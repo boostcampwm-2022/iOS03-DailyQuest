@@ -96,7 +96,7 @@ extension FirebaseService {
     
     func deleteUser() -> Single<Bool> {
         return Single.create { [weak self] single in
-            guard let user = self?.auth.currentUser else {
+            guard let self = self, let user = self.auth.currentUser else {
                 single(.failure(NetworkServiceError.noDataError))
                 return Disposables.create()
             }
@@ -104,6 +104,7 @@ extension FirebaseService {
                 if let error = error {
                     single(.failure(error))
                 } else {
+                    
                     single(.success(true))
                 }
             }
@@ -427,6 +428,7 @@ extension FirebaseService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 self.db.collection("users")
+                    .whereField("uuid", isNotEqualTo: "\(self.uid.value ?? "")")
                     .whereField("allow", isEqualTo: true)
                     .limit(to: limit)
                     .getDocuments { (querySnapshot, error) in
