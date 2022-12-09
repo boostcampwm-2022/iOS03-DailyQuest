@@ -31,6 +31,7 @@ final class HomeViewModel {
     }
     
     struct Output {
+        let questHeaderLabel: Observable<String>
         let data: Driver<[Quest]>
         let userData: Observable<User>
         let questStatus: Driver<(Int, Int)>
@@ -77,6 +78,11 @@ final class HomeViewModel {
                 
                 return !result.isEmpty ? owner.currentDate : nil
             }
+        
+        let questHeaderLabel = input
+            .daySelected
+            .map(calculateRelative(_:))
+            .asObservable()
         
         let data = Observable
             .merge(
@@ -175,11 +181,26 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(data: data,
+        return Output(questHeaderLabel: questHeaderLabel,
+                      data: data,
                       userData: userData,
                       questStatus: questStatus,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
                       displayDays: displayDays)
+    }
+}
+
+private extension HomeViewModel {
+    func calculateRelative(_ date: Date) -> String {
+        let today = Date()
+        
+        if today.startOfDay > date.startOfDay {
+            return "Previous Quests"
+        } else if today.startOfDay < date.startOfDay {
+            return "Upcomming Quests"
+        } else {
+            return "Today Quests"
+        }
     }
 }
