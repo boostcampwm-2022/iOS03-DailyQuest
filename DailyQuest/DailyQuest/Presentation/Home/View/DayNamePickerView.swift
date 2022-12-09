@@ -12,9 +12,12 @@ import RxCocoa
 
 final class DayNamePickerView: UIStackView {
     private(set) lazy var buttons: [UIButton] = {
-//        let days = ["S", "M", "T", "W", "T", "F", "S"]
-        let days = Calendar.current.veryShortWeekdaySymbols
-
+        let days: [String] = {
+            var calendar = Calendar.current
+            calendar.locale = .init(identifier: "ko_KR")
+            return calendar.veryShortWeekdaySymbols
+        }()
+        
         return days.map { day in
             var config = UIButton.Configuration.filled()
             config.title = day
