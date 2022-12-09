@@ -405,7 +405,10 @@ extension FirebaseService {
         return Single<Bool>.create { [weak self] single in
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
-                
+                guard URL(string: forUrl) != nil else {
+                    single(.success(true))
+                    return Disposables.create()
+                }
                 let storageReference = self.storage.reference(forURL: forUrl)
                 
                 storageReference.delete { error in
@@ -428,26 +431,24 @@ extension FirebaseService {
             do {
                 guard let self = self else { throw NetworkServiceError.noNetworkService }
                 self.db.collection("users")
-                    .whereField("uuid", isNotEqualTo: "\(self.uid.value ?? "")")
                     .whereField("allow", isEqualTo: true)
                     .limit(to: limit)
                     .getDocuments { (querySnapshot, error) in
-                        for document in querySnapshot!.documents {
-                            do {
+                        do {
+                            guard let querySnapshot = querySnapshot else { throw NetworkServiceError.noDataError }
+                            for document in querySnapshot.documents {
                                 let quest = try document.data(as: UserDTO.self)
                                 observer.onNext(quest)
-                            } catch let error {
-                                observer.onError(error)
                             }
+                        } catch let error {
+                            observer.onError(error)
                         }
                         observer.onCompleted()
                     }
             } catch let error {
                 observer.onError(error)
             }
-            
             return Disposables.create()
         }
     }
-    
 }
