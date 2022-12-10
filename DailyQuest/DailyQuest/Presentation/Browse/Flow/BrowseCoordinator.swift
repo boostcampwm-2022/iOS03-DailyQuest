@@ -30,6 +30,7 @@ final class DefaultBrowseCoordinator: BrowseCoordinator {
     func start() {
         let browseViewController = browseSceneDIContainer.makeBrowseViewController()
         navigationController.pushViewController(browseViewController, animated: false)
+        navigationController.isNavigationBarHidden = true
         
         browseViewController
             .coordinatorPublisher
