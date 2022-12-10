@@ -47,7 +47,7 @@ final class BrowseViewController: UITableViewController {
     private func configureIndicatorBar() {
         self.view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { make in
-            make.width.height.equalTo(100)
+            make.width.height.equalTo(50)
             make.centerX.centerY.equalToSuperview()
         }
     }
