@@ -11,8 +11,9 @@ import RxCocoa
 
 final class ToggleCell: UITableViewCell {
     static let reuseIdentifier = "ToggleCell"
+    private var viewModel: ToggleItemViewModel!
     
-    var toggleResult = PublishSubject<Bool>()
+    var toggleItemDidClicked = PublishSubject<Bool>()
     private var disposableBag = DisposeBag()
     
     private let padding = 20
@@ -72,11 +73,40 @@ final class ToggleCell: UITableViewCell {
     func setup(with viewModel: ToggleItemViewModel) {
         icon.image = UIImage(systemName: viewModel.imageName)
         title.text = viewModel.title
+        self.viewModel = viewModel
+        bind()
     }
     
     func bind() {
-        toggle.rx.isOn
-            .bind(onNext: {self.toggleResult.onNext($0)})
+        toggle.rx.tapGesture()
+            .when(.ended)
+            .do(onNext: { _ in
+                print(self.toggle.isOn)
+            })
+            .bind(onNext: {_ in
+                self.toggleItemDidClicked.onNext(!self.toggle.isOn)
+            })
+            .disposed(by: disposableBag)
+        
+        let output = viewModel.transform(input: ToggleItemViewModel.Input(
+            toggleItemDidClicked: toggleItemDidClicked
+        ))
+        
+        output.toggleItemResult
+            .subscribe(onNext: { isOn in
+                guard let isOn = isOn else {
+                    self.toggle.isOn = false
+                    self.toggle.isEnabled = false
+                    return
+                }
+                
+                if !self.toggle.isEnabled {
+                    self.toggle.isEnabled = true
+                }
+                DispatchQueue.main.async {
+                    self.toggle.isOn = isOn
+                }
+            })
             .disposed(by: disposableBag)
     }
 }

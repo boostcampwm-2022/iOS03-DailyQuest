@@ -19,7 +19,9 @@ final class SettingsViewModel {
     init(settingsUseCase: SettingsUseCase) {
         self.settingsUseCase = settingsUseCase
         
-        let toggleField = ToggleField(viewModel: .init(title: "둘러보기 허용", imageName: "person.crop.circle.badge.checkmark"))
+        let toggleField = ToggleField(viewModel: .init(title: "둘러보기 허용",
+                                                       imageName: "person.crop.circle.badge.checkmark",
+                                                       settingsUseCase: settingsUseCase))
         let plainField = PlainField(viewModel: .init(title: "앱 버전", info: "1.1", imageName: "exclamationmark.transmission"))
         self.navigateField = NavigateField(viewModel: .init(title: "로그인", imageName: "person.circle.fill", viewType: .login))
         
