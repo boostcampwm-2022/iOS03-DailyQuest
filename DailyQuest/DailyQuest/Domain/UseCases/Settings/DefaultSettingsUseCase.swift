@@ -45,4 +45,10 @@ extension DefaultSettingsUseCase: SettingsUseCase {
             .map { _ in true }
             .catchAndReturn(false)
     }
+    
+    func fetchAllow() -> Single<Bool?> {
+        userRepository.readUser()
+            .map { $0.allow }
+            .catchAndReturn(nil)
+    }
 }
