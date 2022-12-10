@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ToggleCell: UITableViewCell {
     static let reuseIdentifier = "ToggleCell"
+    
+    var toggleResult = PublishSubject<Bool>()
+    private var disposableBag = DisposeBag()
     
     private let padding = 20
     
@@ -45,9 +50,9 @@ final class ToggleCell: UITableViewCell {
     }
     
     private func configureUI() {
-        addSubview(icon)
-        addSubview(title)
-        addSubview(toggle)
+        contentView.addSubview(icon)
+        contentView.addSubview(title)
+        contentView.addSubview(toggle)
         
         icon.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview().inset(padding)
@@ -67,5 +72,11 @@ final class ToggleCell: UITableViewCell {
     func setup(with viewModel: ToggleItemViewModel) {
         icon.image = UIImage(systemName: viewModel.imageName)
         title.text = viewModel.title
+    }
+    
+    func bind() {
+        toggle.rx.isOn
+            .bind(onNext: {self.toggleResult.onNext($0)})
+            .disposed(by: disposableBag)
     }
 }
