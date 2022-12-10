@@ -19,6 +19,12 @@ extension Date {
         dateFormatter.dateFormat = "yyyy년 MM월"
         return dateFormatter.string(from: self)
     }
+    
+    var toFormatMonthDay: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        return dateFormatter.string(from: self)
+    }
 }
 
 extension Date {

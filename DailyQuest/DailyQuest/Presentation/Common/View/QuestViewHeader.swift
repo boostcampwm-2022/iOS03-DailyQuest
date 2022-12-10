@@ -18,7 +18,7 @@ final class QuestViewHeader: UIStackView {
     // MARK: - Components
     private(set) lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Today Quests"
+        titleLabel.text = "오늘의 퀘스트"
         titleLabel.textColor = .maxViolet
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         
