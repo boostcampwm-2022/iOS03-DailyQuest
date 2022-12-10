@@ -27,6 +27,7 @@ final class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         tableView.separatorStyle = .singleLine
         
         register()
