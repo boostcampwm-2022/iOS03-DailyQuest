@@ -11,4 +11,5 @@ struct PlainItemViewModel {
     let title: String
     let info: String
     let imageName: String
+    let viewType: ViewType
 }
