@@ -15,4 +15,6 @@ protocol SettingsUseCase {
     
     func updateAllow(allow: Bool) -> Single<Bool>
     func fetchAllow() -> Single<Bool?>
+    
+    func delete() -> Single<Bool>
 }
