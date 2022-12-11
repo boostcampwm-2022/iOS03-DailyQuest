@@ -103,12 +103,14 @@ extension DefaultUserRepository: ProtectedUserRepository {
     func deleteUser() -> Single<Bool> {
         return networkService
             .delete(userCase: .currentUser, access: .userInfo, dto: UserDTO())
+            .catchAndReturn(UserDTO())
             .flatMap { [weak self] _ in
                 guard let self = self else { return .just(false) }
                 return self.networkService.deleteUser()
                     .flatMap { _ in
                         return self.persistentStorage.deleteUserInfo()
                             .map{ _ in true}
+                            .catchAndReturn(true)
                     }
             }
             .catchAndReturn(false)
