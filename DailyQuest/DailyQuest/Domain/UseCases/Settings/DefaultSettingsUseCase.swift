@@ -51,4 +51,10 @@ extension DefaultSettingsUseCase: SettingsUseCase {
             .map { $0.allow }
             .catchAndReturn(nil)
     }
+    
+    func delete() -> Single<Bool> {
+        guard let userRepository = userRepository as? ProtectedUserRepository else { return Single.just(false) }
+        return userRepository.deleteUser()
+            .catchAndReturn(false)
+    }
 }
