@@ -10,6 +10,8 @@ import UIKit
 enum ViewType: String {
     case login = "로그인"
     case logout = "로그아웃"
+    case version = "앱 버전"
+    case delete = "탈퇴하기"
 }
 
 protocol CommonField {
