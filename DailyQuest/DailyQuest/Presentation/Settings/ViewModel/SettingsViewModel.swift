@@ -11,6 +11,8 @@ import RxSwift
 
 final class SettingsViewModel {
     private(set) var fields: [CommonField]
+    private var toggleField: ToggleField
+    private var plainField: PlainField
     private var navigateField: NavigateField
     
     private let settingsUseCase: SettingsUseCase
@@ -19,10 +21,10 @@ final class SettingsViewModel {
     init(settingsUseCase: SettingsUseCase) {
         self.settingsUseCase = settingsUseCase
         
-        let toggleField = ToggleField(viewModel: .init(title: "둘러보기 허용",
-                                                       imageName: "person.crop.circle.badge.checkmark",
-                                                       settingsUseCase: settingsUseCase))
-        let plainField = PlainField(viewModel: .init(title: "앱 버전", info: "1.1", imageName: "exclamationmark.transmission"))
+        self.toggleField = ToggleField(viewModel: .init(title: "둘러보기 허용",
+                                                        imageName: "person.crop.circle.badge.checkmark",
+                                                        settingsUseCase: settingsUseCase))
+        self.plainField = PlainField(viewModel: .init(title: "앱 버전", info: "1.1", imageName: "exclamationmark.transmission", viewType: .version))
         self.navigateField = NavigateField(viewModel: .init(title: "로그인", imageName: "person.circle.fill", viewType: .login))
         
         self.fields = [
@@ -41,13 +43,34 @@ final class SettingsViewModel {
     func transform() -> Output {
         let loginStatusDidChange = settingsUseCase
             .isLoggedIn()
-            .do(onNext: navigateField.toggle(with:))
-            .map { _ in Void() }
+            .do(onNext: { result in
+                if result {
+                    let deleteUserField = PlainField(viewModel: .init(title: "탈퇴하기", info: "", imageName: "person.fill.xmark", viewType: .delete))
+                    self.fields = [
+                        self.toggleField,
+                        self.plainField,
+                        self.navigateField,
+                        deleteUserField
+                    ]
+                } else {
+                    self.fields = [
+                        self.toggleField,
+                        self.plainField,
+                        self.navigateField
+                    ]
+                }
+                self.navigateField.toggle(with: result)
+            })
+                .map { _ in Void() }
         
         return Output(loginStatusDidChange: loginStatusDidChange)
     }
     
     func signOut() -> Observable<Bool> {
         return settingsUseCase.signOut()
+    }
+    
+    func deleteUser() -> Single<Bool> {
+        return settingsUseCase.delete()
     }
 }

@@ -21,13 +21,11 @@ final class ProfileViewModel {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-        let deleteUserButtonDidClicked: Observable<ProfileViewController.Event>
         let changeProfileImage: Observable<UIImage?>
     }
     
     struct Output {
         let data: Driver<User>
-        let deleteUserResult: Driver<Bool>
         let changeProfileImageResult: Driver<User>
     }
     
@@ -38,11 +36,6 @@ final class ProfileViewModel {
                 self.userUseCase.fetch()
             }
             .asDriver(onErrorJustReturn: User())
-        
-        let deleteUserResult = input.deleteUserButtonDidClicked.flatMap { _ in
-            self.userUseCase.delete()
-        }
-            .asDriver(onErrorJustReturn: false)
         
         let changeProfileImageResult = input.changeProfileImage.flatMap { image in
             
@@ -62,6 +55,6 @@ final class ProfileViewModel {
         }.flatMap(userUseCase.fetch)
             .asDriver(onErrorJustReturn: User())
         
-        return Output(data: data, deleteUserResult: deleteUserResult, changeProfileImageResult: changeProfileImageResult)
+        return Output(data: data, changeProfileImageResult: changeProfileImageResult)
     }
 }

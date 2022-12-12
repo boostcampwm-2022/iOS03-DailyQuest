@@ -16,7 +16,7 @@ final class SettingsViewController: UITableViewController {
     
     var itemDidClick = PublishSubject<Event>()
     var toggleButtonDidClick = PublishSubject<Event>()
-    
+    var deleteUserDidClicked = PublishSubject<Event>()
     // MARK: - Life Cycle
     static func create(with viewModel: SettingsViewModel) -> SettingsViewController {
         let vc = SettingsViewController()
@@ -56,8 +56,8 @@ final class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-    func showAlert(preferredStyle: UIAlertController.Style = .alert,
-                   completion: (() -> Void)? = nil)
+    func showSignOutAlert(preferredStyle: UIAlertController.Style = .alert,
+                          completion: (() -> Void)? = nil)
     {
         let title = "로그아웃"
         let message = "로그아웃 하시겠습니까?"
@@ -75,10 +75,51 @@ extension SettingsViewController {
         self.present(alert, animated: true, completion: completion)
     }
     
+    func showDeleteAlert(preferredStyle: UIAlertController.Style = .alert,
+                         completion: (() -> Void)? = nil)
+    
+    {
+        let title = "탈퇴하기"
+        let message = "정말 탈퇴 하시겠습니까?"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.deleteUser()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: completion)
+    }
+    
     private func signOut() {
         viewModel
             .signOut()
             .subscribe()
+            .disposed(by: disposableBag)
+    }
+    
+    private func deleteUser() {
+        viewModel
+            .deleteUser()
+            .subscribe(onSuccess: { result in
+                if result {
+                    let message = "탈퇴가 완료되었습니다."
+                    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let message = "오류가 발생했습니다. \n 잠시 후 다시 시도해주세요."
+                    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
             .disposed(by: disposableBag)
     }
 }
@@ -98,10 +139,14 @@ extension SettingsViewController {
         guard let type = field.didSelect() else { return }
         
         switch type {
-            case .login:
-                itemDidClick.onNext(.showLoginFlow)
-            case .logout:
-                showAlert()
+        case .login:
+            itemDidClick.onNext(.showLoginFlow)
+        case .logout:
+            showSignOutAlert()
+        case .delete:
+            showDeleteAlert()
+        case .version:
+            break
         }
     }
 }
