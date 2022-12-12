@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import DailyContainer
+
+struct ServiceKey: InjectionKey {
+    typealias Value = NetworkService
+}
