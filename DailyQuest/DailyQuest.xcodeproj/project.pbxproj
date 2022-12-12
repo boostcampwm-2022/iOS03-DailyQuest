@@ -65,7 +65,6 @@
 		3472E8F129420D9600BB304F /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F029420D9600BB304F /* FriendViewModel.swift */; };
 		3472E8F52942135D00BB304F /* FriendQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */; };
 		3472E8F7294213BE00BB304F /* DefaultFriendQuestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F6294213BE00BB304F /* DefaultFriendQuestUseCase.swift */; };
-		3472E8F929421C7C00BB304F /* FriendCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */; };
 		3472E8FB29421CB500BB304F /* DefaultFriendCalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472E8FA29421CB500BB304F /* DefaultFriendCalendarUseCase.swift */; };
 		347D258B292C60F40038FCA2 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258A292C60F40038FCA2 /* StatusView.swift */; };
 		347D258D292C6E220038FCA2 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D258C292C6E220038FCA2 /* MessageBubble.swift */; };
@@ -294,7 +293,6 @@
 		3472E8F029420D9600BB304F /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendQuestUseCase.swift; sourceTree = "<group>"; };
 		3472E8F6294213BE00BB304F /* DefaultFriendQuestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFriendQuestUseCase.swift; sourceTree = "<group>"; };
-		3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCalendarUseCase.swift; sourceTree = "<group>"; };
 		3472E8FA29421CB500BB304F /* DefaultFriendCalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFriendCalendarUseCase.swift; sourceTree = "<group>"; };
 		347D258A292C60F40038FCA2 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		347D258C292C6E220038FCA2 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
@@ -700,7 +698,6 @@
 			isa = PBXGroup;
 			children = (
 				3472E8F42942135D00BB304F /* FriendQuestUseCase.swift */,
-				3472E8F829421C7C00BB304F /* FriendCalendarUseCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1341,7 +1338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34404D94293EF9850007E661 /* SettingsUseCase.swift in Sources */,
-				3472E8F929421C7C00BB304F /* FriendCalendarUseCase.swift in Sources */,
 				A5A8C8362936EC7E00988C88 /* SubQuestEntity.swift in Sources */,
 				34EC71D1292DF27E004813CB /* Date+.swift in Sources */,
 				34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */,
