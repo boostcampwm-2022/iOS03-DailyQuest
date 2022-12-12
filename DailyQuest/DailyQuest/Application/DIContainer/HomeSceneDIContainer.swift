@@ -6,52 +6,74 @@
 //
 
 import UIKit
+import DailyContainer
 
 final class HomeSceneDIContainer {
 
-    lazy var questsStorage: QuestsStorage = RealmQuestsStorage()
-    lazy var userStorage: UserInfoStorage = RealmUserInfoStorage()
-    lazy var networkService: NetworkService = FirebaseService.shared
-
-    // MARK: - Repositories
-    func makeQuestsRepository() -> QuestsRepository {
-        return DefaultQuestsRepository(persistentStorage: questsStorage)
+    init() {
+        registUseCase()
     }
-
-    func makeUserRepository() -> UserRepository {
-        return DefaultUserRepository(persistentStorage: userStorage, networkService: networkService)
-    }
-
-    // MARK: - Use Cases
-    func makeQuestUseCase() -> QuestUseCase {
-        return DefaultQuestUseCase(questsRepository: makeQuestsRepository())
-    }
-
-    func makeEnrollUseCase() -> EnrollUseCase {
-        return DefaultEnrollUseCase(questsRepository: makeQuestsRepository())
-    }
-
-    func makeCalendarUseCase() -> CalendarUseCase {
-        return HomeCalendarUseCase(questsRepository: makeQuestsRepository())
-    }
-
-    func makeUesrUseCase() -> UserUseCase {
-        return DefaultUserUseCase(userRepository: makeUserRepository())
+    
+    func registUseCase() {
+        Container.shared.regist {
+            Module(QuestUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return DefaultQuestUseCase(questsRepository: questRepository)
+            }
+            
+            Module(EnrollUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return DefaultEnrollUseCase(questsRepository: questRepository)
+            }
+            
+            Module(UserUseCaseKey.self) {
+                @Injected(UserRepositoryKey.self)
+                var userRepository: UserRepository
+                
+                return DefaultUserUseCase(userRepository: userRepository)
+            }
+            
+            Module(CalendarUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return HomeCalendarUseCase(questsRepository: questRepository)
+            }
+        }
     }
 
     // MARK: - View Models
     func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel(userUseCase: makeUesrUseCase(),
-                             questUseCase: makeQuestUseCase(),
-                             calendarUseCase: makeCalendarUseCase())
+        @Injected(QuestUseCaseKey.self)
+        var questUseCase: QuestUseCase
+        
+        @Injected(UserUseCaseKey.self)
+        var userUseCase: UserUseCase
+        
+        @Injected(CalendarUseCaseKey.self)
+        var calendarUseCase: CalendarUseCase
+        
+        return HomeViewModel(userUseCase: userUseCase,
+                             questUseCase: questUseCase,
+                             calendarUseCase: calendarUseCase)
     }
 
     func makeEnrollViewModel() -> EnrollViewModel {
-        return EnrollViewModel(enrollUseCase: makeEnrollUseCase())
+        @Injected(EnrollUseCaseKey.self)
+        var enrollUseCase: EnrollUseCase
+        
+        return EnrollViewModel(enrollUseCase: enrollUseCase)
     }
 
     func makeProfileViewModel() -> ProfileViewModel {
-        return ProfileViewModel(userUseCase: makeUesrUseCase())
+        @Injected(UserUseCaseKey.self)
+        var userUseCase: UserUseCase
+        
+        return ProfileViewModel(userUseCase: userUseCase)
     }
 
     // MARK: - View Controller
