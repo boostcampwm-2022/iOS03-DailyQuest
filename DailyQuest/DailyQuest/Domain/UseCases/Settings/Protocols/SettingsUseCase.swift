@@ -12,4 +12,7 @@ import RxSwift
 protocol SettingsUseCase {
     func isLoggedIn() -> Observable<Bool>
     func signOut() -> Observable<Bool>
+    
+    func updateAllow(allow: Bool) -> Single<Bool>
+    func fetchAllow() -> Single<Bool?>
 }

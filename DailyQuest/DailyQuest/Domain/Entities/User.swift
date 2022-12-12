@@ -44,6 +44,15 @@ struct User {
 }
 
 extension User {
+    func setAllow(allow: Bool) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: allow)
+    }
+    
     func setProfileImageURL(profileURL: String) -> User {
         return User(uuid: self.uuid,
                     nickName: self.nickName,

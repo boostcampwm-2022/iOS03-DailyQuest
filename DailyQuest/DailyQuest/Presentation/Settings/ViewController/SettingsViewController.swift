@@ -15,6 +15,7 @@ final class SettingsViewController: UITableViewController {
     private var disposableBag = DisposeBag()
     
     var itemDidClick = PublishSubject<Event>()
+    var toggleButtonDidClick = PublishSubject<Event>()
     
     // MARK: - Life Cycle
     static func create(with viewModel: SettingsViewModel) -> SettingsViewController {
@@ -26,6 +27,7 @@ final class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         tableView.separatorStyle = .singleLine
         
         register()

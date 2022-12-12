@@ -60,12 +60,27 @@ final class LoginViewController: UIViewController {
         return UIButton(configuration: config)
     }()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        // Create an indicator.
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .maxDarkYellow
+        
+        let transfrom = CGAffineTransform.init(scaleX: 2, y: 2)
+        activityIndicator.transform = transfrom
+    
+        return activityIndicator
+    }()
+    
     // MARK: Life Cycle
     static func create(with viewModel: LoginViewModel) -> LoginViewController {
         let vc = LoginViewController()
         vc.setup(with: viewModel)
         
         return vc
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLoad() {
@@ -85,10 +100,16 @@ final class LoginViewController: UIViewController {
         container.addArrangedSubview(signUpButton)
         
         view.addSubview(container)
+        view.addSubview(activityIndicator)
         
         container.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.8)
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+            make.centerX.centerY.equalToSuperview()
         }
     }
     
@@ -104,10 +125,16 @@ extension LoginViewController {
             self.itemDidClick.onNext(.showSignUpFlow)
         }).disposed(by: disposableBag)
         
+        let submitButtonDidTapEvent = submitButton.rx.tap
+            .asObservable()
+            .do(onNext: { [weak self] _ in
+            self?.activityIndicator.startAnimating()
+        })
+        
         let input = LoginViewModel.Input(
             emailFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
             passwordFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
-            submitButtonDidTapEvent: submitButton.rx.tap.asObservable()
+            submitButtonDidTapEvent: submitButtonDidTapEvent
         )
         
         let output = viewModel.transform(input: input, disposeBag: disposableBag)
@@ -126,6 +153,7 @@ extension LoginViewController {
 
 extension LoginViewController: Alertable {
     private func analyse(result: Bool) {
+        activityIndicator.stopAnimating()
         if result {
             itemDidClick.onNext(.back)
         } else {

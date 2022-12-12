@@ -94,14 +94,14 @@ final class HomeViewModel {
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
             })
-            .flatMap(questUseCase.fetch(by:))
-            .asDriver(onErrorJustReturn: [])
+                .flatMap(questUseCase.fetch(by:))
+                .asDriver(onErrorJustReturn: [])
                 
-        let userNotification = NotificationCenter
-            .default
-            .rx
-            .notification(.userUpdated)
-            .map { _ in Date() }
+                let userNotification = NotificationCenter
+                .default
+                .rx
+                .notification(.userUpdated)
+                .map { _ in Date() }
         
         let userData = Observable
             .merge(
@@ -194,13 +194,10 @@ final class HomeViewModel {
 private extension HomeViewModel {
     func calculateRelative(_ date: Date) -> String {
         let today = Date()
-        
-        if today.startOfDay > date.startOfDay {
-            return "Previous Quests"
-        } else if today.startOfDay < date.startOfDay {
-            return "Upcomming Quests"
+        if today.startOfDay == date.startOfDay {
+            return "오늘의 퀘스트"
         } else {
-            return "Today Quests"
+            return "\(date.toFormatMonthDay)의 퀘스트 "
         }
     }
 }

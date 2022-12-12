@@ -17,6 +17,18 @@ final class BrowseViewController: UITableViewController {
     private var viewModel: BrowseViewModel!
     private var disposableBag = DisposeBag()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        // Create an indicator.
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .maxDarkYellow
+        
+        let transfrom = CGAffineTransform.init(scaleX: 2, y: 2)
+        activityIndicator.transform = transfrom
+        
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     // MARK: - Life Cycle
     static func create(with viewModel: BrowseViewModel) -> BrowseViewController {
         let view = BrowseViewController()
@@ -28,8 +40,16 @@ final class BrowseViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
-        
+        configureIndicatorBar()
         bind()
+    }
+    
+    private func configureIndicatorBar() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+            make.centerX.centerY.equalToSuperview()
+        }
     }
     
     /**
@@ -50,6 +70,9 @@ final class BrowseViewController: UITableViewController {
         
         output
             .data
+            .do{ [weak self] _ in
+                self?.activityIndicator.stopAnimating()
+            }
             .drive(tableView.rx.items(cellIdentifier: BrowseCell.reuseIdentifier, cellType: BrowseCell.self)) { row, item, cell in
                 cell.setup(with: item)
             }

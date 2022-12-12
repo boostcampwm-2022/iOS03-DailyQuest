@@ -37,4 +37,18 @@ extension DefaultSettingsUseCase: SettingsUseCase {
             .catchAndReturn(false)
             .asObservable()
     }
+    
+    func updateAllow(allow: Bool) -> Single<Bool> {
+        userRepository.readUser()
+            .map { $0.setAllow(allow: allow) }
+            .flatMap(userRepository.updateUser(by:))
+            .map { _ in true }
+            .catchAndReturn(false)
+    }
+    
+    func fetchAllow() -> Single<Bool?> {
+        userRepository.readUser()
+            .map { $0.allow }
+            .catchAndReturn(nil)
+    }
 }

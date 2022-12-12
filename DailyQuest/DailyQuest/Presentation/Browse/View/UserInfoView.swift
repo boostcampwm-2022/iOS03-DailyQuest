@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 import SnapKit
 
 final class UserInfoView: UIStackView {
@@ -59,5 +59,6 @@ final class UserInfoView: UIStackView {
     
     func setup(with user: User) {
         welcomeLabel.text = user.nickName + "님의 퀘스트"
+        userImage.setImage(with: user.profileURL)
     }
 }
