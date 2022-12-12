@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigation = UINavigationController(rootViewController: viewController)
         self.window?.rootViewController = navigation
         self.window?.makeKeyAndVisible()
-        AppAppearance.setupAppearance()
         
         return
     }
@@ -58,6 +57,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         syncManager.sync()
     }
     
-    
+    func switchRoot() {
+        AppAppearance.setupAppearance()
+        let tabbarController = UITabBarController()
+        self.window?.rootViewController = tabbarController
+        self.appCoordinator = AppCoordinator(tabBarController: tabbarController,
+                                             appDIContainer: self.appDIContainer)
+        self.appCoordinator?.start()
+    }
 }
 
