@@ -62,12 +62,12 @@ extension DefaultFriendCalendarUseCase {
     private func fetchAMontlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
         guard let month = month else { return .empty() }
         
-        return Observable.from(month.rangeDaysOfMonth)
+        return Observable.just(month)
             .concatMap { [weak self] date -> Observable<DailyQuestCompletion> in
                 guard let self else { return Observable.empty() }
                 
                 return self.questsRepository
-                    .fetch(by: self.user.uuid, date: date)
+                    .fetch(by: self.user.uuid, date: date, filter: date)
                     .asObservable()
                     .map { quests -> DailyQuestCompletion in
                         let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false

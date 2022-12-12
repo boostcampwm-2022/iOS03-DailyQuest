@@ -57,4 +57,6 @@ protocol QuestsRepository {
     func deleteAll(with groupId: UUID) -> Single<[Quest]>
 
     func fetch(by uuid: String, date: Date) -> Single<[Quest]>
+    
+    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Quest]>
 }

@@ -54,7 +54,19 @@ extension DefaultQuestsRepository: QuestsRepository {
                                    access: .quests,
                                    filter: .today(date))
         .map { $0.toDomain() }
+        .do(onNext: { print($0) })
         .toArray()
+    }
+    
+    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Quest]> {
+        return networkService.read(type: QuestDTO.self,
+                                   userCase: .anotherUser(uuid),
+                                   access: .quests,
+                                   filter: .month(filter))
+        .map({ $0.toDomain() })
+        .do(onNext: { print($0) })
+        .toArray()
+        
     }
 }
 
