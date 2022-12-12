@@ -47,12 +47,11 @@ struct Quest: Equatable {
      - Parameters:
      - value: 0보다 큰 정수값입니다. 기본값은 1입니다.
      */
-    mutating func decreaseCount(with value: Int=1) {
+    func decreaseCount(with value: Int=1) -> Self? {
         guard currentCount - value >= 0 else {
-            self.currentCount = 0
-            return
+            return nil
         }
-        self.currentCount -= value
+        return .init(groupId: groupId, uuid: uuid, date: date, title: title, currentCount: currentCount-value, totalCount: totalCount)
     }
     
     static func == (lhs: Self, rhs: Self) -> Bool {
