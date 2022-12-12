@@ -93,8 +93,9 @@ extension EnrollViewModel {
             guard let weekday = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date).weekday else { return nil }
             if weekdays.contains(weekday) {
                 dates.append(date)
+            } else if weekdays.isEmpty {
+                dates.append(date)
             }
-            
             guard let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else { break }
             date = newDate
         }
