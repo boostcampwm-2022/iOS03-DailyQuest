@@ -567,12 +567,12 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		3417597B29470CF000C9123F /* Frameworks */ = {
+		3417597B29470CF000C9123F /* SubFrameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */,
 			);
-			path = Frameworks;
+			path = SubFrameworks;
 			sourceTree = "<group>";
 		};
 		3417597D29470CFF00C9123F /* Products */ = {
@@ -962,7 +962,7 @@
 		34ACC320291DE9C000741371 = {
 			isa = PBXGroup;
 			children = (
-				3417597B29470CF000C9123F /* Frameworks */,
+				3417597B29470CF000C9123F /* SubFrameworks */,
 				34ACC32B291DE9C000741371 /* DailyQuest */,
 				34ACC342291DE9C100741371 /* DailyQuestTests */,
 				34ACC34C291DE9C100741371 /* DailyQuestUITests */,

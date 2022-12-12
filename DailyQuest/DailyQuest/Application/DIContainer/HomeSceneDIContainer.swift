@@ -13,38 +13,6 @@ final class HomeSceneDIContainer {
     init() {
         registerUseCase()
     }
-    
-    func registerUseCase() {
-        Container.shared.register {
-            Module(QuestUseCaseKey.self) {
-                @Injected(QuestRepositoryKey.self)
-                var questRepository: QuestsRepository
-                
-                return DefaultQuestUseCase(questsRepository: questRepository)
-            }
-            
-            Module(EnrollUseCaseKey.self) {
-                @Injected(QuestRepositoryKey.self)
-                var questRepository: QuestsRepository
-                
-                return DefaultEnrollUseCase(questsRepository: questRepository)
-            }
-            
-            Module(UserUseCaseKey.self) {
-                @Injected(UserRepositoryKey.self)
-                var userRepository: UserRepository
-                
-                return DefaultUserUseCase(userRepository: userRepository)
-            }
-            
-            Module(CalendarUseCaseKey.self) {
-                @Injected(QuestRepositoryKey.self)
-                var questRepository: QuestsRepository
-                
-                return HomeCalendarUseCase(questsRepository: questRepository)
-            }
-        }
-    }
 
     // MARK: - View Models
     func makeHomeViewModel() -> HomeViewModel {
@@ -94,5 +62,39 @@ final class HomeSceneDIContainer {
                              homeSceneDIContainer: HomeSceneDIContainer) -> HomeCoordinator {
         return DefaultHomeCoordinator(navigationController: navigationController,
                                       homeSceneDIContainer: homeSceneDIContainer)
+    }
+}
+
+private extension HomeSceneDIContainer {
+    func registerUseCase() {
+        Container.shared.register {
+            Module(QuestUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return DefaultQuestUseCase(questsRepository: questRepository)
+            }
+            
+            Module(EnrollUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return DefaultEnrollUseCase(questsRepository: questRepository)
+            }
+            
+            Module(UserUseCaseKey.self) {
+                @Injected(UserRepositoryKey.self)
+                var userRepository: UserRepository
+                
+                return DefaultUserUseCase(userRepository: userRepository)
+            }
+            
+            Module(CalendarUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return HomeCalendarUseCase(questsRepository: questRepository)
+            }
+        }
     }
 }
