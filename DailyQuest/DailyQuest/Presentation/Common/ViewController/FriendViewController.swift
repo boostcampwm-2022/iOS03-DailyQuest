@@ -132,6 +132,7 @@ final class FriendViewController: UIViewController {
             disposableBag: disposableBag
         )
         
+        bindToQuestViewHeader(with: output)
         bindToStatusView(with: output)
         bindToCalendarView(with: output)
         bindToQuestView(with: output)
@@ -160,6 +161,13 @@ final class FriendViewController: UIViewController {
                     self.friendStatusView.profileImageView.image = UIImage(named: "StatusMax")
                 }
             })
+            .disposed(by: disposableBag)
+    }
+    
+    private func bindToQuestViewHeader(with output: FriendViewModel.Output) {
+        output
+            .questHeaderLabel
+            .bind(to: questViewHeader.titleLabel.rx.text)
             .disposed(by: disposableBag)
     }
     
