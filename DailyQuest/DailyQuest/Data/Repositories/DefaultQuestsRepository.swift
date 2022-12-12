@@ -58,15 +58,28 @@ extension DefaultQuestsRepository: QuestsRepository {
         .toArray()
     }
     
-    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Quest]> {
+    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Date: [Quest]]> {
         return networkService.read(type: QuestDTO.self,
                                    userCase: .anotherUser(uuid),
                                    access: .quests,
                                    filter: .month(filter))
-        .map({ $0.toDomain() })
-        .do(onNext: { print($0) })
-        .toArray()
-        
+            .reduce([Date : [Quest]](), accumulator: ({ dict, questDTO in
+                let quest = questDTO.toDomain()
+                var dictionary = dict
+                
+                dictionary[quest.date.startOfDay, default: [Quest]()].append(quest)
+                return dictionary
+            }))
+            .map { dict in
+                var dictionary = dict
+                date.rangeDaysOfMonth.forEach { date in
+                    if dictionary[date] == nil {
+                        dictionary[date] = []
+                    }
+                }
+                return dictionary
+            }
+            .asSingle()
     }
 }
 
