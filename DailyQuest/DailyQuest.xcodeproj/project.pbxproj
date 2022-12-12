@@ -31,8 +31,6 @@
 		3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */; };
 		3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */; };
 		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
-		3417598229470D0600C9123F /* DailyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3417598129470CFF00C9123F /* DailyContainer.framework */; };
-		3417598329470D0600C9123F /* DailyContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3417598129470CFF00C9123F /* DailyContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		341759932947426000C9123F /* StroageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341759922947426000C9123F /* StroageKey.swift */; };
 		34175995294743E300C9123F /* RepositoryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34175994294743E300C9123F /* RepositoryKey.swift */; };
 		34175998294745DB00C9123F /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34175997294745DB00C9123F /* ServiceKey.swift */; };
@@ -223,7 +221,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3417598029470CFF00C9123F /* PBXContainerItemProxy */ = {
+		3417599F2947567900C9123F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */;
 			proxyType = 2;
@@ -253,7 +251,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3417598329470D0600C9123F /* DailyContainer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +281,7 @@
 		3416FC8D292B593C00B504C5 /* Quest+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quest+Stub.swift"; sourceTree = "<group>"; };
 		3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRepositoryMock.swift; sourceTree = "<group>"; };
 		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
-		3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DailyContainer.xcodeproj; path = ../../../../../../swift/DailyContainer/DailyContainer.xcodeproj; sourceTree = "<group>"; };
+		3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DailyContainer.xcodeproj; path = DailyContainer/DailyContainer.xcodeproj; sourceTree = "<group>"; };
 		341759922947426000C9123F /* StroageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroageKey.swift; sourceTree = "<group>"; };
 		34175994294743E300C9123F /* RepositoryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryKey.swift; sourceTree = "<group>"; };
 		34175997294745DB00C9123F /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
@@ -432,7 +429,6 @@
 			files = (
 				A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */,
 				3409154B292DE5CC007873A8 /* FirebaseAuth in Frameworks */,
-				3417598229470D0600C9123F /* DailyContainer.framework in Frameworks */,
 				34091551292DE5CC007873A8 /* FirebaseStorage in Frameworks */,
 				A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */,
 				34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */,
@@ -575,14 +571,6 @@
 			path = SubFrameworks;
 			sourceTree = "<group>";
 		};
-		3417597D29470CFF00C9123F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3417598129470CFF00C9123F /* DailyContainer.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3417598529470D8800C9123F /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +612,14 @@
 				3417599A2947479100C9123F /* UseCaseKey.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		3417599C2947567900C9123F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				341759A02947567900C9123F /* DailyContainer.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3417B13F2935DA1500900454 /* Browse */ = {
@@ -1393,7 +1389,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3417597D29470CFF00C9123F /* Products */;
+					ProductGroup = 3417599C2947567900C9123F /* Products */;
 					ProjectRef = 3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */;
 				},
 			);
@@ -1407,11 +1403,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3417598129470CFF00C9123F /* DailyContainer.framework */ = {
+		341759A02947567900C9123F /* DailyContainer.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DailyContainer.framework;
-			remoteRef = 3417598029470CFF00C9123F /* PBXContainerItemProxy */;
+			remoteRef = 3417599F2947567900C9123F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
