@@ -30,6 +30,7 @@ final class FriendViewModel {
     }
     
     struct Output {
+        let questHeaderLabel: Observable<String>
         let userData: Driver<User>
         let data: Driver<[Quest]>
         let currentMonth: Observable<Date?>
@@ -63,6 +64,12 @@ final class FriendViewModel {
             }
             .disposed(by: disposableBag)
         
+        let questHeaderLabel = input
+            .daySelected
+            .map(calculateRelative(_:))
+            .asObservable()
+            .share()
+        
         let currentMonth = friendCalendarUseCase
             .currentMonth
             .asObserver()
@@ -71,7 +78,7 @@ final class FriendViewModel {
             .completionOfMonths
             .asDriver(onErrorJustReturn: [[], [], []])
 
-        return Output(userData: userData, data: data, currentMonth: currentMonth, displayDays: displayDays)
+        return Output(questHeaderLabel: questHeaderLabel, userData: userData, data: data, currentMonth: currentMonth, displayDays: displayDays)
     }
 }
 
@@ -79,5 +86,16 @@ private extension FriendViewModel {
     func fetch(by date: Date) -> Observable<[Quest]> {
         return friendQuestUseCase.fetch(with: user.uuid, by: date)
             .asObservable()
+    }
+}
+
+extension FriendViewModel {
+    func calculateRelative(_ date: Date) -> String {
+        let today = Date()
+        if today.startOfDay == date.startOfDay {
+            return "오늘의 퀘스트"
+        } else {
+            return "\(date.toFormatMonthDay)의 퀘스트 "
+        }
     }
 }
