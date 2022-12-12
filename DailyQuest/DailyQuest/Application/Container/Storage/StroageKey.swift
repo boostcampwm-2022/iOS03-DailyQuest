@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import DailyContainer
+
+struct QuestStorageKey: InjectionKey {
+    typealias Value = QuestsStorage
+}
+
+struct BrowseQuestStorageKey: InjectionKey {
+    typealias Value = BrowseQuestsStorage
+}
+
+struct UserInfoStorageKey: InjectionKey {
+    typealias Value = UserInfoStorage
+}
