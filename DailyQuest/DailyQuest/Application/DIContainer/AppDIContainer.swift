@@ -11,9 +11,9 @@ import DailyContainer
 final class AppDIContainer {
     
     init() {
-        registService()
-        registStorage()
-        registRepository()
+        registerService()
+        registerStorage()
+        registerRepository()
     }
     
     func makeHomeSceneDIContainer() -> HomeSceneDIContainer {
@@ -30,22 +30,22 @@ final class AppDIContainer {
 }
 
 private extension AppDIContainer {
-    func registService() {
-        Container.shared.regist {
+    func registerService() {
+        Container.shared.register {
             Module(ServiceKey.self) { FirebaseService.shared }
         }
     }
     
-    func registStorage() {
-        Container.shared.regist {
+    func registerStorage() {
+        Container.shared.register {
             Module(QuestStorageKey.self) { RealmQuestsStorage() }
             Module(BrowseQuestStorageKey.self) { RealmBrowseQuestsStorage() }
             Module(UserInfoStorageKey.self) { RealmUserInfoStorage() }
         }
     }
     
-    func registRepository() {
-        Container.shared.regist {
+    func registerRepository() {
+        Container.shared.register {
             Module(QuestRepositoryKey.self) {
                 @Injected(QuestStorageKey.self)
                 var questStorage: QuestsStorage

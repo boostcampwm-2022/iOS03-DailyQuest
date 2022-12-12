@@ -11,11 +11,11 @@ import DailyContainer
 final class HomeSceneDIContainer {
 
     init() {
-        registUseCase()
+        registerUseCase()
     }
     
-    func registUseCase() {
-        Container.shared.regist {
+    func registerUseCase() {
+        Container.shared.register {
             Module(QuestUseCaseKey.self) {
                 @Injected(QuestRepositoryKey.self)
                 var questRepository: QuestsRepository
