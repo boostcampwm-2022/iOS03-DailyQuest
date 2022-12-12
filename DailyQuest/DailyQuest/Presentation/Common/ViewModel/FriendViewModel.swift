@@ -27,6 +27,7 @@ final class FriendViewModel {
     struct Input {
         let viewDidLoad: Observable<Date>
         let daySelected: Observable<Date>
+        let dragEventInCalendar: Observable<CalendarView.ScrollDirection>
     }
     
     struct Output {
@@ -55,6 +56,20 @@ final class FriendViewModel {
             .viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.friendCalendarUseCase.setupMonths()
+            })
+            .disposed(by: disposableBag)
+        
+        input
+            .dragEventInCalendar
+            .subscribe(onNext: { [weak self] direction in
+                switch direction {
+                case .prev:
+                    self?.friendCalendarUseCase.fetchLastMontlyCompletion()
+                case .none:
+                    break
+                case .next:
+                    self?.friendCalendarUseCase.fetchNextMontlyCompletion()
+                }
             })
             .disposed(by: disposableBag)
         
