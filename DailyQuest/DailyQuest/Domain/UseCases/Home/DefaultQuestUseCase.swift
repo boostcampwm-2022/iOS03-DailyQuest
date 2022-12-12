@@ -30,7 +30,19 @@ extension DefaultQuestUseCase: QuestUseCase {
                     NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
                 }
             })
-            .map { _ in true }
-            .catchAndReturn(false)
+                .map { _ in true }
+                .catchAndReturn(false)
+    }
+    
+    func delete(with quest: Quest) -> Single<Bool> {
+        return questsRepository
+            .delete(with: quest.uuid)
+            .do(onSuccess: { quest in
+                if quest.state {
+                    NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
+                }
+            })
+                .map { _ in true }
+                .catchAndReturn(false)
     }
 }
