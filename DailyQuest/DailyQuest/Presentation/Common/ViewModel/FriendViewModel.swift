@@ -13,11 +13,11 @@ import RxCocoa
 final class FriendViewModel {
     private(set) var user: User
     private let friendQuestUseCase: FriendQuestUseCase
-    private let friendCalendarUseCase: FriendCalendarUseCase
+    private let friendCalendarUseCase: CalendarUseCase
     
     init(user: User,
          friendQuestUseCase: FriendQuestUseCase,
-         friendCalendarUseCase: FriendCalendarUseCase)
+         friendCalendarUseCase: CalendarUseCase)
     {
         self.user = user
         self.friendQuestUseCase = friendQuestUseCase
