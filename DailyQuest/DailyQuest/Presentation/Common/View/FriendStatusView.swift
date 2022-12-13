@@ -31,6 +31,7 @@ final class FriendStatusView: UIView {
     private(set) lazy var userNameLabel: UILabel = {
         let userNameLabel = UILabel()
         userNameLabel.text = "User name label님의 Quest"
+        userNameLabel.font = .systemFont(ofSize: 22,weight: .bold)
         
         return userNameLabel
     }()
@@ -38,7 +39,7 @@ final class FriendStatusView: UIView {
     private(set) lazy var introduceLabel: UILabel = {
         let introduceLabel = UILabel()
         introduceLabel.text = "introduceLabel"
-        introduceLabel.textColor = .maxLightGrey
+        introduceLabel.textColor = .darkGray
         
         return introduceLabel
     }()
