@@ -16,7 +16,7 @@ final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel!
     private var disposableBag = DisposeBag()
-
+    
     private let changeProfileImage = PublishSubject<UIImage?>()
     
     private lazy var imagePicker: PHPickerViewController = {
@@ -54,7 +54,7 @@ final class ProfileViewController: UIViewController {
         editIntroduceButton.tintColor = .gray
         return editIntroduceButton
     }()
-
+    
     
     // MARK: - Life Cycle
     static func create(with viewModel: ProfileViewModel) -> ProfileViewController {
@@ -97,7 +97,7 @@ final class ProfileViewController: UIViewController {
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
             make.left.equalTo(introduceLabel.snp.right).offset(5)
         }
-
+        
     }
     
     func bind() {
@@ -117,13 +117,13 @@ final class ProfileViewController: UIViewController {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
                     
-                   
+                    
                 }
                 alert.addAction(okAction)
                 alert.addTextField ()
                 self?.present(alert, animated: true, completion: nil)
-            }
-            )
+            })
+            .disposed(by: disposableBag)
         
         let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(),changeProfileImage: changeProfileImage)
         let output = viewModel.transform(input: input)
