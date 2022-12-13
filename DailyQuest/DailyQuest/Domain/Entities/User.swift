@@ -70,4 +70,13 @@ extension User {
                     introduce: self.introduce,
                     allow: self.allow)
     }
+    
+    func setIntroduce(introduce: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: introduce,
+                    allow: self.allow)
+    }
 }
