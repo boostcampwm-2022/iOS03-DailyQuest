@@ -58,7 +58,7 @@ private extension DefaultBrowseRepository {
             .read(type: QuestDTO.self, userCase: .anotherUser(user.uuid), access: .quests, filter: .today(Date()))
             .map { $0.toDomain() }
             .toArray()
-            .map { BrowseQuest(user: user, quests: $0) }
+            .map { BrowseQuest(user: user, quests: Array($0.prefix(3))) }
     }
 
     func saveBrowseQuestPersistentStorage(browseQuest: BrowseQuest) -> Observable<BrowseQuest> {
