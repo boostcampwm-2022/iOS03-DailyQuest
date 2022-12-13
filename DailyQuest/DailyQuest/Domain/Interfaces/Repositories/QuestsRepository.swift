@@ -58,5 +58,5 @@ protocol QuestsRepository {
 
     func fetch(by uuid: String, date: Date) -> Single<[Quest]>
     
-    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Quest]>
+    func fetch(by uuid: String, date: Date, filter: Date) -> Single<[Date: [Quest]]>
 }

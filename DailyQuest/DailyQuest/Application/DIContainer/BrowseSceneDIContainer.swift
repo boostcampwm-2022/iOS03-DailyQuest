@@ -30,7 +30,7 @@ final class BrowseSceneDIContainer {
         return DefaultFriendUseCase(questsRepository: makeQuestsRepository())
     }
     
-    func makeFriendCalendarUseCase(with user: User) -> FriendCalendarUseCase {
+    func makeFriendCalendarUseCase(with user: User) -> CalendarUseCase {
         return DefaultFriendCalendarUseCase(user: user, questsRepository: makeQuestsRepository())
     }
     
