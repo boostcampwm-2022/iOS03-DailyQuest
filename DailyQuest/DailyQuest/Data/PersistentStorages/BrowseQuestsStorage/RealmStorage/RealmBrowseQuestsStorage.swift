@@ -24,7 +24,7 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             }
 
             do {
-                let browseQuests = try realmStorage.fetchEntities(type: BrowseQuestEntity.self)
+                let browseQuests = try realmStorage.readEntities(type: BrowseQuestEntity.self)
                     .compactMap { $0.toDomain() }
                 single(.success(browseQuests))
             } catch let error {
@@ -44,7 +44,7 @@ extension RealmBrowseQuestsStorage: BrowseQuestsStorage {
             let browseQuestEntity = BrowseQuestEntity(browseQuest: browseQuest)
 
             do {
-                try realmStorage.saveEntity(entity: browseQuestEntity)
+                try realmStorage.createEntity(entity: browseQuestEntity)
                 single(.success(browseQuest))
             } catch let error {
                 single(.failure(RealmStorageError.saveError(error)))

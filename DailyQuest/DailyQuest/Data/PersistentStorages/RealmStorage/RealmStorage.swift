@@ -30,7 +30,7 @@ final class RealmStorage {
     private let persistentContainer = try? Realm()
 
     @discardableResult
-    func saveEntity<O: Object>(entity: O) throws -> O {
+    func createEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
         }
@@ -40,7 +40,7 @@ final class RealmStorage {
         return entity
     }
 
-    func fetchEntities<O: Object>(type: O.Type, filter: NSPredicate? = nil) throws -> [O] {
+    func readEntities<O: Object>(type: O.Type, filter: NSPredicate? = nil) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
         }

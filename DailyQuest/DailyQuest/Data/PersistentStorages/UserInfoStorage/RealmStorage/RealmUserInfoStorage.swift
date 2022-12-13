@@ -21,7 +21,7 @@ extension RealmUserInfoStorage: UserInfoStorage {
         return Single<User>.create { [weak self] single in
             do {
                 guard let realmStorage = self?.realmStorage else { throw RealmStorageError.realmObjectError }
-                guard let userInfoEntity = try realmStorage.fetchEntities(type: UserInfoEntity.self)
+                guard let userInfoEntity = try realmStorage.readEntities(type: UserInfoEntity.self)
                     .first else {
                     throw RealmStorageError.noDataError
                 }
