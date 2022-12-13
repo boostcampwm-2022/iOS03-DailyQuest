@@ -30,9 +30,4 @@ class LaunchViewController: UIViewController {
             }
         }
     }
-    
-    deinit {
-        print("deinit")
-    }
-    
 }

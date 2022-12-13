@@ -54,7 +54,6 @@ extension DefaultQuestsRepository: QuestsRepository {
                                    access: .quests,
                                    filter: .today(date))
         .map { $0.toDomain() }
-        .do(onNext: { print($0) })
         .toArray()
     }
     

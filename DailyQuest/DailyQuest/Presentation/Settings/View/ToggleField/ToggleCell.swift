@@ -80,9 +80,6 @@ final class ToggleCell: UITableViewCell {
     func bind() {
         toggle.rx.tapGesture()
             .when(.ended)
-            .do(onNext: { _ in
-                print(self.toggle.isOn)
-            })
             .bind(onNext: {_ in
                 self.toggleItemDidClicked.onNext(!self.toggle.isOn)
             })
