@@ -61,7 +61,7 @@ final class FriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questViewDelegate = QuestViewDelegate(header: questViewHeader)
+        questViewDelegate = QuestViewDelegate(header: questViewHeader, type: .friend)
         questView.delegate = questViewDelegate
         
         configureUI()

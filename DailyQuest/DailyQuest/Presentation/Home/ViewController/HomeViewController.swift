@@ -23,6 +23,9 @@ final class HomeViewController: UIViewController {
     private var disposableBag = DisposeBag()
     private var questViewDelegate: QuestViewDelegate?
     
+    private var itemDidLongClick = PublishSubject<Quest>()
+    private var itemDidDeleteClicked: PublishSubject<Quest>!
+    
     // MARK: - Components
     private lazy var scrollView: UIScrollView = {
         return UIScrollView()
@@ -45,7 +48,6 @@ final class HomeViewController: UIViewController {
     
     private lazy var questView: QuestView = {
         let questView = QuestView()
-        
         return questView
     }()
     
@@ -72,8 +74,8 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questViewDelegate = QuestViewDelegate(header: questViewHeader)
-        
+        questViewDelegate = QuestViewDelegate(header: questViewHeader, type: .home)
+        self.itemDidDeleteClicked = questViewDelegate?.itemDidDeleteClicked
         questView.delegate = questViewDelegate
         
         view.backgroundColor = .white
@@ -155,6 +157,8 @@ final class HomeViewController: UIViewController {
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
                 itemDidClicked: itemDidClick,
+                itemDidLongClicked: itemDidLongClick.asObservable(),
+                itemDidDeleteClicked: itemDidDeleteClicked,
                 profileButtonDidClicked: statusView.profileButtonDidClick,
                 dragEventInCalendar: dragEventInCalendar,
                 daySelected: daySelected
@@ -229,6 +233,12 @@ final class HomeViewController: UIViewController {
             .data
             .drive(questView.rx.items(cellIdentifier: QuestCell.reuseIdentifier, cellType: QuestCell.self)) { row, item, cell in
                 cell.setup(with: item)
+                cell.isUserInteractionEnabled = true
+                
+                let recognizer = UILongPressGestureRecognizer(target: self,action: #selector(self.longPress))
+                recognizer.allowableMovement = 0
+                cell.layer.setValue(item, forKey: "item")
+                cell.addGestureRecognizer(recognizer)
             }
             .disposed(by: disposableBag)
         
@@ -237,6 +247,13 @@ final class HomeViewController: UIViewController {
             .map({ !$0.isEmpty })
             .drive(emptySpace.rx.isHidden)
             .disposed(by: disposableBag)
+    }
+    
+    @objc func longPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .ended {
+            guard let quest = sender.view?.layer.value(forKey: "item") as? Quest else { return }
+            itemDidLongClick.onNext(quest)
+        }
     }
     
     private func bindToStatusView(with output: HomeViewModel.Output) {

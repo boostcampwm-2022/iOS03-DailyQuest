@@ -25,6 +25,8 @@ final class HomeViewModel {
     struct Input {
         let viewDidLoad: Observable<Date>
         let itemDidClicked: Observable<Quest>
+        let itemDidLongClicked: Observable<Quest>
+        let itemDidDeleteClicked: Observable<Quest>
         let profileButtonDidClicked: Observable<Void>
         let dragEventInCalendar: Observable<CalendarView.ScrollDirection>
         let daySelected: Observable<Date>
@@ -47,6 +49,24 @@ final class HomeViewModel {
             .compactMap { $0.increaseCount() }
             .flatMap(questUseCase.update(with:))
             .filter({ $0 })
+            .compactMap { [weak self] _ in self?.currentDate }
+            .share()
+            .asObservable()
+        
+        
+        let updatedDown = input
+            .itemDidLongClicked
+            .compactMap { $0.decreaseCount() }
+            .flatMap(questUseCase.update(with:))
+            .filter({ $0 })
+            .compactMap { [weak self] _ in self?.currentDate }
+            .share()
+            .asObservable()
+        
+        let updatedDelete = input
+            .itemDidDeleteClicked
+            .flatMap(questUseCase.delete(with:))
+            .filter({$0})
             .compactMap { [weak self] _ in self?.currentDate }
             .share()
             .asObservable()
@@ -87,6 +107,8 @@ final class HomeViewModel {
         let data = Observable
             .merge(
                 updated,
+                updatedDown,
+                updatedDelete,
                 input.viewDidLoad,
                 notification,
                 input.daySelected
@@ -114,6 +136,8 @@ final class HomeViewModel {
         let questStatus = Observable
             .merge(
                 updated,
+                updatedDown,
+                updatedDelete,
                 input.viewDidLoad,
                 notification)
             .map { _ in Date() }
