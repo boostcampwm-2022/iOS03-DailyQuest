@@ -19,16 +19,17 @@ enum RealmStorageError: Error {
 
 final class RealmStorage {
     static let shared = RealmStorage()
-
+    private let persistentContainer = try? Realm()
+    
     private init() {
         // Realm file path
         #if DEBUG
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         #endif
     }
+}
 
-    private let persistentContainer = try? Realm()
-
+extension RealmStorage {
     @discardableResult
     func createEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
@@ -39,7 +40,7 @@ final class RealmStorage {
         }
         return entity
     }
-
+    
     func readEntities<O: Object>(type: O.Type, filter: NSPredicate? = nil) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
             throw RealmStorageError.realmObjectError
@@ -50,7 +51,7 @@ final class RealmStorage {
             return Array(persistentContainer.objects(type))
         }
     }
-
+    
     @discardableResult
     func updateEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
@@ -61,7 +62,7 @@ final class RealmStorage {
         }
         return entity
     }
-
+    
     @discardableResult
     func deleteEntity<O: Object>(entity: O) throws -> O {
         guard let persistentContainer = persistentContainer else {
@@ -70,10 +71,10 @@ final class RealmStorage {
         try persistentContainer.write {
             persistentContainer.delete(entity)
         }
-
+        
         return entity
     }
-
+    
     @discardableResult
     func deleteAllEntity<O: Object>(type: O.Type) throws -> [O] {
         guard let persistentContainer = persistentContainer else {
@@ -86,12 +87,4 @@ final class RealmStorage {
         }
         return Array(persistentContainer.objects(type))
     }
-
-    func findEntities<O: Object>(type: O.Type, filter: NSPredicate) throws -> [O] {
-        guard let persistentContainer = persistentContainer else {
-            throw RealmStorageError.realmObjectError
-        }
-        return Array(persistentContainer.objects(type).filter(filter))
-    }
-
 }
