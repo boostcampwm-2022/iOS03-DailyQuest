@@ -81,10 +81,16 @@ final class HomeViewModel {
             .rx
             .notification(.userUpdated)
         
+        let questStateChangedNotification = NotificationCenter
+            .default
+            .rx
+            .notification(.questStateChanged)
+        
         let updateNotification = Observable
             .merge(
                 questUpdateNotification,
-                userUpdateNotification
+                userUpdateNotification,
+                questStateChangedNotification
             )
         
         let notification = updateNotification
@@ -116,10 +122,10 @@ final class HomeViewModel {
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
             })
-                .flatMap(questUseCase.fetch(by:))
+            .flatMap(questUseCase.fetch(by:))
                 .asDriver(onErrorJustReturn: [])
                 
-                let userNotification = NotificationCenter
+        let userNotification = NotificationCenter
                 .default
                 .rx
                 .notification(.userUpdated)

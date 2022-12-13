@@ -26,9 +26,7 @@ extension DefaultQuestUseCase: QuestUseCase {
         return questsRepository
             .update(with: quest)
             .do(onSuccess: { quest in
-                if quest.state {
-                    NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
-                }
+                NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
             })
                 .map { _ in true }
                 .catchAndReturn(false)
@@ -38,11 +36,9 @@ extension DefaultQuestUseCase: QuestUseCase {
         return questsRepository
             .delete(with: quest.uuid)
             .do(onSuccess: { quest in
-                if quest.state {
-                    NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
-                }
+                NotificationCenter.default.post(name: .questStateChanged, object: quest.date)
             })
-                .map { _ in true }
-                .catchAndReturn(false)
+            .map { _ in true }
+            .catchAndReturn(false)
     }
 }
