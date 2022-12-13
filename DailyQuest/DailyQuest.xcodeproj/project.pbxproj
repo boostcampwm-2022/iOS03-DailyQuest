@@ -140,6 +140,8 @@
 		9BED4DEC2940EA8900C60631 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DEB2940EA8900C60631 /* UserImageView.swift */; };
 		9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DED2941932200C60631 /* CameraIconView.swift */; };
 		9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 9BED4DF02941C47D00C60631 /* RxGesture */; };
+		9BED4DF629470D8C00C60631 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DF529470D8C00C60631 /* LaunchViewController.swift */; };
+		9BED4DFF2947109D00C60631 /* max.lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BED4DFE2947109C00C60631 /* max.lottie.json */; };
 		A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */; };
 		A5003AB6293F601E00082A9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB5293F601E00082A9C /* SignUpViewController.swift */; };
 		A5003AB9293F909300082A9C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5003AB8293F909300082A9C /* UserUseCase.swift */; };
@@ -379,6 +381,8 @@
 		9BED4DE9293FA92900C60631 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		9BED4DEB2940EA8900C60631 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		9BED4DED2941932200C60631 /* CameraIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraIconView.swift; sourceTree = "<group>"; };
+		9BED4DF529470D8C00C60631 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		9BED4DFE2947109C00C60631 /* max.lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = max.lottie.json; sourceTree = "<group>"; };
 		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		A5003AB5293F601E00082A9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A5003AB8293F909300082A9C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -1062,6 +1066,7 @@
 				34ACC337291DE9C100741371 /* LaunchScreen.storyboard */,
 				34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */,
 				34ACC33A291DE9C100741371 /* Info.plist */,
+				9BED4DFE2947109C00C60631 /* max.lottie.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1084,6 +1089,7 @@
 			isa = PBXGroup;
 			children = (
 				34FCD368293DEED600E0DC8A /* FriendViewController.swift */,
+				9BED4DF529470D8C00C60631 /* LaunchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1414,6 +1420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BED4DFF2947109D00C60631 /* max.lottie.json in Resources */,
 				34ACC339291DE9C100741371 /* LaunchScreen.storyboard in Resources */,
 				34ACC336291DE9C100741371 /* Assets.xcassets in Resources */,
 				34EC71D0292DF0B5004813CB /* GoogleService-Info.plist in Resources */,
@@ -1560,6 +1567,7 @@
 				34FCD366293DE62700E0DC8A /* DefaultEnrollUseCase.swift in Sources */,
 				A5AC96E829223F27003B7637 /* RealmQuestsStorage.swift in Sources */,
 				3472E8FB29421CB500BB304F /* DefaultFriendCalendarUseCase.swift in Sources */,
+				9BED4DF629470D8C00C60631 /* LaunchViewController.swift in Sources */,
 				A5003AB4293F5FEC00082A9C /* SignUpViewModel.swift in Sources */,
 				345687F829374D2500CA51E3 /* DayNamePickerView.swift in Sources */,
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
