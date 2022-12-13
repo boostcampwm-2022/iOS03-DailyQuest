@@ -27,11 +27,10 @@ extension DefaultBrowseRepository: BrowseRepository {
     /// Firebase 우선, 실패시 persistentStorage, persistentStorage도 실패시 Error반환
     /// - Returns: Observable<[BrowseQuest]>
     func fetch() -> Single<[BrowseQuest]> {
-        let uid = networkService.uid.value
         return networkService.getAllowUsers(limit: 10)
             .map { $0.toDomain() }
             .flatMap(fetchBrowseQuestNetworkService(user:))
-            .filter { !$0.quests.isEmpty &&  uid != $0.user.uuid }
+            .filter { !$0.quests.isEmpty }
             .toArray()
             .do(afterSuccess: { [weak self] browseQuests in
             guard let self = self else { return }
