@@ -102,6 +102,8 @@
 		34ACC350291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC34F291DE9C100741371 /* DailyQuestUITestsLaunchTests.swift */; };
 		34CAE318292B19A3007653AD /* QuestsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAE317292B19A3007653AD /* QuestsRepository.swift */; };
 		34D8360129359C8A001DE9DF /* BrowseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8360029359C8A001DE9DF /* BrowseRepository.swift */; };
+		34DACE2B294810B9007BF195 /* DailyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341759A02947567900C9123F /* DailyContainer.framework */; };
+		34DACE2C294810B9007BF195 /* DailyContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 341759A02947567900C9123F /* DailyContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		34EC71CE292DEFBF004813CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 34EC71CD292DEFBF004813CB /* Lottie */; };
 		34EC71D0292DF0B5004813CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EC71CF292DF0B5004813CB /* GoogleService-Info.plist */; };
 		34EC71D1292DF27E004813CB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F9A3829266FD8005C00FE /* Date+.swift */; };
@@ -252,6 +254,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				34DACE2C294810B9007BF195 /* DailyContainer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +434,7 @@
 			files = (
 				A50DE90B292B73B900E1FD60 /* FirebaseDatabaseSwift in Frameworks */,
 				3409154B292DE5CC007873A8 /* FirebaseAuth in Frameworks */,
+				34DACE2B294810B9007BF195 /* DailyContainer.framework in Frameworks */,
 				34091551292DE5CC007873A8 /* FirebaseStorage in Frameworks */,
 				A5AC96DF292239CA003B7637 /* RealmSwift in Frameworks */,
 				34FF6C5D292B8B27002AFD4D /* RxCocoa in Frameworks */,
