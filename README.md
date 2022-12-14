@@ -5,6 +5,25 @@
 잊지 말아야 할 하루의 퀘스트, Daily Quest와 함께  🧩
 
 
+# Features 👏
+
+<table width="100%">
+    <tr>
+      <td width="25%" align="center">😃 달성하고자 하는 퀘스트들을 등록해보세요!</td>
+      <td width="25%" align="center">✅ 캘린더를 통해 퀘스트를 확인할 수 있습니다!</td>
+      <td width="25%" align="center">👀 다른 사람들의 퀘스트들을 둘러보세요!</td>
+      <td width="25%"  align="center">🤼‍♀️ 다른 사람의 전체 퀘스트도 확인할 수 있어요!</td>
+    </tr>
+    <tr>
+      <td width="25%"  align="center"><img src="https://user-images.githubusercontent.com/26710036/207527078-4bebd25f-1337-4dff-911e-45d9e2362fa1.gif" /></td>
+      <td width="25%"  align="center"><img src="https://user-images.githubusercontent.com/26710036/207528844-964cf81e-0597-4a67-826d-625dd51de6f4.gif" /></td>
+      <td width="25%"  align="center"><img src="https://user-images.githubusercontent.com/26710036/207528731-8b6bea5b-4a60-414e-9b63-921b36bde368.gif" /></td>
+      <td width="25%"  align="center"><img src="https://user-images.githubusercontent.com/26710036/207528793-a67e4940-607c-48ab-8937-ef9240e7ab7a.gif" /></td>
+    </tr>
+</table>
+
+
+
 # Stacks 🧑‍💻
 
 ## MVVM-C & Clean Architecture
