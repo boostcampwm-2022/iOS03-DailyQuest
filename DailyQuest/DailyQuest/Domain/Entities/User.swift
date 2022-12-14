@@ -8,9 +8,75 @@
 import Foundation
 
 struct User {
-    let uuid: UUID
+    let uuid: String
     let nickName: String
-    let profile: Data
-    let backgroundImage: Data
-    let description: String
+    let profileURL: String
+    let backgroundImageURL: String
+    let introduce: String
+    let allow: Bool
+
+    init() {
+        self.uuid = ""
+        self.nickName = ""
+        self.profileURL = ""
+        self.backgroundImageURL = ""
+        self.introduce = ""
+        self.allow = false
+    }
+
+    init(nickName: String) {
+        self.uuid = ""
+        self.nickName = nickName
+        self.profileURL = ""
+        self.backgroundImageURL = ""
+        self.introduce = ""
+        self.allow = true
+    }
+
+    init(uuid: String, nickName: String, profileURL: String, backgroundImageURL: String, introduce: String, allow: Bool) {
+        self.uuid = uuid
+        self.nickName = nickName
+        self.profileURL = profileURL
+        self.backgroundImageURL = backgroundImageURL
+        self.introduce = introduce
+        self.allow = allow
+    }
+}
+
+extension User {
+    func setAllow(allow: Bool) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: allow)
+    }
+    
+    func setProfileImageURL(profileURL: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: self.allow)
+    }
+
+    func setBackgroundImageURL(backgroundImageURL: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: backgroundImageURL,
+                    introduce: self.introduce,
+                    allow: self.allow)
+    }
+    
+    func setIntroduce(introduce: String) -> User {
+        return User(uuid: self.uuid,
+                    nickName: self.nickName,
+                    profileURL: self.profileURL,
+                    backgroundImageURL: self.backgroundImageURL,
+                    introduce: introduce,
+                    allow: self.allow)
+    }
 }
