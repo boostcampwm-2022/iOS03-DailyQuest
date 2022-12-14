@@ -103,8 +103,8 @@ final class FriendViewController: UIViewController {
         let output = viewModel.transform(
             input: FriendViewModel.Input(
                 viewDidLoad: viewDidLoad,
-                daySelected: daySelected,
-                dragEventInCalendar: dragEventInCalendar
+                daySelected: calendarView.daySelected,
+                dragEventInCalendar: calendarView.dragEvent
             ),
             disposableBag: disposableBag
         )
@@ -152,6 +152,7 @@ final class FriendViewController: UIViewController {
         output
             .displayDays
             .drive(onNext: { [weak self] dailyQuestCompletions in
+                self?.calendarView.snapshotApply(dailyQuestCompletions)
             })
             .disposed(by: disposableBag)
         

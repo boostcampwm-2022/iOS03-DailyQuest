@@ -129,8 +129,8 @@ final class HomeViewController: UIViewController {
                 itemDidLongClicked: itemDidLongClick.asObservable(),
                 itemDidDeleteClicked: itemDidDeleteClicked,
                 profileButtonDidClicked: statusView.profileButtonDidClick,
-                dragEventInCalendar: dragEventInCalendar,
-                daySelected: daySelected
+                dragEventInCalendar: calendarView.dragEvent,
+                daySelected: calendarView.daySelected
             ),
             disposeBag: disposableBag
         )
@@ -154,6 +154,7 @@ final class HomeViewController: UIViewController {
         output
             .displayDays
             .drive(onNext: { [weak self] dailyQuestCompletions in
+                self?.calendarView.snapshotApply(dailyQuestCompletions)
             })
             .disposed(by: disposableBag)
         
