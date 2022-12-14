@@ -19,10 +19,6 @@ final class UserImageView: UIView {
         return userImage
     }()
     
-    private lazy var cameraIcon: CameraIconView = {
-        return CameraIconView()
-    }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,20 +32,12 @@ final class UserImageView: UIView {
     
     private func addSubviews() {
         addSubview(userImage)
-        addSubview(cameraIcon)
     }
     
     private func setupConstraints() {
         userImage.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.height.equalTo(100)
-        }
-        cameraIcon.snp.makeConstraints { make in
-            make.left.equalTo(75)
-            make.top.equalTo(75)
-        }
-        self.snp.makeConstraints { make in
-            make.width.height.equalTo(110)
         }
     }
 }

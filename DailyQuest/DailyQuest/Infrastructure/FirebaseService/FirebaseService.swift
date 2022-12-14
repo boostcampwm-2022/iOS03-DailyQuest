@@ -437,8 +437,10 @@ extension FirebaseService {
                         do {
                             guard let querySnapshot = querySnapshot else { throw NetworkServiceError.noDataError }
                             for document in querySnapshot.documents {
-                                let quest = try document.data(as: UserDTO.self)
-                                observer.onNext(quest)
+                                let user = try document.data(as: UserDTO.self)
+                                if user.uuid != self.uid.value {
+                                    observer.onNext(user)
+                                }
                             }
                         } catch let error {
                             observer.onError(error)

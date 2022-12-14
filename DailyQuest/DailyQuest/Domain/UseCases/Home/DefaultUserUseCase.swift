@@ -53,5 +53,12 @@ extension DefaultUserUseCase: UserUseCase {
         return userRepository.deleteUser()
             .catchAndReturn(false)
     }
+    
+    func updateIntroduce(introduce: String) -> Single<Bool> {
+        userRepository.readUser()
+            .map { $0.setIntroduce(introduce: introduce) }
+            .flatMap(userRepository.updateUser(by:))
+            .map { _ in true }
+            .catchAndReturn(false)
+    }
 }
-

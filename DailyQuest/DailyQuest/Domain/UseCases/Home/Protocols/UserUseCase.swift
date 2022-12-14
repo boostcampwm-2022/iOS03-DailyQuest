@@ -17,4 +17,6 @@ protocol UserUseCase {
     func saveBackgroundImage(data: Data) -> Single<Bool>
     
     func delete() -> Single<Bool>
+    
+    func updateIntroduce(introduce: String) -> Single<Bool>
 }

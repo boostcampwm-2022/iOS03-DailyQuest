@@ -26,7 +26,7 @@ extension RealmQuestsStorage: QuestsStorage {
             do {
                 for quest in quests {
                     let questEntity = QuestEntity(quest: quest)
-                    try realmStorage.saveEntity(entity: questEntity)
+                    try realmStorage.createEntity(entity: questEntity)
                 }
                 single(.success(quests))
             } catch let error {
@@ -43,7 +43,7 @@ extension RealmQuestsStorage: QuestsStorage {
             }
             do {
                 let quests = try realmStorage
-                    .fetchEntities(type: QuestEntity.self, filter: NSPredicate(format: "date == %@", date.toString))
+                    .readEntities(type: QuestEntity.self, filter: NSPredicate(format: "date == %@", date.toString))
                     .compactMap { $0.toDomain() }
                 single(.success(quests))
             } catch let error {
@@ -75,7 +75,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 return Disposables.create()
             }
             do {
-                guard let entity = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "uuid == %@", questId as CVarArg)).first else {
+                guard let entity = try realmStorage.readEntities(type: QuestEntity.self, filter: NSPredicate(format: "uuid == %@", questId as CVarArg)).first else {
                     throw RealmStorageError.noDataError
                 }
                 let quest = entity.toDomain()
@@ -96,7 +96,7 @@ extension RealmQuestsStorage: QuestsStorage {
             }
             
             do {
-                let entities = try realmStorage.findEntities(type: QuestEntity.self, filter: NSPredicate(format: "groupId == %@", groupId as CVarArg))
+                let entities = try realmStorage.readEntities(type: QuestEntity.self, filter: NSPredicate(format: "groupId == %@", groupId as CVarArg))
                 let quests = entities.compactMap { $0.toDomain() }
                 for entity in entities {
                     try realmStorage.deleteEntity(entity: entity)
@@ -115,7 +115,7 @@ extension RealmQuestsStorage: QuestsStorage {
                 return Disposables.create()
             }
             do {
-                let entities = try realmStorage.fetchEntities(type: QuestEntity.self)
+                let entities = try realmStorage.readEntities(type: QuestEntity.self)
                 let quests = entities.compactMap { $0.toDomain() }
                 for entity in entities {
                     try realmStorage.deleteEntity(entity: entity)
@@ -137,7 +137,7 @@ extension RealmQuestsStorage: QuestsStorage {
             
             do {
                 let quests = try realmStorage
-                    .fetchEntities(type: QuestEntity.self, filter: nil)
+                    .readEntities(type: QuestEntity.self, filter: nil)
                     .compactMap { $0.toDomain() }
                 single(.success(quests))
             } catch let error {

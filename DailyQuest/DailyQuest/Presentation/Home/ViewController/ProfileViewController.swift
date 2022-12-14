@@ -18,6 +18,7 @@ final class ProfileViewController: UIViewController {
     private var disposableBag = DisposeBag()
     
     private let changeProfileImage = PublishSubject<UIImage?>()
+    private let changeIntroduceLabel = PublishSubject<String>()
     
     private lazy var imagePicker: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
@@ -48,12 +49,25 @@ final class ProfileViewController: UIViewController {
         return introduceLabel
     }()
     
-    private lazy var editIntroduceButton: UIButton = {
-        let editIntroduceButton = UIButton()
-        editIntroduceButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-        editIntroduceButton.tintColor = .gray
-        return editIntroduceButton
+    private lazy var editProfileImageButton: UIButton = {
+        let editProfileImageButton = UIButton()
+        editProfileImageButton.setTitle("프로필 이미지 변경", for: .normal)
+        editProfileImageButton.setTitleColor(.maxViolet, for: .normal)
+        editProfileImageButton.backgroundColor = .maxYellow
+        editProfileImageButton.layer.cornerRadius = 10
+        return editProfileImageButton
     }()
+    
+    
+    private lazy var editIntroduceLabel: UIButton = {
+        let editIntroduceLabel = UIButton()
+        editIntroduceLabel.setTitle("한 줄 소개 변경", for: .normal)
+        editIntroduceLabel.setTitleColor(.maxViolet, for: .normal)
+        editIntroduceLabel.backgroundColor = .maxYellow
+        editIntroduceLabel.layer.cornerRadius = 10
+        return editIntroduceLabel
+    }()
+    
     
     
     // MARK: - Life Cycle
@@ -75,16 +89,17 @@ final class ProfileViewController: UIViewController {
         view.addSubview(userImageView)
         view.addSubview(nameLabel)
         view.addSubview(introduceLabel)
-        view.addSubview(editIntroduceButton)
+        view.addSubview(editProfileImageButton)
+        view.addSubview(editIntroduceLabel)
         
         userImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(100)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(userImageView.snp.bottom).offset(5)
+            make.top.equalTo(userImageView.snp.bottom).offset(60)
         }
         
         introduceLabel.snp.makeConstraints { make in
@@ -92,40 +107,38 @@ final class ProfileViewController: UIViewController {
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
         }
         
-        editIntroduceButton.snp.makeConstraints { make in
-            make.width.height.equalTo(20)
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-            make.left.equalTo(introduceLabel.snp.right).offset(5)
+        editProfileImageButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(introduceLabel.snp.bottom).offset(10)
+            make.height.equalTo(50)
+            make.width.equalTo(300)
         }
         
+        editIntroduceLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(editProfileImageButton.snp.bottom).offset(10)
+            make.height.equalTo(50)
+            make.width.equalTo(300)
+        }
     }
     
     func bind() {
-        userImageView.rx.tapGesture()
-            .when(.recognized)
+        
+        editProfileImageButton.rx.tap
             .subscribe(onNext: {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.present(self.imagePicker, animated: true)
             }).disposed(by: disposableBag)
         
-        editIntroduceButton.rx.tapGesture()
-            .when(.recognized)
+        editIntroduceLabel.rx.tap
             .subscribe(onNext: {
                 [weak self] _ in
-                let message = "한줄소개를 작성해주세요."
-                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                    
-                    
-                }
-                alert.addAction(okAction)
-                alert.addTextField ()
-                self?.present(alert, animated: true, completion: nil)
+                self?.showIntroduceAlert()
             })
             .disposed(by: disposableBag)
         
-        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(),changeProfileImage: changeProfileImage)
+        let input = ProfileViewModel.Input(viewDidLoad: .just(()).asObservable(),changeProfileImage: changeProfileImage, changeIntroduceLabel: changeIntroduceLabel)
         let output = viewModel.transform(input: input)
         
         output
@@ -134,6 +147,9 @@ final class ProfileViewController: UIViewController {
                 self.userImageView.userImage.setImage(with: user.profileURL)
                 self.nameLabel.text = user.nickName
                 self.introduceLabel.text = user.introduce
+                if self.introduceLabel.text == "" {
+                    self.setDefaultIntroduce()
+                }
             })
             .disposed(by: disposableBag)
         
@@ -147,6 +163,41 @@ final class ProfileViewController: UIViewController {
                 }
             })
             .disposed(by: disposableBag)
+        
+        output
+            .changeIntroduceLabelResult
+            .drive(onNext: { user in
+                self.introduceLabel.text = user.introduce
+                if self.introduceLabel.text == "" {
+                    self.setDefaultIntroduce()
+                } else {
+                    self.introduceLabel.textColor = .maxViolet
+                }
+            })
+            .disposed(by: disposableBag)
+    }
+    
+    private func setDefaultIntroduce() {
+        self.introduceLabel.text = "한 줄 소개를 작성해주세요."
+        self.introduceLabel.textColor = .maxLightGrey
+    }
+    
+    private func showIntroduceAlert(preferredStyle: UIAlertController.Style = .alert,
+                                    completion: (() -> Void)? = nil) {
+        let message = "한줄소개를 작성해주세요."
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            let text = alert.textFields?[0].text
+            self?.changeIntroduceLabel.onNext(text ?? "")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        alert.addTextField ()
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

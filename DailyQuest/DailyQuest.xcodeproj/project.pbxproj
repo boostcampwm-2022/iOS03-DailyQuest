@@ -140,7 +140,6 @@
 		9BED4DE8293FA01400C60631 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */; };
 		9BED4DEA293FA92900C60631 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DE9293FA92900C60631 /* UIImageView+.swift */; };
 		9BED4DEC2940EA8900C60631 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DEB2940EA8900C60631 /* UserImageView.swift */; };
-		9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DED2941932200C60631 /* CameraIconView.swift */; };
 		9BED4DF12941C47D00C60631 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 9BED4DF02941C47D00C60631 /* RxGesture */; };
 		9BED4DF629470D8C00C60631 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BED4DF529470D8C00C60631 /* LaunchViewController.swift */; };
 		9BED4DFF2947109D00C60631 /* max.lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BED4DFE2947109C00C60631 /* max.lottie.json */; };
@@ -383,7 +382,6 @@
 		9BED4DE7293FA01400C60631 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9BED4DE9293FA92900C60631 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		9BED4DEB2940EA8900C60631 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
-		9BED4DED2941932200C60631 /* CameraIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraIconView.swift; sourceTree = "<group>"; };
 		9BED4DF529470D8C00C60631 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		9BED4DFE2947109C00C60631 /* max.lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = max.lottie.json; sourceTree = "<group>"; };
 		A5003AB3293F5FEC00082A9C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -1084,7 +1082,6 @@
 				345687F729374D2500CA51E3 /* DayNamePickerView.swift */,
 				345687F92937815900CA51E3 /* QuantityView.swift */,
 				9BED4DEB2940EA8900C60631 /* UserImageView.swift */,
-				9BED4DED2941932200C60631 /* CameraIconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1577,7 +1574,6 @@
 				349955122923220E007AB99E /* SwiftUIPreview.swift in Sources */,
 				9BD8CD022938418500E6EA2F /* LastFollowingCell.swift in Sources */,
 				3449AD6029222B3900B87619 /* UserInfoCell.swift in Sources */,
-				9BED4DEE2941932200C60631 /* CameraIconView.swift in Sources */,
 				34ACC32F291DE9C000741371 /* SceneDelegate.swift in Sources */,
 				34A529D829247A87001BAD34 /* HomeCoordinator.swift in Sources */,
 				3472E8F7294213BE00BB304F /* DefaultFriendQuestUseCase.swift in Sources */,

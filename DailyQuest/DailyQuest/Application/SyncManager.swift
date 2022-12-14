@@ -69,7 +69,7 @@ final class SyncManager {
             
             do {
                 let quests = try persistentStorage
-                    .fetchEntities(type: QuestEntity.self, filter: nil)
+                    .readEntities(type: QuestEntity.self, filter: nil)
                     .compactMap { $0.toDomain() }
                 single(.success(quests))
             } catch let error {

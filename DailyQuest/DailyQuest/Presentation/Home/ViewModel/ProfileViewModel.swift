@@ -22,11 +22,13 @@ final class ProfileViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
         let changeProfileImage: Observable<UIImage?>
+        let changeIntroduceLabel : Observable<String>
     }
     
     struct Output {
         let data: Driver<User>
         let changeProfileImageResult: Driver<User>
+        let changeIntroduceLabelResult: Driver<User>
     }
     
     func transform(input: Input) -> Output {
@@ -55,6 +57,16 @@ final class ProfileViewModel {
         }.flatMap(userUseCase.fetch)
             .asDriver(onErrorJustReturn: User())
         
-        return Output(data: data, changeProfileImageResult: changeProfileImageResult)
+        let changeIntroduceLabelResult = input.changeIntroduceLabel.flatMap { introduce in
+            return self.userUseCase.updateIntroduce(introduce: introduce)
+                .map{ _ in introduce }
+                .catchAndReturn(nil)
+                .asObservable()
+        }.map{ _ in
+            Void()
+        }.flatMap(userUseCase.fetch)
+            .asDriver(onErrorJustReturn: User())
+        
+        return Output(data: data, changeProfileImageResult: changeProfileImageResult, changeIntroduceLabelResult: changeIntroduceLabelResult)
     }
 }
