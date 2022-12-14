@@ -100,17 +100,6 @@ final class FriendViewController: UIViewController {
     private func bind() {
         let viewDidLoad = Observable.just(Date()).share().asObservable()
         
-        
-        let daySelected = calendarView
-            .monthCollectionView
-            .rx
-            .itemSelected
-            .compactMap(calendarView.dataSource.itemIdentifier(for:))
-            .map { dailyQuestCompletion in
-                dailyQuestCompletion.day
-            }
-            .asObservable()
-        
         let output = viewModel.transform(
             input: FriendViewModel.Input(
                 viewDidLoad: viewDidLoad,

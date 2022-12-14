@@ -132,6 +132,7 @@ extension CalendarView {
         case next
         case none
     }
+    
     var dragEvent: Observable<ScrollDirection> {
         let willEndDragEvent = monthCollectionView
             .rx
@@ -157,5 +158,16 @@ extension CalendarView {
             .rx
             .didEndDecelerating
             .withLatestFrom(willEndDragEvent)
+    }
+    
+    var daySelected: Observable<Date> {
+        return monthCollectionView
+            .rx
+            .itemSelected
+            .compactMap(dataSource.itemIdentifier(for:))
+            .map { dailyQuestCompletion in
+                dailyQuestCompletion.day
+            }
+            .asObservable()
     }
 }
