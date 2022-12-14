@@ -122,25 +122,6 @@ final class HomeViewController: UIViewController {
         let viewDidLoad = Observable.just(Date()).asObservable()
         let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
         
-        let willEndDragEvent = calendarView
-            .monthCollectionView
-            .rx
-            .willEndDragging
-            .map { (velocity, _) -> CalendarView.ScrollDirection in
-                if velocity.x > 0 {
-                    return .next
-                } else if velocity.x < 0 {
-                    return .prev
-                } else {
-                    return .none
-                }
-            }
-        
-        let dragEventInCalendar = calendarView
-            .monthCollectionView
-            .rx
-            .didEndDecelerating
-            .withLatestFrom(willEndDragEvent)
         
         
         let daySelected = calendarView

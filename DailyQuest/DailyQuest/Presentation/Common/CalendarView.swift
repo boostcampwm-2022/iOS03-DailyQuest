@@ -132,4 +132,30 @@ extension CalendarView {
         case next
         case none
     }
+    var dragEvent: Observable<ScrollDirection> {
+        let willEndDragEvent = monthCollectionView
+            .rx
+            .willEndDragging
+            .map { [weak self] (velocity, cgPointPointer) -> CalendarView.ScrollDirection in
+                guard let self else { return .none }
+                let bounds = self.monthCollectionView.bounds
+                let screenWidth = bounds.width
+                let xPos = cgPointPointer.pointee.x
+
+                if xPos == 0 {
+                    return .prev
+                } else if xPos == screenWidth {
+                    return .none
+                } else if xPos == screenWidth * 2 {
+                    return .next
+                } else {
+                    return .none
+                }
+            }
+        
+        return monthCollectionView
+            .rx
+            .didEndDecelerating
+            .withLatestFrom(willEndDragEvent)
+    }
 }
