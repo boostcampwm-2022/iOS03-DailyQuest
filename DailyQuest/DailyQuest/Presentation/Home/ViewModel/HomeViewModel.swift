@@ -124,7 +124,7 @@ final class HomeViewModel {
                 self?.currentDate = date
             })
             .flatMap(questUseCase.fetch(by:))
-                .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [])
                 
         let userNotification = NotificationCenter
                 .default
