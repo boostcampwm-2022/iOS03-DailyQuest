@@ -15,7 +15,6 @@ final class HomeCalendarUseCase: CalendarUseCase {
     
     let currentMonth = BehaviorSubject<Date?>(value: Date())
     let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
-    let selectedDate = BehaviorSubject<Date>(value: Date())
     
     init(questsRepository: QuestsRepository) {
         self.questsRepository = questsRepository
@@ -117,10 +116,6 @@ final class HomeCalendarUseCase: CalendarUseCase {
             })
             .disposed(by: disposeBag)
     }
-    
-    func selectDate(_ date: Date) {
-        selectedDate.onNext(date)
-    }
 }
 
 extension HomeCalendarUseCase {
@@ -150,12 +145,10 @@ extension HomeCalendarUseCase {
                     .fetch(by: date)
                     .asObservable()
                     .map { quests -> DailyQuestCompletion in
-                        let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false
                         
                         return DailyQuestCompletion(
                             day: date,
                             state: self.calculateDailyState(quests),
-                            isSelected: isSelected
                         )
                     }
             }
@@ -163,7 +156,10 @@ extension HomeCalendarUseCase {
             .map { states in
                 let firstWeekStates = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
                     .map { date -> DailyQuestCompletion in
-                        return DailyQuestCompletion(day: date, state: .hidden, isSelected: false)
+                        return DailyQuestCompletion(
+                            day: date,
+                            state: .hidden
+                        )
                     }
                 
                 return firstWeekStates + states

@@ -73,12 +73,6 @@ final class FriendViewModel {
             })
             .disposed(by: disposableBag)
         
-        input.daySelected
-            .bind { [weak self] date in
-                self?.friendCalendarUseCase.selectDate(date)
-            }
-            .disposed(by: disposableBag)
-        
         let questHeaderLabel = input
             .daySelected
             .map(calculateRelative(_:))

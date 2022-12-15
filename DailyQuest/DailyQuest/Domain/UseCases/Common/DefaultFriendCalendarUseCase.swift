@@ -18,7 +18,6 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
     
     let currentMonth = BehaviorSubject<Date?>(value: Date())
     let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
-    let selectedDate = BehaviorSubject<Date>(value: Date())
     
     init(user: User, questsRepository: QuestsRepository) {
         self.user = user
@@ -44,10 +43,6 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
                 self?.completionOfMonths.onNext(completionOfMonths)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func selectDate(_ date: Date) {
-        selectedDate.onNext(date)
     }
     
     func fetchNextMontlyCompletion() {
@@ -152,18 +147,17 @@ extension DefaultFriendCalendarUseCase {
                     .map { date -> DailyQuestCompletion in
                         return DailyQuestCompletion(
                             day: date,
-                            state: .hidden,
-                            isSelected: false)
+                            state: .hidden
+                        )
                     }
                 
                 let completionOfMonths = dict.keys.sorted().map { date -> DailyQuestCompletion in
                     let state = self.calculateDailyState(dict[date] ?? [])
-                    let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false
                     
                     return DailyQuestCompletion(
                         day: date,
-                        state: state,
-                        isSelected: isSelected)
+                        state: state
+                    )
                 }
                 
                 return completionEndDaysOfLastMonth + completionOfMonths

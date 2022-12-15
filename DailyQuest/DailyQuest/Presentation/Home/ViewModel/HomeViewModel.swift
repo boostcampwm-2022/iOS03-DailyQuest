@@ -181,12 +181,6 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        input.daySelected
-            .bind { [weak self] date in
-                self?.calendarUseCase.selectDate(date)
-            }
-            .disposed(by: disposeBag)
-        
         let currentMonth = calendarUseCase
             .currentMonth
             .asObserver()

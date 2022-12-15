@@ -18,5 +18,4 @@ struct DailyQuestCompletion: Hashable {
     
     let day: Date
     let state: State
-    let isSelected: Bool
 }
