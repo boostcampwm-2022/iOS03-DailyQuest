@@ -152,9 +152,13 @@ final class HomeViewController: UIViewController {
     
     private func bindToCalendarView(with output: HomeViewModel.Output) {
         output
-            .displayDays
+            .calendarDays
             .drive(onNext: { [weak self] dailyQuestCompletions in
-                self?.calendarView.snapshotApply(dailyQuestCompletions)
+                self?.calendarView.apply(
+                    calendarDays:
+                    dailyQuestCompletions.monthlyCompletions,
+                    selected: dailyQuestCompletions.selectedDailyCompletion
+                )
             })
             .disposed(by: disposableBag)
         
