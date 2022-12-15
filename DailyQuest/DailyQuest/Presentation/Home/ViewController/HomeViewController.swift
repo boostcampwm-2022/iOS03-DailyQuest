@@ -122,37 +122,6 @@ final class HomeViewController: UIViewController {
         let viewDidLoad = Observable.just(Date()).asObservable()
         let itemDidClick = questView.rx.modelSelected(Quest.self).asObservable()
         
-        let willEndDragEvent = calendarView
-            .monthCollectionView
-            .rx
-            .willEndDragging
-            .map { (velocity, _) -> CalendarView.ScrollDirection in
-                if velocity.x > 0 {
-                    return .next
-                } else if velocity.x < 0 {
-                    return .prev
-                } else {
-                    return .none
-                }
-            }
-        
-        let dragEventInCalendar = calendarView
-            .monthCollectionView
-            .rx
-            .didEndDecelerating
-            .withLatestFrom(willEndDragEvent)
-        
-        
-        let daySelected = calendarView
-            .monthCollectionView
-            .rx
-            .itemSelected
-            .compactMap(calendarView.dataSource.itemIdentifier(for:))
-            .map { dailyQuestCompletion in
-                dailyQuestCompletion.day
-            }
-            .asObservable()
-        
         let output = viewModel.transform(
             input: HomeViewModel.Input(
                 viewDidLoad: viewDidLoad,
@@ -160,8 +129,8 @@ final class HomeViewController: UIViewController {
                 itemDidLongClicked: itemDidLongClick.asObservable(),
                 itemDidDeleteClicked: itemDidDeleteClicked,
                 profileButtonDidClicked: statusView.profileButtonDidClick,
-                dragEventInCalendar: dragEventInCalendar,
-                daySelected: daySelected
+                dragEventInCalendar: calendarView.dragEvent,
+                daySelected: calendarView.daySelected
             ),
             disposeBag: disposableBag
         )
@@ -185,30 +154,7 @@ final class HomeViewController: UIViewController {
         output
             .displayDays
             .drive(onNext: { [weak self] dailyQuestCompletions in
-                var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
-                let allSectionIndex = dailyQuestCompletions.indices.map { Int($0) }
-                snapshot.appendSections(allSectionIndex)
-                
-                allSectionIndex.forEach { index in
-                    snapshot.appendItems(dailyQuestCompletions[index], toSection: index)
-                }
-                
-                self?.calendarView.dataSource.apply(snapshot, animatingDifferences: false)
-                self?.calendarView.monthCollectionView.layoutIfNeeded()
-                
-                let selectedItem = dailyQuestCompletions
-                    .flatMap({ $0 })
-                    .first(where: { dailyQuestCompletion in
-                        dailyQuestCompletion.isSelected
-                    })
-                
-                if let selectedItem, let indexPath = self?.calendarView.dataSource.indexPath(for: selectedItem) {
-                    self?.calendarView.monthCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-                }
-                
-                self?.calendarView.monthCollectionView.scrollToItem(at: IndexPath(item: 0, section: 1),
-                                                                    at: .centeredHorizontally,
-                                                                    animated: false)
+                self?.calendarView.snapshotApply(dailyQuestCompletions)
             })
             .disposed(by: disposableBag)
         

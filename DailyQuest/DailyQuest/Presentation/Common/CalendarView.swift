@@ -124,6 +124,39 @@ final class CalendarView: UIView {
             return cell
         }
     }
+    
+    func snapshotApply(_ completionsOfMonths: [[DailyQuestCompletion]]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
+        let allSectionIndex = completionsOfMonths.indices.map { Int($0) }
+        snapshot.appendSections(allSectionIndex)
+        
+        allSectionIndex.forEach { index in
+            snapshot.appendItems(completionsOfMonths[index], toSection: index)
+        }
+        
+        dataSource.apply(snapshot, animatingDifferences: false)
+        monthCollectionView.layoutIfNeeded()
+        
+        let selectedItem = completionsOfMonths
+            .flatMap({ $0 })
+            .first(where: { dailyQuestCompletion in
+                dailyQuestCompletion.isSelected
+            })
+        
+        if let selectedItem, let indexPath = dataSource.indexPath(for: selectedItem) {
+            monthCollectionView.selectItem(
+                at: indexPath,
+                animated: false,
+                scrollPosition: .init()
+            )
+        }
+        
+        monthCollectionView.scrollToItem(
+            at: IndexPath(item: 0, section: 1),
+            at: .init(),
+            animated: false
+        )
+    }
 }
 
 extension CalendarView {
@@ -131,5 +164,43 @@ extension CalendarView {
         case prev
         case next
         case none
+    }
+    
+    var dragEvent: Observable<ScrollDirection> {
+        let willEndDragEvent = monthCollectionView
+            .rx
+            .willEndDragging
+            .map { [weak self] (velocity, cgPointPointer) -> CalendarView.ScrollDirection in
+                guard let self else { return .none }
+                let bounds = self.monthCollectionView.bounds
+                let screenWidth = bounds.width
+                let xPos = cgPointPointer.pointee.x
+
+                if xPos == 0 {
+                    return .prev
+                } else if xPos == screenWidth {
+                    return .none
+                } else if xPos == screenWidth * 2 {
+                    return .next
+                } else {
+                    return .none
+                }
+            }
+        
+        return monthCollectionView
+            .rx
+            .didEndDecelerating
+            .withLatestFrom(willEndDragEvent)
+    }
+    
+    var daySelected: Observable<Date> {
+        return monthCollectionView
+            .rx
+            .itemSelected
+            .compactMap(dataSource.itemIdentifier(for:))
+            .map { dailyQuestCompletion in
+                dailyQuestCompletion.day
+            }
+            .asObservable()
     }
 }
