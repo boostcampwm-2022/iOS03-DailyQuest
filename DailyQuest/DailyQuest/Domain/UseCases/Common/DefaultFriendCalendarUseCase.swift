@@ -93,14 +93,8 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
     
     func refreshMontlyCompletion(for date: Date) {
         guard
-            let months = try? self.completionOfMonths.value(),
-            let index = months.firstIndex(where: { month in
-                month.contains { dailyQuestCompletion in
-                    (dailyQuestCompletion.state != .hidden)
-                    && (dailyQuestCompletion.day.startOfDay == date.startOfDay)
-                }
-            }),
-            let reloadMonth = months[index].last?.day.startDayOfCurrentMonth
+            let reloadedMonth = date.startDayOfCurrentMonth,
+            let reloadedMonthIndex = findIndexAtMonthlyCompletions(for: date)
         else {
             return
         }
@@ -138,12 +132,28 @@ extension DefaultFriendCalendarUseCase {
         }
     }
     
+    private func findIndexAtMonthlyCompletions(for date: Date) -> Int? {
+        guard
+            let monthlyCompletions = try? self.monthlyCompletions.value()
+        else {
+            return nil
+        }
+        
+        return monthlyCompletions.firstIndex(where: { dailyCompletions in
+            dailyCompletions.contains { dailyCompletion in
+                (dailyCompletion.state != .hidden) && (dailyCompletion.day.startOfDay == date.startOfDay)
+            }
+        })
+    }
+    
     private func fetchAMonthlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
         guard let month = month else { return .empty() }
         
-        return questsRepository.fetch(by: self.user.uuid, date: month, filter: month)
-            .map { dict -> [DailyQuestCompletion] in
-                let completionEndDaysOfLastMonth = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
+        return questsRepository
+            .fetch(by: self.user.uuid, date: month, filter: month)
+            .map { [weak self] dict -> [DailyQuestCompletion] in
+                guard let self else { return [] }
+                let endWeekOfLastMonthCompletion = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
                     .map { date -> DailyQuestCompletion in
                         return DailyQuestCompletion(
                             day: date,

@@ -89,14 +89,8 @@ final class HomeCalendarUseCase: CalendarUseCase {
     
     func refreshMontlyCompletion(for date: Date) {
         guard
-            let months = try? self.completionOfMonths.value(),
-            let index = months.firstIndex(where: { month in
-                month.contains { dailyQuestCompletion in
-                    (dailyQuestCompletion.state != .hidden)
-                    && (dailyQuestCompletion.day.startOfDay == date.startOfDay)
-                }
-            }),
-            let reloadMonth = months[index].last?.day.startDayOfCurrentMonth
+            let reloadedMonth = date.startDayOfCurrentMonth,
+            let reloadedMonthIndex = findIndexAtMonthlyCompletions(for: date)
         else {
             return
         }
@@ -132,6 +126,20 @@ extension HomeCalendarUseCase {
         } else {
             return .notDone(filteredQuests.count)
         }
+    }
+    
+    private func findIndexAtMonthlyCompletions(for date: Date) -> Int? {
+        guard
+            let monthlyCompletions = try? self.monthlyCompletions.value()
+        else {
+            return nil
+        }
+        
+        return monthlyCompletions.firstIndex(where: { dailyCompletions in
+            dailyCompletions.contains { dailyCompletion in
+                (dailyCompletion.state != .hidden) && (dailyCompletion.day.startOfDay == date.startOfDay)
+            }
+        })
     }
     
     private func fetchAMonthlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
