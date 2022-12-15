@@ -39,8 +39,8 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
                 return self.fetchAMonthlyCompletion(monthDate)
             }
             .toArray()
-            .subscribe(onSuccess: { [weak self] completionOfMonths in
-                self?.monthlyCompletions.onNext(completionOfMonths)
+            .subscribe(onSuccess: { [weak self] fetchedMonthlyCompletions in
+                self?.monthlyCompletions.onNext(fetchedMonthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -161,7 +161,7 @@ extension DefaultFriendCalendarUseCase {
                         )
                     }
                 
-                let completionOfMonths = dict.keys.sorted().map { date -> DailyQuestCompletion in
+                let fetchedMonthCompletion = dict.keys.sorted().map { date -> DailyQuestCompletion in
                     let state = self.calculateDailyState(dict[date] ?? [])
                     
                     return DailyQuestCompletion(
@@ -170,7 +170,7 @@ extension DefaultFriendCalendarUseCase {
                     )
                 }
                 
-                return completionEndDaysOfLastMonth + completionOfMonths
+                return endWeekOfLastMonthCompletion + fetchedMonthCompletion
             }
             .asObservable()
     }

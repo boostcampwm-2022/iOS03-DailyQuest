@@ -81,8 +81,8 @@ final class HomeCalendarUseCase: CalendarUseCase {
                 return self.fetchAMonthlyCompletion(monthDate)
             }
             .toArray()
-            .subscribe(onSuccess: { [weak self] completionOfMonths in
-                self?.completionOfMonths.onNext(completionOfMonths)
+            .subscribe(onSuccess: { [weak self] fetchedMonthlyCompletions in
+                self?.monthlyCompletions.onNext(fetchedMonthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -161,8 +161,8 @@ extension HomeCalendarUseCase {
                     }
             }
             .toArray()
-            .map { states in
-                let firstWeekStates = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
+            .map { fetchedMonthCompletion in
+                let endWeekOfLastMonthCompletion = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
                     .map { date -> DailyQuestCompletion in
                         return DailyQuestCompletion(
                             day: date,
@@ -170,7 +170,7 @@ extension HomeCalendarUseCase {
                         )
                     }
                 
-                return firstWeekStates + states
+                return endWeekOfLastMonthCompletion + fetchedMonthCompletion
             }
             .asObservable()
     }
