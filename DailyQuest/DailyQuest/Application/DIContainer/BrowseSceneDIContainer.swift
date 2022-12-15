@@ -7,41 +7,37 @@
 
 import UIKit
 
+import DailyContainer
+
 final class BrowseSceneDIContainer {
     
-    lazy var browseQuestsStorage: BrowseQuestsStorage = RealmBrowseQuestsStorage()
-    lazy var questsStorage: QuestsStorage = RealmQuestsStorage()
-    
-    // MARK: - Repositories
-    func makeBrowseRepository() -> BrowseRepository {
-        return DefaultBrowseRepository(persistentStorage: browseQuestsStorage)
-    }
-    
-    func makeQuestsRepository() -> QuestsRepository {
-        return DefaultQuestsRepository(persistentStorage: questsStorage)
+    init() {
+        registerUseCase()
     }
     
     // MARK: - Use Cases
-    func makeBrowseUseCase() -> BrowseUseCase {
-        return DefaultBrowseUseCase(browseRepository: makeBrowseRepository())
-    }
-    
-    func makeFriendQuestUseCase() -> FriendQuestUseCase {
-        return DefaultFriendUseCase(questsRepository: makeQuestsRepository())
-    }
-    
     func makeFriendCalendarUseCase(with user: User) -> CalendarUseCase {
-        return DefaultFriendCalendarUseCase(user: user, questsRepository: makeQuestsRepository())
+        @Injected(QuestRepositoryKey.self)
+        var questRepository: QuestsRepository
+        
+        return DefaultFriendCalendarUseCase(user: user,
+                                            questsRepository: questRepository)
     }
     
     // MARK: - View Models
     func makeBrowseViewModel() -> BrowseViewModel {
-        return BrowseViewModel(browseUseCase: makeBrowseUseCase())
+        @Injected(BrowseUseCaseKey.self)
+        var browseUseCase: BrowseUseCase
+        
+        return BrowseViewModel(browseUseCase: browseUseCase)
     }
     
     func makeFriendViewModel(with user: User) -> FriendViewModel {
+        @Injected(FriendQuestUseCaseKey.self)
+        var friendQuestUseCase: FriendQuestUseCase
+        
         return FriendViewModel(user: user,
-                               friendQuestUseCase: makeFriendQuestUseCase(),
+                               friendQuestUseCase: friendQuestUseCase,
                                friendCalendarUseCase: makeFriendCalendarUseCase(with: user))
     }
     
@@ -62,3 +58,22 @@ final class BrowseSceneDIContainer {
     }
 }
 
+private extension BrowseSceneDIContainer {
+    func registerUseCase() {
+        Container.shared.register {
+            Module(BrowseUseCaseKey.self) {
+                @Injected(BrowseRepositoryKey.self)
+                var browseRepository: BrowseRepository
+                
+                return DefaultBrowseUseCase(browseRepository: browseRepository)
+            }
+            
+            Module(FriendQuestUseCaseKey.self) {
+                @Injected(QuestRepositoryKey.self)
+                var questRepository: QuestsRepository
+                
+                return DefaultFriendUseCase(questsRepository: questRepository)
+            }
+        }
+    }
+}
