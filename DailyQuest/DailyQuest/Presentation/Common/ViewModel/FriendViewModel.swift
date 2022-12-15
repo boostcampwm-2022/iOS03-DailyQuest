@@ -40,10 +40,12 @@ final class FriendViewModel {
     
     func transform(input: Input, disposableBag: DisposeBag) -> Output {
         
+        let daySelected = input.daySelected.share()
+        
         let data = Observable
             .merge(
                 input.viewDidLoad,
-                input.daySelected
+                daySelected
             )
             .flatMap(fetch(by:))
             .asDriver(onErrorJustReturn: [])
@@ -73,8 +75,7 @@ final class FriendViewModel {
             })
             .disposed(by: disposableBag)
         
-        let questHeaderLabel = input
-            .daySelected
+        let questHeaderLabel = daySelected
             .map(calculateRelative(_:))
             .asObservable()
             .share()

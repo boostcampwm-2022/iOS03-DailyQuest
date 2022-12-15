@@ -86,6 +86,8 @@ final class HomeViewModel {
             .rx
             .notification(.questStateChanged)
         
+        let daySelected = input.daySelected.share()
+        
         let updateNotification = Observable
             .merge(
                 questUpdateNotification,
@@ -105,8 +107,7 @@ final class HomeViewModel {
                 return !result.isEmpty ? owner.currentDate : nil
             }
         
-        let questHeaderLabel = input
-            .daySelected
+        let questHeaderLabel = daySelected
             .map(calculateRelative(_:))
             .asObservable()
         
@@ -117,7 +118,7 @@ final class HomeViewModel {
                 updatedDelete,
                 input.viewDidLoad,
                 notification,
-                input.daySelected
+                daySelected
             )
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
