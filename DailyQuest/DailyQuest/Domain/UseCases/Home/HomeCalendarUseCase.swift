@@ -27,7 +27,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
         
         let monthAfterNext = nextMonth.startDayOfNextMonth
         
-        fetchAMontlyCompletion(monthAfterNext)
+        fetchAMonthlyCompletion(monthAfterNext)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
@@ -50,7 +50,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
         
         let monthBeforeLast = lastMonth.startDayOfLastMonth
         
-        fetchAMontlyCompletion(monthBeforeLast)
+        fetchAMonthlyCompletion(monthBeforeLast)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
@@ -79,7 +79,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
             .concatMap { [weak self] monthDate in
                 guard let self else { return Observable<[DailyQuestCompletion]>.empty() }
                 
-                return self.fetchAMontlyCompletion(monthDate)
+                return self.fetchAMonthlyCompletion(monthDate)
             }
             .toArray()
             .subscribe(onSuccess: { [weak self] completionOfMonths in
@@ -102,7 +102,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
             return
         }
         
-        fetchAMontlyCompletion(reloadMonth)
+        fetchAMonthlyCompletion(reloadedMonth)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
@@ -139,7 +139,7 @@ extension HomeCalendarUseCase {
         }
     }
     
-    private func fetchAMontlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
+    private func fetchAMonthlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
         guard let month = month else { return .empty() }
         
         return Observable.from(month.rangeDaysOfMonth)
