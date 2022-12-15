@@ -40,3 +40,10 @@ struct FriendCalendarUseCaseKey: InjectionKey {
 }
 
 // MARK: - Settings Scene
+struct AuthUseCaseKey: InjectionKey {
+    typealias Value = AuthUseCase
+}
+
+struct SettingsUseCaseKey: InjectionKey {
+    typealias Value = SettingsUseCase
+}
