@@ -12,7 +12,7 @@ import RxSwift
 protocol CalendarUseCase {
     
     var currentMonth: BehaviorSubject<Date?> { get }
-    var completionOfMonths: BehaviorSubject<[[DailyQuestCompletion]]> { get }
+    var monthlyCompletions: BehaviorSubject<[[DailyQuestCompletion]]> { get }
     
     func fetchNextMontlyCompletion()
     func fetchLastMontlyCompletion()

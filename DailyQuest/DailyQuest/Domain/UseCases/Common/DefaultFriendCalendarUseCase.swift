@@ -17,7 +17,7 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
     private let disposeBag = DisposeBag()
     
     let currentMonth = BehaviorSubject<Date?>(value: Date())
-    let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
+    let monthlyCompletions = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
     
     init(user: User, questsRepository: QuestsRepository) {
         self.user = user
@@ -40,7 +40,7 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
             }
             .toArray()
             .subscribe(onSuccess: { [weak self] completionOfMonths in
-                self?.completionOfMonths.onNext(completionOfMonths)
+                self?.monthlyCompletions.onNext(completionOfMonths)
             })
             .disposed(by: disposeBag)
     }
@@ -55,15 +55,15 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values.removeFirst()
-                values.append(monthlyCompletion)
+                monthlyCompletions.removeFirst()
+                monthlyCompletions.append(monthlyCompletion)
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -78,15 +78,15 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values.removeLast()
-                values.insert(monthlyCompletion, at: 0)
+                monthlyCompletions.removeLast()
+                monthlyCompletions.insert(monthlyCompletion, at: 0)
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -109,14 +109,14 @@ final class DefaultFriendCalendarUseCase: CalendarUseCase {
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values[index] = monthlyCompletion
+                monthlyCompletions[reloadedMonthIndex] = monthlyCompletion
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
