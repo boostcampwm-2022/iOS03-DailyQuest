@@ -153,10 +153,11 @@ extension HomeCalendarUseCase {
                     .fetch(by: date)
                     .asObservable()
                     .map { quests -> DailyQuestCompletion in
+                        let state = self.calculateDailyState(quests)
                         
                         return DailyQuestCompletion(
                             day: date,
-                            state: self.calculateDailyState(quests),
+                            state: state
                         )
                     }
             }
