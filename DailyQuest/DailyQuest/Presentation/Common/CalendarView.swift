@@ -125,25 +125,19 @@ final class CalendarView: UIView {
         }
     }
     
-    func snapshotApply(_ completionsOfMonths: [[DailyQuestCompletion]]) {
+    func apply(calendarDays monthlyCompletions: [[DailyQuestCompletion]], selected: DailyQuestCompletion?) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, DailyQuestCompletion>()
-        let allSectionIndex = completionsOfMonths.indices.map { Int($0) }
+        let allSectionIndex = monthlyCompletions.indices.map { Int($0) }
         snapshot.appendSections(allSectionIndex)
         
         allSectionIndex.forEach { index in
-            snapshot.appendItems(completionsOfMonths[index], toSection: index)
+            snapshot.appendItems(monthlyCompletions[index], toSection: index)
         }
         
         dataSource.apply(snapshot, animatingDifferences: false)
         monthCollectionView.layoutIfNeeded()
         
-        let selectedItem = completionsOfMonths
-            .flatMap({ $0 })
-            .first(where: { dailyQuestCompletion in
-                dailyQuestCompletion.isSelected
-            })
-        
-        if let selectedItem, let indexPath = dataSource.indexPath(for: selectedItem) {
+        if let selected, let indexPath = dataSource.indexPath(for: selected) {
             monthCollectionView.selectItem(
                 at: indexPath,
                 animated: false,

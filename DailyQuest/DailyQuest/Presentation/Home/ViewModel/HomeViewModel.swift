@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 final class HomeViewModel {
+    typealias DisplayedMonthlyCompletions = (monthlyCompletions: [[DailyQuestCompletion]], selectedDailyCompletion: DailyQuestCompletion?)
+    
     private let userUseCase: UserUseCase
     private let questUseCase: QuestUseCase
     private let calendarUseCase: CalendarUseCase
@@ -39,7 +41,7 @@ final class HomeViewModel {
         let questStatus: Driver<(Int, Int)>
         let profileTapResult: Observable<Bool>
         let currentMonth: Observable<Date?>
-        let displayDays: Driver<[[DailyQuestCompletion]]>
+        let calendarDays: Driver<DisplayedMonthlyCompletions>
     }
     
     func transform(input: Input, disposeBag: DisposeBag) -> Output {
@@ -86,6 +88,8 @@ final class HomeViewModel {
             .rx
             .notification(.questStateChanged)
         
+        let daySelected = input.daySelected.share()
+        
         let updateNotification = Observable
             .merge(
                 questUpdateNotification,
@@ -105,8 +109,7 @@ final class HomeViewModel {
                 return !result.isEmpty ? owner.currentDate : nil
             }
         
-        let questHeaderLabel = input
-            .daySelected
+        let questHeaderLabel = daySelected
             .map(calculateRelative(_:))
             .asObservable()
         
@@ -117,13 +120,13 @@ final class HomeViewModel {
                 updatedDelete,
                 input.viewDidLoad,
                 notification,
-                input.daySelected
+                daySelected
             )
             .do(onNext: { [weak self] date in
                 self?.currentDate = date
             })
             .flatMap(questUseCase.fetch(by:))
-                .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [])
                 
         let userNotification = NotificationCenter
                 .default
@@ -181,19 +184,18 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        input.daySelected
-            .bind { [weak self] date in
-                self?.calendarUseCase.selectDate(date)
-            }
-            .disposed(by: disposeBag)
-        
         let currentMonth = calendarUseCase
             .currentMonth
-            .asObserver()
+            .asObservable()
         
-        let displayDays = calendarUseCase
-            .completionOfMonths
-            .asDriver(onErrorJustReturn: [[], [], []])
+        let calendarDays = calendarUseCase
+            .monthlyCompletions
+            .map({ [weak self] monthlyCompletions -> DisplayedMonthlyCompletions in
+                let selectedDailyCompletion = self?.findSelectedDailyCompletion(monthlyCompletions)
+                
+                return (monthlyCompletions, selectedDailyCompletion)
+            })
+            .asDriver(onErrorJustReturn: (monthlyCompletions: [[], [], []], selectedDailyCompletion: nil))
         
         updateNotification
             .subscribe(onNext: { [weak self] date in
@@ -217,7 +219,7 @@ final class HomeViewModel {
                       questStatus: questStatus,
                       profileTapResult: profileTapResult,
                       currentMonth: currentMonth,
-                      displayDays: displayDays)
+                      calendarDays: calendarDays)
     }
 }
 
@@ -229,5 +231,16 @@ private extension HomeViewModel {
         } else {
             return "\(date.toFormatMonthDay)의 퀘스트 "
         }
+    }
+}
+
+private extension HomeViewModel {
+    func findSelectedDailyCompletion(_ montlyCompletions: [[DailyQuestCompletion]]) -> DailyQuestCompletion? {
+        
+        return montlyCompletions
+            .flatMap { $0 }
+            .first { dailyQuestCompletion in
+                dailyQuestCompletion.state != .hidden && dailyQuestCompletion.day == self.currentDate.startOfDay
+            }
     }
 }

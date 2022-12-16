@@ -14,8 +14,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
     private let disposeBag = DisposeBag()
     
     let currentMonth = BehaviorSubject<Date?>(value: Date())
-    let completionOfMonths = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
-    let selectedDate = BehaviorSubject<Date>(value: Date())
+    let monthlyCompletions = BehaviorSubject<[[DailyQuestCompletion]]>(value: [[], [], []])
     
     init(questsRepository: QuestsRepository) {
         self.questsRepository = questsRepository
@@ -27,19 +26,19 @@ final class HomeCalendarUseCase: CalendarUseCase {
         
         let monthAfterNext = nextMonth.startDayOfNextMonth
         
-        fetchAMontlyCompletion(monthAfterNext)
+        fetchAMonthlyCompletion(monthAfterNext)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values.removeFirst()
-                values.append(monthlyCompletion)
+                monthlyCompletions.removeFirst()
+                monthlyCompletions.append(monthlyCompletion)
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -50,19 +49,19 @@ final class HomeCalendarUseCase: CalendarUseCase {
         
         let monthBeforeLast = lastMonth.startDayOfLastMonth
         
-        fetchAMontlyCompletion(monthBeforeLast)
+        fetchAMonthlyCompletion(monthBeforeLast)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values.removeLast()
-                values.insert(monthlyCompletion, at: 0)
+                monthlyCompletions.removeLast()
+                monthlyCompletions.insert(monthlyCompletion, at: 0)
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
@@ -79,47 +78,37 @@ final class HomeCalendarUseCase: CalendarUseCase {
             .concatMap { [weak self] monthDate in
                 guard let self else { return Observable<[DailyQuestCompletion]>.empty() }
                 
-                return self.fetchAMontlyCompletion(monthDate)
+                return self.fetchAMonthlyCompletion(monthDate)
             }
             .toArray()
-            .subscribe(onSuccess: { [weak self] completionOfMonths in
-                self?.completionOfMonths.onNext(completionOfMonths)
+            .subscribe(onSuccess: { [weak self] fetchedMonthlyCompletions in
+                self?.monthlyCompletions.onNext(fetchedMonthlyCompletions)
             })
             .disposed(by: disposeBag)
     }
     
     func refreshMontlyCompletion(for date: Date) {
         guard
-            let months = try? self.completionOfMonths.value(),
-            let index = months.firstIndex(where: { month in
-                month.contains { dailyQuestCompletion in
-                    (dailyQuestCompletion.state != .hidden)
-                    && (dailyQuestCompletion.day.startOfDay == date.startOfDay)
-                }
-            }),
-            let reloadMonth = months[index].last?.day.startDayOfCurrentMonth
+            let reloadedMonth = date.startDayOfCurrentMonth,
+            let reloadedMonthIndex = findIndexAtMonthlyCompletions(for: date)
         else {
             return
         }
         
-        fetchAMontlyCompletion(reloadMonth)
+        fetchAMonthlyCompletion(reloadedMonth)
             .subscribe(onNext: { [weak self] monthlyCompletion in
                 guard
                     let self,
-                    var values = try? self.completionOfMonths.value()
+                    var monthlyCompletions = try? self.monthlyCompletions.value()
                 else {
                     return
                 }
                 
-                values[index] = monthlyCompletion
+                monthlyCompletions[reloadedMonthIndex] = monthlyCompletion
                 
-                self.completionOfMonths.onNext(values)
+                self.monthlyCompletions.onNext(monthlyCompletions)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func selectDate(_ date: Date) {
-        selectedDate.onNext(date)
     }
 }
 
@@ -139,7 +128,21 @@ extension HomeCalendarUseCase {
         }
     }
     
-    private func fetchAMontlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
+    private func findIndexAtMonthlyCompletions(for date: Date) -> Int? {
+        guard
+            let monthlyCompletions = try? self.monthlyCompletions.value()
+        else {
+            return nil
+        }
+        
+        return monthlyCompletions.firstIndex(where: { dailyCompletions in
+            dailyCompletions.contains { dailyCompletion in
+                (dailyCompletion.state != .hidden) && (dailyCompletion.day.startOfDay == date.startOfDay)
+            }
+        })
+    }
+    
+    private func fetchAMonthlyCompletion(_ month: Date?) -> Observable<[DailyQuestCompletion]> {
         guard let month = month else { return .empty() }
         
         return Observable.from(month.rangeDaysOfMonth)
@@ -150,23 +153,25 @@ extension HomeCalendarUseCase {
                     .fetch(by: date)
                     .asObservable()
                     .map { quests -> DailyQuestCompletion in
-                        let isSelected = (try? self.selectedDate.value().startOfDay == date) ?? false
+                        let state = self.calculateDailyState(quests)
                         
                         return DailyQuestCompletion(
                             day: date,
-                            state: self.calculateDailyState(quests),
-                            isSelected: isSelected
+                            state: state
                         )
                     }
             }
             .toArray()
-            .map { states in
-                let firstWeekStates = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
+            .map { fetchedMonthCompletion in
+                let endWeekOfLastMonthCompletion = month.rangeFromStartWeekdayOfLastMonthToEndDayOfCurrentMonth
                     .map { date -> DailyQuestCompletion in
-                        return DailyQuestCompletion(day: date, state: .hidden, isSelected: false)
+                        return DailyQuestCompletion(
+                            day: date,
+                            state: .hidden
+                        )
                     }
                 
-                return firstWeekStates + states
+                return endWeekOfLastMonthCompletion + fetchedMonthCompletion
             }
             .asObservable()
     }

@@ -11,9 +11,12 @@ import RxSwift
 import RxCocoa
 
 final class FriendViewModel {
+    typealias DisplayedMonthlyCompletions = (monthlyCompletions: [[DailyQuestCompletion]], selectedDailyCompletion: DailyQuestCompletion?)
+    
     private(set) var user: User
     private let friendQuestUseCase: FriendQuestUseCase
     private let friendCalendarUseCase: CalendarUseCase
+    private var currentDate = Date()
     
     init(user: User,
          friendQuestUseCase: FriendQuestUseCase,
@@ -35,15 +38,17 @@ final class FriendViewModel {
         let userData: Driver<User>
         let data: Driver<[Quest]>
         let currentMonth: Observable<Date?>
-        let displayDays: Driver<[[DailyQuestCompletion]]>
+        let calendarDays: Driver<DisplayedMonthlyCompletions>
     }
     
     func transform(input: Input, disposableBag: DisposeBag) -> Output {
         
+        let daySelected = input.daySelected.share()
+        
         let data = Observable
             .merge(
                 input.viewDidLoad,
-                input.daySelected
+                daySelected
             )
             .flatMap(fetch(by:))
             .asDriver(onErrorJustReturn: [])
@@ -73,27 +78,32 @@ final class FriendViewModel {
             })
             .disposed(by: disposableBag)
         
-        input.daySelected
-            .bind { [weak self] date in
-                self?.friendCalendarUseCase.selectDate(date)
-            }
-            .disposed(by: disposableBag)
-        
-        let questHeaderLabel = input
-            .daySelected
+        let questHeaderLabel = daySelected
+            .do(onNext: { [weak self] date in
+                self?.currentDate = date
+            })
             .map(calculateRelative(_:))
             .asObservable()
             .share()
         
         let currentMonth = friendCalendarUseCase
             .currentMonth
-            .asObserver()
+            .asObservable()
         
-        let displayDays = friendCalendarUseCase
-            .completionOfMonths
-            .asDriver(onErrorJustReturn: [[], [], []])
+        let calendarDays = friendCalendarUseCase
+            .monthlyCompletions
+            .map({ [weak self] monthlyCompletions -> DisplayedMonthlyCompletions in
+                let selectedDailyCompletion = self?.findSelectedDailyCompletion(monthlyCompletions)
+                
+                return (monthlyCompletions, selectedDailyCompletion)
+            })
+            .asDriver(onErrorJustReturn: (monthlyCompletions: [[], [], []], selectedDailyCompletion: nil))
 
-        return Output(questHeaderLabel: questHeaderLabel, userData: userData, data: data, currentMonth: currentMonth, displayDays: displayDays)
+        return Output(questHeaderLabel: questHeaderLabel,
+                      userData: userData,
+                      data: data,
+                      currentMonth: currentMonth,
+                      calendarDays: calendarDays)
     }
 }
 
@@ -104,7 +114,7 @@ private extension FriendViewModel {
     }
 }
 
-extension FriendViewModel {
+private extension FriendViewModel {
     func calculateRelative(_ date: Date) -> String {
         let today = Date()
         if today.startOfDay == date.startOfDay {
@@ -112,5 +122,16 @@ extension FriendViewModel {
         } else {
             return "\(date.toFormatMonthDay)의 퀘스트 "
         }
+    }
+}
+
+private extension FriendViewModel {
+    func findSelectedDailyCompletion(_ montlyCompletions: [[DailyQuestCompletion]]) -> DailyQuestCompletion? {
+        
+        return montlyCompletions
+            .flatMap { $0 }
+            .first { dailyQuestCompletion in
+                dailyQuestCompletion.state != .hidden && dailyQuestCompletion.day == self.currentDate.startOfDay
+            }
     }
 }
