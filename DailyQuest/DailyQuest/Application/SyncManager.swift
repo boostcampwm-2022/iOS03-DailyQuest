@@ -18,7 +18,7 @@ final class SyncManager {
     func sync(){
         guard FirebaseService.shared.uid.value != nil else {return }
         let taskId = app.beginBackgroundTask()
-        self.questSync()
+        self.questsSync()
             .timeout(.seconds(20), scheduler: MainScheduler.instance)
             .subscribe(onSuccess:{ res in
                 print("✅",res)
@@ -32,7 +32,7 @@ final class SyncManager {
             .disposed(by: disposeBag)
     }
     
-    private func questSync() -> Single<Bool> {
+    private func questsSync() -> Single<Bool> {
         self.fetchQuests()
             .flatMap { [weak self] persistentStorageQuest in
                 guard let self = self else { return Single<[Quest]>.just([]) }
