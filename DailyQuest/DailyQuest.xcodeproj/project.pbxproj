@@ -31,7 +31,7 @@
 		3416FC93292B59D300B504C5 /* QuestRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */; };
 		3416FC95292B5AD600B504C5 /* QuestUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */; };
 		3416FC96292B5B5400B504C5 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3449AD5A2922164B00B87619 /* Quest.swift */; };
-		341759932947426000C9123F /* StroageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341759922947426000C9123F /* StroageKey.swift */; };
+		341759932947426000C9123F /* StorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341759922947426000C9123F /* StorageKey.swift */; };
 		34175995294743E300C9123F /* RepositoryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34175994294743E300C9123F /* RepositoryKey.swift */; };
 		34175998294745DB00C9123F /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34175997294745DB00C9123F /* ServiceKey.swift */; };
 		3417599B2947479100C9123F /* UseCaseKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417599A2947479100C9123F /* UseCaseKey.swift */; };
@@ -285,7 +285,7 @@
 		3416FC92292B59D300B504C5 /* QuestRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRepositoryMock.swift; sourceTree = "<group>"; };
 		3416FC94292B5AD600B504C5 /* QuestUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestUseCaseTests.swift; sourceTree = "<group>"; };
 		3417597C29470CFF00C9123F /* DailyContainer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DailyContainer.xcodeproj; path = DailyContainer/DailyContainer.xcodeproj; sourceTree = "<group>"; };
-		341759922947426000C9123F /* StroageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroageKey.swift; sourceTree = "<group>"; };
+		341759922947426000C9123F /* StorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKey.swift; sourceTree = "<group>"; };
 		34175994294743E300C9123F /* RepositoryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryKey.swift; sourceTree = "<group>"; };
 		34175997294745DB00C9123F /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
 		3417599A2947479100C9123F /* UseCaseKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseKey.swift; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 		341759892947126700C9123F /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				341759922947426000C9123F /* StroageKey.swift */,
+				341759922947426000C9123F /* StorageKey.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1555,7 +1555,7 @@
 				A51F01D8292343A80031ECA2 /* RealmBrowseQuestsStorage.swift in Sources */,
 				A51F01DD2923468F0031ECA2 /* BrowseQuestEntity+Mapping.swift in Sources */,
 				345687F62937430200CA51E3 /* PlanDatePickerView.swift in Sources */,
-				341759932947426000C9123F /* StroageKey.swift in Sources */,
+				341759932947426000C9123F /* StorageKey.swift in Sources */,
 				34FCD369293DEED600E0DC8A /* FriendViewController.swift in Sources */,
 				3416FC88292B54DB00B504C5 /* QuestUseCase.swift in Sources */,
 				9BD8CCF72935D7BB00E6EA2F /* BrowseQuestDTO+Mapping.swift in Sources */,

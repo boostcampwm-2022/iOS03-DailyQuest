@@ -24,11 +24,11 @@ extension Container {
     func resolve<T>(for type: Any.Type?) -> T {
         let name = type.map { String(describing: $0) } ?? String(describing: T.self)
         
-        guard let dependancy: T = modules[name]?.resolve() as? T else {
-            fatalError("dependancy \(T.self) not resolved.")
+        guard let dependency: T = modules[name]?.resolve() as? T else {
+            fatalError("dependency \(T.self) not resolved.")
         }
         
-        return dependancy
+        return dependency
     }
 }
 
