@@ -94,7 +94,7 @@ private extension HomeSceneDIContainer {
                 @Injected(QuestRepositoryKey.self)
                 var questRepository: QuestsRepository
                 
-                return HomeCalendarUseCase(questsRepository: questRepository)
+                return DefaultHomeCalendarUseCase(questsRepository: questRepository)
             }
         }
     }

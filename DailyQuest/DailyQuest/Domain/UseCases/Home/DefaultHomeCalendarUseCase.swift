@@ -1,5 +1,5 @@
 //
-//  HomeCalendarUseCase.swift
+//  DefaultHomeCalendarUseCase.swift
 //  DailyQuest
 //
 //  Created by wickedRun on 2022/12/05.
@@ -9,7 +9,7 @@ import Foundation
 
 import RxSwift
 
-final class HomeCalendarUseCase: CalendarUseCase {
+final class DefaultHomeCalendarUseCase: CalendarUseCase {
     private let questsRepository: QuestsRepository
     private let disposeBag = DisposeBag()
     
@@ -112,7 +112,7 @@ final class HomeCalendarUseCase: CalendarUseCase {
     }
 }
 
-extension HomeCalendarUseCase {
+extension DefaultHomeCalendarUseCase {
     
     private func calculateDailyState(_ quests: [Quest]) -> DailyQuestCompletion.State {
         guard !quests.isEmpty else {
