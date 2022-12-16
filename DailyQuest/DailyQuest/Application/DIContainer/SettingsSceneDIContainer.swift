@@ -7,42 +7,34 @@
 
 import UIKit
 
+import DailyContainer
+
 final class SettingsSceneDIContainer {
 
-    lazy var userInfoStorage: UserInfoStorage = RealmUserInfoStorage()
-    lazy var questsStorage: QuestsStorage = RealmQuestsStorage()
-
-    // MARK: - Repositories
-    func makeAuthRepository() -> AuthRepository {
-        return DefaultAuthRepository(persistentQuestsStorage: questsStorage,
-                                     persistentUserStorage: userInfoStorage)
-    }
-
-    func makeUserRepository() -> UserRepository {
-        return DefaultUserRepository(persistentStorage: userInfoStorage)
-    }
-
-    // MARK: - Use Cases
-    func makeAuthUseCase() -> AuthUseCase {
-        return DefaultAuthUseCase(authRepository: makeAuthRepository())
-    }
-
-    func makeSettingsUseCase() -> SettingsUseCase {
-        return DefaultSettingsUseCase(userRepository: makeUserRepository(),
-                                      authRepository: makeAuthRepository())
+    init() {
+        registerUseCase()
     }
 
     // MARK: - View Models
     func makeLoginViewModel() -> LoginViewModel {
-        return LoginViewModel(authUseCase: makeAuthUseCase())
+        @Injected(AuthUseCaseKey.self)
+        var authUseCase: AuthUseCase
+        
+        return LoginViewModel(authUseCase: authUseCase)
     }
 
     func makeSignUpViewModel() -> SignUpViewModel {
-        return SignUpViewModel(authUseCase: makeAuthUseCase())
+        @Injected(AuthUseCaseKey.self)
+        var authUseCase: AuthUseCase
+        
+        return SignUpViewModel(authUseCase: authUseCase)
     }
 
     func makeSettingsViewModel() -> SettingsViewModel {
-        return SettingsViewModel(settingsUseCase: makeSettingsUseCase())
+        @Injected(SettingsUseCaseKey.self)
+        var settingsUseCase: SettingsUseCase
+        
+        return SettingsViewModel(settingsUseCase: settingsUseCase)
     }
 
     // MARK: - View Controller
@@ -63,5 +55,29 @@ final class SettingsSceneDIContainer {
                                  settingsSceneDIContainer: SettingsSceneDIContainer) -> SettingsCoordinator {
         return DefaultSettingsCoordinator(navigationController: navigationController,
                                           settingsSceneDIContainer: settingsSceneDIContainer)
+    }
+}
+
+private extension SettingsSceneDIContainer {
+    func registerUseCase() {
+        Container.shared.register {
+            Module(AuthUseCaseKey.self) {
+                @Injected(AuthRepositoryKey.self)
+                var authRepository: AuthRepository
+                
+                return DefaultAuthUseCase(authRepository: authRepository)
+            }
+            
+            Module(SettingsUseCaseKey.self) {
+                @Injected(UserRepositoryKey.self)
+                var userRepository: UserRepository
+                
+                @Injected(AuthRepositoryKey.self)
+                var authRepository: AuthRepository
+                
+                return DefaultSettingsUseCase(userRepository: userRepository,
+                                              authRepository: authRepository)
+            }
+        }
     }
 }
