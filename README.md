@@ -2,6 +2,8 @@
 
 ![Group_36](https://user-images.githubusercontent.com/26710036/207524292-bf21d9d8-7738-4ea2-9bab-db4f513d5a71.png)
 
+<a href="https://apps.apple.com/kr/app/apple-store/id6444737672"><img src="https://user-images.githubusercontent.com/53684146/209014894-ec8d5bba-8282-4410-ac29-ffcb3863ddb9.png"/></a>
+
 잊지 말아야 할 하루의 퀘스트, Daily Quest와 함께  🧩
 
 
